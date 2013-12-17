@@ -6,7 +6,7 @@ e[py]s
         :target: https://travis-ci.org/johnnycakes79/epys
 
 
-ePYs will be a python library for the manipulation, processing and plotting
+ePYs is a python library for the manipulation, processing and plotting
 of the input and output files of ESA Experiment Planning Software (EPS).
 
 .. WARNING::
