@@ -29,34 +29,26 @@ def read(fname, metadata=False):
     with open(fname, 'r') as fh:
         for line in fh:
 
-            """
-            Catch the header data and store it in dictionary.
-            """
+            logger.info("Catch the header data and store it in dictionary.")
             if re.match( r'#(.*):(.*)', line, re.M|re.I):
                 keypair = line.strip('#\n').split(':')
                 mdata[keypair[0].strip()] = keypair[1].strip()
                 continue
 
-            """
-            Catch the reference date and add to dictionary.
-            """
+            logger.info("Catch the reference date and add to dictionary.")
             if re.match( r'Ref_date:(.*)', line, re.M|re.I):
                 keypair = line.strip('#\n').split(':')
                 mdata['Reference Date'] = keypair[1].strip()
                 ref_date = datetime.strptime(mdata['Reference Date'], "%d-%b-%Y")
                 continue
 
-            """
-            Catch the experiment names to list.
-            """
+            logger.info("Catch the experiment names to list.")
             if re.match( r'(.*)\<(.*)\>', line, re.M|re.I):
                 xprmnts = [i.replace('<','').replace('_','-') for i in line.replace('.','').replace('>','').split()]
                 continue
 
-            """
-            Catch the column headers and prefix them with
-            experiment list.
-            """
+            logger.info("Catch the column headers and prefix them with
+            experiment list.")
             if re.match( r'Elapsed time(.*)', line, re.M|re.I):
                 _hdings = line.split()
                 _hdings[0:2] = [' '.join(_hdings[0:2])]
@@ -71,9 +63,7 @@ def read(fname, metadata=False):
                     x = x + 1
                 continue
 
-            """
-            Catch the units line and process ...
-            """
+            logger.info("Catch the units line and process ...")
             if re.match( r'ddd_hh:mm:ss(.*)', line, re.M|re.I):
                 _units = line.replace('(','').replace(')','').split()
                 units = _units[0:2]
@@ -87,31 +77,22 @@ def read(fname, metadata=False):
                 continue
 
             if post_process:
-                """
-                Raise an error if the the length of 'units' is not
-                equal to the length of '_hdings'.
-                """
+                logger.info("Raise an error if the the length of 'units' is not equal to the length of '_hdings'.")
                 if len(_hdings) != len(units):
-                    print('ERROR: The number of headings does not match the number of units!')
+                    logger.ERROR('ERROR: The number of headings does not match the number of units!')
 
-                """
-                Pair the headings and the units ...
-                """
+                logger.info("Pair the headings and the units ...")
                 for i in range(len(_hdings)):
                     logger.debug('index: %d', i)
                     logger.debug('size of _hdings: %d', len(_hdings))
                     logger.debug('size of units: %d', len(units))
                     hdings.append({'head':_hdings[i], 'unit':units[i]})
 
-                """
-                Prepare 'data' array...
-                """
+                logger.info("Prepare 'data' array...")
                 data = np.array([x['head'] for x in hdings])
                 post_process = False
 
-            """
-            Check for start of data
-            """
+            logger.info("Check for start of data")
             if re.match( r'[0-9]{3}_[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)', line, re.M|re.I):
                 days_time = line.split()[0]
                 _data = [float(x) for x in line.split()[1:]]
