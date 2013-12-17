@@ -4,9 +4,16 @@ Installation
 
 At the command line::
 
-    $ easy_install epys
+1. Clone the repo to your local machine::
 
-Or, if you have virtualenvwrapper installed::
+    $ git clone git@github.com:johnnycakes79/epys.git
 
-    $ mkvirtualenv epys
-    $ pip install epys
+3. Install your local copy::
+
+    $ cd epys/
+    $ python setup.py install
+
+4. Import and use module::
+
+    $ python
+    >>> from epys import epys

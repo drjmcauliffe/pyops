@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 
 import re
+import pdb
 import numpy as np
 from datetime import datetime, timedelta
+import logging
 
 def read(fname, metadata=False):
     """
@@ -11,9 +13,13 @@ def read(fname, metadata=False):
        in a numpy array.
        The file metadata can also be returned if requested
     """
+
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+
     mdata = {}
 
-    fh = iter(open(fname, 'U'))
+    # fh = iter(open(fname, 'U'))
     post_process = False
     hdings = []
 
@@ -75,7 +81,10 @@ def read(fname, metadata=False):
 
                 # Pair the headings and the units ...
                 for i in range(len(_hdings)):
-                    hdings[i] = {'head':_hdings[i], 'unit':units[i]}
+                    logger.debug('index: %d', i)
+                    logger.debug('size of _hdings: %d', len(_hdings))
+                    logger.debug('size of units: %d', len(units))
+                    hdings.append({'head':_hdings[i], 'unit':units[i]})
 
                 # Prepare
                 data = np.array([x['head'] for x in hdings])
@@ -101,3 +110,14 @@ def read(fname, metadata=False):
     else:
         return data
 
+def main():
+    """
+        If epys.py is run this main function will be executed.
+    """
+
+    test = read("/Users/jmcaulif/Code/python/epys/resources/sample_data/data_rate_avg.out")
+
+    print(type(test), test.shape)
+
+if __name__ == "__main__":
+    main()
