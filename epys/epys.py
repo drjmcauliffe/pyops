@@ -5,7 +5,7 @@ import re
 import numpy as np
 from datetime import datetime, timedelta
 
-def read(fname='resources/eps_sample/data_rate_avg.out', metadata=False):
+def read(fname, metadata=False):
     """
        Reads an EPS generated data-rate file and returns the data
        in a numpy array.
