@@ -15,6 +15,7 @@ def read(fname, metadata=False):
 
     fh = iter(open(fname, 'U'))
     post_process = False
+    hdings = []
 
     with open(fname, 'r') as fh:
         for line in fh:
