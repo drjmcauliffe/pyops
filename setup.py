@@ -20,7 +20,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 setup(
     name='epys',
     version='0.1.0',
-    description='What will this do...?',
+    description='A python library for handling EPS output.',
     long_description=readme + '\n\n' + history,
     author='Jonathan McAuliffe',
     author_email='watch.n.learn@gmail.com',
