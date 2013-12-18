@@ -8,6 +8,7 @@ help:
 	@echo "testall - run tests on every Python version with tox"
 	@echo "coverage - check code coverage quickly with the default Python"
 	@echo "docs - generate Sphinx HTML documentation, including API docs"
+	@echo "pycco - generate PyCCO HTML documentation, for all .py files"
 	@echo "release - package and upload a release"
 	@echo "sdist - package"
 
@@ -50,6 +51,9 @@ docs:
 pycco:
 	pycco -p epys/*.py
 	open docs/epys/*.html
+
+install:
+	python setup.py install
 
 release: clean
 	python setup.py sdist upload
