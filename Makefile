@@ -46,6 +46,11 @@ docs:
 	$(MAKE) -C docs html
 	open docs/_build/html/index.html
 
+pycco:
+	pycco -p epys/*.py
+	open docs/epys/*.html
+
+
 release: clean
 	python setup.py sdist upload
 
