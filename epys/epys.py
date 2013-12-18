@@ -30,13 +30,13 @@ def read(fname, metadata=False):
     with open(fname, 'r') as fh:
         for line in fh:
 
-            logger.debug("Catch the header data and store it in dictionary.")
+            # Catch the header data and store it in dictionary.
             if re.match(r'#(.*):(.*)', line, re.M | re.I):
                 keypair = line.strip('#\n').split(':')
                 mdata[keypair[0].strip()] = keypair[1].strip()
                 continue
 
-            logger.debug("Catch the reference date and add to dictionary.")
+            # Catch the reference date and add to dictionary.
             if re.match(r'Ref_date:(.*)', line, re.M | re.I):
                 keypair = line.strip('#\n').split(':')
                 mdata['Reference Date'] = keypair[1].strip()
@@ -44,16 +44,13 @@ def read(fname, metadata=False):
                                              "%d-%b-%Y")
                 continue
 
-            logger.debug("Catch the experiment names to list.")
+            # Catch the experiment names to list.
             if re.match(r'(.*)\<(.*)\>', line, re.M | re.I):
-                #xprmnts = [i.replace('<', '').replace('_', '-')
-                #for i in line.replace('.', '').replace('>', '').split()]
                 for i in line.replace('.', '').replace('>', '').split():
                     xprmnts.append(i.replace('<', '').replace('_', '-'))
                 continue
 
-            logger.debug("Catch the column headers and prefix them with ",
-                        "experiment list.")
+            # Catch the column headers and prefix them with experiment list.
             if re.match(r'Elapsed time(.*)', line, re.M | re.I):
                 _hdings = line.split()
                 _hdings[0:2] = [' '.join(_hdings[0:2])]
@@ -68,7 +65,7 @@ def read(fname, metadata=False):
                     x = x + 1
                 continue
 
-            logger.debug("Catch the units line and process ...")
+            # Catch the units line and process ...
             if re.match(r'ddd_hh:mm:ss(.*)', line, re.M | re.I):
                 _units = line.replace('(', '').replace(')', '').split()
                 units = _units[0:2]
@@ -82,24 +79,21 @@ def read(fname, metadata=False):
                 continue
 
             if post_process:
-                logger.debug("Raise an error if the the length of 'units'",
-                            " is not equal to the length of '_hdings'.")
+                # Raise an error if the the length of 'units' is not equal
+                # to the length of '_hdings'.
                 if len(_hdings) != len(units):
                     logger.ERROR("ERROR: The number of headings does not ",
                                  "match the number of units!")
 
-                logger.debug("Pair the headings and the units ...")
+                # Pair the headings and the units ...")
                 for i in range(len(_hdings)):
-                    logger.debug('index: %d', i)
-                    logger.debug('size of _hdings: %d', len(_hdings))
-                    logger.debug('size of units: %d', len(units))
                     hdings.append({'head': _hdings[i], 'unit': units[i]})
 
-                logger.debug("Prepare 'data' array...")
+                # Prepare 'data' array...
                 data = np.array([x['head'] for x in hdings])
                 post_process = False
 
-            logger.debug("Check for start of data")
+            # Check for start of data
             if re.match(r'[0-9]{3}_[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)',
                         line, re.M | re.I):
                 days_time = line.split()[0]
@@ -109,7 +103,9 @@ def read(fname, metadata=False):
                 _time = ref_date + timedelta(days=int(days), hours=int(hours),
                                              minutes=int(minutes),
                                              seconds=float(seconds))
-                _time = (_time - datetime(2000, 1, 1)).total_seconds()
+                td = _time - datetime(2000, 1, 1)
+                _time = (td.microseconds +
+                        (td.seconds + td.days * 24 * 3600) * 10**6) / 10**6
                 _data.insert(0, _time)
                 _data = np.asarray(_data)
 
