@@ -46,6 +46,9 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
     ],
-    data_files=[('sampledata', ['sample_data/data_rate_avg.out'])],
+    data_files=[
+        ('sampledata', ['sample_data/data_rate_avg.out']),
+        ('sampledata', ['sample_data/power_avg.out'])
+    ],
     test_suite='tests',
 )
