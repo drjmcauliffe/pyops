@@ -121,16 +121,3 @@ def read(fname, metadata=False):
         return data, mdata
     else:
         return data
-
-
-def main():
-    """
-    If epys.py is run this main function will be executed.
-    """
-
-    test = read("../resources/sample_data/data_rate_avg.out")
-
-    print(type(test), test.shape)
-
-if __name__ == "__main__":
-    main()
