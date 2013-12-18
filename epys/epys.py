@@ -25,6 +25,7 @@ def read(fname, metadata=False):
     mdata = {}
     post_process = False
     hdings = []
+    xprmnts = []
 
     with open(fname, 'r') as fh:
         for line in fh:
@@ -45,10 +46,14 @@ def read(fname, metadata=False):
 
             logger.info("Catch the experiment names to list.")
             if re.match(r'(.*)\<(.*)\>', line, re.M | re.I):
-                xprmnts = [i.replace('<', '').replace('_', '-') for i in line.replace('.', '').replace('>', '').split()]
+                #xprmnts = [i.replace('<', '').replace('_', '-')
+                #for i in line.replace('.', '').replace('>', '').split()]
+                for i in line.replace('.', '').replace('>', '').split():
+                    xprmnts.append(i.replace('<', '').replace('_', '-'))
                 continue
 
-            logger.info("Catch the column headers and prefix them with experiment list.")
+            logger.info("Catch the column headers and prefix them with ",
+                        "experiment list.")
             if re.match(r'Elapsed time(.*)', line, re.M | re.I):
                 _hdings = line.split()
                 _hdings[0:2] = [' '.join(_hdings[0:2])]
@@ -77,9 +82,11 @@ def read(fname, metadata=False):
                 continue
 
             if post_process:
-                logger.info("Raise an error if the the length of 'units' is not equal to the length of '_hdings'.")
+                logger.info("Raise an error if the the length of 'units'",
+                            " is not equal to the length of '_hdings'.")
                 if len(_hdings) != len(units):
-                    logger.ERROR('ERROR: The number of headings does not match the number of units!')
+                    logger.ERROR("ERROR: The number of headings does not ",
+                                 "match the number of units!")
 
                 logger.info("Pair the headings and the units ...")
                 for i in range(len(_hdings)):
@@ -93,12 +100,15 @@ def read(fname, metadata=False):
                 post_process = False
 
             logger.info("Check for start of data")
-            if re.match(r'[0-9]{3}_[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)', line, re.M | re.I):
+            if re.match(r'[0-9]{3}_[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)',
+                        line, re.M | re.I):
                 days_time = line.split()[0]
                 _data = [float(x) for x in line.split()[1:]]
                 days, time = days_time.split('_')
                 hours, minutes, seconds = time.split(':')
-                _time = ref_date + timedelta(days=int(days), hours=int(hours), minutes=int(minutes), seconds=float(seconds))
+                _time = ref_date + timedelta(days=int(days), hours=int(hours),
+                                             minutes=int(minutes),
+                                             seconds=float(seconds))
                 _time = (_time - datetime(2000, 1, 1)).total_seconds()
                 _data.insert(0, _time)
                 _data = np.asarray(_data)
@@ -118,7 +128,7 @@ def main():
     If epys.py is run this main function will be executed.
     """
 
-    test = read("/Users/jmcaulif/Code/python/epys/resources/sample_data/data_rate_avg.out")
+    test = read("../resources/sample_data/data_rate_avg.out")
 
     print(type(test), test.shape)
 
