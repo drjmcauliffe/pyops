@@ -1,6 +1,9 @@
 *.py[cod]
 *.ipynb
 
+# Coverge folder
+htmlcov/
+
 # C extensions
 *.so
 
