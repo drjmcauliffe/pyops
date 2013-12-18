@@ -47,8 +47,7 @@ def read(fname, metadata=False):
                 xprmnts = [i.replace('<','').replace('_','-') for i in line.replace('.','').replace('>','').split()]
                 continue
 
-            logger.info("Catch the column headers and prefix them with
-            experiment list.")
+            logger.info("Catch the column headers and prefix them with experiment list.")
             if re.match( r'Elapsed time(.*)', line, re.M|re.I):
                 _hdings = line.split()
                 _hdings[0:2] = [' '.join(_hdings[0:2])]
