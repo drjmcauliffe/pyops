@@ -4,6 +4,9 @@
 # Coverge folder
 htmlcov/
 
+# Cache folder
+.cache/
+
 # C extensions
 *.so
 
