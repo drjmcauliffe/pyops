@@ -27,7 +27,8 @@ lint:
 	flake8 epys tests
 
 test:
-	python setup.py test
+	#python setup.py test
+	py.test -v
 
 test-all:
 	tox
@@ -49,7 +50,6 @@ docs:
 pycco:
 	pycco -p epys/*.py
 	open docs/epys/*.html
-
 
 release: clean
 	python setup.py sdist upload
