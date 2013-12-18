@@ -15,7 +15,6 @@ from epys import epys
 
 class TestEpys(unittest.TestCase):
 
-
     def setUp(self):
         self.data_rate_file = "./sample_data/data_rate_avg.out"
 

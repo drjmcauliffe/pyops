@@ -119,6 +119,7 @@ def read(fname, metadata=False):
     else:
         return data
 
+
 def demo():
     """
     This function can be used to quickly get some data back for testing.
@@ -130,10 +131,10 @@ def demo():
     this_dir, this_filename = os.path.split(__file__)
 
     # Get the path to the parent directory for the current working directory.
-    parent_dir=os.path.abspath(os.path.join(this_dir, os.pardir))
+    parent_dir = os.path.abspath(os.path.join(this_dir, os.pardir))
 
     # Build the path to the sample data files.
-    samplefile = os.path.join(parent_dir,"sample_data/data_rate_avg.out")
+    samplefile = os.path.join(parent_dir, "sample_data/data_rate_avg.out")
 
     # Run the test file through epys.read and save returned object to 'data'.
     # Ask for the return of the 'metadata' and save to 'meta'.

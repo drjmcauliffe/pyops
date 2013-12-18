@@ -1,6 +1,5 @@
-===============================
 e[py]s
-===============================
+======
 
 .. image:: https://travis-ci.org/johnnycakes79/epys.png?branch=master
         :target: https://travis-ci.org/johnnycakes79/epys
