@@ -16,6 +16,8 @@ if sys.argv[-1] == 'publish':
 
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
+authors = open('AUTHORS.rst').read()
+contributing = open('CONTRIBUTING.rst').read()
 
 setup(
     name='epys',
