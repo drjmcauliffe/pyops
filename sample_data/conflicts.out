@@ -1,0 +1,2484 @@
+#
+# Output Filename: conflicts.out
+# Generation Time: 25-November-2013_15:18:01 (UTC)
+# File Contents:   Conflicts List
+#
+# EPS Version:     v2.5.8
+#
+# CFG Template:    v3.19
+# EDF Template:    v3.12
+# ITL Template:    v3.10
+# EVF Template:    v3.1
+#
+# POR Definition:  CRID issue C4
+# EVF (ESOC FD):   DDID appendix-H v2.1
+#
+# Input Timeline:  BC_SO10_FULL_________ITL_GEN_1A.itl
+# Input CFG:       eps_mac.cfg
+# Input EDF:       bepi.edf
+# MDB version:     SISBCETB "ETB (1, 0, 38)"
+# Input EVF:       bepi_events_mpo_00012.evf
+#
+
+Ref_date: 7-May-2024
+
+000_00:00:00   Experiment SERENA conflict UPDATE_MODE_MS group MODE_MS severity WARNING type VIOLATED
+               Description: Initial MODE updating STANDBY overwrites MS condition
+               Time: 07-May-2024_00:00:00
+029_15:11:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 05-Jun-2024_15:11:50
+029_15:13:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 05-Jun-2024_15:13:20
+030_12:46:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 06-Jun-2024_12:46:20
+030_12:54:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 06-Jun-2024_12:54:20
+030_12:57:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 06-Jun-2024_12:57:50
+030_13:05:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 06-Jun-2024_13:05:50
+030_14:45:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 06-Jun-2024_14:45:10
+030_14:47:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 06-Jun-2024_14:47:40
+031_08:18:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 07-Jun-2024_08:18:00
+031_08:26:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 07-Jun-2024_08:26:00
+031_08:48:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 07-Jun-2024_08:48:00
+031_15:48:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 07-Jun-2024_15:48:30
+032_05:10:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 08-Jun-2024_05:10:40
+032_05:17:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 08-Jun-2024_05:17:30
+032_07:14:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 08-Jun-2024_07:14:50
+032_07:22:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 08-Jun-2024_07:22:50
+032_07:31:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 08-Jun-2024_07:31:20
+032_15:25:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 08-Jun-2024_15:25:50
+033_05:13:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Jun-2024_05:13:00
+033_05:23:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Jun-2024_05:23:00
+033_05:23:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Jun-2024_05:23:40
+037_15:41:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 13-Jun-2024_15:41:10
+037_16:18:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 13-Jun-2024_16:18:40
+042_02:27:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_02:27:20
+042_03:06:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_03:06:30
+042_03:09:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_03:09:30
+042_03:10:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_03:10:10
+042_04:06:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_04:06:20
+042_04:06:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_04:06:50
+042_04:15:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_04:15:10
+042_05:28:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_05:28:10
+042_05:31:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_05:31:20
+042_05:31:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_05:31:50
+042_06:15:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_06:15:30
+042_06:17:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_06:17:00
+042_11:11:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_11:11:30
+042_11:12:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_11:12:00
+042_11:18:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_11:18:00
+042_12:53:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_12:53:10
+042_13:01:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_13:01:10
+042_13:10:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_13:10:40
+042_13:18:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_13:18:40
+042_15:15:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_15:15:00
+042_15:23:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_15:23:00
+042_15:32:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_15:32:10
+042_15:40:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_15:40:10
+042_16:05:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_16:05:40
+042_16:08:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_16:08:40
+042_17:16:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_17:16:50
+042_17:20:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_17:20:00
+042_17:20:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_17:20:30
+042_17:26:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_17:26:30
+042_17:27:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_17:27:00
+042_17:32:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_17:32:30
+042_17:54:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_17:54:20
+042_18:05:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_18:05:30
+042_18:06:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_18:06:00
+042_18:14:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_18:14:40
+042_18:15:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_18:15:10
+042_18:16:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_18:16:40
+042_18:17:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_18:17:10
+042_18:25:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_18:25:30
+042_19:38:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_19:38:30
+042_19:41:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_19:41:40
+042_19:42:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_19:42:10
+042_19:48:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_19:48:20
+042_19:48:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_19:48:50
+042_19:54:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_19:54:10
+042_20:16:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_20:16:00
+042_20:27:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_20:27:20
+042_20:27:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_20:27:50
+042_20:36:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_20:36:20
+042_20:36:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_20:36:50
+042_20:38:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_20:38:20
+042_20:38:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_20:38:50
+042_20:47:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_20:47:10
+042_22:00:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_22:00:10
+042_22:03:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_22:03:20
+042_22:03:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_22:03:50
+042_22:10:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_22:10:00
+042_22:10:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_22:10:30
+042_22:15:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_22:15:50
+042_22:37:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_22:37:40
+042_22:49:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_22:49:00
+042_22:49:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_22:49:30
+042_22:58:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_22:58:10
+042_22:58:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_22:58:40
+042_23:00:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_23:00:00
+042_23:00:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_23:00:40
+042_23:34:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_23:34:00
+042_23:34:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 18-Jun-2024_23:34:20
+043_00:04:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_00:04:20
+043_00:22:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_00:22:00
+043_00:25:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_00:25:10
+043_00:25:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_00:25:40
+043_00:31:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_00:31:40
+043_00:32:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_00:32:10
+043_00:37:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_00:37:40
+043_00:42:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_00:42:20
+043_00:50:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_00:50:20
+043_00:58:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_00:58:50
+043_01:10:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_01:10:40
+043_01:11:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_01:11:10
+043_01:21:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_01:21:50
+043_01:22:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_01:22:20
+043_01:30:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_01:30:40
+043_02:47:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_02:47:50
+043_02:53:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_02:53:30
+043_02:54:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_02:54:00
+043_03:02:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_03:02:30
+043_03:03:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_03:03:00
+043_03:20:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_03:20:50
+043_03:44:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_03:44:30
+043_03:52:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_03:52:20
+043_05:26:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_05:26:00
+043_05:34:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_05:34:00
+043_05:42:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_05:42:00
+043_05:50:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_05:50:00
+043_08:04:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_08:04:30
+043_16:14:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 19-Jun-2024_16:14:00
+044_09:26:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_09:26:00
+044_09:28:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_09:28:50
+044_09:48:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_09:48:20
+044_09:56:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_09:56:20
+044_10:01:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_10:01:10
+044_10:09:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_10:09:10
+044_10:17:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_10:17:30
+044_10:23:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_10:23:50
+044_10:24:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_10:24:20
+044_10:25:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_10:25:30
+044_12:14:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_12:14:10
+044_12:36:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_12:36:30
+044_12:37:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_12:37:00
+044_12:45:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_12:45:40
+044_12:46:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_12:46:10
+044_12:47:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_12:47:10
+044_14:32:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_14:32:10
+044_14:40:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_14:40:10
+044_14:44:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_14:44:20
+044_14:52:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 20-Jun-2024_14:52:20
+079_18:27:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 25-Jul-2024_18:27:00
+079_18:28:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 25-Jul-2024_18:28:10
+086_18:10:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 01-Aug-2024_18:10:10
+086_18:11:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 01-Aug-2024_18:11:20
+118_12:29:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 02-Sep-2024_12:29:20
+118_12:37:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 02-Sep-2024_12:37:20
+118_12:41:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 02-Sep-2024_12:41:20
+118_12:49:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 02-Sep-2024_12:49:20
+118_14:50:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 02-Sep-2024_14:50:50
+118_14:58:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 02-Sep-2024_14:58:50
+118_15:03:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 02-Sep-2024_15:03:20
+118_15:16:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 02-Sep-2024_15:16:10
+118_15:16:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 02-Sep-2024_15:16:40
+118_15:20:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 02-Sep-2024_15:20:20
+119_07:22:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 03-Sep-2024_07:22:00
+119_07:30:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 03-Sep-2024_07:30:00
+119_07:36:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 03-Sep-2024_07:36:20
+119_07:44:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 03-Sep-2024_07:44:20
+119_07:48:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 03-Sep-2024_07:48:00
+119_15:19:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 03-Sep-2024_15:19:20
+120_05:03:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 04-Sep-2024_05:03:40
+120_05:03:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 04-Sep-2024_05:03:50
+120_05:04:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 04-Sep-2024_05:04:20
+120_05:12:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 04-Sep-2024_05:12:10
+120_05:12:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 04-Sep-2024_05:12:40
+120_05:15:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 04-Sep-2024_05:15:50
+120_06:43:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 04-Sep-2024_06:43:10
+120_06:45:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 04-Sep-2024_06:45:20
+120_06:45:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 04-Sep-2024_06:45:50
+120_06:51:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 04-Sep-2024_06:51:10
+120_06:58:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 04-Sep-2024_06:58:10
+120_15:18:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 04-Sep-2024_15:18:50
+121_05:03:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 05-Sep-2024_05:03:50
+121_05:27:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 05-Sep-2024_05:27:30
+121_06:08:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 05-Sep-2024_06:08:20
+129_05:38:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 13-Sep-2024_05:38:50
+129_05:39:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 13-Sep-2024_05:39:30
+130_00:32:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_00:32:40
+130_00:33:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_00:33:10
+130_01:28:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_01:28:20
+130_01:28:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_01:28:50
+130_01:39:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_01:39:30
+130_01:47:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_01:47:20
+130_02:54:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_02:54:20
+130_02:55:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_02:55:00
+130_03:50:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_03:50:00
+130_03:50:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_03:50:40
+130_04:01:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_04:01:10
+130_05:09:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_05:09:30
+130_05:16:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_05:16:10
+130_05:16:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_05:16:40
+130_05:39:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_05:39:40
+130_05:49:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_05:49:00
+130_05:57:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_05:57:00
+130_05:59:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_05:59:30
+130_10:48:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_10:48:00
+130_10:56:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_10:56:10
+130_11:01:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_11:01:20
+130_12:36:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_12:36:40
+130_12:44:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_12:44:40
+130_12:54:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_12:54:00
+130_13:02:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_13:02:00
+130_14:43:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_14:43:40
+130_14:46:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_14:46:00
+130_14:46:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_14:46:30
+130_14:54:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_14:54:20
+130_14:54:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_14:54:50
+130_15:17:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_15:17:00
+130_15:29:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_15:29:50
+130_15:38:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_15:38:40
+130_15:39:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_15:39:10
+130_16:12:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_16:12:40
+130_16:58:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_16:58:40
+130_17:04:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_17:04:40
+130_17:05:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_17:05:20
+130_17:07:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_17:07:50
+130_17:08:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_17:08:20
+130_17:16:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_17:16:10
+130_17:16:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_17:16:40
+130_17:48:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_17:48:00
+130_17:48:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_17:48:30
+130_17:56:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_17:56:20
+130_17:56:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_17:56:50
+130_18:00:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_18:00:20
+130_18:01:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_18:01:00
+130_18:06:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_18:06:30
+130_19:20:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_19:20:20
+130_19:26:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_19:26:30
+130_19:27:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_19:27:00
+130_20:09:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_20:09:50
+130_20:10:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_20:10:20
+130_20:18:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_20:18:10
+130_20:18:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_20:18:40
+130_20:22:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_20:22:10
+130_20:22:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_20:22:40
+130_20:28:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_20:28:20
+130_21:42:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_21:42:00
+130_21:48:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_21:48:10
+130_21:48:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_21:48:40
+130_21:51:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_21:51:10
+130_21:51:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_21:51:40
+130_21:59:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_21:59:30
+130_22:00:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_22:00:00
+130_22:31:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_22:31:30
+130_22:32:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_22:32:00
+130_22:39:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_22:39:50
+130_22:40:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_22:40:20
+130_22:43:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_22:43:50
+130_22:44:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_22:44:20
+130_22:50:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 14-Sep-2024_22:50:00
+131_00:03:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_00:03:50
+131_00:09:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_00:09:50
+131_00:10:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_00:10:30
+131_00:13:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_00:13:00
+131_00:13:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_00:13:30
+131_00:21:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_00:21:20
+131_00:21:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_00:21:50
+131_00:33:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_00:33:00
+131_02:29:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_02:29:40
+131_02:31:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_02:31:10
+131_03:25:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_03:25:20
+131_03:26:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_03:26:50
+131_07:34:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_07:34:50
+131_08:10:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_08:10:40
+131_08:11:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_08:11:20
+131_08:21:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_08:21:50
+131_09:30:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_09:30:10
+131_09:36:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_09:36:50
+131_09:37:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_09:37:20
+131_10:32:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_10:32:30
+131_10:33:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_10:33:00
+131_10:43:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_10:43:40
+131_11:51:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_11:51:50
+131_11:58:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_11:58:30
+131_11:59:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_11:59:00
+131_12:54:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_12:54:10
+131_12:54:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_12:54:40
+131_13:05:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_13:05:20
+131_14:13:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_14:13:40
+131_14:20:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_14:20:20
+131_14:20:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_14:20:50
+131_15:16:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_15:16:00
+131_15:16:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_15:16:30
+131_15:49:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 15-Sep-2024_15:49:40
+169_16:51:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 23-Oct-2024_16:51:00
+169_16:59:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 23-Oct-2024_16:59:00
+206_11:56:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 29-Nov-2024_11:56:40
+206_12:03:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 29-Nov-2024_12:03:20
+206_12:03:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 29-Nov-2024_12:03:50
+206_12:29:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 29-Nov-2024_12:29:40
+206_14:33:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 29-Nov-2024_14:33:50
+206_14:41:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 29-Nov-2024_14:41:50
+206_14:46:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 29-Nov-2024_14:46:30
+206_14:54:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 29-Nov-2024_14:54:30
+207_11:21:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 30-Nov-2024_11:21:50
+207_11:33:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 30-Nov-2024_11:33:00
+207_11:33:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 30-Nov-2024_11:33:20
+207_13:54:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 30-Nov-2024_13:54:40
+207_13:55:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 30-Nov-2024_13:55:00
+207_16:16:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 30-Nov-2024_16:16:30
+207_16:16:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 30-Nov-2024_16:16:40
+207_16:27:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 30-Nov-2024_16:27:50
+208_09:19:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 01-Dec-2024_09:19:40
+208_09:27:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 01-Dec-2024_09:27:40
+208_11:12:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 01-Dec-2024_11:12:10
+208_16:22:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 01-Dec-2024_16:22:20
+209_09:01:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 02-Dec-2024_09:01:30
+209_09:11:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 02-Dec-2024_09:11:30
+209_09:14:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 02-Dec-2024_09:14:20
+209_10:47:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 02-Dec-2024_10:47:30
+209_10:47:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 02-Dec-2024_10:47:40
+209_13:09:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 02-Dec-2024_13:09:10
+209_13:09:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 02-Dec-2024_13:09:30
+209_15:30:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 02-Dec-2024_15:30:50
+209_15:31:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 02-Dec-2024_15:31:10
+209_16:59:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 02-Dec-2024_16:59:50
+209_17:20:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 02-Dec-2024_17:20:40
+212_00:12:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 05-Dec-2024_00:12:10
+212_00:12:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 05-Dec-2024_00:12:30
+212_02:33:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 05-Dec-2024_02:33:50
+212_02:34:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 05-Dec-2024_02:34:10
+212_04:55:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 05-Dec-2024_04:55:40
+212_04:55:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 05-Dec-2024_04:55:50
+212_07:17:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 05-Dec-2024_07:17:20
+212_07:17:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 05-Dec-2024_07:17:40
+212_23:49:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 05-Dec-2024_23:49:20
+212_23:49:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 05-Dec-2024_23:49:40
+213_02:11:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 06-Dec-2024_02:11:00
+213_02:11:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 06-Dec-2024_02:11:20
+213_04:32:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 06-Dec-2024_04:32:50
+213_04:33:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 06-Dec-2024_04:33:00
+213_06:54:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 06-Dec-2024_06:54:30
+213_06:54:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 06-Dec-2024_06:54:50
+217_14:50:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Dec-2024_14:50:00
+217_14:50:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Dec-2024_14:50:20
+217_16:06:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Dec-2024_16:06:00
+217_16:38:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Dec-2024_16:38:40
+217_18:27:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Dec-2024_18:27:40
+217_19:00:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Dec-2024_19:00:20
+217_20:49:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Dec-2024_20:49:30
+217_21:22:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Dec-2024_21:22:00
+217_23:24:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Dec-2024_23:24:10
+217_23:24:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Dec-2024_23:24:40
+217_23:54:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Dec-2024_23:54:30
+218_00:07:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_00:07:30
+218_00:17:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_00:17:00
+218_00:17:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_00:17:30
+218_01:31:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_01:31:50
+218_02:29:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_02:29:20
+218_02:38:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_02:38:40
+218_02:39:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_02:39:10
+218_03:33:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_03:33:40
+218_03:34:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_03:34:10
+218_04:07:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_04:07:40
+218_04:42:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_04:42:20
+218_05:00:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_05:00:20
+218_05:01:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_05:01:00
+218_05:55:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_05:55:30
+218_05:56:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_05:56:00
+218_06:03:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_06:03:50
+218_06:15:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_06:15:10
+218_07:04:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_07:04:00
+218_07:12:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_07:12:40
+218_07:22:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_07:22:10
+218_07:22:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_07:22:40
+218_07:56:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_07:56:00
+218_08:03:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_08:03:00
+218_09:43:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_09:43:50
+218_09:44:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_09:44:10
+218_09:48:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_09:48:00
+218_09:58:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_09:58:00
+218_10:06:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_10:06:00
+218_10:15:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_10:15:20
+218_10:23:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_10:23:20
+218_12:19:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_12:19:40
+218_12:27:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_12:27:40
+218_12:37:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_12:37:00
+218_12:44:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_12:44:50
+218_14:18:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_14:18:20
+218_14:26:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_14:26:50
+218_14:41:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_14:41:30
+218_14:49:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_14:49:30
+218_14:58:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_14:58:30
+218_15:10:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_15:10:20
+218_15:16:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_15:16:30
+218_15:22:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_15:22:20
+218_15:22:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_15:22:50
+218_15:25:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_15:25:40
+218_16:40:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_16:40:00
+218_16:48:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_16:48:50
+218_16:49:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_16:49:30
+218_16:56:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_16:56:30
+218_16:57:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_16:57:00
+218_17:30:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_17:30:00
+218_17:30:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_17:30:30
+218_17:37:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_17:37:40
+218_17:38:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_17:38:10
+218_17:44:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_17:44:00
+218_17:44:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_17:44:40
+218_17:47:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_17:47:20
+218_19:01:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_19:01:50
+218_19:10:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_19:10:30
+218_19:11:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_19:11:20
+218_19:51:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_19:51:40
+218_19:52:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_19:52:10
+218_19:59:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_19:59:30
+218_20:00:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_20:00:00
+218_20:05:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_20:05:50
+218_20:06:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_20:06:20
+218_20:09:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_20:09:10
+218_21:23:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_21:23:30
+218_21:32:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_21:32:10
+218_21:33:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_21:33:00
+218_21:40:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_21:40:00
+218_21:40:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_21:40:30
+218_22:13:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_22:13:20
+218_22:13:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_22:13:50
+218_22:21:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_22:21:10
+218_22:21:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_22:21:40
+218_22:27:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_22:27:30
+218_22:28:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_22:28:00
+218_22:30:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Dec-2024_22:30:50
+219_00:08:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_00:08:40
+219_00:16:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_00:16:40
+219_00:25:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_00:25:00
+219_00:33:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_00:33:00
+219_00:33:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_00:33:30
+219_00:35:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_00:35:00
+219_00:35:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_00:35:30
+219_00:42:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_00:42:50
+219_00:43:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_00:43:20
+219_00:49:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_00:49:10
+219_00:49:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_00:49:50
+219_00:52:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_00:52:30
+219_02:30:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_02:30:30
+219_02:38:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_02:38:30
+219_02:46:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_02:46:40
+219_02:54:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_02:54:40
+219_03:11:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_03:11:50
+219_03:14:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_03:14:20
+219_04:52:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_04:52:20
+219_05:00:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_05:00:20
+219_05:08:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_05:08:20
+219_05:16:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_05:16:20
+219_09:13:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_09:13:40
+219_09:21:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_09:21:10
+219_09:21:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_09:21:20
+219_11:42:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_11:42:50
+219_11:43:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_11:43:00
+219_14:04:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_14:04:30
+219_14:04:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_14:04:40
+219_15:09:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 12-Dec-2024_15:09:40
+220_09:14:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_09:14:20
+220_09:22:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_09:22:20
+220_09:27:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_09:27:30
+220_09:35:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_09:35:30
+220_11:21:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_11:21:00
+220_11:27:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_11:27:30
+220_11:28:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_11:28:00
+220_11:54:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_11:54:00
+220_12:16:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_12:16:00
+220_12:18:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_12:18:20
+220_13:58:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_13:58:10
+220_14:06:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_14:06:10
+220_14:10:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_14:10:40
+220_14:18:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 13-Dec-2024_14:18:40
+258_18:17:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 20-Jan-2025_18:17:50
+259_08:09:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 21-Jan-2025_08:09:10
+259_08:09:10   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 6.31433 [Gbits] of experiment local memory
+               Time: 21-Jan-2025_08:09:10
+259_08:35:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 21-Jan-2025_08:35:50
+259_09:10:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 21-Jan-2025_09:10:10
+259_09:10:10   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.750922 [Gbits] of experiment local memory
+               Time: 21-Jan-2025_09:10:10
+259_09:10:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 21-Jan-2025_09:10:40
+259_09:18:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 21-Jan-2025_09:18:50
+259_09:18:50   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.00431059 [Gbits] of experiment local memory
+               Time: 21-Jan-2025_09:18:50
+259_11:04:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 21-Jan-2025_11:04:00
+259_11:28:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 21-Jan-2025_11:28:40
+259_11:28:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.538298 [Gbits] of experiment local memory
+               Time: 21-Jan-2025_11:28:40
+259_13:27:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 21-Jan-2025_13:27:20
+259_13:51:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 21-Jan-2025_13:51:40
+259_13:51:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.495363 [Gbits] of experiment local memory
+               Time: 21-Jan-2025_13:51:40
+259_15:42:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 21-Jan-2025_15:42:20
+260_08:47:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 22-Jan-2025_08:47:30
+260_08:47:30   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 8.34805 [Gbits] of experiment local memory
+               Time: 22-Jan-2025_08:47:30
+260_08:48:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 22-Jan-2025_08:48:00
+260_08:56:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 22-Jan-2025_08:56:20
+260_08:56:20   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.00445606 [Gbits] of experiment local memory
+               Time: 22-Jan-2025_08:56:20
+260_10:40:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 22-Jan-2025_10:40:50
+260_11:06:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 22-Jan-2025_11:06:00
+260_11:06:00   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.534324 [Gbits] of experiment local memory
+               Time: 22-Jan-2025_11:06:00
+260_13:07:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 22-Jan-2025_13:07:10
+260_13:23:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 22-Jan-2025_13:23:20
+260_13:23:20   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.379516 [Gbits] of experiment local memory
+               Time: 22-Jan-2025_13:23:20
+260_13:23:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 22-Jan-2025_13:23:50
+260_13:27:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 22-Jan-2025_13:27:40
+260_13:27:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.00218315 [Gbits] of experiment local memory
+               Time: 22-Jan-2025_13:27:40
+260_15:26:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 22-Jan-2025_15:26:20
+261_08:17:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 23-Jan-2025_08:17:00
+261_08:17:00   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 5.37598 [Gbits] of experiment local memory
+               Time: 23-Jan-2025_08:17:00
+261_10:21:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 23-Jan-2025_10:21:50
+261_10:34:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 23-Jan-2025_10:34:00
+261_10:34:00   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.16251 [Gbits] of experiment local memory
+               Time: 23-Jan-2025_10:34:00
+261_17:17:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 23-Jan-2025_17:17:40
+262_08:15:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 24-Jan-2025_08:15:00
+262_08:15:00   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 4.17421 [Gbits] of experiment local memory
+               Time: 24-Jan-2025_08:15:00
+262_09:57:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 24-Jan-2025_09:57:30
+262_10:15:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 24-Jan-2025_10:15:00
+262_10:15:00   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.223721 [Gbits] of experiment local memory
+               Time: 24-Jan-2025_10:15:00
+262_16:56:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 24-Jan-2025_16:56:10
+263_08:16:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 25-Jan-2025_08:16:40
+263_08:16:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 4.16471 [Gbits] of experiment local memory
+               Time: 25-Jan-2025_08:16:40
+263_09:34:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 25-Jan-2025_09:34:10
+263_09:59:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 25-Jan-2025_09:59:10
+263_09:59:10   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.236214 [Gbits] of experiment local memory
+               Time: 25-Jan-2025_09:59:10
+263_18:43:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 25-Jan-2025_18:43:20
+264_08:18:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 26-Jan-2025_08:18:20
+264_08:18:20   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 3.63554 [Gbits] of experiment local memory
+               Time: 26-Jan-2025_08:18:20
+264_09:08:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 26-Jan-2025_09:08:50
+264_09:34:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 26-Jan-2025_09:34:30
+264_09:34:30   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.279475 [Gbits] of experiment local memory
+               Time: 26-Jan-2025_09:34:30
+264_16:26:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 26-Jan-2025_16:26:10
+265_08:19:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 27-Jan-2025_08:19:50
+265_08:19:50   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 3.91047 [Gbits] of experiment local memory
+               Time: 27-Jan-2025_08:19:50
+265_08:43:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 27-Jan-2025_08:43:20
+265_09:11:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 27-Jan-2025_09:11:40
+265_09:11:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.321902 [Gbits] of experiment local memory
+               Time: 27-Jan-2025_09:11:40
+265_11:21:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 27-Jan-2025_11:21:40
+265_11:24:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 27-Jan-2025_11:24:50
+265_11:24:50   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.0225111 [Gbits] of experiment local memory
+               Time: 27-Jan-2025_11:24:50
+265_18:09:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 27-Jan-2025_18:09:10
+266_08:52:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 28-Jan-2025_08:52:40
+266_08:52:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 4.01121 [Gbits] of experiment local memory
+               Time: 28-Jan-2025_08:52:40
+266_10:52:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 28-Jan-2025_10:52:10
+266_11:02:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 28-Jan-2025_11:02:00
+266_11:02:00   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.135162 [Gbits] of experiment local memory
+               Time: 28-Jan-2025_11:02:00
+266_17:39:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 28-Jan-2025_17:39:30
+267_08:26:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 29-Jan-2025_08:26:10
+267_08:26:10   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 4.09319 [Gbits] of experiment local memory
+               Time: 29-Jan-2025_08:26:10
+267_10:26:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 29-Jan-2025_10:26:50
+267_10:39:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 29-Jan-2025_10:39:10
+267_10:39:10   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.175069 [Gbits] of experiment local memory
+               Time: 29-Jan-2025_10:39:10
+267_17:03:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 29-Jan-2025_17:03:40
+268_08:23:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 30-Jan-2025_08:23:40
+268_08:23:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 4.21664 [Gbits] of experiment local memory
+               Time: 30-Jan-2025_08:23:40
+268_10:02:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 30-Jan-2025_10:02:00
+268_10:21:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 30-Jan-2025_10:21:10
+268_10:21:10   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.24286 [Gbits] of experiment local memory
+               Time: 30-Jan-2025_10:21:10
+268_17:16:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 30-Jan-2025_17:16:10
+269_08:24:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 31-Jan-2025_08:24:50
+269_08:24:50   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 3.90187 [Gbits] of experiment local memory
+               Time: 31-Jan-2025_08:24:50
+269_09:34:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 31-Jan-2025_09:34:30
+269_09:58:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 31-Jan-2025_09:58:30
+269_09:58:30   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.353178 [Gbits] of experiment local memory
+               Time: 31-Jan-2025_09:58:30
+269_09:59:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 31-Jan-2025_09:59:00
+269_10:06:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 31-Jan-2025_10:06:10
+269_10:06:10   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.00384467 [Gbits] of experiment local memory
+               Time: 31-Jan-2025_10:06:10
+269_10:06:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 31-Jan-2025_10:06:40
+269_10:12:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 31-Jan-2025_10:12:00
+269_10:12:00   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.00366249 [Gbits] of experiment local memory
+               Time: 31-Jan-2025_10:12:00
+269_12:12:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 31-Jan-2025_12:12:50
+269_12:15:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 31-Jan-2025_12:15:20
+269_12:15:20   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.0159873 [Gbits] of experiment local memory
+               Time: 31-Jan-2025_12:15:20
+269_16:46:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 31-Jan-2025_16:46:10
+270_08:25:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 01-Feb-2025_08:25:50
+270_08:25:50   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 4.03349 [Gbits] of experiment local memory
+               Time: 01-Feb-2025_08:25:50
+270_09:10:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 01-Feb-2025_09:10:50
+270_09:35:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 01-Feb-2025_09:35:40
+270_09:35:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.36767 [Gbits] of experiment local memory
+               Time: 01-Feb-2025_09:35:40
+270_09:40:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 01-Feb-2025_09:40:50
+270_09:43:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 01-Feb-2025_09:43:20
+270_09:43:20   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.000155054 [Gbits] of experiment local memory
+               Time: 01-Feb-2025_09:43:20
+270_09:45:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 01-Feb-2025_09:45:00
+270_09:51:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 01-Feb-2025_09:51:10
+270_09:51:10   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.00131625 [Gbits] of experiment local memory
+               Time: 01-Feb-2025_09:51:10
+270_11:43:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 01-Feb-2025_11:43:50
+270_11:57:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 01-Feb-2025_11:57:20
+270_11:57:20   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.12248 [Gbits] of experiment local memory
+               Time: 01-Feb-2025_11:57:20
+270_14:10:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 01-Feb-2025_14:10:40
+270_14:19:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 01-Feb-2025_14:19:00
+270_14:19:00   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.0458734 [Gbits] of experiment local memory
+               Time: 01-Feb-2025_14:19:00
+270_16:25:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 01-Feb-2025_16:25:00
+271_08:31:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 02-Feb-2025_08:31:20
+271_08:31:20   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 3.82529 [Gbits] of experiment local memory
+               Time: 02-Feb-2025_08:31:20
+271_08:43:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 02-Feb-2025_08:43:30
+271_08:43:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 02-Feb-2025_08:43:40
+271_08:43:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 9.6856e-05 [Gbits] of experiment local memory
+               Time: 02-Feb-2025_08:43:40
+271_08:46:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 02-Feb-2025_08:46:30
+271_09:28:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 02-Feb-2025_09:28:20
+271_09:28:20   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.42069 [Gbits] of experiment local memory
+               Time: 02-Feb-2025_09:28:20
+271_11:18:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 02-Feb-2025_11:18:10
+271_11:34:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 02-Feb-2025_11:34:30
+271_11:34:30   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.165459 [Gbits] of experiment local memory
+               Time: 02-Feb-2025_11:34:30
+271_13:49:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 02-Feb-2025_13:49:30
+271_13:56:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 02-Feb-2025_13:56:20
+271_13:56:20   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.00823209 [Gbits] of experiment local memory
+               Time: 02-Feb-2025_13:56:20
+271_16:09:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 02-Feb-2025_16:09:40
+272_08:50:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 03-Feb-2025_08:50:00
+272_08:50:00   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 4.11118 [Gbits] of experiment local memory
+               Time: 03-Feb-2025_08:50:00
+272_10:51:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 03-Feb-2025_10:51:40
+272_11:11:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 03-Feb-2025_11:11:40
+272_11:11:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.2251 [Gbits] of experiment local memory
+               Time: 03-Feb-2025_11:11:40
+272_13:25:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 03-Feb-2025_13:25:00
+272_13:33:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 03-Feb-2025_13:33:30
+272_13:33:30   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.0375539 [Gbits] of experiment local memory
+               Time: 03-Feb-2025_13:33:30
+272_16:24:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 03-Feb-2025_16:24:30
+273_08:28:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 04-Feb-2025_08:28:20
+273_08:28:20   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 3.73647 [Gbits] of experiment local memory
+               Time: 04-Feb-2025_08:28:20
+273_10:28:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 04-Feb-2025_10:28:50
+273_10:42:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 04-Feb-2025_10:42:30
+273_10:42:30   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.100599 [Gbits] of experiment local memory
+               Time: 04-Feb-2025_10:42:30
+273_18:00:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 04-Feb-2025_18:00:00
+274_08:29:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 05-Feb-2025_08:29:00
+274_08:29:00   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 2.61596 [Gbits] of experiment local memory
+               Time: 05-Feb-2025_08:29:00
+274_09:55:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 05-Feb-2025_09:55:40
+274_10:26:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 05-Feb-2025_10:26:10
+274_10:26:10   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.200649 [Gbits] of experiment local memory
+               Time: 05-Feb-2025_10:26:10
+274_10:26:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 05-Feb-2025_10:26:40
+274_10:29:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 05-Feb-2025_10:29:00
+274_10:29:00   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.00120385 [Gbits] of experiment local memory
+               Time: 05-Feb-2025_10:29:00
+274_19:31:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 05-Feb-2025_19:31:10
+275_10:29:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 06-Feb-2025_10:29:40
+275_10:29:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 2.7129 [Gbits] of experiment local memory
+               Time: 06-Feb-2025_10:29:40
+275_19:04:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 06-Feb-2025_19:04:00
+281_10:31:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 12-Feb-2025_10:31:40
+281_10:31:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 16.4746 [Gbits] of experiment local memory
+               Time: 12-Feb-2025_10:31:40
+282_02:38:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 13-Feb-2025_02:38:50
+282_08:31:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 13-Feb-2025_08:31:40
+282_08:31:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.444072 [Gbits] of experiment local memory
+               Time: 13-Feb-2025_08:31:40
+282_09:41:50   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 13-Feb-2025_09:41:50
+282_10:02:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 13-Feb-2025_10:02:40
+282_10:02:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.0201449 [Gbits] of experiment local memory
+               Time: 13-Feb-2025_10:02:40
+283_04:55:20   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 14-Feb-2025_04:55:20
+283_08:42:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 14-Feb-2025_08:42:40
+283_08:42:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.245228 [Gbits] of experiment local memory
+               Time: 14-Feb-2025_08:42:40
+284_05:26:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 15-Feb-2025_05:26:10
+284_08:55:10   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 15-Feb-2025_08:55:10
+284_08:55:10   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.258727 [Gbits] of experiment local memory
+               Time: 15-Feb-2025_08:55:10
+285_06:24:00   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 16-Feb-2025_06:24:00
+285_08:31:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 16-Feb-2025_08:31:40
+285_08:31:40   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 0.275483 [Gbits] of experiment local memory
+               Time: 16-Feb-2025_08:31:40
+287_00:46:40   Experiment SSMM conflict MEMORY_FULL group MEMORY severity ERROR type VIOLATED
+               Description: Local memory full
+               Time: 18-Feb-2025_00:46:40
+287_09:34:30   Experiment SSMM conflict MEMORY_FULL group MEMORY severity INFO type RECOVERED
+               Description: Local memory full
+               Time: 18-Feb-2025_09:34:30
+287_09:34:30   Experiment SSMM conflict MEMORY_LOST group MEMORY severity WARNING type VIOLATED
+               Description: Lost 2.47338 [Gbits] of experiment local memory
+               Time: 18-Feb-2025_09:34:30
+294_11:55:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_11:55:00
+294_12:03:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_12:03:00
+294_12:07:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_12:07:50
+294_12:15:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_12:15:40
+294_14:16:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_14:16:40
+294_14:24:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_14:24:40
+294_14:29:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_14:29:40
+294_14:37:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_14:37:40
+294_16:38:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_16:38:20
+294_16:46:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_16:46:20
+294_16:51:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_16:51:30
+294_16:59:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_16:59:30
+294_17:10:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_17:10:00
+294_17:17:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 25-Feb-2025_17:17:40
+295_10:16:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 26-Feb-2025_10:16:50
+295_18:22:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 26-Feb-2025_18:22:10
+296_08:33:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 27-Feb-2025_08:33:40
+296_08:37:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 27-Feb-2025_08:37:10
+296_08:37:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 27-Feb-2025_08:37:40
+296_09:06:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 27-Feb-2025_09:06:40
+296_10:15:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 27-Feb-2025_10:15:50
+296_18:27:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 27-Feb-2025_18:27:20
+297_08:14:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 28-Feb-2025_08:14:20
+297_08:44:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 28-Feb-2025_08:44:00
+297_08:48:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 28-Feb-2025_08:48:40
+303_08:15:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 06-Mar-2025_08:15:00
+303_08:15:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 06-Mar-2025_08:15:30
+306_03:17:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_03:17:50
+306_03:18:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_03:18:20
+306_03:23:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_03:23:30
+306_04:33:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_04:33:30
+306_04:41:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_04:41:50
+306_04:42:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_04:42:20
+306_04:44:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_04:44:50
+306_04:45:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_04:45:20
+306_05:23:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_05:23:30
+306_05:24:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_05:24:00
+306_05:31:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_05:31:00
+306_05:31:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_05:31:30
+306_05:39:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_05:39:40
+306_05:40:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_05:40:10
+306_05:40:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_05:40:20
+306_06:54:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_06:54:40
+306_07:06:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_07:06:30
+306_07:07:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_07:07:10
+306_08:01:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_08:01:20
+306_08:01:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_08:01:50
+306_08:02:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_08:02:00
+306_08:07:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_08:07:00
+306_09:18:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_09:18:00
+306_09:41:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_09:41:20
+306_09:49:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_09:49:20
+306_09:58:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_09:58:40
+306_10:06:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_10:06:40
+306_12:03:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_12:03:10
+306_12:11:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_12:11:10
+306_12:20:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_12:20:20
+306_12:28:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_12:28:20
+306_12:36:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_12:36:40
+306_12:44:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_12:44:20
+306_14:24:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_14:24:50
+306_14:32:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_14:32:50
+306_14:42:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_14:42:00
+306_14:49:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_14:49:50
+306_16:46:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_16:46:40
+306_16:54:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_16:54:40
+306_17:03:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_17:03:30
+306_17:11:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_17:11:30
+306_18:43:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_18:43:50
+306_18:52:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_18:52:10
+306_18:52:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_18:52:40
+306_18:55:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_18:55:10
+306_18:55:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_18:55:40
+306_19:34:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_19:34:00
+306_19:34:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_19:34:30
+306_19:41:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_19:41:20
+306_19:41:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_19:41:50
+306_19:50:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_19:50:00
+306_19:50:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_19:50:30
+306_19:50:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_19:50:40
+306_20:43:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_20:43:20
+306_21:16:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_21:16:50
+306_21:17:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_21:17:30
+306_21:21:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_21:21:20
+306_21:21:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_21:21:50
+306_21:55:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_21:55:40
+306_21:56:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_21:56:10
+306_22:03:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_22:03:00
+306_22:03:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_22:03:30
+306_22:11:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_22:11:40
+306_22:12:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_22:12:10
+306_22:12:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_22:12:20
+306_23:27:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_23:27:20
+306_23:35:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_23:35:40
+306_23:36:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_23:36:10
+306_23:38:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_23:38:40
+306_23:39:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_23:39:10
+306_23:43:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_23:43:00
+306_23:43:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 09-Mar-2025_23:43:30
+307_01:03:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_01:03:20
+307_01:49:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_01:49:00
+307_01:57:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_01:57:20
+307_01:57:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_01:57:50
+307_02:00:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_02:00:20
+307_02:00:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_02:00:50
+307_02:04:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_02:04:40
+307_02:05:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_02:05:10
+307_02:24:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_02:24:20
+307_02:30:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_02:30:00
+307_02:31:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_02:31:30
+307_02:36:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_02:36:30
+307_02:38:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_02:38:00
+307_04:35:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_04:35:40
+307_04:37:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_04:37:10
+307_04:42:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_04:42:10
+307_04:43:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_04:43:40
+307_04:51:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_04:51:40
+307_04:53:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_04:53:10
+307_04:58:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_04:58:10
+307_04:59:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_04:59:40
+307_09:53:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_09:53:40
+307_10:00:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_10:00:20
+307_10:00:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_10:00:50
+307_10:06:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_10:06:00
+307_11:15:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_11:15:20
+307_11:27:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_11:27:20
+307_11:27:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_11:27:50
+307_12:22:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_12:22:00
+307_12:22:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_12:22:30
+307_12:27:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_12:27:40
+307_13:37:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_13:37:10
+307_13:49:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_13:49:00
+307_13:49:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_13:49:30
+307_14:43:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_14:43:40
+307_14:44:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_14:44:20
+307_14:49:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_14:49:30
+307_15:58:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_15:58:50
+307_16:10:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_16:10:40
+307_16:11:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_16:11:10
+307_17:05:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_17:05:30
+307_17:06:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_17:06:00
+307_17:11:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_17:11:10
+307_17:53:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_17:53:30
+307_18:08:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 10-Mar-2025_18:08:30
+308_11:02:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:02:30
+308_11:04:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:04:00
+308_11:19:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:19:30
+308_11:21:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:21:00
+308_11:26:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:26:00
+308_11:27:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:27:30
+308_11:32:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:32:30
+308_11:34:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:34:00
+308_11:39:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:39:00
+308_11:40:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:40:30
+308_11:51:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:51:10
+308_11:52:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:52:20
+308_11:53:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:53:30
+308_11:58:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_11:58:50
+308_13:41:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_13:41:20
+308_13:42:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_13:42:50
+308_13:47:50   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_13:47:50
+308_13:49:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_13:49:20
+308_13:54:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_13:54:00
+308_13:55:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_13:55:30
+308_14:00:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_14:00:30
+308_14:02:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_14:02:00
+308_16:03:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_16:03:10
+308_16:04:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_16:04:40
+308_16:09:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_16:09:40
+308_16:11:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_16:11:10
+308_16:15:40   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_16:15:40
+308_16:17:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_16:17:00
+308_16:22:10   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_16:22:10
+308_16:23:30   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_16:23:30
+308_17:58:20   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity ERROR type VIOLATED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_17:58:20
+308_18:05:00   Experiment SPACECRAFT conflict POWER_OVERDRAW group POWER severity INFO type RECOVERED
+               Description: Total power overdraw
+               Time: 11-Mar-2025_18:05:00

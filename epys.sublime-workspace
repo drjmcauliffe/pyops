@@ -1,0 +1,584 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"meta",
+				"metadata"
+			],
+			[
+				"minor",
+				"minor_version"
+			],
+			[
+				"major",
+				"major_version"
+			],
+			[
+				"PY",
+				"PYTHONPATH"
+			],
+			[
+				"spli",
+				"splitlines"
+			],
+			[
+				"cal",
+				"Calculator"
+			],
+			[
+				"cl",
+				"Calculator"
+			],
+			[
+				"OUTPUT",
+				"OUTPUTSTEP"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 71.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"intall",
+				"Package Control: Install Package"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"wra",
+				"Emmet: Wrap With Abbreviation"
+			],
+			[
+				"spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"save",
+				"Project: Save As"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"blame",
+				"Git: Blame"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"q",
+				"Git: Quick Commit"
+			],
+			[
+				"qu",
+				"Git: Quick Commit"
+			],
+			[
+				"status",
+				"Git: Status"
+			],
+			[
+				"diff",
+				"Git: Diff Current File"
+			],
+			[
+				"pytho",
+				"Set Syntax: Python"
+			],
+			[
+				"quick",
+				"Git: Quick Commit"
+			],
+			[
+				"tast",
+				"Text Pastry: From 1 To X"
+			],
+			[
+				"pastr",
+				"Text Pastry: From 0 To X"
+			],
+			[
+				"qui",
+				"Git: Quick Commit"
+			],
+			[
+				"",
+				"AlignTab"
+			],
+			[
+				"align",
+				"AlignTab: Table Mode"
+			],
+			[
+				"ini",
+				"Set Syntax: INI"
+			],
+			[
+				"tabs",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"ali",
+				"AlignTab"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"space",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"loca",
+				"Local History: Open"
+			],
+			[
+				"lo",
+				"Local History: Compare"
+			],
+			[
+				"local",
+				"Local History: Compare"
+			],
+			[
+				"browse",
+				"Local History: Browse"
+			],
+			[
+				"eps",
+				"Set Syntax: EPS"
+			],
+			[
+				"stat",
+				"View: Toggle Status Bar"
+			],
+			[
+				"git",
+				"Git: Quick Commit"
+			],
+			[
+				"com",
+				"Git: Commit"
+			],
+			[
+				"shell",
+				"Set Syntax: Shell Script (Bash)"
+			]
+		],
+		"width": 669.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/jmcaulif/Code/python/epys/epys/epys.py",
+		"/Users/jmcaulif/Code/python/epys/epys/events.py",
+		"/Users/jmcaulif/Code/python/epys/epys/data_avg_plot.py",
+		"/Users/jmcaulif/Downloads/MDISDataWorkshop/Demos/README",
+		"/Users/jmcaulif/Code/python/epys/sample_data/data_rate_avg.out",
+		"/Users/jmcaulif/.virtualenvs/epys/lib/python2.7/site-packages/matplotlib/mpl-data/matplotlibrc",
+		"/Users/jmcaulif/Code/python/epys/.gitignore",
+		"/Users/jmcaulif/Code/python/epys/epys.sublime-project",
+		"/Users/jmcaulif/Code/python/epys/project",
+		"/Users/jmcaulif/.bash_profile",
+		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/jmcaulif/Desktop/Preferences.sublime-settings",
+		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/jmcaulif/Code/python/epys/tests/test_epys.py",
+		"/Users/jmcaulif/Code/python/epys/test.txt",
+		"/Users/jmcaulif/Code/python/epys/HISTORY.rst",
+		"/Users/jmcaulif/Code/python/epys/Makefile",
+		"/Users/jmcaulif/Code/python/epys/setup.py",
+		"/Users/jmcaulif/Code/python/epys/epys/__init__.py",
+		"/Users/jmcaulif/Code/python/epys/README.rst",
+		"/Users/jmcaulif/Code/python/epys/genchangelog.sh",
+		"/Users/jmcaulif/Code/python/epys/ChangeLog",
+		"/Users/jmcaulif/Code/python/epys/CONTRIBUTING.rst",
+		"/Users/jmcaulif/Code/python/epys/AUTHORS.rst",
+		"/Users/jmcaulif/Code/python/epys/docs/Makefile",
+		"/Users/jmcaulif/Code/python/epys/docs/usage.rst",
+		"/Users/jmcaulif/Code/python/epys/tox.ini",
+		"/Users/jmcaulif/Code/python/epys/tests/__init__.py",
+		"/Users/jmcaulif/.virtualenvs/cookiecutter-pypackage/template.json",
+		"/Users/jmcaulif/.virtualenvs/cookiecutter-pypackage/replace1.json",
+		"/Users/jmcaulif/.virtualenvs/cookiecutter-pypackage/replace2.json",
+		"/Users/jmcaulif/.virtualenvs/cookiecutter-pypackage/cookiecutter.json",
+		"/Users/jmcaulif/.virtualenvs/cookiecutter-pypackage/test.sh",
+		"/Users/jmcaulif/.virtualenvs/postmkvirtualenv",
+		"/Users/jmcaulif/Code/python/epys/resources/eps_sample/data_rate_avg.out",
+		"/Users/jmcaulif/Code/python/epys/epys.ipynb",
+		"/Users/jmcaulif/Code/python/core/vpython-wx/include/util/shader_program.hpp",
+		"/Users/jmcaulif/Code/python/core/vpython-wx/src/core/util/shader_program.cpp",
+		"/Users/jmcaulif/Code/python/core/vpython-wx/include/GL/glext.h",
+		"/Users/jmcaulif/Code/python/core/vpython-wx/Boost_OSX_Makefile.mak",
+		"/Users/jmcaulif/Code/python/core/vpython-wx/authors.txt",
+		"/Users/jmcaulif/Code/python/core/vpython-wx/ez_setup.py",
+		"/Volumes/Enthought-VPython-6.04/wxPython-2.9.4/README 1st.txt",
+		"/Users/jmcaulif/Code/python/sandbox/source/multi_install_packages.py",
+		"/Users/jmcaulif/installed_packages.txt",
+		"/Users/jmcaulif/Code/python/core/mayavi/examples/mayavi/advanced_visualization/scatter_plot.py",
+		"/Users/jmcaulif/Code/python/core/mayavi/examples/mayavi/advanced_visualization/contour.py",
+		"/Users/jmcaulif/Code/python/core/mayavi/examples/mayavi/advanced_visualization/polydata.py",
+		"/Users/jmcaulif/Code/python/core/mayavi/examples/mayavi/interactive/mlab_traits_ui.py",
+		"/Users/jmcaulif/Downloads/hdf5-1.8.12/README.txt",
+		"/Users/jmcaulif/Code/python/chaco_test/chaco/examples/demo/data/sample.wav",
+		"/Users/jmcaulif/Code/python/pyside_test/source/test.py",
+		"/Users/jmcaulif/Code/python/chaco_test/chaco/chaco/tools/legend_tool.py",
+		"/Users/jmcaulif/Code/python/chaco_test/chaco/chaco/tools/legend_highlighter.py",
+		"/Users/jmcaulif/Code/python/chaco_test/chaco/examples/demo/zoomed_plot/zoom_plot.py",
+		"/Users/jmcaulif/Code/python/chaco_test/chaco/examples/demo/scales_test.py",
+		"/Users/jmcaulif/Code/python/chaco_test/chaco/chaco/tools/drag_zoom.py",
+		"/Users/jmcaulif/Code/python/chaco_test/chaco/chaco/tools/drag_tool.py",
+		"/Users/jmcaulif/Code/python/chaco_test/chaco/chaco/tools/api.py",
+		"/Users/jmcaulif/Code/python/chaco_test/chaco/examples/demo/zoomed_plot/zoom_overlay.py",
+		"/Applications/Start IPython Notebook Server.app/Contents/MacOS/startup.command",
+		"/Applications/Start IPython Notebook Server.app/Contents/MacOS/IPython Notebook",
+		"/Users/jmcaulif/Code/bepic/ESA/bepi_mapps_v65.ini",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/bepi.edf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/bepi_events_mpo_00012.evf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/ss_stc_global_mapping_0001.evf",
+		"/Users/jmcaulif/Code/bepic/DATA/OGS/bepi_events_stc_00012.evf",
+		"/Users/jmcaulif/Code/python/gsv_evf_editing/stc_start_stops_old.evf",
+		"/Users/jmcaulif/Code/python/gsv_evf_editing/stc_start_stops.evf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/bepi_events_mpo_00012b.evf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/BC_SO10_FULL_________ITL_GEN_1A.itl",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/SS_STC_SO10_CM______ITL_GEN01A.itl",
+		"/Users/jmcaulif/Code/bepic/DATA/OGS/bepi_events_stc_00015.evf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/BC_SO10_FULL_OPTB____ITL_GEN_1A_whathelenbroke.itl",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/BC_SO10_FULL_OPTB____ITL_GEN_1A.itl",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/mertis.edf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/mr_ike_global_mapping_0002.evf",
+		"/Users/jmcaulif/Code/bepic/OUTPUT/SIMULATION DATA/20131121_144643/module_states.out",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/mr_ike_perihelion_terminator_0002.evf",
+		"/Users/jmcaulif/Code/bepic/OUTPUT/SIMULATION DATA/20131121_144643/modes.out",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/execute_SOWG10_AllB",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/SS_VIHI_SO10_GM_______ITL_GEN01A.itl",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/SS_VIHI_SO10_TM______ITL_GEN01A.itl",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/CONFIG/events.bepi.def",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/MR_SO10_APH_MAPPING_ITL_GEN01A.itl",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/SS_STC_SO10_GM_______ITL_GEN01A.itl",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ERF/ss_stc_global_mapping_0001.erf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/mr_ike_perihelion_terminator_0001.evf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/BC_ALL_OPTB_SOWG10.evf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/AN_SO10_KA_X_DUMP____ITL_GEN_2A.itl",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/MR_SO10_APH_MAPPING_ITL_GEN01B.itl",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/Analysis/Time-line inputs.xls",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/CONFIG/eps.cfg",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/CONFIG/eps_mac.cfg",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/ddl_est_bepi_mpo_so10_0001.brf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/ddl_est_bepi_mpo_dcdr_0001.brf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/bc_ceb_ph_passes_0002.evf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/MG_SO10_BOL_COMPLETE_ITL_GEN_1B.itl",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/bepi_events_gsv_00023b.evf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ERF/mr_perihelion_terminator_mapping_full_0001.erf",
+		"/Users/jmcaulif/Code/bepic/ESA/bepi_mapps_v65.ini.colors",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ERF/mr_perihelion_terminator_mapping_0001.erf",
+		"/Users/jmcaulif/Code/bepic/DATA/ITL/MSP/MR_IKEA_RUG_SCENARIO_GEN01A.itl",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/execute_SOWG10",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/antenna.edf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/simbiosys.edf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/simbiosys_stc.edf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/simbiosys_vihi.edf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/simbiosys_hric.edf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/ss_vhi_global_mapping_0001.evf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/SS_HRIC_SO10_DS_______ITL_GEN01A.itl",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/mpo_at_apoherm.evf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/gsv_per_bepi_mpo_00012.asc",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/ssmm.edf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/execute_MISSION.bat",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/CONFIG/landmarks.asc",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/CONFIG/units.def",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/simbiosys_full.edf",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/BC_SO10_FULL_________ITL_GEN_1A - CVS.itl",
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/mgns.edf",
+		"/Users/jmcaulif/Dropbox/Apps/sublimetext2/Packages/Open-Include/Default.sublime-mousemap",
+		"/Users/jmcaulif/Dropbox/Apps/sublimetext2/Packages/Open-Include/Default.sublime-keymap"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			" \\= ",
+			"\nclass",
+			"git",
+			"# [ Set up some colourful terminal stuff ]",
+			"\n# -----------------------------------------------------------------------------",
+			"\n# -----------------------------------------------------------------------------\nPATH=\"${PATH}:/Applications/exelis/idl/bin\"",
+			"# -----------------------------------------------------------------------------\n# ",
+			"git",
+			"{{ cookiecutter.repo_name }}",
+			"samplefile",
+			"logger.(debug|infor)\\(\".+\\n?.+\"\\)",
+			"logger.debug(\"\nlogger.debug(\"\nlogger.debug(\"\nlogger.debug(\"\nlogger.debug(\"\nlogger.debug(\"\nlogger.debug(\"\nlogger.debug('\nlogger.debug('\nlogger.debug('\nlogger.debug(\"\nlogger.debug\\(\\\".+",
+			"logger.debug(",
+			"logger.info",
+			",[a-zA-Z0-9]",
+			"M|re",
+			"re.match( r",
+			"hdings",
+			"#",
+			"python",
+			"==.+",
+			"==0.19.2",
+			"# -----------------------------------------------------------------------------\n",
+			"# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# ",
+			"# -----------------------------------------------------------------------------\n",
+			"configure_plot",
+			"zoom_plot",
+			"read_music_data",
+			"ArrayPlotData",
+			"GSODDataPlotterView",
+			"attach_tools",
+			"highlight_tool",
+			"enthought.",
+			"LegendTool",
+			"python",
+			"^#",
+			".+STC_GM_SZA0_.+",
+			"1",
+			".+STC_GM_SZA0_.+",
+			"STC_GM_SZA0_",
+			"23-Jan-2025_09:30:00",
+			"08-Nov-2024_12:00:00",
+			"STC_GM_SZA0_END",
+			"29-Oct-2024_23:00:00",
+			"STC_GM_SZA0_START",
+			".+Apr-2025",
+			"SCI_HI_RES1_80",
+			"Mode:.+",
+			"Parameter_value:",
+			"Parameter_value: [0-9]{1}",
+			"Parameter_value: [0-9]{1,2}",
+			"SCI_HI_RES1_5",
+			"PNTNG_BB3VIEW",
+			"SCI_HI_RES1_240",
+			"SCI_HI_WIN70",
+			"SCI_HI_RES1_118",
+			"SCI_HI_RES1_80",
+			"SCI_HI_RES1_60",
+			"SCI_HI_RES1_17",
+			"Mode:.+",
+			"Mode: .+",
+			"Mode: SCI_HI_RES1_20",
+			"#  ",
+			"160 ",
+			"118 ",
+			" 80 ",
+			"80",
+			" 60 ",
+			"60",
+			"17",
+			"SCI_HI_WIN70",
+			"SCI_HI_RES1_118",
+			"SCI_HI_RES1_80",
+			"SCI_HI_RES1_60",
+			"SCI_HI_RES1_17",
+			"Mode:",
+			"SCI_HI_RES1_17",
+			"_DAY",
+			"50",
+			"_DAY",
+			".+(Jan|Feb)-2025",
+			".+Feb-2025",
+			".+Jan-2025",
+			"DAY_",
+			"NTDTERM_DAYTIME_P1_70_END",
+			"***",
+			"03-apr",
+			"02-apr",
+			"ddl_est_bepi_mpo_dcdr_0001",
+			"ddl_est_bepi_mpo_dcdr_0001.brf",
+			" [0-9]{2}.[0-9]",
+			"[0-9]{2}.[0-9]",
+			" [0-9].[0-9] ",
+			"[0-9].[0-9]",
+			" #Include:",
+			"GS_CEB",
+			"09-jun",
+			"Default\\Configuration\\Experiments\\MERTIS",
+			"^.+MERTIS.+",
+			"^.+MERTIS._",
+			"Default\\ExpOperations\\SwathSelection\\MERTIS\\isExpanded=true",
+			"#X# ",
+			"#x#",
+			"NTDTERM",
+			"DTNTERM",
+			"APH_DAYTIME",
+			"  \\\n                                             ",
+			"                                        =",
+			" +kbps",
+			"(NEW_MODE  =",
+			"WITCH_MODE (NEW_MODE",
+			" MERTIS  * ",
+			" MERTIS * ",
+			" MERTIS",
+			"^(?!#)",
+			"(NEW_MODE",
+			"\\t",
+			"DAY_",
+			"#x   ",
+			"^.",
+			"End of ",
+			"end of ",
+			"^.+",
+			"#x   ",
+			"^.+",
+			"9-Oct-2024_22:34",
+			"9-Oct-2024_22:34:",
+			"# APH#3 Start Overlap Removal # "
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"# APH#3 End Redundancy Removal # ",
+			"# APH#3 Start Overlap Removal # ",
+			"# APH#3 Start Overlap Removal #",
+			"# APH#2 Start Overlap Removal #",
+			"APH#2 Start Overlap Removal"
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 32.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 178.0
+	},
+	"output.git":
+	{
+		"height": 106.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"eps_mac",
+				"CONFIG/eps_mac.cfg"
+			],
+			[
+				"events.be",
+				"CONFIG/events.bepi.def"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 172.0,
+	"status_bar_visible": true
+}

@@ -1,18 +1,17 @@
-===============================
-epys
-===============================
+e[py]s
+======
 
 .. image:: https://badge.fury.io/py/epys.png
     :target: http://badge.fury.io/py/epys
-    
+
 .. image:: https://travis-ci.org/johnnycakes79/epys.png?branch=master
         :target: https://travis-ci.org/johnnycakes79/epys
 
-.. image:: https://pypip.in/d/epys/badge.png
-        :target: https://crate.io/packages/epys?version=latest
+ePYs is a python library for the manipulation, processing and plotting
+of the input and output files of ESA Experiment Planning Software (EPS).
 
-
-What will this do...?
+.. WARNING::
+   This is a very beta-project. It's not on PyPI and can't be installed via PIP.
 
 * Free software: BSD license
 * Documentation: http://epys.rtfd.org.
@@ -20,4 +19,23 @@ What will this do...?
 Features
 --------
 
-* TODO
+* Read an EPS data-rate output file into a numpy array with instrument header information.
+
+Installation
+------------
+
+At the command line::
+
+1. Clone the repo to your local machine::
+
+    $ git clone git@github.com:johnnycakes79/epys.git
+
+3. Install your local copy::
+
+    $ cd epys/
+    $ python setup.py install
+
+4. Import and use module::
+
+    $ python
+    >>> from epys import epys

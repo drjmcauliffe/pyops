@@ -3,6 +3,7 @@
 
 import os
 import sys
+import epys
 
 
 try:
@@ -14,14 +15,17 @@ if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
     sys.exit()
 
+version = epys.__version__
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
+authors = open('AUTHORS.rst').read()
+contributing = open('CONTRIBUTING.rst').read()
 
 setup(
     name='epys',
-    version='0.1.0',
-    description='What will this do...?',
-    long_description=readme + '\n\n' + history,
+    version=version,
+    description='A python library for handling EPS output.',
+    long_description=readme + '\n\n' + history + '\n\n' + authors,
     author='Jonathan McAuliffe',
     author_email='watch.n.learn@gmail.com',
     url='https://github.com/johnnycakes79/epys',
@@ -45,6 +49,10 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
+    ],
+    data_files=[
+        ('sampledata', ['sample_data/data_rate_avg.out']),
+        ('sampledata', ['sample_data/power_avg.out'])
     ],
     test_suite='tests',
 )

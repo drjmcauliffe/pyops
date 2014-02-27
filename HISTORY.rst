@@ -3,7 +3,13 @@
 History
 -------
 
-0.1.0 (2013-12-25)
+0.2.0 (2013-12-18)
 ++++++++++++++++++
 
-* First release on PyPI.
+* No major updates to the code but unittests added and the project setup evolved.
+
+
+0.1.0 (2013-12-16)
+++++++++++++++++++
+
+* First push to Github repo - still buggy.

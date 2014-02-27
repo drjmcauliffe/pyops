@@ -8,6 +8,7 @@ help:
 	@echo "testall - run tests on every Python version with tox"
 	@echo "coverage - check code coverage quickly with the default Python"
 	@echo "docs - generate Sphinx HTML documentation, including API docs"
+	@echo "pycco - generate PyCCO HTML documentation, for all .py files"
 	@echo "release - package and upload a release"
 	@echo "sdist - package"
 
@@ -27,7 +28,8 @@ lint:
 	flake8 epys tests
 
 test:
-	python setup.py test
+	#python setup.py test
+	py.test -v
 
 test-all:
 	tox
@@ -43,12 +45,16 @@ docs:
 	rm -f docs/modules.rst
 	sphinx-apidoc -o docs/ epys
 	$(MAKE) -C docs clean
+	$(MAKE) -C docs changes
 	$(MAKE) -C docs html
 	open docs/_build/html/index.html
 
 pycco:
 	pycco -p epys/*.py
 	open docs/epys/*.html
+
+install:
+	python setup.py install
 
 release: clean
 	python setup.py sdist upload
