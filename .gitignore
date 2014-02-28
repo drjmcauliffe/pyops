@@ -4,6 +4,9 @@
 # Coverge folder
 htmlcov/
 
+# Sort Micellaneous folder
+sort/
+
 # C extensions
 *.so
 
