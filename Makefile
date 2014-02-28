@@ -28,8 +28,8 @@ lint:
 	flake8 epys tests
 
 test:
-	#python setup.py test
-	py.test -v
+	python setup.py test
+	# py.test -v
 
 test-all:
 	tox
