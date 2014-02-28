@@ -43,55 +43,131 @@ def _buildorbits(delta = "1d", scale = 15):
     return rlist, rmins, jd.tolist()
 
 
-def _planetdotang(a, b, theta, r_dot_adj = 0.23, dot_color = "#C8C5E2",
-    r_dot_size = 0.6, rot_x = 0.0, rot_y = 0.0, dot_op=1.0, dot_str_op = 1.0):
-    if theta < 180:
-        r_dot_adj = r_dot_adj*-1.0
-    r_dot = _rellipse(a, b, theta)
-    r_trans = rotate(theta, rot_x, rot_y)
-    # print(r_dot)
-    ret_dot = Fig(Dots([(r_dot, 0)],
-                    make_symbol("dot_{}_{}".format(theta, dot_color),
-                                fill=dot_color, fill_opacity=dot_op,
-                                stroke="black", stroke_width="0.15pt",
-                                stroke_opacity=dot_str_op),
-                    r_dot_size, r_dot_size), trans=r_trans)
-    # print(theta)
-    # print(r_dot*cos(radians(theta)), r_dot*sin(radians(theta)))
-    return ret_dot
-
-
-def _planetdot(name, rpos, dot_color = "#C8C5E2", r_dot_size = 0.6,
-    dot_op=1.0, dot_str_op = 1.0):
-
-    r_x = rpos[0]
-    r_y = rpos[1]
-    cname = dot_color.replace("#", "")
-
-    ret_dot = Fig(Dots([(r_x, r_y)],
-                    make_symbol("dot_{}_{}".format(name, cname),
-                                fill=dot_color, fill_opacity=dot_op,
-                                stroke="black", stroke_width="0.15pt",
-                                stroke_opacity=dot_str_op),
-                    r_dot_size, r_dot_size))
-
-    return ret_dot
-
-
-def _rellipse(a, b, theta):
-    rret = (b**2)/(a-sqrt(a**2-b**2)*cos(radians(180-theta)))
-    return rret
-
-
-def _sun(id = "Sun", posx = 0, posy = 0, size = 1.5, fill = "yellow",
-    stroke = "orange", stroke_width = "0.1pt"):
-    return Dots([(0, 0)], make_symbol(id, stroke=stroke,
-                fill=fill,stroke_width=stroke_width), size, size)
-
-
 def _frmline(a, b, c, d, line_op = 1.0):
     return Line(a, b, c, d, stroke_width="0.15pt",
                 stroke_dasharray="2, 2", stroke_opacity=line_op)
+
+
+def _getpos(start, end = False, delta = "1d"):
+
+    # print("Gettings positions for given dates...")
+
+    # Split start date and create datetime object...
+    year1, month1, chart1 = start.split('/')
+    start_date = datetime(int(year1), int(month1), int(chart1))
+
+    # If an end date is not given add 1 chart to the start date and use
+    # this as the end date...
+    # TODO: update jpl_ephem to deal with single dates.
+    if not end:
+        end_date = datetime(int(year1), int(month1), int(chart1)+1)
+    else:
+        # If an end date is given deal with it...
+        year2, month2, chart2 = end.split('/')
+        end_date = datetime(int(year2), int(month2), int(chart2))
+
+    jpl = Horizons()
+    rlist = []
+
+    plnts = ("MERCURY", "VENUS", "EARTH")
+
+    for planet in plnts:
+
+        print("     > {}".format(planet))
+
+        # Planet osculating elements
+        jd, a, ecc, inc, om, ap, nu = jpl.elements(getattr(jpl, planet),
+                                                    start_date,
+                                                    end_date,
+                                                    delta)
+
+        # Planet state and velocity vectors
+        jd, r, v = jpl.vectors(getattr(jpl, planet),
+                                start_date,
+                                end_date,
+                                delta)
+
+        if not end:
+            rlist.append((planet, jd[0], a[0], ecc[0], inc[0], om[0],
+                                ap[0], nu[0], r[0], v[0]))
+        else:
+            for chart in jd:
+                i = np.where(jd==chart)
+                mylist = (planet, jd[i][0], a[i][0], ecc[i][0], inc[i][0],
+                            om[i][0], ap[i][0], nu[i][0], r[i][0].tolist(),
+                            v[i][0].tolist())
+                rlist.append(mylist)
+
+    rlist.sort(key=lambda x: x[1])
+
+    return [rlist[i:i+len(plnts)] for i in range(0, len(rlist), len(plnts))]
+
+
+def _gradient(id, colors, gradrot, rotang, x, y):
+
+    # TODO: Fix the gradient rotation...
+
+    # print("Building gradient for {}".format(id))
+
+    xp = x*cos(radians(rotang)) - y*sin(radians(rotang))
+    yp = x*sin(radians(rotang)) + y*cos(radians(rotang))
+
+    return SVG("linearGradient",
+                SVG("stop", stop_color=colors[0], stop_opacity=1,
+                    offset="40%"),
+                SVG("stop", stop_color=colors[1], stop_opacity=1,
+                    offset="60%"),
+                x1="0%", y1="0%", x2="100%", y2="0%",
+                spreadMethod="pad",
+                id="{}Grad".format(id),
+                gradientTransform="rotate({}, {}, {})".format(45, xp, yp))
+
+
+def _outerframe(date, frmSize = 15, frm_op = 0.5, diag_scl = 0.65,
+    frm_font_size = 3, frm_ticks = 8, frm_miniticks =  False):
+
+    # print("Building outer frame...")
+
+    frmSize = frmSize*1.2
+
+    frm = LineAxis(frmSize, 0, frmSize, 2*pi, 0, 2*pi)
+    frm.text_start = -2.5
+    frm.text_angle = 180.
+    frm.text_attr["font-size"] = frm_font_size
+    frm.text_attr["opacity"] = frm_op
+    frm.attr["stroke_opacity"] = frm_op
+    frm.ticks = [x*2*pi/frm_ticks for x in range(frm_ticks)]
+    frm.labels = lambda x: "%g" % (x*180/pi)
+
+    if frm_miniticks:
+        frm_miniticks = [x*2*pi/frm_ticks/9 for x in range(frm_ticks*9)]
+
+    frm.miniticks = frm_miniticks
+
+    # Makes a circle out of the Line Axis.
+    frm_plot = Fig(frm, trans="x*cos(y), x*sin(y)")
+
+    # Draw the vertical ...
+    xs = 0.9
+    frmLine1 = _frmline(0, -frmSize*xs, 0, frmSize*xs, line_op = frm_op)
+    # ... and horizontal frame lines through the sun.
+    frmLine2 = _frmline(-frmSize*xs, 0, frmSize*xs, 0, line_op = frm_op)
+    # Draw the diagonal frame lines.
+    frmLine3 = _frmline(-frmSize*diag_scl, -frmSize*diag_scl,
+                              frmSize*diag_scl,  frmSize*diag_scl,
+                              line_op = frm_op)
+    frmLine4 = _frmline(-frmSize*diag_scl,  frmSize*diag_scl,
+                              frmSize*diag_scl, -frmSize*diag_scl,
+                              line_op = frm_op)
+
+    # And there was light...
+    sun_ball = _sun()
+
+    meta_data = Text(-frmSize+2, frmSize+1, "Date: {}".format(date),
+                        font_size = frm_font_size-1, opacity = frm_op)
+
+    return Fig(frm_plot, Fig(frmLine1, frmLine2, frmLine3, frmLine4),
+                sun_ball, meta_data)
 
 
 def _planetdiag(name, rpos, rotang = 0.0, orb_scl = 1.0,
@@ -172,132 +248,59 @@ def _planetdiag(name, rpos, rotang = 0.0, orb_scl = 1.0,
     return Fig(ball, trans=rotate(rotang, 0, 0)), grad
 
 
-def _gradient(id, colors, gradrot, rotang, x, y):
+def _planetdot(name, rpos, dot_color = "#C8C5E2", r_dot_size = 0.6,
+    dot_op=1.0, dot_str_op = 1.0):
 
-    # TODO: Fix the gradient rotation...
+    r_x = rpos[0]
+    r_y = rpos[1]
+    cname = dot_color.replace("#", "")
 
-    # print("Building gradient for {}".format(id))
+    ret_dot = Fig(Dots([(r_x, r_y)],
+                    make_symbol("dot_{}_{}".format(name, cname),
+                                fill=dot_color, fill_opacity=dot_op,
+                                stroke="black", stroke_width="0.15pt",
+                                stroke_opacity=dot_str_op),
+                    r_dot_size, r_dot_size))
 
-    xp = x*cos(radians(rotang)) - y*sin(radians(rotang))
-    yp = x*sin(radians(rotang)) + y*cos(radians(rotang))
-
-    return SVG("linearGradient",
-                SVG("stop", stop_color=colors[0], stop_opacity=1,
-                    offset="40%"),
-                SVG("stop", stop_color=colors[1], stop_opacity=1,
-                    offset="60%"),
-                x1="0%", y1="0%", x2="100%", y2="0%",
-                spreadMethod="pad",
-                id="{}Grad".format(id),
-                gradientTransform="rotate({}, {}, {})".format(45, xp, yp))
+    return ret_dot
 
 
-def _outerframe(date, frmSize = 15, frm_op = 0.5, diag_scl = 0.65,
-    frm_font_size = 3, frm_ticks = 8, frm_miniticks =  False):
-
-    # print("Building outer frame...")
-
-    frmSize = frmSize*1.2
-
-    frm = LineAxis(frmSize, 0, frmSize, 2*pi, 0, 2*pi)
-    frm.text_start = -2.5
-    frm.text_angle = 180.
-    frm.text_attr["font-size"] = frm_font_size
-    frm.text_attr["opacity"] = frm_op
-    frm.attr["stroke_opacity"] = frm_op
-    frm.ticks = [x*2*pi/frm_ticks for x in range(frm_ticks)]
-    frm.labels = lambda x: "%g" % (x*180/pi)
-
-    if frm_miniticks:
-        frm_miniticks = [x*2*pi/frm_ticks/9 for x in range(frm_ticks*9)]
-
-    frm.miniticks = frm_miniticks
-
-    # Makes a circle out of the Line Axis.
-    frm_plot = Fig(frm, trans="x*cos(y), x*sin(y)")
-
-    # Draw the vertical ...
-    xs = 0.9
-    frmLine1 = _frmline(0, -frmSize*xs, 0, frmSize*xs, line_op = frm_op)
-    # ... and horizontal frame lines through the sun.
-    frmLine2 = _frmline(-frmSize*xs, 0, frmSize*xs, 0, line_op = frm_op)
-    # Draw the diagonal frame lines.
-    frmLine3 = _frmline(-frmSize*diag_scl, -frmSize*diag_scl,
-                              frmSize*diag_scl,  frmSize*diag_scl,
-                              line_op = frm_op)
-    frmLine4 = _frmline(-frmSize*diag_scl,  frmSize*diag_scl,
-                              frmSize*diag_scl, -frmSize*diag_scl,
-                              line_op = frm_op)
-
-    # And there was light...
-    sun_ball = _sun()
-
-    meta_data = Text(-frmSize+2, frmSize+1, "Date: {}".format(date),
-                        font_size = frm_font_size-1, opacity = frm_op)
-
-    return Fig(frm_plot, Fig(frmLine1, frmLine2, frmLine3, frmLine4),
-                sun_ball, meta_data)
+def _planetdotang(a, b, theta, r_dot_adj = 0.23, dot_color = "#C8C5E2",
+    r_dot_size = 0.6, rot_x = 0.0, rot_y = 0.0, dot_op=1.0, dot_str_op = 1.0):
+    if theta < 180:
+        r_dot_adj = r_dot_adj*-1.0
+    r_dot = _rellipse(a, b, theta)
+    r_trans = rotate(theta, rot_x, rot_y)
+    # print(r_dot)
+    ret_dot = Fig(Dots([(r_dot, 0)],
+                    make_symbol("dot_{}_{}".format(theta, dot_color),
+                                fill=dot_color, fill_opacity=dot_op,
+                                stroke="black", stroke_width="0.15pt",
+                                stroke_opacity=dot_str_op),
+                    r_dot_size, r_dot_size), trans=r_trans)
+    # print(theta)
+    # print(r_dot*cos(radians(theta)), r_dot*sin(radians(theta)))
+    return ret_dot
 
 
-def _getpos(start, end = False, delta = "1d"):
+def _rellipse(a, b, theta):
+    rret = (b**2)/(a-sqrt(a**2-b**2)*cos(radians(180-theta)))
+    return rret
 
-    # print("Gettings positions for given dates...")
 
-    # Split start date and create datetime object...
-    year1, month1, chart1 = start.split('/')
-    start_date = datetime(int(year1), int(month1), int(chart1))
-
-    # If an end date is not given add 1 chart to the start date and use
-    # this as the end date...
-    # TODO: update jpl_ephem to deal with single dates.
-    if not end:
-        end_date = datetime(int(year1), int(month1), int(chart1)+1)
-    else:
-        # If an end date is given deal with it...
-        year2, month2, chart2 = end.split('/')
-        end_date = datetime(int(year2), int(month2), int(chart2))
-
-    jpl = Horizons()
-    rlist = []
-
-    plnts = ("MERCURY", "VENUS", "EARTH")
-
-    for planet in plnts:
-
-        print("     > {}".format(planet))
-
-        # Planet osculating elements
-        jd, a, ecc, inc, om, ap, nu = jpl.elements(getattr(jpl, planet),
-                                                    start_date,
-                                                    end_date,
-                                                    delta)
-
-        # Planet state and velocity vectors
-        jd, r, v = jpl.vectors(getattr(jpl, planet),
-                                start_date,
-                                end_date,
-                                delta)
-
-        if not end:
-            rlist.append((planet, jd[0], a[0], ecc[0], inc[0], om[0],
-                                ap[0], nu[0], r[0], v[0]))
-        else:
-            for chart in jd:
-                i = np.where(jd==chart)
-                mylist = (planet, jd[i][0], a[i][0], ecc[i][0], inc[i][0],
-                            om[i][0], ap[i][0], nu[i][0], r[i][0].tolist(),
-                            v[i][0].tolist())
-                rlist.append(mylist)
-
-    rlist.sort(key=lambda x: x[1])
-
-    return [rlist[i:i+len(plnts)] for i in range(0, len(rlist), len(plnts))]
+def _sun(id = "Sun", posx = 0, posy = 0, size = 1.5, fill = "yellow",
+    stroke = "orange", stroke_width = "0.1pt"):
+    return Dots([(0, 0)], make_symbol(id, stroke=stroke,
+                fill=fill,stroke_width=stroke_width), size, size)
 
 
 def planetsplot(user_dates = None, delta = "1d", master_scale = 15):
+    """
+    ... explain what this does...
+    """
 
     # Build basic orbits and calculate offset angles.
-    orbits, offsets, dates =_build_orbits(delta, master_scale)
+    orbits, offsets, dates =_buildorbits(delta, master_scale)
 
     if not user_dates:
         pass # TODO: user can specify specific dates or true anomalies.
@@ -371,7 +374,7 @@ def planetsplot(user_dates = None, delta = "1d", master_scale = 15):
             defs = SVG("defs")
 
 
-            # -- Orbit circles ---------------------------------------------------
+            # -- Orbit circles -----------------------------------------------
 
             # Build the SVG for each orbit.
             for orbit in orbits:
@@ -387,7 +390,7 @@ def planetsplot(user_dates = None, delta = "1d", master_scale = 15):
                                 trans=rotate(rotang,0,0)))
 
 
-            # -- Planet orbs -----------------------------------------------------
+            # -- Planet orbs -------------------------------------------------
 
             points = [orbits[0][dx],orbits[1][dx],orbits[2][dx]]
 
@@ -415,7 +418,7 @@ def planetsplot(user_dates = None, delta = "1d", master_scale = 15):
                 orbs.append(orb)
                 defs.append(grad)
 
-            # -- Build final figure --------------------------------------------------
+            # -- Build final figure ------------------------------------------
 
             wa = master_scale * 1.5
             svg = Fig(fpoa, frame, circles[0], circles[1], circles[2],

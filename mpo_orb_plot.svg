@@ -1,0 +1,369 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg style="stroke-linejoin:round; stroke:black; stroke-width:0.5pt; text-anchor:middle; fill:none" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, FreeSans, Sans, sans, sans-serif" height="400px" width="400px" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100">
+
+<g>
+
+<defs>
+
+<linearGradient y2="0%" spreadMethod="pad" x2="100%" y1="0%" x1="0%" id="mercGrad">
+
+<stop stop-color="#C8C5E2" stop-opacity="1" offset="40%" />
+
+<stop stop-color="#373163" stop-opacity="1" offset="60%" />
+
+</linearGradient>
+
+</defs>
+
+<g>
+
+<path stroke-width="0.25pt" d="" stroke-opacity="0.4" />
+
+<path stroke-width="0.25pt" d="M87.2143 50L84.2143 50M23.6856 76.3145L25.8068 74.1931M76.3145 76.3144L74.1931 74.1932M12.7857 50L15.7857 50M50 87.2143L50 84.2143M50 12.7857L50 15.7857M76.3144 23.6855L74.1932 25.8069M23.6855 23.6856L25.8069 25.8068" stroke-opacity="0.4" />
+
+<text opacity="0.4" stroke="none" transform="translate(88.2143, 49.9999) rotate(89.9982)" font-size="3" fill="black">0</text>
+
+<text opacity="0.4" stroke="none" transform="translate(22.9785, 77.0216) rotate(224.998)" font-size="3" fill="black">225</text>
+
+<text opacity="0.4" stroke="none" transform="translate(77.0216, 77.0215) rotate(134.998)" font-size="3" fill="black">315</text>
+
+<text opacity="0.4" stroke="none" transform="translate(11.7857, 50.0001) rotate(269.998)" font-size="3" fill="black">180</text>
+
+<text opacity="0.4" stroke="none" transform="translate(50.0001, 88.2143) rotate(179.998)" font-size="3" fill="black">270</text>
+
+<text opacity="0.4" stroke="none" transform="translate(49.9999, 11.7857) rotate(359.998)" font-size="3" fill="black">90</text>
+
+<text opacity="0.4" stroke="none" transform="translate(77.0215, 22.9784) rotate(44.9982)" font-size="3" fill="black">45</text>
+
+<text opacity="0.4" stroke="none" transform="translate(22.9784, 22.9785) rotate(314.998)" font-size="3" fill="black">135</text>
+
+<path stroke-width="0.25pt" d="M85.7143 50L85.5833 46.9439L84.9218 42.5181L83.9361 38.8712L82.5354 35.2705L80.4336 31.3103L78.1963 28.0802L75.8138 25.3188L72.8131 22.5214L69.7423 20.2384L67.5328 18.8855L64.3229 17.2836L61.2111 16.091L56.8586 14.9505L52.3572 14.3636L49.4636 14.2897L46.6315 14.4449L42.9045 14.9977L40.1115 15.682L37.0266 16.7254L34.7429 17.7086L31.3744 19.5271L28.681 21.3467L26.065 23.4929L23.5929 25.9548L21.3056 28.7364L18.9794 32.3017L17.6318 34.9066L16.315 38.1328L15.3758 41.2437L14.6762 44.7332L14.3575 47.7366L14.3031 51.1151L14.519 54.0755L15.1312 57.7251L15.8886 60.5795L16.8538 63.2981L18.3375 66.5226L20.7148 70.4423L22.17 72.3831L24.4078 74.9108L26.9395 77.2713L29.9019 79.5225L31.7534 80.7013L34.6748 82.2591L37.4081 83.4209L40.3154 84.3761L44.5371 85.294L48.5758 85.6859L51.2484 85.6925L54.7536 85.3965L57.0894 85.0036L60.3445 84.1834L63.9795 82.8646L66.8283 81.5011L69.3747 80.0022L71.4104 78.585L74.3943 76.085L76.6658 73.7581L78.6466 71.328L80.7451 68.1727L82.0425 65.7731L83.8228 61.4686L84.5918 58.8837L85.4041 54.697L85.6773 51.6254L85.7143 50" stroke-opacity="0.4" />
+
+</g>
+
+<path d="M50 85.7143L50 14.2857" stroke-opacity="0.4" stroke-dasharray="2, 2" stroke-width="0.15pt" />
+
+<path d="M25 75L75 25" stroke-opacity="0.4" stroke-dasharray="2, 2" stroke-width="0.15pt" />
+
+<path d="M25 25L75 75" stroke-opacity="0.4" stroke-dasharray="2, 2" stroke-width="0.15pt" />
+
+<path stroke-width="0.15pt" fill="url(#mercGrad)" d="M50 69.365L52.3769 69.2186L54.7275 68.7791L56.2311 68.3351L58.3766 67.4595L61.3306 65.7042L63.1618 64.2046L65.0361 62.2033L66.752 59.7145L67.5955 58.0871L68.5893 55.4259L69.226 52.3164L69.3642 49.8247L69.1871 47.381L68.3345 43.767L67.2208 41.143L65.6119 38.5426L63.8338 36.4491L62.2345 34.9893L60.628 33.8121L58.1197 32.4195L54.7905 31.2369L52.7935 30.8375L50.82 30.6524L47.9678 30.7419L45.467 31.173L42.266 32.2465L40.3368 33.2183L38.0619 34.7526L36.5131 36.1037L34.7357 38.0835L33.7614 39.4496L32.5792 41.5432L31.6409 43.84L31.1602 45.5205L30.7338 48.0468L30.6417 49.4923L30.6825 51.3551L30.9259 53.3438L31.5808 55.978L32.5664 58.4306L33.9907 60.8952L35.8019 63.1688L37.8544 65.0827L39.6098 66.3416L42.3 67.7683L44.1728 68.4675L47.3723 69.1859L50 69.365Z" />
+
+<g>
+
+<path stroke-width="0.25pt" d="" stroke-opacity="0.4" />
+
+<path stroke-width="0.25pt" d="M50 51.5L50 48.5M42.0635 51.5L42.0635 48.5M26.1905 51.5L26.1905 48.5M57.9365 51.5L57.9365 48.5M73.8095 51.5L73.8095 48.5M18.254 51.5L18.254 48.5M34.127 51.5L34.127 48.5M81.746 51.5L81.746 48.5M65.873 51.5L65.873 48.5" stroke-opacity="0.4" />
+
+<path stroke-width="0.25pt" d="M14.2857 50L85.7143 50" stroke-opacity="0.4" />
+
+</g>
+
+<g>
+
+<path stroke-width="0.25pt" d="" stroke-opacity="0.4" aty="0" />
+
+<path stroke-width="0.25pt" d="M51.5 50L48.5 50M51.5 57.9365L48.5 57.9365M51.5 73.8095L48.5 73.8095M51.5 42.0635L48.5 42.0635M51.5 26.1905L48.5 26.1905M51.5 81.746L48.5 81.746M51.5 65.873L48.5 65.873M51.5 18.254L48.5 18.254M51.5 34.127L48.5 34.127" stroke-opacity="0.4" aty="0" />
+
+<path stroke-width="0.25pt" d="M50 85.7143L50 14.2857" stroke-opacity="0.4" aty="0" />
+
+</g>
+
+<path stroke-width="0.25pt" fill="none" d="M38.3488 74.6811L39.9355 75.0829L43.1615 75.5855L45.7495 75.6968L49.1614 75.453L51.4207 75.0425L54.5274 74.1347L57.5297 72.8415L59.7276 71.5967L61.2398 70.5698L64.4796 67.7854L66.1101 65.9883L67.9345 63.5142L69.5255 60.7352L70.6735 58.0804L71.5541 55.2401L72.1487 52.1097L72.376 48.7398L72.1779 45.3159L71.5853 42.088L70.7798 39.4254L69.9394 37.3623L68.263 34.2516L66.1125 31.2963L64.4845 29.5247L61.754 27.1598L59.1248 25.4172L56.0915 23.9112L52.9423 22.8231L48.6472 22.0162L44.4897 21.9202L40.9147 22.3673L37.136 23.3999L34.8313 24.3403L32.785 25.3987L29.978 27.2505L27.6627 29.2091L25.5728 31.4251L23.885 33.6531L22.9455 35.1363L21.7666 37.3681L20.5442 40.4361L19.7136 43.5678L19.2762 46.5848L19.1706 48.9742L19.2939 51.5666L19.7227 54.4299L20.8572 58.3969L21.4898 59.9521L23.0144 62.8856L24.473 65.0628L26.1378 67.085L28.4116 69.3017L31.3003 71.4706L34.0971 73.0507L37.0975 74.2882L38.3488 74.6811Z" />
+
+<path stroke-width="0.15pt" stroke-dasharray="2, 2" d="M19.8805 41.3634L71.6665 56.2128" />
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_0_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="56.2127801894" x="71.6665393689" height="0.6" xlink:href="#dot_0_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_20_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="48.4142916214" x="72.676686303" height="0.6" xlink:href="#dot_20_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_40_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="40.521094091" x="71.289971248" height="0.6" xlink:href="#dot_40_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_60_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="33.161170225" x="67.4371186807" height="0.6" xlink:href="#dot_60_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_80_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="27.0842156869" x="61.176774802" height="0.6" xlink:href="#dot_80_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_100_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="23.1641637393" x="52.8205600479" height="0.6" xlink:href="#dot_100_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_120_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="22.2992049259" x="43.093416087" height="0.6" xlink:href="#dot_120_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_140_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="25.1572607884" x="33.2433608201" height="0.6" xlink:href="#dot_140_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_160_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="31.7968769391" x="24.9455505229" height="0.6" xlink:href="#dot_160_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_180_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="41.3633645443" x="19.8804727655" height="0.6" xlink:href="#dot_180_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_200_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="52.1602884232" x="19.1064362415" height="0.6" xlink:href="#dot_200_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_220_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="62.1881717864" x="22.624917961" height="0.6" xlink:href="#dot_220_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_240_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="69.8316746591" x="29.4636997173" height="0.6" xlink:href="#dot_240_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_260_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="74.252748955" x="38.1711439724" height="0.6" xlink:href="#dot_260_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_280_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="75.3564755382" x="47.3349270295" height="0.6" xlink:href="#dot_280_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_300_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="73.5204026338" x="55.8642950148" height="0.6" xlink:href="#dot_300_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_320_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="69.3205340091" x="63.0318647391" height="0.6" xlink:href="#dot_320_black" width="0.6" />
+
+</g>
+
+<g>
+
+<defs>
+
+<symbol overflow="visible" viewBox="0 0 1 1" id="dot_340_black">
+
+<circle stroke-width="0.15pt" stroke-opacity="1.0" fill-opacity="1.0" cy="0" stroke="black" cx="0" r="1" fill="black" />
+
+</symbol>
+
+</defs>
+
+<use y="63.3615698925" x="68.3906232291" height="0.6" xlink:href="#dot_340_black" width="0.6" />
+
+</g>
+
+</g>
+
+</svg>
+
