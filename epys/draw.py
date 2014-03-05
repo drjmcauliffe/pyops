@@ -165,62 +165,6 @@ def _frmline(a, b, c, d, line_op=1.0):
                     stroke_dasharray="2, 2", stroke_opacity=line_op)
 
 
-def _getpos(start, end=False, delta="1d"):
-
-    # print("Gettings positions for given dates...")
-
-    # Split start date and create datetime object...
-    year1, month1, chart1 = start.split('/')
-    start_date = datetime(int(year1), int(month1), int(chart1))
-
-    # If an end date is not given add 1 chart to the start date and use
-    # this as the end date...
-    # TODO: update jpl_ephem to deal with single dates.
-    if not end:
-        end_date = datetime(int(year1), int(month1), int(chart1) + 1)
-    else:
-        # If an end date is given deal with it...
-        year2, month2, chart2 = end.split('/')
-        end_date = datetime(int(year2), int(month2), int(chart2))
-
-    jpl = Horizons()
-    rlist = []
-
-    planets = ("MERCURY", "VENUS", "EARTH")
-
-    for planet in planets:
-
-        print("     > {}".format(planet))
-
-        # Planet osculating elements
-        jd, a, ecc, inc, om, ap, nu = jpl.elements(getattr(jpl, planet),
-                                                   start_date,
-                                                   end_date,
-                                                   delta)
-
-        # Planet state and velocity vectors
-        jd, r, v = jpl.vectors(getattr(jpl, planet),
-                               start_date,
-                               end_date,
-                               delta)
-
-        if not end:
-            rlist.append((planet, jd[0], a[0], ecc[0], inc[0], om[0],
-                         ap[0], nu[0], r[0], v[0]))
-        else:
-            for chart in jd:
-                i = np.where(jd == chart)
-                mylist = (planet, jd[i][0], a[i][0], ecc[i][0], inc[i][0],
-                          om[i][0], ap[i][0], nu[i][0], r[i][0].tolist(),
-                          v[i][0].tolist())
-                rlist.append(mylist)
-
-    rlist.sort(key=lambda x: x[1])
-
-    return [rlist[i:i + len(planets)] for i in range(0, len(rlist),
-                                                     len(planets))]
-
-
 def _gradient(id, colors, gradrot, rotang, x, y):
 
     # TODO: Fix the gradient rotation...
