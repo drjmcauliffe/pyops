@@ -25,7 +25,7 @@ clean-pyc:
 	find . -name '*~' -exec rm -f {} +
 
 lint:
-	flake8 epys tests
+	flake8 epys test
 
 test:
 	python setup.py test
@@ -34,7 +34,7 @@ test:
 test-all:
 	tox
 
-coverage:
+coverage:	
 	coverage run --source epys setup.py test
 	coverage report -m
 	coverage html

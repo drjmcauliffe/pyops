@@ -1,12 +1,12 @@
-
+# -*- coding: utf-8 -*-
 from jplephem import Horizons
-from utils import getorbelts, yesno, planetmu
+from utils import getclosest, getorbelts, yesno, planetmu
 from datetime import datetime
 from PyAstronomy import pyasl
 from PyAstronomy import constants as consts
-import numpy as np
 import matplotlib.pyplot as plt
 import svgfig as svg
+import inspect
 import shutil
 import spice
 import math
@@ -70,30 +70,30 @@ def _gatherorbitdata(delta="1d", scale=15, verbose=False):
     # Load the kernels that this program requires.
     spice.furnsh('epys.mk')
 
+    # convert starting epoch to ET
+    et0 = spice.str2et('2024/05/07 00:00')
+    rate = 24 * 2  # Every 30 mins
+    days = [(et0 + (day * (86400 / rate))) for day in range(366 * rate)]
+
     # internal variables and constants
-    utcStart = '2024/05/07 12:00'  # starting epoch
     planets = ("MERCURY", "VENUS", "EARTH")
+    AU = consts.AU / 1000.  # AU [km]
     argps = []
     argpxys = []
     xyvecs = []
+    nuvecs = []
 
     for planet in planets:
 
         print("     > {}".format(planet))
 
-        # convert starting epoch to ET
-        et0 = spice.str2et(utcStart)
-
-        rate = 1  # Every ten minutes
-        days = range(365 * rate)
         dates = []
         rvec = []   # vector of centric radii
         xyvec = []  # vector of (x,y) coordinates
         nuvec = []  # vector of nu (True Anomaly) values
+        incvec = []  # vector of inclination values
 
-        for day in days:
-
-            et = et0 + day * (86400 / rate)
+        for et in days:
 
             if verbose:
                 print('ET Seconds Past J2000: {}'.format(et))
@@ -102,7 +102,8 @@ def _gatherorbitdata(delta="1d", scale=15, verbose=False):
             # the SUN in ECLIPJ2000
             starg, ltime = spice.spkezr(planet, et, 'ECLIPJ2000',
                                         'NONE', 'SUN')
-            x, y, z, vx, vy, vz = starg
+
+            x, y, z, vx, vy, vz = [el / AU * scale for el in starg]
             r = math.sqrt(x ** 2 + y ** 2 + z ** 2)
 
             if verbose:
@@ -142,6 +143,7 @@ def _gatherorbitdata(delta="1d", scale=15, verbose=False):
             date = '{} {}'.format(spice.et2utc(et, 'ISOC', 0).split('T')[0],
                                   spice.et2utc(et, 'ISOC', 0).split('T')[1])
             dates.append(date)  # append date for each day
+            incvec.append(elts[2])  # append inc. for each day (rads)
 
             # print(date, nu * spice.dpr(), x, y, z, r, elts[0])
 
@@ -150,14 +152,17 @@ def _gatherorbitdata(delta="1d", scale=15, verbose=False):
         argpi = rvec.index(min(rvec))
 
         # calculate argp x and y values and argp using atan2
-        argpxy = (xyvec[argpi][0], xyvec[argpi][1])
+        argpxy = (xyvec[argpi][0], xyvec[argpi][1] * math.cos(incvec[argpi]))
         argp = math.degrees(math.atan2(argpxy[1], argpxy[0]))
 
-        argpxys.append(argpxy)  # append argp (x,y) coords. for this planet
-        argps.append(argp)  # append argp for this planet
-        xyvecs.append(xyvec)  # append (x,y) coords. vector for this plannet
+        argpxys.append(argpxy)  # append argp (x,y) coords.
+        argps.append(argp)  # append argp
+        xyvecs.append(xyvec)  # append (x,y) coords. vector
+        nuvecs.append(nuvec)  # append true anomaly vector
 
-    return dates, xyvecs, argps, argpxys
+    spice.kclear()
+
+    return days, dates, xyvecs, argps, argpxys, nuvecs
 
 
 def _frmline(a, b, c, d, line_op=1.0):
@@ -187,10 +192,11 @@ def _gradient(id, colors, gradrot, rotang, x, y):
                    gradientTransform="rotate({}, {}, {})".format(45, xp, yp))
 
 
-def _outerframe(date, frmSize=15, frm_op=0.5, diag_scl=0.65,
+def _outerframe(date, frmSize=15, frm_op=0.5, diag_scl=0.65, mpoargp=False,
                 frm_font_size=3, frm_ticks=8, frm_miniticks=False):
 
     # print("Building outer frame...")
+    callerfunc = inspect.stack()[1][3]
 
     frmSize = frmSize * 1.2
 
@@ -201,12 +207,13 @@ def _outerframe(date, frmSize=15, frm_op=0.5, diag_scl=0.65,
     frm.text_attr["opacity"] = frm_op
     frm.attr["stroke_opacity"] = frm_op
     frm.ticks = [x * 2 * math.pi / frm_ticks for x in range(frm_ticks)]
-    frm.labels = lambda x: "%g" % (x * 180 / math.pi)
-
+    if callerfunc == 'planetsplot':
+        frm.labels = lambda x: "%g" % (x * 180 / math.pi)
+    else:
+        frm.labels = False
     if frm_miniticks:
         frm_miniticks = [x * 2 * math.pi / frm_ticks / 9 for x in
                          range(frm_ticks * 9)]
-
     frm.miniticks = frm_miniticks
 
     # Makes a circle out of the Line Axis.
@@ -228,11 +235,51 @@ def _outerframe(date, frmSize=15, frm_op=0.5, diag_scl=0.65,
     # And there was light...
     sun_ball = _sun()
 
-    meta_data = svg.Text(-frmSize + 2, frmSize + 1, "Date: {}".format(date),
-                         font_size=frm_font_size - 1, opacity=frm_op)
+    # Metadata
+    callerfunc = inspect.stack()[1][3]
+    if callerfunc == 'planetsplot':
+        titletag = 'Planetary Constellation Mid-Season'
+    if callerfunc == 'mpoplot':
+        titletag = 'MPO Orbit Mid-Season'
 
-    return svg.Fig(frm_plot, svg.Fig(frmLine1, frmLine2, frmLine3, frmLine4),
-                   sun_ball, meta_data)
+    refdata = svg.Fig()
+    textop = 6.0
+
+    # TODO: fix the messy way the placement x, y are defined.
+    metatitle = svg.Text(-frmSize - 3.5, frmSize + 3, titletag,
+                         font_size=frm_font_size, opacity=textop,
+                         text_anchor="start")
+    metadate = svg.Text(-frmSize - 3.5, frmSize + 1, "{}".format(date),
+                        font_size=frm_font_size, opacity=textop,
+                        text_anchor="start")
+    if callerfunc == 'mpoplot' and mpoargp:
+        metaargp = svg.Text(-frmSize - 3.5, frmSize - 1,
+                            "Arg. Periherm: {:6.1f}degsym".format(mpoargp),
+                            font_size=frm_font_size, opacity=textop,
+                            text_anchor="start")
+    else:
+        metaargp = svg.Fig()
+
+    if callerfunc == 'planetsplot':
+        xy = (-frmSize + 6.8, -frmSize - 1.8)
+        reforb, grad = _planetdiag("MERCURY", xy, 0)
+
+        reforbtext1 = svg.Text(-frmSize + 4, -frmSize - 2, "Descending",
+                               font_size=frm_font_size, opacity=textop,
+                               text_anchor="end")
+
+        reforbtext2 = svg.Text(-frmSize + 9, -frmSize - 2.0, "Ascending",
+                               font_size=frm_font_size, opacity=textop,
+                               text_anchor="start")
+        refdata = svg.Fig(reforb, reforbtext1, reforbtext2)
+
+    return svg.Fig(frm_plot,
+                   svg.Fig(frmLine1, frmLine2, frmLine3, frmLine4),
+                   sun_ball,
+                   metatitle,
+                   metadate,
+                   metaargp,
+                   refdata)
 
 
 def _orbitdot(a, b, theta, r_dot_adj=0.1, color="#C8C5E2", r_dot_size=0.6,
@@ -262,7 +309,7 @@ def _planetdiag(name, rpos, rotang=0.0, orb_scl=1.0, frmSizecl=10.0,
     if name == "MERCURY":
         colors = ["#C8C5E2", "#373163"]
     if name == "VENUS":
-        diag_op = 0.2
+        diag_op = 0.4
         colors = ["#EDE051", "#393506"]
     if name == "EARTH":
         colors = ["#00AFEF", "#003C52"]
@@ -279,11 +326,12 @@ def _planetdiag(name, rpos, rotang=0.0, orb_scl=1.0, frmSizecl=10.0,
     gradrot = math.degrees(math.atan2(r_y, r_x))
 
     # Build a white ball for background ...
-    ball_bg = _planetdot(name, rpos, r_dot_size=2.0, dot_color="white",
-                         dot_str_op=diag_op)
+    ball_bg = _planetdot(name, rpos, r_dot_size=2.0 * orb_scl,
+                         dot_color="white", dot_str_op=diag_op)
     # ... and a color ball for foreground.
-    ball_fg = _planetdot(name, rpos, r_dot_size=2.0, dot_color=colors[0],
-                         dot_op=diag_op, dot_str_op=diag_op)
+    ball_fg = _planetdot(name, rpos, r_dot_size=2.0 * orb_scl,
+                         dot_color=colors[0], dot_op=diag_op,
+                         dot_str_op=diag_op)
 
     # Stack coloured ball on top of white background ball...
     ball = svg.Fig(ball_bg, ball_fg)
@@ -377,8 +425,8 @@ def _sun(id="Sun", posx=0, posy=0, size=1.5, fill="yellow",
                     fill=fill, stroke_width=stroke_width), size, size)
 
 
-def planetsplot(user_dates=None, delta="1d", master_scale=15, demo=False,
-                showplots=True):
+def planetsplot(userdates=None, delta="1d", master_scale=15, demo=False,
+                showplots=False):
     """
     ... explain what this does...
     """
@@ -399,10 +447,11 @@ def planetsplot(user_dates=None, delta="1d", master_scale=15, demo=False,
             else:
                 return
 
-    dates, orbits, argps, argpxys = _gatherorbitdata(delta, master_scale)
+    orbitdata = _gatherorbitdata(delta=delta, scale=master_scale)
+    ets, dates, orbits, argps, argpxys, nus = orbitdata
 
-    print(len(orbits))
-    print(len(orbits[0]))
+    if userdates is None:
+        userdates = dates
 
     if showplots:
         plt.subplot(1, 1, 1)
@@ -413,33 +462,38 @@ def planetsplot(user_dates=None, delta="1d", master_scale=15, demo=False,
             plt.plot(xy[0], xy[1], 'go')
         plt.show()
 
-    if not user_dates:
-        pass  # TODO: user can specify specific dates or true anomalies.
-
-    if len(orbits[0]) == len(dates):
+    if len(orbits[0]) == len(dates) == len(ets):
 
         # This rotation will put the Hermean perihelion on the X-axis.
         rotang = -argps[0]
 
-        # A graphic will be created for each 'date' in 'dates':
-        for date in dates:
+        # Load the kernels that this program requires.
+        spice.kclear()
+        spice.furnsh('epys.mk')
 
-            dx = dates.index(date)
+        # A graphic will be created for each 'date' in 'userdates':
+        for date in userdates:
 
-            print(dx, date)
+            # get the position-index of the 'et' in the 'orbitdata' list
+            # of 'ets' that is closest to the 'date' in the 'userdates'
+            et = spice.str2et(date)
+            dx = ets.index(getclosest(ets, et))
 
             # -- Outer frame -------------------------------------------------
 
             # Opacity of degree frame and Venus graphic
-            frame_op = 0.5
+            frame_op = 0.8
 
             # Process calendar time strings
-            caldat = date.split()
-            eyear = "{}".format(caldat[0].split('-')[0])
-            emonth = "{0:02d}".format(int(caldat[0].split('-')[1]))
-            eday = "{0:02d}".format(int(caldat[0].split('-')[2]))
+            date = '{} {}'.format(spice.et2utc(et, 'ISOC', 0).split('T')[0],
+                                  spice.et2utc(et, 'ISOC', 0).split('T')[1])
+            edate, etime = date.split()
+            eyear = "{}".format(edate.split('-')[0])
+            emonth = "{0:02d}".format(int(edate.split('-')[1]))
+            eday = "{0:02d}".format(int(edate.split('-')[2]))
             epoch = "{}/{}/{}".format(eday, emonth, eyear)
-            ep_name = "{}{}{}".format(eyear, emonth, eday)
+            ep_name = "{}{}{}_{}".format(eyear, emonth, eday,
+                                         etime.replace(':', ''))
 
             frame = _outerframe(epoch, frmSize=master_scale, frm_op=frame_op)
 
@@ -448,21 +502,21 @@ def planetsplot(user_dates=None, delta="1d", master_scale=15, demo=False,
             # merc_loan = 48.331
             # merc_argp = 29.124
             arend = svg.make_marker("fopa_arrowend", "arrow_end",
-                                    fill_opacity=frame_op)
+                                    fill_opacity=0.4)
 
-            x1, y1 = 5, 0
-            x2, y2 = master_scale * 1.0, 0
+            x1, y1 = 10, 0
+            x2, y2 = master_scale * 1.3, 0
 
             fpoa = svg.Line(x1, y1, x2, y2, stroke_width=".4pt",
-                            stroke_opacity=frame_op, arrow_end=arend)
+                            stroke_opacity=0.4, arrow_end=arend)
 
             xp = (x2 * math.cos(math.radians(rotang)) -
                   y2 * math.sin(math.radians(rotang)))
             yp = (x2 * math.sin(math.radians(rotang)) +
                   y2 * math.cos(math.radians(rotang)))
 
-            fpoa_text = svg.Text(xp + 5, yp - 0.5, "First Point of Aries",
-                                 font_size=2, opacity=frame_op)
+            fpoa_text = svg.Text(xp + 6.5, yp - 1.0, "First Point of Aries",
+                                 font_size=3, opacity=0.75)
             fpoa = svg.Fig(svg.Fig(fpoa, trans=svg.rotate(rotang, 0, 0)),
                            fpoa_text)
 
@@ -477,10 +531,8 @@ def planetsplot(user_dates=None, delta="1d", master_scale=15, demo=False,
             # Build the SVG for each orbit.
             for orbit in orbits:
 
-                print(type(orbit[0]), orbit)
-
                 if orbits.index(orbit) == 1:
-                    orbit_op = frame_op
+                    orbit_op = 0.4
                 else:
                     orbit_op = 1.0
 
@@ -496,13 +548,13 @@ def planetsplot(user_dates=None, delta="1d", master_scale=15, demo=False,
             # Build the planet orb for each planet for this chart.
             for point in points:
 
-                # AU = 149597871. # km
                 # Planetary inputs ...
                 if points.index(point) == 0:
                     name = "MERCURY"
                     nu = math.degrees(math.atan2(point[1], point[0])) + rotang
                     if nu < 0:
                         nu = nu + 360
+                    # print(nu, nu-rotang, rotang)
                     nu = "{0:03d}".format(int(nu))
                 if points.index(point) == 1:
                     name = "VENUS"
@@ -527,56 +579,69 @@ def planetsplot(user_dates=None, delta="1d", master_scale=15, demo=False,
             svgout.prepend(defs)
             svgout.save(os.path.join(outdir,
                                      "merc_orbit_plot_{}_{}.svg".format(
-                                         int(ep_name), nu)))
+                                         ep_name, nu)))
+
+        spice.kclear()
 
     else:
         # You'll jump to hear if the epochs for all 3 planets are not equal.
         print("There is an epoch error between the planet time values...")
 
 
-def mpoplot(user_dates=None, master_scale=15):
+def mpoplot(userdates, master_scale=15, demo=False):
     """
     ... explain what this does...
     """
 
-    # Build basic orbits, with call to jplephem, and calculate offset
-    # angles.
-    # orbits, offsets, dates =_gatherorbitdata(delta, master_scale)
+    outdir = 'mpo_orbit_plots'
+    if demo:
+        shutil.rmtree(outdir)
+        os.makedirs(outdir)
+    else:
+        if not os.path.exists(outdir):
+            os.makedirs(outdir)
+        else:
+            print('\n   Uh-oh! The directory {} already exists.'.format(
+                outdir))
+            if yesno('   Do you want to replace it?'):
+                shutil.rmtree(outdir)
+                os.makedirs(outdir)
+            else:
+                return
 
-    if not user_dates:
-        pass  # TODO: user can specify specific dates or true anomalies.
-
-    dates = ("2024/05/07", "2024/06/07")
+    # Clear and load the kernels that this program requires.
+    spice.kclear()
+    spice.furnsh('epys.mk')
 
     # A graphic will be created for each 'date' in 'dates':
-    apd = 0
-    for date in dates:
+    for date in userdates:
 
-        # dx = dates.index(date)
+        et = spice.str2et(date)
+        datestr = (spice.et2utc(et, 'ISOC', 0))
 
         # -- Outer frame -------------------------------------------------
 
         dist_scl = 250.0
 
-        # TODO: Get this from SPICE
         elts = getorbelts(date)
         arg_peri = elts[4]
-        print(arg_peri)
 
         # Opacity of degree frame and Venus graphic
         frame_op = 0.5
 
         # # Process JD time into calendar time strings
-        # calbase = 2400000.5
-        # caldat = jd2gcal(calbase, date-calbase)
-        # eyear = "{}".format(caldat[0])
-        # emonth = "{0:02d}".format(caldat[1])
-        # eday = "{0:02d}".format(caldat[2])
-        eyear, emonth, eday = date.split('/')
+        # datestr = spice.et2utc(et, 'ISOC', 0)
+        date = '{} {}'.format(datestr.split('T')[0],
+                              datestr.split('T')[1])
+        edate, etime = date.split()
+        eyear = "{}".format(edate.split('-')[0])
+        emonth = "{0:02d}".format(int(edate.split('-')[1]))
+        eday = "{0:02d}".format(int(edate.split('-')[2]))
         epoch = "{}/{}/{}".format(eday, emonth, eyear)
         ep_name = "{}{}{}".format(eyear, emonth, eday)
 
-        frame = _outerframe(epoch, frmSize=master_scale, frm_op=frame_op)
+        frame = _outerframe(epoch, frmSize=master_scale, frm_op=frame_op,
+                            mpoargp=arg_peri)
 
         # -- Mercury Planet --------------------------------------------------
 
@@ -595,61 +660,40 @@ def mpoplot(user_dates=None, master_scale=15):
         # plt.show()
 
         stop1 = "#C8C5E2"
-        stop2 = "#373163"
+        # stop2 = "#373163"
 
-        #x = ((float(tru_ano)+360.-float(look_from))/180.)*100.
-
-        x = 90  # (tru_ano-look_from)
-
-        tw = 1
-        fix = 0
-
-        if(x > 100 and x < 200):
-            stop1, stop2 = stop2, stop1
-            fix = 100
-
-        os1 = "{}%".format(x - tw - fix)
-        os2 = "{}%".format(x + tw - fix)
-
-        print(os1, os2)
-
-        # defs = svg.SVG("defs",
-        #                svg.SVG("linearGradient",
-        #                        svg.SVG("stop", stop_color=stop1,
-        #                                stop_opacity=1, offset="45%"),
-        #                        svg.SVG("stop", stop_color=stop2,
-        #                                stop_opacity=1, offset="55%"),
-        #                        x1="50%", y1="0%", x2="100%", y2="0%",
-        #                        spreadMethod="pad",
-        #                        id="mercGrad")
-        #                )
-
-        defs = svg.SVG('defs',
-                       svg.SVG('radialGradient',
-                               svg.SVG('stop',
-                                       stop_color=stop1,
-                                       stop_opacity=1,
-                                       offset='38%'),
-                               svg.SVG('stop',
-                                       stop_color=stop2,
-                                       stop_opacity=1,
-                                       offset='40%'),
-                               cx='50%', cy='50%',
-                               fx='230%', fy='50%',
-                               r='300%',
-                               spreadMethod='pad',
-                               id='mercGrad')
+        defs = svg.SVG("defs",
+                       svg.SVG("linearGradient",
+                               svg.SVG("stop", stop_color=stop1,
+                                       stop_opacity=1, offset="45%"),
+                               svg.SVG("stop", stop_color=stop1,
+                                       stop_opacity=1, offset="55%"),
+                               x1="0%", y1="0%", x2="100%", y2="0%",
+                               spreadMethod="pad",
+                               id="mercGrad")
                        )
 
-        # print(defs)
+        # defs = svg.SVG('defs',
+        #                svg.SVG('radialGradient',
+        #                        svg.SVG('stop',
+        #                                stop_color=stop1,
+        #                                stop_opacity=1,
+        #                                offset='38%'),
+        #                        svg.SVG('stop',
+        #                                stop_color=stop2,
+        #                                stop_opacity=1,
+        #                                offset='40%'),
+        #                        cx='50%', cy='50%',
+        #                        fx='230%', fy='50%',
+        #                        r='300%',
+        #                        spreadMethod='pad',
+        #                        id='mercGrad')
+        #                )
 
         merc_rad = 2439.99  # km
         merc_rad_scl = merc_rad / dist_scl
         merc_ball = svg.Ellipse(0, 0, 0, merc_rad_scl, merc_rad_scl,
                                 fill="url(#mercGrad)", stroke_width="0.15pt")
-
-        #merc_ball.prepend(defs)
-        #print(merc_ball)
 
         # -- MPO Orbit --
 
@@ -670,8 +714,6 @@ def mpoplot(user_dates=None, master_scale=15):
                                  stroke_width="0.15pt",
                                  stroke_dasharray="2, 2")
 
-        # print(mpo_orb)
-
         dot_angs = range(0, 360, 20)
         dots = [_orbitdot(a, b, x, color="black") for x in dot_angs]
         mpo_orb_dots = svg.Fig()
@@ -682,19 +724,108 @@ def mpoplot(user_dates=None, master_scale=15):
         mpo_orb_plot = svg.Fig(mpo_orb, mpo_orb_apses, mpo_orb_dots,
                                trans=mpo_orb_trans)
 
-        # -- Build final figure ------------------------------------------
+        # -- Direction arrow -------------------------------------------------
+
+        dirarend = svg.make_marker("dirarrowend", "arrow_end",
+                                   fill_opacity=0.2)
+        dirarend.attr["markerWidth"] = 7.5
+
+        x1, y1 = master_scale + 1, 0.4,
+        x2, y2 = master_scale + 1, 1
+
+        dirarwstrt = svg.Line(x1, y1, x2, y2, stroke_width=".4pt",
+                              stroke_opacity=0.2, arrow_end=dirarend)
+
+        dirarw = svg.Fig(dirarwstrt, trans="x*cos(y), x*sin(y)")
+
+        # -- Apsis view ------------------------------------------------------
+
+        apvx, apvy = master_scale + 3, -master_scale - 3
+        apsisviewball = svg.Ellipse(apvx, apvy,
+                                    0, merc_rad_scl * 0.25,
+                                    merc_rad_scl * 0.25,
+                                    fill="url(#mercGrad)",
+                                    stroke_width="0.15pt")
+
+        apsisviewlats = svg.Fig()
+
+        for x in range(-9, 10, 3):
+
+            hscl = math.sin(math.radians(x * 10))
+            wscl = math.cos(math.radians(x * 10))
+
+            x1 = apvx - (merc_rad_scl * 0.25 * wscl)
+            y1 = apvy + (merc_rad_scl * 0.25 * hscl)
+            x2 = apvx + (merc_rad_scl * 0.25 * wscl)
+            y2 = apvy + (merc_rad_scl * 0.25 * hscl)
+
+            apsisviewlats.d.append(svg.Line(x1, y1, x2, y2,
+                                   stroke_width=".2pt",
+                                   stroke_opacity=0.4))
+
+        apvarend = svg.make_marker("apvarrowend",
+                                   "arrow_end",
+                                   fill_opacity=0.6)
+        apvarend.attr["markerWidth"] = 3.0
+        apvarend.attr["markerHeight"] = 3.0
+
+        x1, y1 = apvx, apvy - 3
+        x2, y2 = apvx, apvy + 3
+        apsisvieworbit = svg.Line(x1, y1, x2, y2,
+                                  stroke_width=".4pt",
+                                  stroke_opacity=0.6,
+                                  arrow_end=apvarend)
+
+        xd = apvx
+        yd = apvy + (merc_rad_scl * 0.25 * math.sin(math.radians(arg_peri)))
+        apsisviewdot = svg.Fig(svg.Dots([(xd, yd)],
+                                        svg.make_symbol("apsisdot",
+                                                        fill="black",
+                                                        fill_opacity=0.6
+                                                        ),
+                                        0.6, 0.6
+                                        )
+                               )
+
+        apsisview = svg.Fig(apsisviewball,
+                            apsisviewlats,
+                            apsisvieworbit,
+                            apsisviewdot)
+
+        # -- Build final figure ----------------------------------------------
 
         wa = master_scale * 1.5
         svgout = svg.Fig(frame,
                          merc_ball,
-                         mpo_orb_plot
+                         mpo_orb_plot,
+                         dirarw,
+                         apsisview
                          ).SVG(svg.window(-wa, wa, -wa, wa))
 
         svgout.prepend(defs)
-        svgout.save("mpo_orbit_plot_{}_{}.svg".format(ep_name, arg_peri))
 
-        apd = apd + 30
+        argp = int(arg_peri)
+        svgout.save(os.path.join(outdir,
+                                 "mpo_orbit_plot_{}_{}.svg".format(ep_name,
+                                                                   argp)
+                                 )
+                    )
+
 
 if __name__ == '__main__':
-    planetsplot(demo=True)
-    # mpoplot()
+
+    # I want plots for these dates...
+    dates = ("2024-May-07 00:00", "2024-May-09 14:31", "2024-May-28 09:14",
+             "2024-Jun-13 15:50", "2024-Jun-29 22:26", "2024-Jul-27 15:28",
+             "2024-Aug-24 08:30", "2024-Sep-09 15:06", "2024-Sep-25 21:42",
+             "2024-Oct-23 14:44", "2024-Nov-20 07:46", "2024-Dec-06 14:22",
+             "2024-Dec-22 20:58", "2025-Jan-19 14:00", "2025-Feb-16 07:02",
+             "2025-Mar-04 13:38", "2025-Mar-20 20:14", "2025-Apr-17 13:16",
+             "2025-May-03 02:19")
+    # dates = ("2024-May-07 00:00", "2024-May-09 14:31")
+
+    # ... some planetary constellation plots...
+    planetsplot(userdates=dates, demo=True)
+
+    # ... and some spacecraft orbit plots.
+    # mpoplot(dates, demo=True)

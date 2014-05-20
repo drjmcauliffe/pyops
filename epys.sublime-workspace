@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"delta",
+				"delta"
+			],
+			[
+				"z",
+				"z	statement"
+			],
+			[
+				"x",
+				"x	statement"
+			],
+			[
 				"meta",
 				"metadata"
 			],
@@ -39,13 +51,101 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "epys/Aries.svg",
+			"settings":
+			{
+				"buffer_size": 1676,
+				"line_ending": "Windows"
+			}
+		}
 	],
-	"build_system": "",
+	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
 	{
-		"height": 71.0,
+		"height": 375.0,
 		"selected_items":
 		[
+			[
+				"inde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"ind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"indent",
+				"Indent XML"
+			],
+			[
+				"qui",
+				"Git: Quick Commit"
+			],
+			[
+				"rope",
+				"Rope Refactoring: Extract Variable"
+			],
+			[
+				"INSTALL ",
+				"Package Control: Install Package"
+			],
+			[
+				"reindent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"import",
+				"Rope: Import Assist"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"erro",
+				"SublimeLinter: Show Error List"
+			],
+			[
+				"linter",
+				"Preferences: SublimeLinter Settings – User"
+			],
+			[
+				"todo",
+				"Show TODOs: Open files only"
+			],
+			[
+				"lint",
+				"SublimeLinter: Show Error List"
+			],
+			[
+				"q",
+				"Git: Quick Commit"
+			],
+			[
+				"status",
+				"Git: Status"
+			],
+			[
+				"qu",
+				"Git: Quick Commit"
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"diff",
+				"Git: Diff Current File"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -71,40 +171,12 @@
 				"Project: Save As"
 			],
 			[
-				"remove",
-				"Package Control: Remove Package"
-			],
-			[
-				"instal",
-				"Package Control: Install Package"
-			],
-			[
 				"blame",
 				"Git: Blame"
 			],
 			[
-				"install ",
-				"Package Control: Install Package"
-			],
-			[
 				"inst",
 				"Package Control: Install Package"
-			],
-			[
-				"q",
-				"Git: Quick Commit"
-			],
-			[
-				"qu",
-				"Git: Quick Commit"
-			],
-			[
-				"status",
-				"Git: Status"
-			],
-			[
-				"diff",
-				"Git: Diff Current File"
 			],
 			[
 				"pytho",
@@ -121,10 +193,6 @@
 			[
 				"pastr",
 				"Text Pastry: From 0 To X"
-			],
-			[
-				"qui",
-				"Git: Quick Commit"
 			],
 			[
 				"",
@@ -191,11 +259,15 @@
 				"Set Syntax: Shell Script (Bash)"
 			]
 		],
-		"width": 669.0
+		"width": 667.0
 	},
 	"console":
 	{
-		"height": 139.0
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
 	},
 	"distraction_free":
 	{
@@ -208,34 +280,96 @@
 	},
 	"file_history":
 	[
-		"/Users/jmcaulif/Code/python/epys/epys/epys.py",
+		"/Users/jmcaulif/Code/bepigit/bepi.sublime-project",
+		"/Users/jmcaulif/Code/python/epys/epys/draw.py",
+		"/Users/jmcaulif/Code/python/epys/epys/svgwritedemo.py",
+		"/Users/jmcaulif/Code/python/epys/manualinstall/svgfig/svgfig.py",
+		"/Users/jmcaulif/Desktop/RG - TLAs.txt",
+		"/Users/jmcaulif/Desktop/RG - TLA Meanings.txt",
+		"/Users/jmcaulif/Desktop/RG - TLA Explanations.txt",
+		"/Users/jmcaulif/.virtualenvs/epys/lib/python2.7/site-packages/svgfig.py",
+		"/Users/jmcaulif/Code/python/epys/epys/basic_shapes.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots_with_shadows/mpo_orbit_plot_20240507_10_198.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20240507_10.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20240509_10.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20240528_9.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20240613_7.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20240629_6.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20240727_3.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20240824_0.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20240909_0.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20240925_-1.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20241023_-3.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20241120_-5.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20241206_-7.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20241222_-8.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20250119_-10.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20250216_-13.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20250304_-14.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20250320_-15.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20250417_-17.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20250503_-18.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/utils.py",
+		"/Users/jmcaulif/Code/python/spicebench/spicebench/orbitplot.py",
+		"/Users/jmcaulif/Code/python/epys/epys/maps.py",
+		"/Users/jmcaulif/Code/python/epys/epys/Aries.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20240707_5.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots/mpo_orbit_plot_20240607_7.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/unicode.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/merc_orbit_plots/merc_orbit_plot_20240507_000000_197.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plot_20240507_10.svg",
+		"/usr/local/lib/python2.7/site-packages/svgfig.py",
+		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/User/Package Control.sublime-settings",
+		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/jmcaulif/Code/python/epys/epys.sublime-project",
+		"/Users/jmcaulif/Code/python/epys/epys/jplephem.py",
+		"/Users/jmcaulif/Code/python/epys/epys/epys.mk",
+		"/Users/jmcaulif/Desktop/figure19-05.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/merc_orbit_plots/merc_orbit_plot_20240101_064.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/imagedatadump.dat",
+		"/Users/jmcaulif/Code/python/epys/epys/__init__.py",
+		"/Users/jmcaulif/Code/python/epys/epys/read.py",
+		"/Users/jmcaulif/Code/python/spicebench/spicebench/spiceplot.py",
+		"/Users/jmcaulif/Code/python/epys/sort/subplot_demo.py",
 		"/Users/jmcaulif/Code/python/epys/epys/events.py",
+		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/jmcaulif/Code/python/epys/epys/googlemapps.py",
+		"/Users/jmcaulif/Code/python/epys/Makefile",
+		"/Users/jmcaulif/Code/python/epys/.gitignore",
+		"/Users/jmcaulif/Code/python/epys/sort/lines3d_demo.py",
+		"/Users/jmcaulif/Code/python/epys/sort/drawmpoorbit.py",
+		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/Jedi - Python autocompletion/Default.sublime-keymap",
+		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/Sublimerge/Default (OSX).sublime-keymap",
+		"/Users/jmcaulif/Code/python/epys/docs/Makefile",
+		"/Users/jmcaulif/Code/python/epys/docs/conf.py",
+		"/Users/jmcaulif/Code/python/epys/epys/mpo_orb_plot.svg",
+		"/Users/jmcaulif/Code/python/epys/epys/drawmpoorbit.py",
+		"/Users/jmcaulif/Code/python/epys/epys/drawmerorbit.py",
+		"/Users/jmcaulif/Code/python/epys/tox.ini",
+		"/Users/jmcaulif/Code/python/epys/setup.py",
+		"/var/folders/pd/c2nksk_x005332llj5j26zhh0000gp/T/sphinx-err-EJIPUT.log",
+		"/usr/local/lib/python2.7/site-packages/sphinx/config.py",
+		"/Users/jmcaulif/Code/python/epys/epys/epys.py",
 		"/Users/jmcaulif/Code/python/epys/epys/data_avg_plot.py",
 		"/Users/jmcaulif/Downloads/MDISDataWorkshop/Demos/README",
 		"/Users/jmcaulif/Code/python/epys/sample_data/data_rate_avg.out",
 		"/Users/jmcaulif/.virtualenvs/epys/lib/python2.7/site-packages/matplotlib/mpl-data/matplotlibrc",
-		"/Users/jmcaulif/Code/python/epys/.gitignore",
-		"/Users/jmcaulif/Code/python/epys/epys.sublime-project",
 		"/Users/jmcaulif/Code/python/epys/project",
 		"/Users/jmcaulif/.bash_profile",
-		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/jmcaulif/Desktop/Preferences.sublime-settings",
-		"/Users/jmcaulif/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
 		"/Users/jmcaulif/Code/python/epys/tests/test_epys.py",
 		"/Users/jmcaulif/Code/python/epys/test.txt",
 		"/Users/jmcaulif/Code/python/epys/HISTORY.rst",
-		"/Users/jmcaulif/Code/python/epys/Makefile",
-		"/Users/jmcaulif/Code/python/epys/setup.py",
-		"/Users/jmcaulif/Code/python/epys/epys/__init__.py",
 		"/Users/jmcaulif/Code/python/epys/README.rst",
 		"/Users/jmcaulif/Code/python/epys/genchangelog.sh",
 		"/Users/jmcaulif/Code/python/epys/ChangeLog",
 		"/Users/jmcaulif/Code/python/epys/CONTRIBUTING.rst",
 		"/Users/jmcaulif/Code/python/epys/AUTHORS.rst",
-		"/Users/jmcaulif/Code/python/epys/docs/Makefile",
 		"/Users/jmcaulif/Code/python/epys/docs/usage.rst",
-		"/Users/jmcaulif/Code/python/epys/tox.ini",
 		"/Users/jmcaulif/Code/python/epys/tests/__init__.py",
 		"/Users/jmcaulif/.virtualenvs/cookiecutter-pypackage/template.json",
 		"/Users/jmcaulif/.virtualenvs/cookiecutter-pypackage/replace1.json",
@@ -273,64 +407,7 @@
 		"/Applications/Start IPython Notebook Server.app/Contents/MacOS/IPython Notebook",
 		"/Users/jmcaulif/Code/bepic/ESA/bepi_mapps_v65.ini",
 		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/bepi.edf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/bepi_events_mpo_00012.evf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/ss_stc_global_mapping_0001.evf",
-		"/Users/jmcaulif/Code/bepic/DATA/OGS/bepi_events_stc_00012.evf",
-		"/Users/jmcaulif/Code/python/gsv_evf_editing/stc_start_stops_old.evf",
-		"/Users/jmcaulif/Code/python/gsv_evf_editing/stc_start_stops.evf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/bepi_events_mpo_00012b.evf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/BC_SO10_FULL_________ITL_GEN_1A.itl",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/SS_STC_SO10_CM______ITL_GEN01A.itl",
-		"/Users/jmcaulif/Code/bepic/DATA/OGS/bepi_events_stc_00015.evf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/BC_SO10_FULL_OPTB____ITL_GEN_1A_whathelenbroke.itl",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/BC_SO10_FULL_OPTB____ITL_GEN_1A.itl",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/mertis.edf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/mr_ike_global_mapping_0002.evf",
-		"/Users/jmcaulif/Code/bepic/OUTPUT/SIMULATION DATA/20131121_144643/module_states.out",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/mr_ike_perihelion_terminator_0002.evf",
-		"/Users/jmcaulif/Code/bepic/OUTPUT/SIMULATION DATA/20131121_144643/modes.out",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/execute_SOWG10_AllB",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/SS_VIHI_SO10_GM_______ITL_GEN01A.itl",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/SS_VIHI_SO10_TM______ITL_GEN01A.itl",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/CONFIG/events.bepi.def",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/MR_SO10_APH_MAPPING_ITL_GEN01A.itl",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/SS_STC_SO10_GM_______ITL_GEN01A.itl",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ERF/ss_stc_global_mapping_0001.erf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/mr_ike_perihelion_terminator_0001.evf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/BC_ALL_OPTB_SOWG10.evf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/AN_SO10_KA_X_DUMP____ITL_GEN_2A.itl",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/MR_SO10_APH_MAPPING_ITL_GEN01B.itl",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/Analysis/Time-line inputs.xls",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/CONFIG/eps.cfg",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/CONFIG/eps_mac.cfg",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/ddl_est_bepi_mpo_so10_0001.brf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/ddl_est_bepi_mpo_dcdr_0001.brf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/bc_ceb_ph_passes_0002.evf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/MG_SO10_BOL_COMPLETE_ITL_GEN_1B.itl",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/bepi_events_gsv_00023b.evf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ERF/mr_perihelion_terminator_mapping_full_0001.erf",
-		"/Users/jmcaulif/Code/bepic/ESA/bepi_mapps_v65.ini.colors",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ERF/mr_perihelion_terminator_mapping_0001.erf",
-		"/Users/jmcaulif/Code/bepic/DATA/ITL/MSP/MR_IKEA_RUG_SCENARIO_GEN01A.itl",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/execute_SOWG10",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/antenna.edf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/simbiosys.edf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/simbiosys_stc.edf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/simbiosys_vihi.edf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/simbiosys_hric.edf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/ss_vhi_global_mapping_0001.evf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/SS_HRIC_SO10_DS_______ITL_GEN01A.itl",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/mpo_at_apoherm.evf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/gsv_per_bepi_mpo_00012.asc",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/ssmm.edf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/execute_MISSION.bat",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/CONFIG/landmarks.asc",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/CONFIG/units.def",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/simbiosys_full.edf",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/ITL/BC_SO10_FULL_________ITL_GEN_1A - CVS.itl",
-		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/EDF/mgns.edf",
-		"/Users/jmcaulif/Dropbox/Apps/sublimetext2/Packages/Open-Include/Default.sublime-mousemap",
-		"/Users/jmcaulif/Dropbox/Apps/sublimetext2/Packages/Open-Include/Default.sublime-keymap"
+		"/Users/jmcaulif/Code/bepic/DATA_SOWG10/OGS/bepi_events_mpo_00012.evf"
 	],
 	"find":
 	{
@@ -341,6 +418,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"/Users/jmcaulif/Code/python/epys/epys/mpo_orbit_plots"
 		]
 	},
 	"find_state":
@@ -348,134 +426,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			" \\= ",
-			"\nclass",
-			"git",
-			"# [ Set up some colourful terminal stuff ]",
-			"\n# -----------------------------------------------------------------------------",
-			"\n# -----------------------------------------------------------------------------\nPATH=\"${PATH}:/Applications/exelis/idl/bin\"",
-			"# -----------------------------------------------------------------------------\n# ",
-			"git",
-			"{{ cookiecutter.repo_name }}",
-			"samplefile",
-			"logger.(debug|infor)\\(\".+\\n?.+\"\\)",
-			"logger.debug(\"\nlogger.debug(\"\nlogger.debug(\"\nlogger.debug(\"\nlogger.debug(\"\nlogger.debug(\"\nlogger.debug(\"\nlogger.debug('\nlogger.debug('\nlogger.debug('\nlogger.debug(\"\nlogger.debug\\(\\\".+",
-			"logger.debug(",
-			"logger.info",
-			",[a-zA-Z0-9]",
-			"M|re",
-			"re.match( r",
-			"hdings",
-			"#",
-			"python",
-			"==.+",
-			"==0.19.2",
-			"# -----------------------------------------------------------------------------\n",
-			"# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# -----------------------------------------------------------------------------\n\n# ",
-			"# -----------------------------------------------------------------------------\n",
-			"configure_plot",
-			"zoom_plot",
-			"read_music_data",
-			"ArrayPlotData",
-			"GSODDataPlotterView",
-			"attach_tools",
-			"highlight_tool",
-			"enthought.",
-			"LegendTool",
-			"python",
-			"^#",
-			".+STC_GM_SZA0_.+",
+			"rm_font_size + 1",
+			"font_size - 1",
+			"^\\ +",
+			"(\\:|\\: )$",
+			"\\:$",
+			"^\\;",
+			"^.+?\\.",
+			"^.+\\. ",
+			"\\;.+\\: ",
+			"\\;.+\\:",
+			"\\;.+\\:.+",
+			"ellipse",
+			"discontinuity_limit",
+			" discontinuity_limit",
+			"linearity_limit",
+			"\"\\,\"",
+			"\"\\.\"",
+			"\".\"",
+			"ellipse",
+			"rx",
+			"ellipse",
+			"linearity_limit",
+			"ellipse",
+			"circle",
+			"degsym",
+			"24",
+			",",
+			"frm_op",
+			"degsym",
+			"arg",
 			"1",
-			".+STC_GM_SZA0_.+",
-			"STC_GM_SZA0_",
-			"23-Jan-2025_09:30:00",
-			"08-Nov-2024_12:00:00",
-			"STC_GM_SZA0_END",
-			"29-Oct-2024_23:00:00",
-			"STC_GM_SZA0_START",
-			".+Apr-2025",
-			"SCI_HI_RES1_80",
-			"Mode:.+",
-			"Parameter_value:",
-			"Parameter_value: [0-9]{1}",
-			"Parameter_value: [0-9]{1,2}",
-			"SCI_HI_RES1_5",
-			"PNTNG_BB3VIEW",
-			"SCI_HI_RES1_240",
-			"SCI_HI_WIN70",
-			"SCI_HI_RES1_118",
-			"SCI_HI_RES1_80",
-			"SCI_HI_RES1_60",
-			"SCI_HI_RES1_17",
-			"Mode:.+",
-			"Mode: .+",
-			"Mode: SCI_HI_RES1_20",
-			"#  ",
-			"160 ",
-			"118 ",
-			" 80 ",
-			"80",
-			" 60 ",
-			"60",
-			"17",
-			"SCI_HI_WIN70",
-			"SCI_HI_RES1_118",
-			"SCI_HI_RES1_80",
-			"SCI_HI_RES1_60",
-			"SCI_HI_RES1_17",
-			"Mode:",
-			"SCI_HI_RES1_17",
-			"_DAY",
-			"50",
-			"_DAY",
-			".+(Jan|Feb)-2025",
-			".+Feb-2025",
-			".+Jan-2025",
-			"DAY_",
-			"NTDTERM_DAYTIME_P1_70_END",
-			"***",
-			"03-apr",
-			"02-apr",
-			"ddl_est_bepi_mpo_dcdr_0001",
-			"ddl_est_bepi_mpo_dcdr_0001.brf",
-			" [0-9]{2}.[0-9]",
-			"[0-9]{2}.[0-9]",
-			" [0-9].[0-9] ",
-			"[0-9].[0-9]",
-			" #Include:",
-			"GS_CEB",
-			"09-jun",
-			"Default\\Configuration\\Experiments\\MERTIS",
-			"^.+MERTIS.+",
-			"^.+MERTIS._",
-			"Default\\ExpOperations\\SwathSelection\\MERTIS\\isExpanded=true",
-			"#X# ",
-			"#x#",
-			"NTDTERM",
-			"DTNTERM",
-			"APH_DAYTIME",
-			"  \\\n                                             ",
-			"                                        =",
-			" +kbps",
-			"(NEW_MODE  =",
-			"WITCH_MODE (NEW_MODE",
-			" MERTIS  * ",
-			" MERTIS * ",
-			" MERTIS",
-			"^(?!#)",
-			"(NEW_MODE",
-			"\\t",
-			"DAY_",
-			"#x   ",
-			"^.",
-			"End of ",
-			"end of ",
-			"^.+",
-			"#x   ",
-			"^.+",
-			"9-Oct-2024_22:34",
-			"9-Oct-2024_22:34:",
-			"# APH#3 Start Overlap Removal # "
+			"1.0",
+			"arrow",
+			"dirarend",
+			"aa",
+			"apsisvieworbit",
+			"_planetdot",
+			"write",
+			"dirarw",
+			"frm",
+			"inspect.stack()[1][3]",
+			"meta_data2",
+			"meta_data1",
+			"for this planet",
+			"day",
+			"caldat",
+			"caldat[0]",
+			"-2.0E8 / AU, 2.0E8 / AU",
+			"add",
+			"rmin",
+			"nus",
+			"rsvec",
+			"xy",
+			"rp",
+			"plnts",
+			"orbits",
+			"starg[",
+			"printout",
+			"outidr",
+			"stem",
+			"\"",
+			"currents",
+			"*spice",
+			"dpr",
+			"(elts",
+			"\\",
+			" = ",
+			"svg",
+			"radians",
+			"*sin",
+			"cos",
+			"*sin",
+			"cos(",
+			"svgfig",
+			":  ",
+			" :",
+			"format",
+			"printout",
+			"mercury",
+			"gmapsusage",
+			"writeKML",
+			"buildKML",
+			"makeStyle",
+			"doc_skel",
+			"buildSwath",
+			"swathCenter",
+			"makeTime",
+			"main",
+			"yesno",
+			"arg_peri",
+			"d",
+			"arg_peri",
+			"nu",
+			"_buildorbits",
+			"scale",
+			"frame_plot",
+			"date",
+			"Date",
+			"date",
+			"_planetdiagframe",
+			"_outerframe",
+			"Jump to ",
+			"orbit_dot",
+			"r_ellipse",
+			"_get_pos",
+			"_outer_frame",
+			"_planet_diag",
+			"_planet_dot",
+			"_planet_dotang",
+			"_planet_dot",
+			"_planet_dot_ang",
+			"_build_orbits",
+			"build_orbits",
+			"get_pos",
+			"outer_frame",
+			"planet_diag",
+			"frm_size",
+			"frm_line",
+			"_frm_line",
+			"frm_line",
+			"sun",
+			"Sun",
+			"sun",
+			"r_ellipse",
+			"planet_dot",
+			"planet_dot_ang",
+			"sphinx_rtd_theme",
+			"orbitsvg"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -483,6 +561,7 @@
 		"regex": true,
 		"replace_history":
 		[
+			"º",
 			"# APH#3 End Redundancy Removal # ",
 			"# APH#3 Start Overlap Removal # ",
 			"# APH#3 Start Overlap Removal #",
@@ -498,8 +577,42 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "epys/Aries.svg",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1676,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -536,7 +649,11 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 178.0
+		"height": 201.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
 	},
 	"output.git":
 	{
@@ -546,6 +663,7 @@
 	{
 		"height": 0.0
 	},
+	"project": "epys.sublime-project",
 	"replace":
 	{
 		"height": 64.0
@@ -575,10 +693,24 @@
 		],
 		"width": 0.0
 	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 172.0,
-	"status_bar_visible": true
+	"side_bar_width": 238.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }

@@ -5,6 +5,7 @@
 from __future__ import print_function
 from datetime import datetime, timedelta
 
+
 # Classes
 class line():
     """
@@ -38,22 +39,22 @@ class window():
         return self.stop - self.start
 
 
-class test_class():
-    """
-        a class to test functionality
-    """
+# class test_class():
+#     """
+#         a class to test functionality
+#     """
 
-    def __init__(self,  **kwargs):
-        self.properties = kwargs
+#     def __init__(self,  **kwargs):
+#         self.properties = kwargs
 
-    def set_kwp(self, k, v):
-        self.properties[k] = v
+#     def set_kwp(self, k, v):
+#         self.properties[k] = v
 
-    def get_kwv(self, key):
-        return self.properties.get(key, None)
+#     def get_kwv(self, key):
+#         return self.properties.get(key, None)
 
-    def len(self):
-        return __len__(self)
+#     def len(self):
+#         return __len__(self)
 
 
 class parameter():
@@ -61,7 +62,7 @@ class parameter():
         an eps parameter class
     """
 
-    def __init__(self,  parameter, description, raw_type='', eng_type='',
+    def __init__(self, parameter, description, raw_type='', eng_type='',
                  default_value='', unit='', raw_limits=[], eng_limits=[],
                  parameter_values=[]):
         self.parameter = parameter
@@ -70,18 +71,18 @@ class parameter():
         self.eng_type = eng_type
         self.default_value = default_value
         self.unit = unit
-        if len(raw_limits) in [0,2]:
+        if len(raw_limits) in [0, 2]:
             self.raw_limits = raw_limits
         else:
             print("Limits can only have 2 values.")
-        if len(eng_limits) in [0,2]:
+        if len(eng_limits) in [0, 2]:
             self.eng_limits = eng_limits
         else:
             print("Limits can only have 2 values.")
         self.parameter_values = parameter_values
 
-    def len(self):
-        return __len__(self)
+    # def len(self):
+    #     return __len__(self)
 
 
 # Time functions
@@ -90,22 +91,23 @@ def getMonth(month):
         returns the number of the month if given a string
         and returns the name of the month if given and int
     """
-    months = ['January', 'February', 'March', 'April', 'May', 'June',
-              'July', 'August', 'September', 'October' 'November',
-              'December']
+    # months = ['January', 'February', 'March', 'April', 'May', 'June',
+    #           'July', 'August', 'September', 'October' 'November',
+    #           'December']
     mons = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
             'Sep', 'Oct', 'Nov', 'Dec']
     if type(month) == str:
         month = month[0:3]
         try:
-            return mons.index(month)+1
+            return mons.index(month) + 1
         except ValueError as err:
             print('Shall we list the months: {}'.format(err))
     if type(month) == int:
         try:
-            return mons[month-1]
+            return mons[month - 1]
         except IndexError as err:
             print('How many months are there in the year: {}'.format(err))
+
 
 def extractTime(line):
     """
@@ -124,12 +126,14 @@ def extractTime(line):
     return datetime(int(year), int(month), int(day),
                     int(hour), int(minute), int(second))
 
+
 def insertTime(line, time):
     """
         inserts a new time into an event file line.
     """
     dt = line[0:line.find(' ')]
     return line.replace(dt, time)
+
 
 def constructTime(dt):
     """
@@ -143,15 +147,17 @@ def constructTime(dt):
             + str(dt.year) + '_' + str(dt.hour).zfill(2) + ':'
             + str(dt.minute).zfill(2) + ':' + str(dt.second).zfill(2))
 
+
 def adjustTime(line, toChange, by):
     """
         adjusts the datetime element 'toChange' of an
         event line by 'by'.
     """
-    adj = timedelta(**{toChange : by})
+    adj = timedelta(**{toChange: by})
     dt = extractTime(line)
     new_dt = dt + adj
     return constructTime(new_dt)
+
 
 # Line editor functions
 def adjustLine(line, timeChange, timeBy, tagChange=None):
@@ -160,10 +166,11 @@ def adjustLine(line, timeChange, timeBy, tagChange=None):
         if given, change the event tag element to 'tagChange'.
     """
     dt, tag, cntstr = line.split(None, 2)
-    if tagChange != None:
+    if tagChange is not None:
         tag = tagChange
     dt = adjustTime(dt, timeChange, timeBy)
     return '{}  {}  {}'.format(dt, tag, cntstr)
+
 
 # Content test functions
 def containsAll(line, *args):
@@ -182,14 +189,17 @@ def containsAll(line, *args):
             #print('{} contains {}'.format(line.strip('\n'), tag))
     return (line.find(tag) > -1)
 
+
 def containsAny(line, *args):
     """
         tests to see if 'line' contains ANY of the
         tags in 'args'
     """
     for tag in args:
-        if line.find(tag) > -1: return line.find(tag) > -1
+        if line.find(tag) > -1:
+            return line.find(tag) > -1
     return line.find(tag) > -1
+
 
 def containsNone(line, *args):
     """
@@ -198,12 +208,14 @@ def containsNone(line, *args):
     """
     return (not containsAny(line, *args))
 
+
 # Event count function
 def tagnum(line):
     """
         returns the current event count
     """
-    return int(line[line.find('=')+1:line.find(')')])
+    return int(line[line.find('=') + 1:line.find(')')])
+
 
 # Is line in the header?
 def isHeader(line):
@@ -212,12 +224,14 @@ def isHeader(line):
         header
     """
     if containsAny(line, 'EVF Filename:', 'Generation Time:', 'Start_time:',
-                    'End_time:', 'events in list)', '#', 'Include:', 'Init_value:'):
+                   'End_time:', 'events in list)', '#', 'Include:',
+                   'Init_value:'):
         return True
     elif len(line) < 3:
         return True
     else:
         return False
+
 
 # Text wrapped output
 def wrap(text, width):
@@ -228,13 +242,14 @@ def wrap(text, width):
     """
     return reduce(lambda line, word, width=width: '%s%s%s' %
                   (line,
-                   ' \n'[(len(line)-line.rfind('\n')-1
-                         + len(word.split('\n',1)[0]
-                              ) >= width)],
-                  word
+                   ' \n'[(len(line) - line.rfind('\n') - 1
+                         + len(word.split('\n', 1)[0]
+                               ) >= width)],
+                   word
                    ),
                   text.split(' ')
                   )
+
 
 # Main function
 def main():
@@ -242,6 +257,7 @@ def main():
         does nothing for now...
     """
     print('This is a random collection of functions... TBS - to be sorted.')
+
 
 if __name__ == "__main__":
     main()

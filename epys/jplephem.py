@@ -5,10 +5,10 @@ import telnetlib
 import socket
 
 import numpy as np
-from numpy import radians
+# from numpy import radians
 
-import matplotlib as mpl
-from mpl_toolkits.mplot3d import Axes3D
+# import matplotlib as mpl
+# from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 
 
@@ -98,7 +98,7 @@ class Horizons(telnetlib.Telnet, object):
 
         data = self.read_until(b"$$EOE").decode('ascii')
         ephem_str = data.partition("$$SOE")[-1].partition("$$EOE")[0].strip()
-        n_lines = len(ephem_str.splitlines())
+        # n_lines = len(ephem_str.splitlines())
         ephem_data = np.loadtxt(StringIO(ephem_str), delimiter=",",
                                 usecols=(0, 2, 4, 5, 6, 10, 11), unpack=True)
         jd, ecc, inc, omega, argp, nu, a = ephem_data
@@ -141,7 +141,7 @@ class Horizons(telnetlib.Telnet, object):
         self.expect([b"Accept.*\] :"])
         self.sendline("n")
         self.expect([b"Output reference.*\] :"])
-        self.sendline()
+        self.sendline("J2000")
         self.expect([b"Corrections.* :"])
         self.sendline("1")
         self.expect([b"Output units.*\] :"])
@@ -155,7 +155,7 @@ class Horizons(telnetlib.Telnet, object):
 
         data = self.read_until(b"$$EOE").decode('ascii')
         ephem_str = data.partition("$$SOE")[-1].partition("$$EOE")[0].strip()
-        n_lines = len(ephem_str.splitlines())
+        # n_lines = len(ephem_str.splitlines())
         ephem_data = np.loadtxt(StringIO(ephem_str), delimiter=",",
                                 usecols=(0,) + tuple(range(2, 8)), unpack=True)
         jd, x, y, z, vx, vy, vz = ephem_data
@@ -183,14 +183,16 @@ class Horizons(telnetlib.Telnet, object):
 if __name__ == '__main__':
     start_date = datetime(2024, 5, 7)
     end_date = datetime(2024, 5, 6)
-    delta = "1d" # TODO: Better specify time delta
+    delta = "1d"  # TODO: Better specify time delta
 
     jpl = Horizons()
 
     # Earth osculating elements
-    jd, a, ecc, inc, omega, argp, nu = jpl.elements(jpl.MERCURY, start_date, end_date,
+    jd, a, ecc, inc, omega, argp, nu = jpl.elements(jpl.MERCURY,
+                                                    start_date,
+                                                    end_date,
                                                     delta)
-    print(jd, a, ecc, inc, omega, argp, nu )
+    print(jd, a, ecc, inc, omega, argp, nu)
     #print(omega)
     #print(nu)
 
@@ -201,21 +203,16 @@ if __name__ == '__main__':
 
     jd_m, r_m, v_m = jpl.vectors(jpl.MERCURY, start_date, end_date, delta)
 
-
-    print(r_m[:,0])
+    print(r_m[:, 0])
 
     # fig = plt.figure()
     # ax = fig.gca(projection='3d')
 
     plt.axis([-1.5e8, 1.5e8, -1.5e8, 1.5e8])
-
-    plt.plot(r_e[:,0], r_e[:,1] )
-
-    plt.plot(r_v[:,0], r_v[:,1])
-
-    plt.plot(r_m[:,0], r_m[:,1])
-
-    plt.plot(0,0, 'yo')
+    plt.plot(r_e[:, 0], r_e[:, 1])
+    plt.plot(r_v[:, 0], r_v[:, 1])
+    plt.plot(r_m[:, 0], r_m[:, 1])
+    plt.plot(0, 0, 'yo')
 
     plt.show()
 

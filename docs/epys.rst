@@ -4,6 +4,14 @@ epys package
 Submodules
 ----------
 
+epys.downloadall module
+-----------------------
+
+.. automodule:: epys.downloadall
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 epys.draw module
 ----------------
 
@@ -28,10 +36,34 @@ epys.jplephem module
     :undoc-members:
     :show-inheritance:
 
+epys.maps module
+----------------
+
+.. automodule:: epys.maps
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 epys.read module
 ----------------
 
 .. automodule:: epys.read
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+epys.svgwritedemo module
+------------------------
+
+.. automodule:: epys.svgwritedemo
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+epys.utils module
+-----------------
+
+.. automodule:: epys.utils
     :members:
     :undoc-members:
     :show-inheritance:
