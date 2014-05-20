@@ -1,19 +1,22 @@
-epys Package
+epys package
 ============
 
-:mod:`epys` Package
--------------------
+Submodules
+----------
 
-.. automodule:: epys.__init__
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-:mod:`epys` Module
-------------------
+epys.epys module
+----------------
 
 .. automodule:: epys.epys
     :members:
     :undoc-members:
     :show-inheritance:
 
+
+Module contents
+---------------
+
+.. automodule:: epys
+    :members:
+    :undoc-members:
+    :show-inheritance:

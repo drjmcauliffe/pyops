@@ -16,7 +16,7 @@ from epys import epys
 class TestEpys(unittest.TestCase):
 
     def setUp(self):
-        self.data_rate_file = "./sample_data/data_rate_avg.out"
+        self.data_rate_file = "../sample_data/data_rate_avg.out"
 
     def test_epys_read_data_rate_data_shape(self):
         data, meta = epys.read(self.data_rate_file, metadata=True)
