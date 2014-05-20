@@ -3,6 +3,8 @@ e[py]s
 
 .. image:: https://travis-ci.org/johnnycakes79/epys.png?branch=master
         :target: https://travis-ci.org/johnnycakes79/epys
+.. image:: https://coveralls.io/repos/johnnycakes79/epys/badge.png 
+		:target: https://coveralls.io/r/johnnycakes79/epys
 
 
 ePYs is a python library for the manipulation, processing and plotting

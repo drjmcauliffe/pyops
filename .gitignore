@@ -4,8 +4,8 @@
 # Coverge folder
 htmlcov/
 
-# Cache folder
-.cache/
+# Sort Micellaneous folder
+sort/
 
 # C extensions
 *.so
@@ -47,3 +47,12 @@ output/*/index.html
 
 # Sphinx
 docs/_build
+
+# Images
+*.svg
+*.png
+
+# Sublime Test files
+*.sublime-project
+*.sublime-workspace
+
