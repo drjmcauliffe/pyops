@@ -29,7 +29,7 @@ lint:
 
 test:
 	#python setup.py test
-	pytest -v
+	py.test -v
 
 test-all:
 	tox
