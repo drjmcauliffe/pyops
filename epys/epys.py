@@ -62,7 +62,7 @@ def read(fname, metadata=False):
                 x = 2
                 for j in range(5, len(_hdings), 4):
                     for h in range(4):
-                        _hdings[j+h] = xprmnts[x] + ' ' + _hdings[j+h]
+                        _hdings[j + h] = xprmnts[x] + ' ' + _hdings[j + h]
                     x = x + 1
                 continue
 
@@ -106,7 +106,7 @@ def read(fname, metadata=False):
                                              seconds=float(seconds))
                 td = _time - datetime(2000, 1, 1)
                 _time = (td.microseconds +
-                        (td.seconds + td.days * 24 * 3600) * 10**6) / 10**6
+                        (td.seconds + td.days * 24 * 3600) * 10 ** 6) / 10 ** 6
                 _data.insert(0, _time)
                 _data = np.asarray(_data)
 
@@ -140,5 +140,10 @@ def demo():
     # Ask for the return of the 'metadata' and save to 'meta'.
     data, meta = read(samplefile, metadata=True)
 
+    print(meta)
+
     # Return 'data' and 'meta' to the caller.
     return data, meta
+
+if __name__ == '__main__':
+    demo()
