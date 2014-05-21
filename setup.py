@@ -24,7 +24,7 @@ setup(
     version='0.1.0',
     description='A python library for handling EPS output.',
     long_description=readme + '\n\n' + history + '\n\n'
-                     + authors + '\n\n' + contributing,
+                        + authors + '\n\n' + contributing,
     author='Jonathan McAuliffe',
     author_email='watch.n.learn@gmail.com',
     url='https://github.com/johnnycakes79/epys',
@@ -50,8 +50,8 @@ setup(
         'Programming Language :: Python :: 3.3',
     ],
     data_files=[
-        ('sampledata', ['sample_data/data_rate_avg.out']),
-        ('sampledata', ['sample_data/power_avg.out'])
+        ('sample_data', ['sample_data/data_rate_avg.out']),
+        ('sample_data', ['sample_data/power_avg.out'])
     ],
     test_suite='tests',
 )
