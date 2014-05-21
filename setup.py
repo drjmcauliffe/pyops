@@ -24,8 +24,11 @@ setup(
     name='epys',
     version=version,
     description='A python library for handling EPS output.',
-    long_description=readme + '\n\n' + history + '\n\n'
-                            + authors + '\n\n' + contributing,
+    long_description='ePYs is a python library for the manipulation, '
+    + 'processing and plotting of the input and output '
+    + 'files of ESA Experiment Planning Software (EPS).',
+    # long_description=readme + '\n\n' + history + '\n\n'
+    #                         + authors + '\n\n' + contributing,
     author='Jonathan McAuliffe',
     author_email='watch.n.learn@gmail.com',
     url='https://github.com/johnnycakes79/epys',
