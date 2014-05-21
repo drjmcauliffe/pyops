@@ -21,10 +21,10 @@ contributing = open('CONTRIBUTING.rst').read()
 
 setup(
     name='epys',
-    version='0.1.0',
+    version='0.1.1',
     description='A python library for handling EPS output.',
     long_description=readme + '\n\n' + history + '\n\n'
-                        + authors + '\n\n' + contributing,
+                            + authors + '\n\n' + contributing,
     author='Jonathan McAuliffe',
     author_email='watch.n.learn@gmail.com',
     url='https://github.com/johnnycakes79/epys',
