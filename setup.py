@@ -3,7 +3,7 @@
 
 import os
 import sys
-
+import epys
 
 try:
     from setuptools import setup
@@ -14,6 +14,7 @@ if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
     sys.exit()
 
+version = epys.__version__
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 authors = open('AUTHORS.rst').read()
@@ -21,7 +22,7 @@ contributing = open('CONTRIBUTING.rst').read()
 
 setup(
     name='epys',
-    version='0.1.1',
+    version=version,
     description='A python library for handling EPS output.',
     long_description=readme + '\n\n' + history + '\n\n'
                             + authors + '\n\n' + contributing,
