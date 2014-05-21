@@ -131,11 +131,10 @@ def demo():
     this_dir, this_filename = os.path.split(__file__)
 
     # Get the path to the parent directory for the current working directory.
-    parent_dir = os.path.abspath(os.path.join(this_dir, os.pardir))
+    # parent_dir = os.path.abspath(os.path.join(this_dir, os.pardir))
 
     # Build the path to the sample data files.
-    # samplefile = os.path.join(parent_dir, "data/data_rate_avg.out")
-    samplefile = "data/data_rate_avg.out"
+    samplefile = os.path.join(this_dir, "data/data_rate_avg.out")
 
     # Run the test file through epys.read and save returned object to 'data'.
     # Ask for the return of the 'metadata' and save to 'meta'.
