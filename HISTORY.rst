@@ -3,6 +3,11 @@
 History
 -------
 
+0.2.3 (2014-05-21)
+++++++++++++++++++
+
+* Another attempt to get the PIP install to correctly install the data files.
+
 0.2.2 (2014-05-21)
 ++++++++++++++++++
 
