@@ -51,3 +51,8 @@ docs/_build
 # Images
 *.svg
 *.png
+
+# Sublime Test files
+*.sublime-project
+*.sublime-workspace
+
