@@ -1,5 +1,8 @@
 e[py]s
 ======
+
+.. image:: https://pypip.in/v/epys/badge.png
+        :target: https://pypi.python.org/pypi/epys/
         
 .. image:: https://travis-ci.org/johnnycakes79/epys.png?branch=master
         :target: https://travis-ci.org/johnnycakes79/epys/
@@ -8,9 +11,6 @@ e[py]s
         :target: https://coveralls.io/r/johnnycakes79/epys/
 
 .. image:: https://pypip.in/d/epys/badge.png
-        :target: https://pypi.python.org/pypi/epys/
-
-.. image:: https://pypip.in/v/epys/badge.png
         :target: https://pypi.python.org/pypi/epys/
 
 .. image:: https://pypip.in/egg/epys/badge.png
