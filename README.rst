@@ -55,7 +55,7 @@ At the command line::
 4. Import and use module::
 
     $ python
-    >>> from epys import epys
+    >>> from epys import draw, events, maps, orbit, read, utils
 
 Testing
 -------
