@@ -64,7 +64,8 @@ def datarate(fname, metadata=False, pandas=True):
                 x = 2
                 for j in range(5, len(_headings), 4):
                     for h in range(4):
-                        _headings[j + h] = experiments[x] + ' ' + _headings[j + h]
+                        _headings[j + h] = experiments[x] + \
+                            ' ' + _headings[j + h]
                     x = x + 1
                 continue
 
@@ -94,7 +95,7 @@ def datarate(fname, metadata=False, pandas=True):
 
                 # Prepare 'data' array...
                 header = np.array([x['head'] for x in headings])
-                data=np.arange(len(header))
+                data = np.arange(len(header))
                 post_process = False
 
             # Check for start of data
@@ -107,10 +108,6 @@ def datarate(fname, metadata=False, pandas=True):
                 _time = ref_date + timedelta(days=int(days), hours=int(hours),
                                              minutes=int(minutes),
                                              seconds=float(seconds))
-                # print(_time)
-                # td = _time - datetime(2000, 1, 1)
-                # _time = (td.microseconds +
-                #         (td.seconds + td.days * 24 * 3600) * 10 ** 6) / 10 ** 6
                 _data.insert(0, _time)
                 _data = np.asarray(_data)
 
@@ -122,7 +119,8 @@ def datarate(fname, metadata=False, pandas=True):
     data = data[1:]
 
     if pandas:
-        pass
+        data = pd.DataFrame(data, columns=header)
+        data = data.set_index(header[0])
 
     if metadata:
         return data, header, mdata
@@ -152,7 +150,7 @@ def dataratedemo():
 
     print('data array shape:   {}'.format(data.shape))
     print('meta data length:   {}'.format(len(meta)))
-    print('header data length: {}'.format(len(header)))
+    print('header data length: {}'.format(len()))
 
     # Return 'data' and 'meta' to the caller.
     return data, header, meta
