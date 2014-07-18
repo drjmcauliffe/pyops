@@ -157,5 +157,32 @@ def planetmu(planet):
     return planetmu[planet.title()]
 
 
+def plotlyprep(df):
+    """
+    Coverting a Pandas Data Frame to Plotly interface:
+        http://nbviewer.ipython.org/gist/nipunreddevil/7734529
+    """
+
+    if df.index.__class__.__name__ == "DatetimeIndex":
+        #Convert the index to MySQL Datetime like strings
+        x = df.index.format()
+        #Alternatively, directly use x, since DateTime index is np.datetime64
+        #see http://nbviewer.ipython.org/gist/cparmer/7721116
+        #x=df.index.values.astype('datetime64[s]')
+    else:
+        x = df.index.values
+
+    lines = {}
+    for key in df:
+        lines[key] = {}
+        lines[key]["x"] = x
+        lines[key]["y"] = df[key].values
+        lines[key]["name"] = key
+
+    #Appending all lines
+    lines_plotly = [lines[key] for key in df]
+    return lines_plotly
+
+
 if __name__ == '__main__':
     print(getorbelts('2024/05/07 12:00'))
