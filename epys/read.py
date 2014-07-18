@@ -1,14 +1,15 @@
+
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import re
 import os
 import numpy as np
+import pandas as pd
 from datetime import datetime, timedelta
 import logging
 
 
-def read(fname, metadata=False):
+def datarate(fname, metadata=False, pandas=True):
     """
     This function reads an EPS generated data-rate file and returns the data
     in a numpy array.  The file metadata can also be returned if requested.
@@ -24,9 +25,10 @@ def read(fname, metadata=False):
     logger = logging.getLogger(__name__)
 
     mdata = {}
+    data = []
     post_process = False
-    hdings = []
-    xprmnts = []
+    headings = []
+    experiments = []
 
     with open(fname, 'r') as fh:
         for line in fh:
@@ -48,21 +50,21 @@ def read(fname, metadata=False):
             # Catch the experiment names to list.
             if re.match(r'(.*)\<(.*)\>', line, re.M | re.I):
                 for i in line.replace('.', '').replace('>', '').split():
-                    xprmnts.append(i.replace('<', '').replace('_', '-'))
+                    experiments.append(i.replace('<', '').replace('_', '-'))
                 continue
 
             # Catch the column headers and prefix them with experiment list.
             if re.match(r'Elapsed time(.*)', line, re.M | re.I):
-                _hdings = line.split()
-                _hdings[0:2] = [' '.join(_hdings[0:2])]
+                _headings = line.split()
+                _headings[0:2] = [' '.join(_headings[0:2])]
                 for j in range(1, 3):
-                    _hdings[j] = xprmnts[0] + ' ' + _hdings[j]
+                    _headings[j] = experiments[0] + ' ' + _headings[j]
                 for j in range(3, 5):
-                    _hdings[j] = xprmnts[1] + ' ' + _hdings[j]
+                    _headings[j] = experiments[1] + ' ' + _headings[j]
                 x = 2
-                for j in range(5, len(_hdings), 4):
+                for j in range(5, len(_headings), 4):
                     for h in range(4):
-                        _hdings[j + h] = xprmnts[x] + ' ' + _hdings[j + h]
+                        _headings[j + h] = experiments[x] + ' ' + _headings[j + h]
                     x = x + 1
                 continue
 
@@ -81,17 +83,18 @@ def read(fname, metadata=False):
 
             if post_process:
                 # Raise an error if the the length of 'units' is not equal
-                # to the length of '_hdings'.
-                if len(_hdings) != len(units):
+                # to the length of '_headings'.
+                if len(_headings) != len(units):
                     logger.ERROR("ERROR: The number of headings does not ",
                                  "match the number of units!")
 
                 # Pair the headings and the units ...")
-                for i in range(len(_hdings)):
-                    hdings.append({'head': _hdings[i], 'unit': units[i]})
+                for i in range(len(_headings)):
+                    headings.append({'head': _headings[i], 'unit': units[i]})
 
                 # Prepare 'data' array...
-                data = np.array([x['head'] for x in hdings])
+                header = np.array([x['head'] for x in headings])
+                data=np.arange(len(header))
                 post_process = False
 
             # Check for start of data
@@ -104,9 +107,10 @@ def read(fname, metadata=False):
                 _time = ref_date + timedelta(days=int(days), hours=int(hours),
                                              minutes=int(minutes),
                                              seconds=float(seconds))
-                td = _time - datetime(2000, 1, 1)
-                _time = (td.microseconds +
-                        (td.seconds + td.days * 24 * 3600) * 10 ** 6) / 10 ** 6
+                # print(_time)
+                # td = _time - datetime(2000, 1, 1)
+                # _time = (td.microseconds +
+                #         (td.seconds + td.days * 24 * 3600) * 10 ** 6) / 10 ** 6
                 _data.insert(0, _time)
                 _data = np.asarray(_data)
 
@@ -114,13 +118,19 @@ def read(fname, metadata=False):
 
     fh.close()
 
+    # remove first data row with dummy data
+    data = data[1:]
+
+    if pandas:
+        pass
+
     if metadata:
-        return data, mdata
+        return data, header, mdata
     else:
-        return data
+        return data, header
 
 
-def demo():
+def dataratedemo():
     """
     This function can be used to quickly get some data back for testing.
     It uses a pre-defined test data_rate_avg.out file.
@@ -138,7 +148,10 @@ def demo():
 
     # Run the test file through epys.read and save returned object to 'data'.
     # Ask for the return of the 'metadata' and save to 'meta'.
-    data, meta = read(samplefile, metadata=True)
+    data, header, meta = datarate(samplefile, metadata=True)
 
     # Return 'data' and 'meta' to the caller.
-    return data, meta
+    return data, header, meta
+
+if __name__ == '__main__':
+    dataratedemo()
