@@ -21,12 +21,15 @@ _datarateFile = os.path.join(parent_dir, "sample_data/data_rate_avg.out")
 
 
 # --- epys.read ---
-def test_epys_read_datarate_data_shape():
-    data, header, meta = ep.read.datarate(_datarateFile, metadata=True)
-    assert data.shape == (366, 52)
+def test_epys_read_datarate_data_shape_numpy():
     data, header, meta = ep.read.datarate(_datarateFile, metadata=True,
                                           pandas=False)
     assert data.shape == (366, 53)
+
+
+def test_epys_read_datarate_data_shape_pandas():
+    data, header, meta = ep.read.datarate(_datarateFile, metadata=True)
+    assert data.shape == (366, 52)
 
 
 def test_epys_read_datarate_meta_length():
