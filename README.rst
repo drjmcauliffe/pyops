@@ -53,6 +53,6 @@ Testing is very little at the moment. But it's a start... At the command line::
 
     $ python setup.py test
 
-or
+or::
 
     $ make test
