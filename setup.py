@@ -23,6 +23,10 @@ class PyTest(TestCommand):
         errcode = pytest.main(self.test_args)
         sys.exit(errcode)
 
+
+def cleanup():
+    pass
+
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
     sys.exit()
@@ -74,4 +78,4 @@ try:
 
 
 finally:
-    print('Did it work...?')
+    cleanup()
