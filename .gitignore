@@ -1,5 +1,7 @@
+.gitignore
 *.py[cod]
 *.ipynb
+
 
 # Coverge folder
 htmlcov/
@@ -33,18 +35,6 @@ pip-log.txt
 .tox
 nosetests.xml
 
-# Translations
-*.mo
-
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
-
-# Complexity
-output/*.html
-output/*/index.html
-
 # Sphinx
 docs/_build
 
@@ -55,4 +45,7 @@ docs/_build
 # Sublime Test files
 *.sublime-project
 *.sublime-workspace
+
+# data output folder
+sample_data/output
 
