@@ -6,6 +6,9 @@ e[py]s
 
 .. image:: https://travis-ci.org/johnnycakes79/epys.png?branch=master
         :target: https://travis-ci.org/johnnycakes79/epys
+        
+.. image:: https://coveralls.io/repos/johnnycakes79/epys/badge.png?branch=master
+    :target: https://coveralls.io/r/johnnycakes79/epys
 
 ePYs is a python library for the manipulation, processing and plotting
 of the input and output files of ESA Experiment Planning Software (EPS).
