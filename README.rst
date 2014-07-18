@@ -43,3 +43,16 @@ At the command line::
 
     $ python
     >>> from epys import epys
+
+Testing
+-------
+
+Testing is very little at the moment. But it's a start... At the command line::
+
+1. Run py.test::
+
+    $ python setup.py test
+
+or
+
+    $ make test
