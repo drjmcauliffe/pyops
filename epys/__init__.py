@@ -13,4 +13,4 @@ __email__ = 'watch.n.learn@gmail.com'
 __version__ = '0.2.1'
 __url__ = 'https://github.com/johnnycakes79/epys'
 
-from epys import *
+from epys.read import *

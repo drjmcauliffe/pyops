@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+__author__ = 'johnnycakes79'
 """
 test_epys
 ----------------------------------
@@ -8,35 +9,28 @@ test_epys
 Tests for `epys` module.
 """
 
-import unittest
+# import pytest
+import os
 
-from epys import epys
-
-
-class TestEpys(unittest.TestCase):
-
-    def setUp(self):
-        self.data_rate_file = "./sample_data/data_rate_avg.out"
-
-    def test_epys_read_data_rate_data_shape(self):
-        data, meta = epys.read(self.data_rate_file, metadata=True)
-        assert data.shape == (367, 53)
-
-    def test_epys_read_data_rate_meta_length(self):
-        data, meta = epys.read(self.data_rate_file, metadata=True)
-        assert len(meta) == 16
-
-    def test_epys_demo_data_rate_data_shape(self):
-        data, meta = epys.demo()
-        assert data.shape == (367, 53)
-
-    def test_epys_demo_data_rate_meta_length(self):
-        data, meta = epys.demo()
-        assert len(meta) == 16
-
-    def tearDown(self):
-        pass
+import epys as ep
 
 
-if __name__ == '__main__':
-    unittest.main()
+this_dir, this_filename = os.path.split(__file__)
+parent_dir = os.path.abspath(os.path.join(this_dir, os.pardir))
+_datarateFile = os.path.join(parent_dir, "sample_data/data_rate_avg.out")
+
+
+# --- epys.read ---
+def test_epys_read_datarate_data_shape():
+    data, header, meta = ep.read.datarate(_datarateFile, metadata=True)
+    assert data.shape == (366, 53)
+
+
+def test_epys_read_datarate_meta_length():
+    data, header, meta = ep.read.datarate(_datarateFile, metadata=True)
+    assert len(meta) == 16
+
+
+def test_epys_read_datarate_header_length():
+    data, header, meta = ep.read.datarate(_datarateFile, metadata=True)
+    assert len(header) == 53

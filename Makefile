@@ -34,7 +34,7 @@ test:
 test-all:
 	tox
 
-coverage:	
+coverage:
 	coverage run --source epys setup.py test
 	coverage report -m
 	coverage html

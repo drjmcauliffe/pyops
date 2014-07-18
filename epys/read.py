@@ -150,6 +150,10 @@ def dataratedemo():
     # Ask for the return of the 'metadata' and save to 'meta'.
     data, header, meta = datarate(samplefile, metadata=True)
 
+    print('data array shape:   {}'.format(data.shape))
+    print('meta data length:   {}'.format(len(meta)))
+    print('header data length: {}'.format(len(header)))
+
     # Return 'data' and 'meta' to the caller.
     return data, header, meta
 
