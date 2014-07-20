@@ -46,8 +46,12 @@ try:
         author='Jonathan McAuliffe',
         author_email='watch.n.learn@gmail.com',
         url='https://github.com/johnnycakes79/epys',
-        packages=['epys'],
-        package_dir={'epys': 'epys'},
+        packages=['epys',
+                  'epys.epys',
+                  'epys.tests',
+                  ],
+        package_data={'epys.tests': ['data/*.out'],
+                      },
         include_package_data=True,
         install_requires=[],
         cmdclass={'test': PyTest},
@@ -66,10 +70,6 @@ try:
             'Programming Language :: Python :: 2.7',
             'Programming Language :: Python :: 3',
             'Programming Language :: Python :: 3.3',
-        ],
-        data_files=[
-            ('sampledata', ['sample_data/data_rate_avg.out']),
-            ('sampledata', ['sample_data/power_avg.out'])
         ],
         extras_require={
             'testing': ['pytest'],
