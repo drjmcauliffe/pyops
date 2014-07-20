@@ -11,14 +11,17 @@ import logging
 
 def datarate(fname, metadata=False, pandas=True):
     """
-    This function reads an EPS generated data-rate file and returns the data
-    in a numpy array.  The file metadata can also be returned if requested.
+    This function reads an EPS generated data-rate file and returns
+    the data in a numpy array.  The file metadata can also be returned
+    if requested.
 
     :param fname: The path to the data_rate_avg.out
     :type fname: str.
     :param metadata: Flag to return the metadata dictionary
     :type state: bool.
-    :returns:  numpy.array -- the return code.
+    :param pandas: Flag to return a pandas dataframe (True) or numpy array
+    :type state: bool.
+    :returns:  pandas dataframe or numpy.array -- the return code.
     """
 
     logging.basicConfig(level=logging.INFO)
@@ -126,6 +129,23 @@ def datarate(fname, metadata=False, pandas=True):
         return data, header, mdata
     else:
         return data, header
+
+
+def power(fname, metadata=False, pandas=True):
+    """
+    This function reads an EPS generated power file and returns
+    the data in a numpy array or pandas dataframe. The file metadata can
+    also be returned if requested.
+
+    :param fname: The path to the power_avg.out
+    :type fname: str.
+    :param metadata: Flag to return the metadata dictionary
+    :type state: bool.
+    :param pandas: Flag to return a pandas dataframe (True) or numpy array
+    :type state: bool.
+    :returns:  pandas dataframe or numpy.array -- the return code.
+    """
+    pass
 
 
 def dataratedemo():
