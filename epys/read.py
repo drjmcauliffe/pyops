@@ -162,7 +162,7 @@ def dataratedemo():
     parent_dir = os.path.abspath(os.path.join(this_dir, os.pardir))
 
     # Build the path to the sample data files.
-    samplefile = os.path.join(parent_dir, "sample_data/data_rate_avg.out")
+    samplefile = os.path.join(parent_dir, "tests/data/data_rate_avg.out")
 
     # Run the test file through epys.read and save returned object to 'data'.
     # Ask for the return of the 'metadata' and save to 'meta'.
@@ -170,7 +170,7 @@ def dataratedemo():
 
     print('data array shape:   {}'.format(data.shape))
     print('meta data length:   {}'.format(len(meta)))
-    print('header data length: {}'.format(len()))
+    print('header data length: {}'.format(len(header)))
 
     # Return 'data' and 'meta' to the caller.
     return data, header, meta
