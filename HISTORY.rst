@@ -3,6 +3,12 @@
 History
 -------
 
+0.3.0 (2014-07-21)
+++++++++++++++++++
+
+* Major restructuring and test environment setup/
+
+
 0.2.0 (2013-12-18)
 ++++++++++++++++++
 
