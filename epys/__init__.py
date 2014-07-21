@@ -10,7 +10,7 @@ of the input and output files of ESA Experiment Planning Software (EPS).
 
 __author__ = 'Jonathan McAuliffe'
 __email__ = 'watch.n.learn@gmail.com'
-__version__ = '0.2.1'
+__version__ = '0.3.0'
 __url__ = 'https://github.com/johnnycakes79/epys'
 
 from epys.read import *
