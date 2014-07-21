@@ -36,13 +36,29 @@ readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 authors = open('AUTHORS.rst').read()
 contributing = open('CONTRIBUTING.rst').read()
+LONG_DESCRIPTION = """
+ePYs is a python library for the manipulation, processing and plotting of
+the input and output files of ESA Experiment Planning Software (EPS).
+
+  - Free software: BSD license
+  - Documentation: http://epys.rtfd.org.
+
+**Modules**
+
+  - **draw** makes pretty orbit graphics
+  - **events** provides a series of time/date utilities
+  - **maps** does things with maps and images
+  - **orbit** processes mission analysis orbit files
+  - **read** reads EPS/MAPPS output into useable dataframes and/or arrays
+  - **utils** more utilities ...
+"""
 
 try:
     setup(
         name='epys',
         version=version,
         description='A python library for handling EPS output.',
-        long_description=readme + '\n\n' + history + '\n\n' + authors,
+        long_description=LONG_DESCRIPTION,
         author='Jonathan McAuliffe',
         author_email='watch.n.learn@gmail.com',
         url='https://github.com/johnnycakes79/epys',
