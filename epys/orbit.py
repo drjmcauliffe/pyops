@@ -9,6 +9,13 @@ from spice import et2utc
 from spice import furnsh
 
 
+def orbitkernel(infile, outfile, cbody):
+    """
+    Make an SPK from the Mission Analysis Orbit file.
+    """
+    pass
+
+
 def transform(fname, metadata=False):
     """
     This function reads a Mission Analysis Orbit file and performs a matrix
