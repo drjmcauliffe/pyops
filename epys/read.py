@@ -145,7 +145,98 @@ def power(fname, metadata=False, pandas=True):
     :type state: bool.
     :returns:  pandas dataframe or numpy.array -- the return code.
     """
-    pass
+
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+
+    mdata = {}
+    data = []
+    post_process = False
+    headings = []
+
+    with open(fname, 'r') as fh:
+        for line in fh:
+
+            # Catch the header data and store it in dictionary.
+            if re.match(r'#(.*):(.*)', line, re.M | re.I):
+                keypair = line.strip('#\n').split(':')
+                mdata[keypair[0].strip()] = keypair[1].strip()
+                continue
+
+            # Catch the reference date and add to dictionary.
+            if re.match(r'Ref_date:(.*)', line, re.M | re.I):
+                keypair = line.strip('#\n').split(':')
+                mdata['Reference Date'] = keypair[1].strip()
+                ref_date = datetime.strptime(mdata['Reference Date'],
+                                             "%d-%b-%Y")
+                continue
+
+            # Catch the column headers.
+            if re.match(r'Elapsed time(.*)', line, re.M | re.I):
+                _headings = line.split()
+                _headings[0:2] = [' '.join(_headings[0:2])]
+                _headings = [h.replace('_', ' ') for h in _headings]
+                continue
+
+            # Catch the units line and process ...
+            if re.match(r'ddd_hh:mm:ss(.*)', line, re.M | re.I):
+                _units = line.replace('(', '').replace(')', '').split()
+                units = _units[0:2]
+                for u in range(2, len(_units)):
+                    if 'sec' in _units[u]:
+                        units.append(_units[u])
+                        units.append(_units[u])
+                    else:
+                        units.append(_units[u])
+                post_process = True
+                continue
+
+            if post_process:
+                # Raise an error if the the length of 'units' is not equal
+                # to the length of '_headings'.
+                if len(_headings) != len(units):
+                    logger.ERROR("ERROR: The number of headings does not ",
+                                 "match the number of units!")
+
+                # Pair the headings and the units ...")
+                for i in range(len(_headings)):
+                    headings.append({'head': _headings[i], 'unit': units[i]})
+
+                # Prepare 'data' array...
+                header = np.array([x['head'] for x in headings])
+                data = np.arange(len(header))
+                post_process = False
+
+            # Check for start of data
+            if re.match(r'[0-9]{3}_[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)',
+                        line, re.M | re.I):
+                days_time = line.split()[0]
+                _data = [float(x) for x in line.split()[1:]]
+                days, time = days_time.split('_')
+                hours, minutes, seconds = time.split(':')
+                _time = ref_date + timedelta(days=int(days), hours=int(hours),
+                                             minutes=int(minutes),
+                                             seconds=float(seconds))
+                _data.insert(0, _time)
+                _data = np.asarray(_data)
+
+                data = np.vstack((data, _data))
+
+    fh.close()
+
+    # remove first data row with dummy data
+    data = data[1:]
+
+    if pandas:
+        # tuples = list(zip(header, units))
+        # header = pd.MultiIndex.from_tuples(tuples, names=[' ', ' '])
+        data = pd.DataFrame(data, columns=header)
+        data = data.set_index(header[0])
+
+    if metadata:
+        return data, header, mdata
+    else:
+        return data, header
 
 
 def dataratedemo():
