@@ -1,0 +1,154 @@
+#
+# Filename: events.notes
+#
+# Author: Peter van der Plas
+# Date:   12 September 2000
+#
+# (c) ESA/Estec
+#
+# $Id: events.notes,v 3.1 2006/08/12 21:23:05 peter Exp $
+#
+# $Log: events.notes,v $
+# Revision 3.1  2006/08/12 21:23:05  peter
+# SPR-0314: Update versions and templates for the new EPS v2.2 release.
+#
+# Revision 3.0  2006/02/22 18:33:12  peter
+# Updated to revision 3.0 for EPS major release 2.0.
+#
+# Revision 2.2  2003/08/31 15:56:13  peter
+# SPR-0107: Update templates and versions for EPS v1.4 release.
+#
+# Revision 2.1  2002/12/10 14:20:06  rosetta
+# SPR-0069: Make necessary updates to support the release of EPS v1.2.
+#
+# Revision 2.0  2002/05/08 16:19:35  rosetta
+# This is the first official template version for EPS v1.0
+#
+#
+
+A few guidelines on the events files:
+
+Basic syntax
+============
+- comment lines start with '#'
+- all characters after '#' are ignored
+- a '\' indicates a continuation line: it allows keyword values to
+  continue on the next line
+- a '\' should be the last character of a line, otherwise it is ignored
+- white spaces/tabs are used to separate words
+- a keyword is followed by a ':' and then by its keyword values
+- no white spaces within keywords/labels, use '_' instead
+- keyword/label recognition is not case sensitive
+- '|' stands for an exclusive or
+- values between [ ] brackets are optional
+- an optional number of values is indicated by ...
+- all keywords (lines in the file) are optional, except when resulting
+  in an inconsistent definition
+- a string starts and ends with a '"', upper/lowercase is maintained
+  here, white spaces and other special characters are allowed
+
+Use of labels
+=============
+- a <label> is the base type for identifiers, units and any values
+- no white spaces are allowed
+- a label shall consist of 'a..z', 'A..Z', '0..9' or any of [_+-.:*%^'/]
+- the '_' and '-' characters are considered different
+- the '_' character is considered as a letter, e.g. the identifier
+  ABCD is not the same as the identifier AB_CD
+- labels are not case sensitive, e.g. the identifier ABCD is the same
+  as identifier aBcD
+- labels used as identifier, e.g. as experiment label, mode label, etc,
+  shall not contain any of [+-.:*%^'/]
+- a <keyword> is considered as an identifier followed by a ':'
+
+Date values
+===========
+- a date value may be given in the POR or EPS absolute time format
+- an EPS <date> value is in the format [dd-month-yyyy[_hh:mm:ss]]
+- [dd] is the day number
+- [dd] may consist of one or two digits, and may start with zero
+- [month] is the full (spelled out) month or any abbreviation
+  with a minimum of 3 characters
+- [yyyy] is the full year number
+- [_hh:mm:ss] is optional and is defined similarly as in the time format
+- the '_' character is mandatory here if the time of the day is given
+- the time of the day defaults to _00:00:00
+- a POR absolute time value is in the format [yy-dddThh:mm:ss[.mmm]Z]
+- [yy] is the year in the 21st century and must have two characters
+- [ddd] is the day number within the year, counting from 1
+- [hh:mm:ss] is defined similarly as in the time format
+- [.mmm] is optional and specifies the number of milliseconds
+- the EPS software will always ignore the [.mmm] value
+
+Time values
+===========
+- a time value may be given in the POR or EPS relative time format
+- an EPS <time> field is in the format [[sign][ddd_]hh:mm:ss]
+- [sign] is an optional sign ('-' or '+')
+- [ddd] is an optional day number
+- [ddd] may consist of one, two or three digits, and may be zero
+- [hh] is the number of hours (00..23)
+- [mm] is the number of minutes (00..59)
+- [ss] is the number of seconds (00..59)
+- [hh], [mm], [ss] must be specified and must have two characters each
+- a POR relative time value is in the format [[-][ddd.]hh:mm:ss[.mmm]]
+- [ddd] is the optional number of days
+- [hh], [mm], [ss] is defined similarly as above
+- [.mmm] is optional and specifies the number of milliseconds
+- the EPS software will always ignore the [.mmm] value
+
+Event state labels
+==================
+- one event typically has two states (the "ON" and "OFF" states),
+  which have their specific event state labels (e.g. event
+  GS_PERTH has state labels GS_PERTH_VIS and GS_PERTH_LOS)
+- special events exist with only one state label, this is always
+  the label indicating that the event occurs indeed (the "ON" state)
+- events of this type only occur at a specific times and do
+  not require another event to reset the state
+- only for EPS type of events (e.g. Sun in FOV, Sun on area)
+  parameters are allowed, and for most EPS events are actually required
+- EPS event parameters must consist of two labels, starting with the
+  experiment label and followed by the item label, where the item
+  depends on the event type (e.g. for SUN_IN_FOV, the item label
+  indicates which FOV to use of the given experiment)
+
+Events header
+=============
+- the reference date has to be given if relative times are used
+- the reference date may be specified only once
+- the start time and end time are mandatory for the event file
+- the start time and end time may be specified only once
+- the end time shall not be before the start time
+- the propagation delay is optional and defaults to zero, this value
+  is used for the event time reference types UTC+PD and UTC-PD
+- any number of initial event values are allowed
+- these initial values will overwrite the event default values
+- the initial values are applied at the event file start time
+- initialisation keywords may not appear after the first event entry
+
+Include files
+=============
+- event files can be included using the include directive
+- an optional delta time may be given here, resulting in a shift of
+  the event times in the included file
+- event entries of all included files are finally merged and sorted
+- an include file directive may not appear before the start time
+  or end time is defined
+- ESOC FD event files may not include any event files
+- the include file may be based on an event
+- the include event must be a counted event defined as input event
+  before the include event is being used
+- the included event file events will be relative to the specified
+  event with an optional delta time
+
+Event entries
+=============
+- each event entry consists of two values
+- the first value must contain a time value
+- either an absolute or a relative event time may be specified
+- the relative time is defined w.r.t. the reference date
+- event times must be within the event file start and end times
+- the second value must contain an event state label
+- the event state label should follow the format as specified above
+- any number of event entries are allowed

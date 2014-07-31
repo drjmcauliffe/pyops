@@ -1,0 +1,432 @@
+#
+# Filename: input.notes
+#
+# Author: Peter van der Plas
+# Date:   10 January 2000
+#
+# (c) ESA/Estec
+#
+# $Id: input.notes,v 3.10 2012/11/28 13:18:13 pvanderplas Exp $
+#
+# $Log: input.notes,v $
+# Revision 3.10  2012/11/28 13:18:13  pvanderplas
+# Issue #0002262: Update EPS version and templates for v2.5.7 beta-3 release.
+#
+# Revision 3.9  2011/05/20 08:52:41  ttsoris
+# issue #1943: Update ITL templates for the upcoming EPS v2.5.5.
+#
+# Revision 3.8  2010/11/06 13:41:21  pvanderplas
+# Issue #0001682: Update the EPS templates for the upcoming release v2.5.4.
+#
+# Revision 3.7  2010/01/13 15:13:57  pvanderplas
+# Issue #0001201: Update the EPS templates for the upcoming release v2.5.1.
+#
+# Revision 3.6  2008/09/19 09:35:46  pvdplas
+# SPR-0447: Update versions and templates for the new EPS v2.3 release.
+#
+# Revision 3.5  2008/07/08 15:30:19  pvdplas
+# SPR-0427: Update versions and templates for the new EPS v2.3.4 release.
+#
+# Revision 3.4  2007/07/09 14:14:08  pvdplas
+# SPR-0362: Update versions and templates for the new EPS v2.3 release.
+#
+# Revision 3.3  2007/01/30 22:41:58  peter
+# SPR-0334: Update versions and templates for the new EPS v2.2.5 release.
+#
+# Revision 3.2  2006/10/07 19:17:31  peter
+# SPR-0321: Update versions and templates for the new EPS v2.2.1 release.
+#
+# Revision 3.1  2006/04/19 16:20:30  peter
+# SPR-0289: Update versions and templates for the new EPS v2.1 release.
+#
+# Revision 3.0  2006/02/22 18:33:12  peter
+# Updated to revision 3.0 for EPS major release 2.0.
+#
+# Revision 2.6  2005/08/15 06:13:40  peter
+# SPR-0227: Update templates and versions for EPS v1.9 release.
+#
+# Revision 2.5  2005/03/22 16:45:57  peter
+# SPR-0197: Update templates and versions for EPS v1.8 release.
+#
+# Revision 2.4  2004/04/08 15:25:14  rosetta
+# SPR-0127: Update templates and versions for EPS v1.5 release.
+#
+# Revision 2.3  2003/08/31 15:56:13  peter
+# SPR-0107: Update templates and versions for EPS v1.4 release.
+#
+# Revision 2.2  2002/12/10 14:21:10  rosetta
+# SPR-0069: Make necessary updates to support the release of EPS v1.2.
+#
+# Revision 2.1  2002/08/27 13:56:51  rosetta
+# SPR-0045: Templates need updating for EPS v1.1.
+#
+# Revision 2.0  2002/05/08 16:19:38  rosetta
+# This is the first official template version for EPS v1.0
+#
+#
+
+A few guidelines on the input timeline files:
+
+Basic syntax
+============
+- comment lines start with '#'
+- all characters after '#' are ignored
+- a '\' indicates a continuation line: it allows keyword values to
+  continue on the next line
+- a '\' should be the last character of a line, otherwise it is ignored
+- white spaces/tabs are used to separate words
+- a keyword is followed by a ':' and then by its keyword values
+- no white spaces within keywords/labels, use '_' instead
+- keyword/label recognition is not case sensitive
+- '|' stands for an exclusive or
+- values between [ ] brackets are optional
+- an optional number of values is indicated by ...
+- all keywords (lines in the file) are optional, except when resulting
+  in an inconsistent definition
+- a string starts and ends with a '"', upper/lowercase is maintained
+  here, white spaces and other special characters are allowed
+
+Use of labels
+=============
+- a <label> is the base type for identifiers, units and any values
+- no white spaces are allowed
+- a label shall consist of 'a..z', 'A..Z', '0..9' or any of [_+-.:*%^'/]
+- the '_' and '-' characters are considered different
+- the '_' character is considered as a letter, e.g. the identifier
+  ABCD is not the same as the identifier AB_CD
+- labels are not case sensitive, e.g. the identifier ABCD is the same
+  as identifier aBcD
+- labels used as identifier, e.g. as experiment label, mode label, etc,
+  shall not contain any of [+-.:*%^'/]
+- a <keyword> is considered as an identifier followed by a ':'
+- parameter value text labels and unit labels may contain spaces or any
+  other special characters, but in this case the text values have to be
+  given between double-quotes ("")
+
+Use of units
+============
+- each parameter value may have an optional unit specifier
+- the use of a unit for a parameter value by default implies
+  that the value is given as an engineering value
+- the unit label needs to be specified between [ ] brackets
+- if no unit is specified then the default unit will be applied
+- unit sets will define the various unit options for a single
+  physical unit, e.g. Volts may be V, mV, volts, mvolts, etc
+- the unit specified for a value needs to be compatible with the
+  value's unit set, if a unit set is applicable for the value
+- unit conversions to the default unit will be done automatically,
+  but is only allowed for parameters of type REAL
+- for keywords with multiple values, a unit may either be given
+  for each value, or a unit may be given after the last value,
+  setting the same unit also on all previous values
+
+Use of values
+=============
+- <value> means a single value
+- an unsigned integer value shall consist of '0..9' or '+'
+- an unsigned integer may also be given in hexadecimal or octal format
+- a hexadecimal value is in the format '0xhhhhhhhh', where h is one of
+  '0-9', 'a-f' or 'A-F' and where the number of h ranges from 1 to 8
+- an octal value is an unsigned integer value that starts with a '0'
+  and only consists of any of the '0-7' characters
+- note that values starting with a '0' and having one or more '8-9'
+  characters are considered invalid octal values and not integers
+- a (signed) integer value shall consist of '0..9', '+' or '-'
+- a floating point value shall consist of '0..9', '+', '-', '.', 'e' or 'E'
+- a floating point value shall be in the IEEE format
+- an octet string consists of '0..9', 'a-f' or 'A-F', one pair per
+  byte of data, long octet strings may be defined as multiple strings
+  (exceeding the maximum string length of 80 characters)
+
+Date values
+===========
+- a date value may be given in the POR or EPS absolute time format
+- an EPS <date> value is in the format [dd-month-yyyy[_hh:mm:ss]]
+- [dd] is the day number
+- [dd] may consist of one or two digits, and may start with zero
+- [month] is the full (spelled out) month or any abbreviation
+  with a minimum of 3 characters
+- [yyyy] is the full year number
+- [_hh:mm:ss] is optional and is defined similarly as in the time format
+- the '_' character is mandatory here if the time of the day is given
+- the time of the day defaults to _00:00:00
+- a POR absolute time value is in the format [yy-dddThh:mm:ss[.mmm]Z]
+- [yy] is the year in the 21st century and must have two characters
+- [ddd] is the day number within the year, counting from 1
+- [hh:mm:ss] is defined similarly as in the time format
+- [.mmm] is optional and specifies the number of milliseconds
+- the EPS software will always ignore the [.mmm] value
+
+Time values
+===========
+- a time value may be given in the POR or EPS relative time format
+- an EPS <time> field is in the format [[sign][ddd_]hh:mm:ss]
+- [sign] is an optional sign ('-' or '+')
+- [ddd] is an optional day number
+- [ddd] may consist of one, two or three digits, and may be zero
+- [hh] is the number of hours (00..23)
+- [mm] is the number of minutes (00..59)
+- [ss] is the number of seconds (00..59)
+- [hh], [mm], [ss] must be specified and must have two characters each
+- a POR relative time value is in the format [[-][ddd.]hh:mm:ss[.mmm]]
+- [ddd] is the optional number of days
+- [hh], [mm], [ss] is defined similarly as above
+- [.mmm] is optional and specifies the number of milliseconds
+- the EPS software will always ignore the [.mmm] value
+
+Parameter lists
+===============
+- an action may have an optional parameter list defined between ( )
+- a parameter list consists of any number of parameters
+- each parameter may have an optional value
+- a '=' is used to separate a parameter from its value
+- a value may have an optional unit, or an indication if the value
+  is of RAW or ENG type
+- the use of a unit by default implies the ENG type
+- value options such as units need to be given between [ ] brackets
+
+Initialisation keywords
+=======================
+- the version is mandatory must be an integer from 0 to 99999
+- the version may be specified only once
+- the version is only allowed in ITL files
+- the custom file is optional and must be a string value
+- if defined it will be written to the ESOC FD PTR header
+- the custom file is only allowed in PTR files
+- the GSEP file is optional and must be a string value
+- a GSEP file must conform to the naming convention as defined by ESOC FD;
+  the filename contains the north, ecliptic and HGA flags and the version
+- any number of GSEP files may be defined
+- the GSEP file is only allowed in PTR files
+- the reference date has to be given if relative times are used
+- the reference date may be specified only once
+- the start time and end time may be specified for each file
+- the end time shall not be before the start time
+- the start time and end time are mandatory for the toplevel file
+- the start time is mandatory for files with absolute time specifications
+  that are included at specific times (see below)
+- lower level start and end times need to be inside the toplevel
+  time window, if not a error message will be reported
+- the ESOC FD time window is optional and defaults to the PTR time
+  window; it is used to limit the time span of the PTR output file,
+  when being written in the strict ESOC FD output format
+- the ESOC FD time window shall not exceed the PTR time window
+- the ESOC FD start and end times may be defined as relative or absolute
+  time values, or as counted events with an optional delta time
+- the cooling period end time is optional and may be defined as relative
+  or absolute time value; no specific consistency checking is done here
+- the initial experiment mode is optional
+- any number of initial experiment modes may be specified
+- only one initial mode may be defined for an experiment
+- the experiment mode is referenced by [experiment] [mode]
+- the initial module state is optional
+- any number of initial module states may be specified
+- only one initial state may be defined for a module
+- the MS is referenced by [experiment] [module] [MS]
+- the initial memory state is optional
+- any number of initial memory states may be specified
+- only one initial state may be defined for an experiment
+- the memory is referenced by [experiment]
+- for an experiment, both local memory and accumulated data can be set
+- the accumulated data value is optional and defaults to zero
+- memory of experiments with data stores can not be initialised
+- the initial data store state is optional
+- any number of initial data store states may be specified
+- only one initial state may be defined for a data store
+- the data store is referenced by [mass memory] [experiment]
+- for a data store, both local memory and accumulated data can be set
+- the accumulated data value is optional and defaults to zero
+- the specific handling of the NR_OF_MTL_COMMANDS parameter in a PTR file
+  can be defined here, which should be one of the following types:
+     MANDATORY   the number of MTL commands is mandatory on each PTR request
+                 and will be added to the actual number of MTL commands
+     OPTIONAL    the number of MTL commands is optional, the number will
+                 be added to the actual number of MTL commands when found
+     IGNORE      any number of MTL commands on a PTR request will be ignored
+     NEVER       the number of MTL commands on a PTR request is not allowed
+- when not defined here, the PTR MTL commands type is taken from the CFG
+  file (where it has the default value OPTIONAL)
+- initialisation keywords may not appear after the first timeline entry
+
+Request timing
+==============
+- time entries may be defined either using a single execution time or
+  an execution time and a time window with earliest and latest start
+  time, this time window is given relative w.r.t. the execution time
+- the earliest start time must be a negative time value, the latest
+  start time must be a positive time value
+- the execution time may be specified using an absolute date value
+  or a relative time value w.r.t. to the given reference date
+- within a single file the execution time entries must be consecutive
+- the execution time must be within the timeline start and end times
+- For SPECIFIC events only, it is allowed that the execution time is 
+  outside of the timeline start and end times.
+- event entries may be defined either using a single event, an optional
+  delta time and an optional delta time window
+- the delta time window with earliest and latest delta time is only
+  allowed when the delta time is given, and is defined relative w.r.t.
+  this delta time
+- the earliest delta time must be a negative time value, the latest
+  delta time must be a positive time value
+- event entries may be located anywhere in the timeline, although it
+  is recommended to define the events before the time entries
+- the location of the event entries does not have any impact on the
+  event execution time
+- an event may specify a time reference as described in the CRID,
+  the event parameter TIME_REF defaults to UTC
+- an event may be defined for a specific experiment and item, e.g. the
+  event SUN_IN_FOV may be defined for EXP = OSIRIS and ITEM = WAC
+- events with no specific time definition or event count are global
+  events, these events are executed every time they are encountered
+- events with the COUNT parameter defined are executed only once
+  when found in the event file as defined by the ESOC FD team
+- events with the EARLIEST and/or LATEST time parameters defined
+  will be executed when encountered within the given time window
+- the EARLIEST time defaults to the event start time value, the LATEST
+  time defaults to the event end time value
+- it is possible here to limit the number of event executions using
+  the parameter MAX_NR, the parameter MIN_NR can be used to verify
+  that the event was found at least the given number of times in the
+  specified time window
+- by default, GENERIC and SPECIFIC events will not be checked for the
+  number of instances found, for SPECIFIC events the MIN_NR and MAX_NR
+  parameters can be defined, COUNTED events always expect exactly one
+  event value during event time resolution
+- it is possible to keep an event to its original definition when
+  resolving events to a single external event, by setting the RESOLVE
+  parameter to ORIGINAL, instead of using its implicit default EXTERNAL
+- the RESOLVE ORIGINAL option is only allowed on counted events
+
+Request specification
+=====================
+- for each action call the experiment must be defined
+- for each action call the mode must be defined, if the action may
+  be executed from any mode, a '*' may be specified for the mode
+- if no action is given, then the request is a direct mode transition,
+  in this case the mode must be defined explicitly
+- an action may have an optional parameter list with any number of
+  parameters, a parameter may have an optional value and for a value
+  an optional unit and/or RAW|ENG qualifier may be specified
+- two special parameters REPEAT and SEPARATION may be defined for an
+  action to specify an action has to be executed repeatedly
+- both parameters are optional but whenever used then both shall be given
+- REPEAT must be an integer value greater than one
+- SEPARATION must be a positive relative time value
+- optional power and data rate profiles may be defined on actions
+- profiles may have any number of (time,value) pairs
+- time is defined relative w.r.t. the start of the action
+- the time value shall be non-negative and shall be increasing
+- the default unit for power values is Watts
+- the default unit for data rate values is bits/sec
+- timeline profile values will override sequence profile values
+- timeline profile values will always be written to the output ITL/POR
+- profile values will be used when determining the experiment resources
+- profiles may extend beyond the action duration; when a profile is used
+  during timeline execution, it will remain active until the next action
+  from the timeline is executed
+- optional module specific power and data rate profiles may be defined,
+  the format is comparable as for power and data rate profiles
+- the module shall be a valid module for the current experiment
+- only one power and one data rate profile may be defined per module
+- module profiles (partial profiles) used during the generation of
+  experiment profiles may be automatically removed from the timeline
+- module profiles will remain valid until explicitly being RESET,
+  or when a new profile is encountered for the module
+- when a module profile is being RESET, then no additional profile
+  values can be defined for the module
+- optional PID data rate profiles can be defined
+- PID profiles will remain valid until explicitly being RESET,
+  or when a new profile is encountered for the given PID number
+- when a PID profile is being RESET, then no additional profile
+  values can be defined for the PID number
+- any number of observation IDs may be given on an action call
+- an observation ID shall be a valid identifier
+- observation IDs defined in the ITL will override any EDF values
+- for a pointing request the experiment has to be defined, or SOC
+  has to be used for pointing request with no specific source
+- the label PTR has to be placed in the mode column, if the pointing
+  request is embedded in an ITL file
+- in a PTR file the above label is optional and may be omitted
+- a pointing request consists of a pointing label and a number
+  of parameters, these are described in the PTR SSD document
+
+Include files
+=============
+- two types of include files are allowed, global and time specific
+- global include files are defined using the Include_file keyword
+  in the ITL header, but shall be defined after the Ref_date,
+  Start_time and End_time keywords
+- an optional delta time may be given here
+- both POR and ITL files may be included here
+- both relative and absolute time values in ITL time entries and absolute
+  time values in POR requests are incremented with the given delta time
+- events are not modified except for time specific events, where the
+  EARLIEST and LATEST time values will be incremented
+- time specific include files are defined by the INCLUDE label in the
+  experiment column after the request timing, followed by the filename
+- relative time values in ITL time entries are incremented with
+  the current time definition, if included from a time entry
+- absolute time values in ITL or POR time entries are made relative
+  first using the file start time before being incremented with the
+  current time definition
+- files with ITL absolute time values must have the start time
+  defined in the included file
+- events are not modified except for time specific events, where the
+  EARLIEST and LATEST time values will be incremented
+- modified EARLIEST and LATEST time values must be within the given
+  timeline start and end times (with the optional delta time added)
+- GENERIC events in included files are transformed into SPECIFIC
+  events with EARLIEST and LATEST time values set to the include
+  file time window (with the optional delta time substracted)
+- events may not be included from an event based request timing
+- all time entries must be located within the given timeline start and
+  end times, all referenced events must follow the same rule, finally
+  all execution times of entries based on events must do the same
+- an optional experiment may be specified on an include file, for all
+  included actions it will be checked if the action is defined for the
+  experiment as given by the include statement
+- both POR and ITL files may include PTR files
+- PTR files may not include POR or ITL files
+
+File types
+==========
+- ITL files should have the *.itl extension or shall start with ITL_
+- POR files should have the *.por extension or shall start with POR_
+- PTR files should have the *.ptr extension or shall start with PTR_
+- if no file type is recognised, the file type shall default to ITL
+
+Information message
+===================
+- persistent info messages can be defined using the keywords Comment,
+  Operator_request and Description
+- the info messages will be attached to the timeline entry that comes
+  next after the given messages, the order will be maintained during
+  sorting of the timeline entries
+- no info messages are allowed in the ITL file header
+- no info messages are allowed after the last timeline entry
+- info messages may have an option step number
+- a step number shall be defined in the format a.b.c... where a,b,c...
+  are integers counting from 1
+- if a step number starts with a '.', it is considered to be a relative
+  step number and is being prefixed with the higher level step number
+- the source file info message may appear anywhere in the timeline,
+  no step number can be assigned here
+- a timed (or event based) comment can be inserted using the COMMENT
+  directive; this is only allowed in the ITL format
+- the comment has one mandatory text string parameter and allows for
+  any number of additional text string parameters
+
+POR specifics
+=============
+- the POR format is defined in the CRID (issue B1)
+- files may be included from a POR file using the CE INCLUDE [<experiment>]
+  <filename> [<delta time>] statement, note that the CE INCLUDE label must
+  be positioned at the beginning of a line and then the experiment, filename
+  (embedded between double quotes) and delta time (given as a POR relative
+  time value), note that experiment and delta time are optional and behave
+  similar to the definitions made for the ITL format
+- persistent info messages can be defined using the CE <information type:>
+  <message string> statement, note that the CE label must be positioned at
+  the beginning of a line, followed by the info type and then the comment
+  text (embedded between double quotes), using the same definitions as made
+  for the ITL messages

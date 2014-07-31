@@ -1,0 +1,388 @@
+#
+# Filename: experiment.template
+#
+# Authors:  Peter van der Plas & Raymond Hoofs
+# Date:     5 October 1999
+#
+# (c) ESA/Estec
+#
+# $Id: experiment.template,v 3.12 2012/11/28 13:17:00 pvanderplas Exp $
+#
+# $Log: experiment.template,v $
+# Revision 3.12  2012/11/28 13:17:00  pvanderplas
+# Update EPS version and templates for v2.5.7 beta-3 release.
+#
+# Revision 3.11  2010/10/23 11:29:26  pvanderplas
+# Issue #0001682: Update the EPS templates for the upcoming release v2.5.4.
+#
+# Revision 3.10  2010/01/13 15:13:57  pvanderplas
+# Issue #0001201: Update the EPS templates for the upcoming release v2.5.1.
+#
+# Revision 3.9  2009/07/25 16:41:34  pvdplas
+# SPR-0499: Update versions and templates for the new EPS v2.4.8 release.
+#
+# Revision 3.8  2009/03/16 19:36:13  pvdplas
+# SPR-0480: Update versions and templates for the new EPS v2.4.4 release.
+#
+# Revision 3.7  2009/02/25 12:17:58  pvdplas
+# SPR-0474: Update versions and templates for the new EPS v2.4.3 release.
+#
+# Revision 3.6  2008/07/08 15:30:19  pvdplas
+# SPR-0427: Update versions and templates for the new EPS v2.3.4 release.
+#
+# Revision 3.5  2007/07/19 10:18:29  pvdplas
+# SPR-0387: Update versions and templates for the new EPS v2.3.1 release.
+#
+# Revision 3.4  2007/07/09 16:04:58  pvdplas
+# SPR-0362: Update versions and templates for the new EPS v2.3 release.
+#
+# Revision 3.3  2007/01/30 22:21:55  peter
+# SPR-0334: Update versions and templates for the new EPS v2.2.5 release.
+#
+# Revision 3.2  2006/10/07 19:18:07  peter
+# SPR-0321: Update versions and templates for the new EPS v2.2.1 release.
+#
+# Revision 3.1  2006/04/19 16:19:11  peter
+# SPR-0289: Update versions and templates for the new EPS v2.1 release.
+#
+# Revision 3.0  2006/02/22 18:33:12  peter
+# Updated to revision 3.0 for EPS major release 2.0.
+#
+# Revision 2.10  2006/02/22 17:59:32  peter
+# SPR-0271: Update versions and templates for the EPS v2.0 major release.
+#
+# Revision 2.9  2005/08/15 06:13:40  peter
+# SPR-0227: Update templates and versions for EPS v1.9 release.
+#
+# Revision 2.8  2005/03/22 16:45:57  peter
+# SPR-0197: Update templates and versions for EPS v1.8 release.
+#
+# Revision 2.7  2004/11/15 11:20:52  peter
+# SPR-0174: Update templates and versions for EPS v1.7 release.
+#
+# Revision 2.6  2004/07/13 15:15:37  rosetta
+# SPR-0155: Update templates and versions for EPS v1.6 release.
+#
+# Revision 2.5  2004/04/08 15:17:08  rosetta
+# SPR-0127: Update templates and versions for EPS v1.5 release.
+#
+# Revision 2.4  2003/08/31 15:56:13  peter
+# SPR-0107: Update templates and versions for EPS v1.4 release.
+#
+# Revision 2.3  2003/04/03 13:45:38  rosetta
+# SPR-0088: Version updates for EPS v1.3 release needed.
+#
+# Revision 2.2  2002/12/10 14:18:44  rosetta
+# SPR-0069: Make necessary updates to support the release of EPS v1.2.
+#
+# Revision 2.1  2002/08/27 13:55:31  rosetta
+# SPR-0045: Templates need updating for EPS v1.1.
+#
+# Revision 2.0  2002/05/08 16:19:37  rosetta
+# This is the first official template version for EPS v1.0
+#
+#
+--- template definition...
+#
+# <MDB version may appear anywhere...>
+#
+MDB_version: <ID> [<comment>]
+#
+# <Data buses start here...>
+#
+Nr_of_data_buses: <b>
+#
+# <Data bus definition starts here...>
+#
+Data_bus: <label> [<description>]
+Data_bus_rate_warning: <data rate [[bits/sec]]>
+Data_bus_rate_limit: <data rate [[bits/sec]]>
+#
+... (b data buses)
+#
+# <Experiments start here...>
+#
+Nr_of_experiments: <i>
+#
+Include_file: <filename1>
+Include_file: <filename2>
+...
+--- each experiment in one file...
+#
+# <Experiment definition starts here...>
+#
+Experiment: <label> [<description>]
+#
+# <Global properties start here...>
+#
+Local_memory: <value> [<unit> (Mbytes)]
+Dataflow: <TO|FROM|TO_DS|FROM_DS|FROM_FTS> \
+          <experiment> [<data store>] [<data bus>]
+Dataflow_PID: <PID number>
+Dataflow_aux_PID: <PID number>
+Data_volume_data_rate: <value> [<unit> (bits/sec)]
+HK_data_volume: <data volume [[Mbytes]]> <start event>
+TM_frame_overhead: <data rate [[bits/sec]]>
+Power_profile_check: <MANDATORY|OPTIONAL|NEVER>
+Data_rate_profile_check: <MANDATORY|OPTIONAL|NEVER>
+Exclusive_subsystems: <subsystem #1> [<subsystem #2> ...]
+Global_actions: <action #1> <action #2> ...
+Global_constraints: <constraint #1> <constraint #2> ...
+#
+# <Data stores start here...>
+#
+Nr_of_data_stores: <d>
+#
+   Data_store: <label [[<experiment>|SHARED|HK]]> [SELECTIVE] \
+               <memory size [[Mbytes]]> <packet size [[bytes]]> \
+               [<priority>] [<identifier>]
+   #
+   ... (d data stores)
+#
+# <PID definitions start here...>
+#
+Nr_of_PIDs: <p>
+#
+   PID: <PID number> <DISABLE|ENABLE> <data store ID>
+   #
+   ... (p PID definitions)
+#
+# <FTS definitions start here...>
+#
+Nr_of_FTSs: <f>
+#
+   FTS: <data store ID> <DISABLE|ENABLE> <data volume [[Mbytes]]>
+   #
+   ... (f FTS definitions)
+#
+# <Field of views start here...>
+#
+Nr_of_FOVs: <j>
+#
+   FOV: <label> [<description>]
+   FOV_lookat: <X> <Y> <Z>
+   FOV_upvector: <X> <Y> <Z>
+   FOV_type: <WIDTH_ONLY|RECTANGULAR|SQUARE|CIRCULAR|DYNAMIC>
+   FOV_algorithm: <algorithm ID> [<argument #1>] [<argument #2>]
+   FOV_geometric_angles: [<width>] [<height>] [<diameter>] [<unit> (degrees)]
+   FOV_geometric_pixels: <width> [<height>]
+   FOV_sub_view: <left> <right> [<bottom> <top>]
+   FOV_straylight_angles: [<width>] [<height>] [<diameter>] [<unit> (degrees)]
+   FOV_straylight_duration: <duration> [<unit> (seconds)]
+   FOV_active: <MODE|MS> <label> [<label>] ...
+   FOV_image_timing: <DURATION|BEGIN|END>
+   FOV_imaging: <MS|ACTION> <label> [<label>] ...
+   FOV_pitch: [SP|MS] [<value [<unit> (degrees)]>] [<label>]
+   FOV_yaw: [SP|MS] [<value [<unit> (degrees)]>] [<label>]
+   #
+   ... (j FOVs)
+#
+# <Areas start here...>
+#
+Nr_of_areas: <k>
+#
+   Area: <label> [<description>]
+   Area_orientation: <X> <Y> <Z>
+   Area_lighting_angle: <halfcone angle> [<unit> (degrees)]
+   Area_lighting_duration: <duration> [<unit> (seconds)]
+   #
+   ... (k areas)
+#
+# <Modules start here...>
+#
+Nr_of_modules: <m>
+#
+   Module: <label> [<description>]
+   Module_level: <LEVEL1|LEVEL2|LEVEL3>
+   Module_dataflow: <TO|FROM|TO_DS|FROM_DS|FROM_FTS> \
+                    <experiment> [<data store>] [<data bus>]
+   Module_PID: <PID number>
+   Module_aux_PID: <PID number>
+   Sub_modules: <module #1> <module #2> ...
+   Nr_of_module_states: <n>
+      Module_state: <label> [<description>]
+      MS_PID: <PID number>
+      MS_aux_PID: <PID number>
+      MS_power: <average> [<peak> [<low>]] [<unit> (Watts)]
+      MS_power_parameter: <state param>
+      MS_data_rate: <average> [<peak> [<low>]] [<unit> (bits/sec)]
+      MS_data_rate_parameter: <state param>
+      MS_aux_data_rate: <value> [<unit> (bits/sec)]
+      MS_constraints: <constraint #1> <constraint #2> ...
+      Repeat_action: <action [(parameter list)]>
+      MS_pitch: <value [<unit> (degrees)]>
+      MS_yaw: <value [<unit> (degrees)]>
+      #
+      ... (n module states)
+   #
+   ... (m modules)
+#
+# <Modes start here...>
+#
+Nr_of_modes: <p>
+#
+   Mode: <label> [<description>]
+   Mode_class: <OFF|INITIALISE|STANDBY|MEASUREMENT|CALIBRATION|MAINTENANCE>
+   Module_states: [CONDITION] [NOT] <module #1> <module state #1> \
+                  [CONDITION] [NOT] <module #2> <module state #2> ...
+   Internal_clock: <OFF|RESET|ON>
+   PID_enable_flags: <PID number #1> <DISABLE|ENABLE> \
+                     <PID number #2> <DISABLE|ENABLE> ...
+   Nominal_power: <value> [<unit> (Watts)]
+   Power_parameter: <state param>
+   Nominal_data_rate: <value> [<unit> (bits/sec)]
+   Data_rate_parameter: <state param>
+   Mode_aux_data_rate: <value> [<unit> (bits/sec)]
+   Equivalent_power: <average> [<peak> [<low>]] [<unit> (Watts)]
+   Equivalent_data_rate: <average> [<peak> [<low>]] [<unit> (bits/sec)]
+   Mode_transitions: <action #1> <action #2> ...
+   Mode_actions: <action #1> <action #2> ...
+   Mode_constraints: <constraint #1> <constraint #2> ...
+   #
+   ... (p modes)
+#
+# <Parameters start here...>
+#
+Nr_of_parameters: <q>
+#
+   Parameter: <label> [<description>]
+   Parameter_alias: <alias name>
+   State_parameter: <YES|NO>
+   Parameter_action: <action name>
+   Raw_type: <BOOL|ENUM|UINT|INT|REAL|STRING|DATE|TIME>
+   Eng_type: <UINT|INT|REAL|TEXT>
+   Default_value: <value> [[<unit>|RAW|ENG] [FIXED]]
+   Unit: <unit>
+   Raw_limits: <min> <max>
+   Eng_limits: <min> <max> [<unit>]
+   Resource: <DURATION|MIN_DURATION|COMPRESSION| \
+              REPEAT|SEPARATION|DATA_STORE|PRIORITY| \
+              (AVG_|PEAK_|LOW_|ALL_)POWER_INCREASE| \
+              (AVG_|PEAK_|LOW_|ALL_)DATA_RATE_INCREASE| \
+              (AVG_|PEAK_|LOW_|ALL_)DATA_VOLUME \
+              PID_NUMBER|PID_MODULE|PID_ACTION| \
+              PID_DEF|PID_ENABLE_FLAG|PID_DATA_STORE| \
+              FTS_DATA_STORE|FTS_INDEX|FTS_UPDATE_FLAG| \
+              FTS_ENABLE_FLAG|FTS_DATA_VOLUME| \
+              SOURCE_STORE|TARGET_STORE|START_TIME| \
+              END_TIME|DELTA_TIME|TRANSFER_VOLUME>
+   Value_alias: <raw value> <alias label> ...
+   Nr_of_parameter_values: <r>
+      Parameter_value: [<value>] [<label>]
+      Parameter_uas: <MODE|MS|MSP|MP|SP|PID> \
+                        <label> [= <value> [<unit>|RAW|ENG]] [<label>]
+      Parameter_uwr: <MODE|MS|MSP|MP|SP|PID> \
+                        <label> [= <value> [<unit>|RAW|ENG]] [<label>]
+      Parameter_run: <action [(parameter list)]>
+      #
+      ... (r parameter values)
+   #
+   ... (q parameters)
+#
+# <Actions start here...>
+#
+Nr_of_actions: <s>
+#
+   Action: <label> [<description>]
+   Action_alias: <alias name>
+   Action_level: <LEVEL1|LEVEL2|LEVEL3>
+   Action_type: <BLOCK|SEQUENCE|COMMAND|OBCP|INTERNAL|BACKGROUND|MODELLING>
+   Action_subsystem: <subsystem label>
+   Action_parameters: <parameter #1> \
+                         [= <value #1> [[<unit>|RAW|ENG] [FIXED]]] \
+                      <parameter #2> \
+                         [= <value #2> [[<unit>|RAW|ENG] [FIXED]]] ...
+   Internal_variables: <var #1> [= <value>] \
+                       <var #2> [= <value>] ...
+   Computed_parameters: <parameter #1> <ADD|SUB|MUL|DIV|POW> \
+                           <parameter #2> <parameter #3> ...
+   Duration: <action duration> [<unit> (seconds)]
+   Minimum_duration: <action duration> [<unit> (seconds)]
+   Compression: <factor>
+   Separation: <separation time> [<unit> (seconds)]
+   Action_dataflow: <TO|FROM|TO_DS|FROM_DS|COMPRESS|RESET| \
+                     COMPRESS_DS|RESET_DS> [<experiment>] \
+                    [<data store>] [<data bus>]
+   Action_PID: <PID number>
+   Power_increase: <average> [<peak> [<low>]] [<unit> (Watts)]
+   Data_rate_increase: <average> [<peak> [<low>]] [<unit> (bits/sec)]
+   Data_volume: <average> [<peak> [<low>]] [<unit> (bytes)]
+   Power_profile:
+      <relative time #1> <power #1 [[Watts]]> \
+      <relative time #2> <power #2 [[Watts]]> \
+      ...                ...
+   Data_rate_profile:
+      <relative time #1> <data rate #1 [[bits/sec]]> \
+      <relative time #2> <data rate #2 [[bits/sec]]> \
+      ...                ...
+   Write_to_Z_record: <TRUE|FALSE>
+   Action_power_check: <MANDATORY|OPTIONAL|NEVER>
+   Action_data_rate_check: <MANDATORY|OPTIONAL|NEVER>
+   Obs_ID: <observation ID #1> ...
+   Update_at_start: [CONDITION [( \
+                        [NOT] <parameter #1> = <value #1> \
+                                 [[RANGE_START|RANGE_END]] \
+                        [NOT] <parameter #2> = <value #2> \
+                                 [[RANGE_START|RANGE_END]] ...)]] \
+      <MODE|MS|MSP|MP|SP|PID> \
+         <label> [= <value> [<unit>|RAW|ENG]] [<label>] ...
+   Update_when_ready: [CONDITION [( \
+                          [NOT] <parameter #1> = <value #1> \
+                                   [[RANGE_START|RANGE_END]] \
+                          [NOT] <parameter #2> = <value #2> \
+                                   [[RANGE_START|RANGE_END]] ...)]] \
+      <MODE|MS|MSP|MP|SP|PID> \
+         <label> [= <value> [<unit>|RAW|ENG]] [<label>] ...
+   Action_constraints: <constraint #1> <constraint #2> ...
+   Run_type: <SEQUENTIAL|PARALLEL|RELATIVE|ABSOLUTE>
+   Run_start_time: <parameter>
+   Run_actions: [<delta time #1>] <action #1 [( \
+                   <parameter #1> [= <value #1> [<unit>|RAW|ENG]] \
+                   <parameter #2> [= <value #2> [<unit>|RAW|ENG]] ... )]> \
+                [<delta time #2>] <action #2 [( \
+                   <parameter #3> [= <value #3> [<unit>|RAW|ENG]] \
+                   <parameter #4> [= <value #4> [<unit>|RAW|ENG]] ... )]> \
+                ...
+   #
+   ... (s actions)
+#
+# <Constraints start here...>
+#
+Nr_of_constraints: <t>
+#
+   Constraint: <label> [<description>]
+   Constraint_type: <TIME|GEOMETRIC|PARAMETRIC|CAPACITY>
+   Severity: <FATAL|ERROR|WARNING|INFO>
+   Constraint_group: <constraint group label>
+   Condition: <EVENT|EVENT_DT|MOMENTARY|MODE|MS|ACTION|POINTING| \
+               SLEW|SUN_GEO_ALWAYS|SUN_GEO_ACTIVE|SUN_GEO_IMAGING| \
+               SUN_STRAY_ALWAYS|SUN_STRAY_ACTIVE|SUN_STRAY_IMAGING| \
+               SUN_AREA> <IS|NOT|IN|NOT_IN|ON|NOT_ON> \
+              <label #1> [<label #2>] \
+              [<EVENT|EVENT_DT|MOMENTARY|MODE|MS|ACTION|POINTING| \
+                SLEW|SUN_GEO_ALWAYS|SUN_GEO_ACTIVE|SUN_GEO_IMAGING| \
+                SUN_STRAY_ALWAYS|SUN_STRAY_ACTIVE|SUN_STRAY_IMAGING| \
+                SUN_AREA> <IS|NOT|IN|NOT_IN|ON|NOT_ON> \
+               <label #3> [<label #4>] ...
+   Resource_constraint: \
+      <POWER|MEMORY|ACCUMULATED|UPLOAD_DR|DOWNLOAD_DR| \
+       DS_MEMORY|DS_ACCUMULATED> \
+      <EQ|NE|LT|LE|GT|GE> <value> [<unit>]
+   Resource_mass_memory: <mass memory label>
+   Parameter_constraint: <parameter label> \
+      <EQ|NE|LT|LE|GT|GE> <value> [<unit>|RAW|ENG]
+   Condition_experiment: <experiment>
+   Expression: [<IS|NOT>] <constraint #1> <AND|OR> <constraint #2>
+   #
+   ... (t constraints)
+#
+# <File ends here...>
+#
+--- include the next file...
+#
+# <Updating existing section...>
+#
+Link_section: <EXPERIMENT|FOV|AREA|MODE|MODULE|MODULE_STATE|PARAMETER| \
+               PARAM_VALUE|ACTION|CONSTRAINT> <section label> [<action label>]
+#
+... (i experiments)
