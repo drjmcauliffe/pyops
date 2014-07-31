@@ -1,0 +1,177 @@
+#
+# Filename: input.example
+#
+# Author: Peter van der Plas
+# Date:   10 January 2000
+#
+# (c) ESA/Estec
+#
+# Description: This is an example input timeline file.
+#
+# $Id: input.example,v 3.10 2012/11/28 13:18:13 pvanderplas Exp $
+#
+# $Log: input.example,v $
+# Revision 3.10  2012/11/28 13:18:13  pvanderplas
+# Issue #0002262: Update EPS version and templates for v2.5.7 beta-3 release.
+#
+# Revision 3.9  2011/05/20 08:58:54  ttsoris
+# issue #1943: Update ITL templates for the upcoming EPS v2.5.5.
+#
+# Revision 3.8  2010/11/06 13:41:21  pvanderplas
+# Issue #0001682: Update the EPS templates for the upcoming release v2.5.4.
+#
+# Revision 3.7  2010/01/13 15:13:57  pvanderplas
+# Issue #0001201: Update the EPS templates for the upcoming release v2.5.1.
+#
+# Revision 3.6  2008/09/19 09:35:46  pvdplas
+# SPR-0447: Update versions and templates for the new EPS v2.3 release.
+#
+# Revision 3.5  2008/07/08 15:30:19  pvdplas
+# SPR-0427: Update versions and templates for the new EPS v2.3.4 release.
+#
+# Revision 3.4  2007/07/09 14:14:08  pvdplas
+# SPR-0362: Update versions and templates for the new EPS v2.3 release.
+#
+# Revision 3.3  2007/01/30 22:41:58  peter
+# SPR-0334: Update versions and templates for the new EPS v2.2.5 release.
+#
+# Revision 3.2  2006/10/07 19:17:31  peter
+# SPR-0321: Update versions and templates for the new EPS v2.2.1 release.
+#
+# Revision 3.1  2006/04/19 16:20:30  peter
+# SPR-0289: Update versions and templates for the new EPS v2.1 release.
+#
+# Revision 3.0  2006/02/22 18:33:12  peter
+# Updated to revision 3.0 for EPS major release 2.0.
+#
+# Revision 2.6  2005/08/15 06:13:40  peter
+# SPR-0227: Update templates and versions for EPS v1.9 release.
+#
+# Revision 2.5  2005/03/22 16:45:57  peter
+# SPR-0197: Update templates and versions for EPS v1.8 release.
+#
+# Revision 2.4  2004/04/08 15:25:14  rosetta
+# SPR-0127: Update templates and versions for EPS v1.5 release.
+#
+# Revision 2.3  2003/08/31 15:56:13  peter
+# SPR-0107: Update templates and versions for EPS v1.4 release.
+#
+# Revision 2.2  2002/12/10 14:21:10  rosetta
+# SPR-0069: Make necessary updates to support the release of EPS v1.2.
+#
+# Revision 2.1  2002/08/27 13:56:51  rosetta
+# SPR-0045: Templates need updating for EPS v1.1.
+#
+# Revision 2.0  2002/05/08 16:19:37  rosetta
+# This is the first official template version for EPS v1.0
+#
+#
+Version: 00123
+#
+Custom_file: "custom_file.asc"
+#
+GSEP_file: "ATPV_FDRVMA_DAP0N1H2_070501_12345.VEX"
+GSEP_file: "ATPV_FDRVMA_DAP1N1H1_070501_12345.VEX"
+#
+Ref_date: 21-February-2011
+#
+Start_time: 11:30:00
+End_time: 14:00:00
+#
+ESOC_FD_start_time: VPER_0123 -06:00:00
+ESOC_FD_end_time: 21-February-2011_13:00:00
+#
+Cooling_end_time: 21-February-2011_12:15:30
+#
+Init_mode: MIDAS STANDBY
+Init_mode: OSIRIS INIT
+#
+Init_MS: MIDAS FILTER MODE_C
+Init_MS: OSIRIS AFM ON
+#
+Init_memory: MIDAS  8.0 [Mbytes]
+Init_memory: OSIRIS 0.0 4.0
+#
+Init_data_store: SSMM MIDAS  4.0 128.0
+Init_data_store: SSMM OSIRIS 0.0 8.0
+#
+PTR_MTL_commands: MANDATORY
+#
+Include_file: "generic.por"
+Include_file: MIDAS "midas.por" +02:30:00
+#
+SUN_IN_FOV (EXP = OSIRIS ITEM = WAC) \
+                 OSIRIS    *             TO_SAFE_MODE
+000_12:00:00     MIDAS     STANDBY       STANBY_TO_MEASUREMENT
+000_12:00:00     OSIRIS    INIT          INIT_TO_STANDBY
+000_12:00:00     OSIRIS    PTR           NADIR_START
+#
+Comment: 1.1 "Switch OSIRIS to measurement mode"
+#
+000_12:05:00     OSIRIS    STANDBY       STANBY_TO_MEASUREMENT
+000_12:10:00     MIDAS     MEASUREMENT   MAKE_IMAGE (
+                                            IMAGE_TIME = 30.0 [seconds])
+000_12:15:00     INCLUDE   "generic_sequence.itl"
+000_12:35:50 -01:00:00 +01:30:00 \
+                 MIDAS     MEASUREMENT   MAKE_IMAGE ( \
+                                            IMAGE_TIME = 60.0 [seconds])
+000_12:40:00     COMMENT   "This is a time based comment" \
+                           "... with some optional text" \
+                           "and some more text"
+000_12:45:20     MIDAS     MEASUREMENT   MAKE_IMAGE ( \
+                                            IMAGE_TIME = 60.0 [seconds] \
+                                            REPEAT = 3 \
+                                            SEPARATION = 00:02:00)
+ALT_BELOW_500M (COUNT = 712 RESOLVE = ORIGINAL) \
+                 OSIRIS    MEASUREMENT   START_TESTS
+000_13:02:45     MIDAS     MEASUREMENT   MEASUREMENT_TO_STANDBY
+000_13:08:00     MIDAS     STANDBY       MOVE_ARM ( \
+                                            ROLL = 15.2 [degrees] \
+                                            YAW = 8.8 [degrees] \
+                                            ARM_MODE = "MODE A")
+#
+Description: 1.2 "Include an image sequence at perigee"
+Description:     "A time window is specified for this operation"
+#
+AT_PERIGEE (EARLIEST = 000_12:45:00 LATEST = 000_13:14:00) \
+   -00:01:00 -00:02:00 +00:02:00 \
+                 OSIRIS    INCLUDE       "image_sequence.itl"
+000_13:13:00     MIDAS     STANDBY       MOVE_ARM (
+                                            ROLL = 12.0 [degrees] \
+                                            YAW = 33.0 [degrees] \
+                                            ARM_MODE = "MODE B" \
+                                            POWER_PROFILE = \
+                                               00:00:00   1.234 [Watts] \
+                                               00:01:00   2.345 [Watts] \
+                                               00:02:00   3.456 [Watts] \
+                                            DATA_RATE_PROFILE = \
+                                               00:00:40   10000 [bits/sec] \
+                                               00:01:30   12000 [bits/sec] \
+                                               00:02:10   14000 [bits/sec] \
+                                            MODULE_POWER = WAC RESET \
+                                            PID_DATA_RATE = 22 \
+                                               00:00:30   20000 [bits/sec] \
+                                               00:01:30       0 [bits/sec] \
+                                            PID_DATA_RATE = 11 RESET \
+                                            OBS_ID = \
+                                               SCIENCE_12345 \
+                                               SCIENCE_98765)
+#
+# This comment will get lost after processing
+#
+ALT_ABOVE_500M (COUNT = 713) \
+                 OSIRIS    MEASUREMENT   STOP_TESTS
+000_13:14:00     OSIRIS    MEASUREMENT   MEASUREMENT_TO_STANDBY
+000_13:14:00     OSIRIS    PTR           NADIR_END
+000_13:15:00     OSIRIS    STANDBY       UPLOAD_DATA ( \
+                                            RAW_DATA = \
+                                               "0123 4567 89AB CDEF" \
+                                               "0123 4567 89AB CDEF" \
+                                               "0123 4567 89AB CDEF" \
+                                               "0123 4567 89AB CDEF" \
+                                            MODULE_POWER = WAC \
+                                               00:00:00   1.234 [Watts] \
+                                            MODULE_DATA_RATE = NAC \
+                                               00:00:40   10000 [bits/sec] \
+                                               00:01:30   12000 [bits/sec])
+#

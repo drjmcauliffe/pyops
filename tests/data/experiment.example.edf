@@ -1,0 +1,497 @@
+#
+# Filename: experiment.example
+#
+# Author: Peter van der Plas
+# Date:   5 October 1999
+#
+# (c) ESA/Estec
+#
+# Description: This is an example experiment description file for MIDAS.
+#
+# $Id: experiment.example,v 3.12 2012/11/28 13:17:00 pvanderplas Exp $
+#
+# $Log: experiment.example,v $
+# Revision 3.12  2012/11/28 13:17:00  pvanderplas
+# Update EPS version and templates for v2.5.7 beta-3 release.
+#
+# Revision 3.11  2010/10/23 11:29:26  pvanderplas
+# Issue #0001682: Update the EPS templates for the upcoming release v2.5.4.
+#
+# Revision 3.10  2010/01/13 15:13:57  pvanderplas
+# Issue #0001201: Update the EPS templates for the upcoming release v2.5.1.
+#
+# Revision 3.9  2009/07/25 16:41:34  pvdplas
+# SPR-0499: Update versions and templates for the new EPS v2.4.8 release.
+#
+# Revision 3.8  2009/03/16 19:36:13  pvdplas
+# SPR-0480: Update versions and templates for the new EPS v2.4.4 release.
+#
+# Revision 3.7  2009/02/25 12:17:58  pvdplas
+# SPR-0474: Update versions and templates for the new EPS v2.4.3 release.
+#
+# Revision 3.6  2008/07/08 15:30:19  pvdplas
+# SPR-0427: Update versions and templates for the new EPS v2.3.4 release.
+#
+# Revision 3.5  2007/07/19 10:18:29  pvdplas
+# SPR-0387: Update versions and templates for the new EPS v2.3.1 release.
+#
+# Revision 3.4  2007/07/09 16:04:58  pvdplas
+# SPR-0362: Update versions and templates for the new EPS v2.3 release.
+#
+# Revision 3.3  2007/01/30 22:21:55  peter
+# SPR-0334: Update versions and templates for the new EPS v2.2.5 release.
+#
+# Revision 3.2  2006/10/07 19:18:07  peter
+# SPR-0321: Update versions and templates for the new EPS v2.2.1 release.
+#
+# Revision 3.1  2006/04/19 16:19:11  peter
+# SPR-0289: Update versions and templates for the new EPS v2.1 release.
+#
+# Revision 3.0  2006/02/22 18:33:12  peter
+# Updated to revision 3.0 for EPS major release 2.0.
+#
+# Revision 2.10  2006/02/22 17:59:32  peter
+# SPR-0271: Update versions and templates for the EPS v2.0 major release.
+#
+# Revision 2.9  2005/08/15 06:13:40  peter
+# SPR-0227: Update templates and versions for EPS v1.9 release.
+#
+# Revision 2.8  2005/03/22 16:45:57  peter
+# SPR-0197: Update templates and versions for EPS v1.8 release.
+#
+# Revision 2.7  2004/11/15 11:20:52  peter
+# SPR-0174: Update templates and versions for EPS v1.7 release.
+#
+# Revision 2.6  2004/07/13 15:15:37  rosetta
+# SPR-0155: Update templates and versions for EPS v1.6 release.
+#
+# Revision 2.5  2004/04/08 15:17:07  rosetta
+# SPR-0127: Update templates and versions for EPS v1.5 release.
+#
+# Revision 2.4  2003/08/31 15:56:13  peter
+# SPR-0107: Update templates and versions for EPS v1.4 release.
+#
+# Revision 2.3  2003/04/03 13:45:38  rosetta
+# SPR-0088: Version updates for EPS v1.3 release needed.
+#
+# Revision 2.2  2002/12/10 14:18:42  rosetta
+# SPR-0069: Make necessary updates to support the release of EPS v1.2.
+#
+# Revision 2.1  2002/08/27 13:55:31  rosetta
+# SPR-0045: Templates need updating for EPS v1.1.
+#
+# Revision 2.0  2002/05/08 16:19:36  rosetta
+# This is the first official template version for EPS v1.0
+#
+#
+MDB_version: 01012010 "MDB version 12345"
+#
+Data_bus: OBDH "The OBDH data bus"
+Data_bus_rate_warning: 0.9876 [Kbits/sec]
+Data_bus_rate_limit: 1.2345 [Kbits/sec]
+#
+Data_bus: HIGH_SPEED "The high-speed data bus"
+Data_bus_rate_limit: 1.2345 [Mbits/sec]
+#
+Experiment: MIDAS "The MIDAS experiment"
+#
+Local_memory: 32 [Mb]
+Dataflow: TO SSMM OBDH
+Dataflow_PID: 11
+Dataflow_aux_PID: 33
+Data_volume_data_rate: 55.0 [kbits/sec]
+HK_data_volume: 128.0 [Mbytes] GS_CEB_AOS_10
+TM_frame_overhead: 256.0 [bits/sec]
+Power_profile_check: MANDATORY
+Data_rate_profile_check: NEVER
+Exclusive_subsystems: MIDAS SEPARATE_SS
+Global_actions: ARM_FOLD ARM_UNF
+Global_constraints: SUN_BLINDING
+#
+Nr_of_PIDs: 3
+#
+PID: 11 ENABLE  123
+PID: 22 ENABLE  456
+PID: 33 DISABLE 789
+#
+Nr_of_FOVs: 1
+#
+   FOV: CAMERA_FOV "The hi-resolution camera pointing to +Z"
+   FOV_lookat: 0.0 0.0 1.0
+   FOV_upvector: 1.0 0.0 0.0
+   FOV_type: RECTANGULAR
+   FOV_geometric_angles: 30.0 15.0 [degrees]
+   FOV_geometric_pixels: 2048 1024
+   FOV_sub_view: 10.0 12.5 [degrees] FOV_BOTTOM FOV_TOP
+   FOV_straylight_angles: 45.0 25.0 [degrees]
+   FOV_straylight_duration: 30.0 [seconds]
+   FOV_active: MODE SCAN
+   FOV_image_timing: BEGIN
+   FOV_imaging: ACTION IMAGE
+   FOV_pitch: 5.0 [degrees]
+   FOV_yaw: MS AFM
+#
+Nr_of_areas: 1
+#
+   Area: MIDAS_BOX "MIDAS located on -X panel"
+   Area_orientation: -1.0 0.0 0.0
+   Area_lighting_angle: 60.0 [degs]
+   Area_lighting_duration: 300.0 [seconds]
+#
+Nr_of_modules: 6
+#
+   Module: RS "Robotic System"
+   Module_level: LEVEL1
+   Module_dataflow: TO_DS SSMM TM
+   Module_PID: 22
+   Module_aux_PID: 11
+   Nr_of_module_states: 2
+      Module_state: FOLD "Robot arm folded"
+      MS_PID: 33
+      MS_aux_PID: 22
+      MS_constraints: NOT_SCANNING
+      Module_state: UNFOLD "Robot arm unfolded"
+      MS_power: 0.3 0.7 0.2 [Watts]
+      MS_data_rate_parameter: DATA_RATE
+      MS_aux_data_rate: 1.0 [Kbits/sec]
+#
+   Module: AFM "AFM System"
+   Module_level: LEVEL1
+   Nr_of_module_states: 2
+      Module_state: OFF "Off"
+      MS_yaw: 0.0 [degrees]
+      Module_state: SCAN "Scan mode"
+      MS_yaw: -3.0 [degrees]
+#
+   Module: DPU "Data Processing Unit"
+   Module_level: LEVEL1
+   Sub_modules: MEMORY_UNIT CPU_UNIT IO_UNIT
+   Nr_of_module_states: 2
+      Module_state: OFF "Off"
+      Module_state: P "Processing"
+#
+   Module: MEMORY_UNIT "Memory board"
+   Module_level: LEVEL2
+#
+   Module: CPU_UNIT "CPU board"
+   Module_level: LEVEL2
+#
+   Module: IO_UNIT "Interface board"
+   Module_level: LEVEL2
+#
+Nr_of_modes: 2
+#
+   Mode: STANDBY "Standby mode"
+   Mode_class: STANDBY
+   Module_states: CONDITION NOT AFM OFF DPU OFF \
+                  CONDITION AFM SCAN DPU P \
+   Internal_clock: RESET
+   Nominal_power: 2.3
+   Data_rate_parameter: DATA_RATE
+   Mode_transitions: TO_SCAN
+#
+   Mode: SCAN "Scanning mode"
+   Mode_class: MEASUREMENT
+   Module_states: CONDITION AFM SCAN DPU OFF DPU P
+   Internal_clock: ON
+   PID_enable_flags: 22 DISABLE 33 ENABLE
+   Nominal_power: 2.5 [Watts]
+   Nominal_data_rate: 2500.0 [bits/sec]
+   Mode_aux_data_rate: 1250.0 [bits/sec]
+   Equivalent_power: 3.2 7.4 2.8 [Watts]
+   Equivalent_data_rate: 4000.0 [bits/sec] 5000.0 [bits/sec]
+   Mode_actions: SCAN IMAGE MLT_IMG3
+   Mode_constraints: OSIRIS_CLASH
+#
+Nr_of_parameters: 13
+#
+   Parameter: SET_AFM "Parametrised module state change"
+   Parameter_alias: SET_AFM_LONG_ALIAS_NAME
+   Raw_type: BOOL
+   Eng_type: TEXT
+   Default_value: OFF [ENG]
+   Raw_limits: 0 1
+   Eng_limits: "AFM OFF" "AFM SCAN"
+   Nr_of_parameter_values: 2
+      Parameter_value: 0 "AFM OFF"
+      Parameter_uwr: MSP OFF \
+                     PID 22 DISABLE
+      Parameter_value: 1 "AFM SCAN"
+      Parameter_uas: MSP SCAN \
+                     PID 33 ENABLE
+#
+   Parameter: WAITTIME "Wait duration resource parameter"
+   Eng_type: REAL
+   Default_value: 10.0 [secs]
+   Unit: secs
+   Eng_limits: 5.0 20.0 [secs]
+   Resource: DURATION
+#
+   Parameter: IMG_TIME "Image duration resource parameter"
+   Eng_type: REAL
+   Default_value: 5.0 [seconds]
+   Unit: secs
+   Eng_limits: 1.0 10.0 [seconds]
+   Resource: DURATION
+#
+   Parameter: SCAN_PWR "Power increase during scanning"
+   Eng_type: REAL
+   Default_value: 0.5 [Watts]
+   Unit: W
+   Resource: AVG_POWER_INCREASE
+#
+   Parameter: RUN_IMAGE "Run a specified image sequence"
+   Raw_type: UINT
+   Value_alias: 1 IMG3 \
+                2 IMG_ATL \
+                3 IMG_RTL
+   Nr_of_parameter_values: 3
+      Parameter_value: 1
+      Parameter_uwr: MODE SCAN
+      Parameter_run: MLT_IMG3 (IMG_TIME)
+      Parameter_value: 2
+      Parameter_run: MULTI_IMAGE_ATL (IMG_TIME)
+      Parameter_value: 3
+      Parameter_uas: SP STATE_TIME 4.0 [seconds]
+      Parameter_run: MULTI_IMAGE_RTL (IMG_TIME START_TIME = 05:00:00)
+#
+   Parameter: STATE_TIME "Image duration state parameter"
+   State_parameter: YES
+   Eng_type: REAL
+   Default_value: 6.0 [seconds]
+   Unit: secs
+   Eng_limits: 1.0 10.0 [seconds]
+#
+   Parameter: TIME_FACTOR "Image duration time factor"
+   State_parameter: YES
+   Eng_type: REAL
+   Default_value: 1.5
+#
+   Parameter: START_TIME "Image relative start time"
+   Raw_type: TIME
+#
+   Parameter: RAW_DATA "Raw data defined in octet string"
+   Parameter_action: UPLOAD_RAW_DATA
+   Raw_type: OCTET
+#
+   Parameter: DATA_RATE
+   Eng_type: REAL
+   Default_value: 1000.0
+   Unit: bits/second
+#
+   Parameter: FILTER
+   Raw_type: UINT
+   Default_value: 0
+#
+   Parameter: FOV_BOTTOM "FOV bottom pixel value"
+   State_parameter: YES
+   Raw_type: INT
+   Default_value: 512
+   Unit: pixels
+#
+   Parameter: FOV_TOP "FOV top pixel value"
+   State_parameter: YES
+   Raw_type: INT
+   Default_value: 767
+   Unit: pixels
+#
+Nr_of_actions: 10
+#
+   Action: WAIT "Wait a while"
+   Action_alias: WAIT_A_LITTLE_WHILE
+   Action_level: LEVEL3
+   Action_parameters: WAITTIME
+#
+   Action: ARM_FOLD "Fold the robot arm"
+   Action_level: LEVEL3
+   Duration: 15.0 [seconds]
+   Power_increase: 0.3 [Watts] 0.5 [Watts] 0.2 [Watts]
+   Update_when_ready: MS RS FOLD
+   Action_constraints: CHECK_ARM_UNFOLD
+#
+   Action: ARM_UNF "Unfold the robot arm"
+   Action_level: LEVEL3
+   Action_parameters: SET_AFM_LONG_ALIAS_NAME = "AFM SCAN" [ENG]
+   Duration: 15.0 [seconds]
+   Power_increase: 0.3 0.5 0.2 [Watts]
+   Update_at_start: CONDITION (NOT SET_AFM_LONG_ALIAS_NAME = "AFM SCAN") \
+                       SP STATE_TIME 4.0 [seconds] \
+                    PID 33 ENABLE
+   Update_when_ready: MS RS UNFOLD \
+                      CONDITION (SET_AFM_LONG_ALIAS_NAME = "AFM SCAN") \
+                         MSP AFM SET_AFM_LONG_ALIAS_NAME \
+                      PID 11 DISABLE
+   Action_constraints: CHECK_ARM_FOLD
+#
+   Action: SCAN "Scan an image"
+   Action_level: LEVEL3
+   Action_type: INTERNAL
+   Action_subsystem: SEPARATE_SS
+   Action_parameters: IMG_TIME SCAN_PWR [FIXED]
+   Action_PID: 33
+   Data_rate_increase: 1000.0 [bits/sec]
+#
+   Action: IMAGE "Create an image"
+   Action_level: LEVEL2
+   Action_type: COMMAND
+   Action_parameters: IMG_TIME
+   Action_constraints: SCAN_MODE
+   Run_actions: SCAN (IMG_TIME)
+#
+   Action: MLT_IMG3 "Create 3 images"
+   Action_level: LEVEL1
+   Action_type: SEQUENCE
+   Action_parameters: IMG_TIME WAITTIME
+   Power_profile: \
+      00:00:30   1.23 [Watts] \
+      00:01:00   2.34 [Watts] \
+      00:02:00   3.56 [Watts]
+   Data_rate_profile: \
+      00:00:00   10000 [bits/sec] \
+      00:01:30   12000 [bits/sec] \
+      00:02:20   14000 [bits/sec]
+   Write_to_Z_record: TRUE
+   Action_power_check: NEVER
+   Obs_ID: SCIENCE_12345 SCIENCE_98765
+   Run_type: SEQUENTIAL
+   Run_actions: IMAGE (IMG_TIME) \
+                WAIT_A_LITTLE_WHILE (WAITTIME = 15.0 [secs]) \
+                IMAGE (IMG_TIME) \
+                WAIT_A_LITTLE_WHILE (WAITTIME = 15.0 [secs]) \
+                IMAGE (IMG_TIME)
+#
+   Action: MULTI_IMAGE_ATL "Image sequence using absolute timeline"
+   Action_parameters: IMG_TIME FILTER
+   Internal_variables: TMP1 = 5.0 TMP2 = 3 TMP3
+   Computed_parameters: TMP3 MUL TMP1 TMP2 \
+                        IMG_TIME ADD TMP3 2.0
+   Minimum_duration: 1.0 [minutes]
+   Action_power_check: OPTIONAL
+   Action_data_rate_check: MANDATORY
+   Update_when_ready: CONDITION (FILTER = 2 [RANGE_START] \
+                                 FILTER = 5 [RANGE_END]) \
+                         MS AFM SCAN
+   Run_type: ABSOLUTE
+   Run_actions: 00:00:00 IMAGE (IMG_TIME) \
+                00:00:20 IMAGE (IMG_TIME) \
+                00:00:40 IMAGE (IMG_TIME)
+#
+   Action: MULTI_IMAGE_RTL "Image sequence using relative timeline"
+   Action_parameters: IMG_TIME = STATE_TIME START_TIME
+   Computed_parameters: IMG_TIME POW TIME_FACTOR 2.0 \
+                        MUL ADD IMG_TIME 5.0 \
+                        DIV SUB IMG_TIME 3.0
+   Run_type: RELATIVE
+   Run_start_time: START_TIME
+   Run_actions:          IMAGE (IMG_TIME) \
+                00:00:15 IMAGE (IMG_TIME) \
+                00:00:15 IMAGE (IMG_TIME)
+#
+   Action: TO_SCAN "Switch to scan mode"
+   Action_level: LEVEL2
+   Update_when_ready: MODE SCAN \
+                      SP DATA_RATE = 5.0 [kbits/second]
+#
+   Action: UPLOAD_RAW_DATA "Upload raw data defined using octet string"
+   Action_parameters: RAW_DATA = \
+                         "0123 4567 89AB CDEF" \
+                         "0123 4567 89AB CDEF" \
+                         "0123 4567 89AB CDEF" \
+                         "0123 4567 89AB CDEF"
+   Action_dataflow: TO SSMM HIGH_SPEED
+#
+Nr_of_constraints: 15
+#
+   Constraint: SUN_BLINDING "Report an error if Sun in FOV"
+   Constraint_type: GEOMETRIC
+   Constraint_group: CUSTOM_123
+   Severity: FATAL
+   Condition: EVENT IS SUN_IN_FOV CAMERA_FOV
+#
+   Constraint: SCAN_MODE "Check if we are in scan mode"
+   Constraint_type: TIME
+   Severity: ERROR
+   Condition: MODE NOT SCAN
+#
+   Constraint: NOT_SCANNING "Ensure that we are not scanning"
+   Constraint_type: TIME
+   Severity: WARNING
+   Condition: MODE IS SCAN
+#
+   Constraint: CHECK_ARM_FOLD "Check if the robot arm is folded"
+   Constraint_type: TIME
+   Severity: ERROR
+   Condition: MS NOT RS FOLD
+#
+   Constraint: CHECK_ARM_UNFOLD "Check if the robot arm is unfolded"
+   Constraint_type: TIME
+   Severity: ERROR
+   Condition: MS NOT RS UNFOLD
+#
+   Constraint: OSIRIS_CLASH "Report an error if OSIRIS in imaging mode"
+   Constraint_type: TIME
+   Severity: ERROR
+   Condition: MODE IS IMAGING IMAGING_COLOR IMAGING_HIRES
+   Condition_experiment: OSIRIS
+#
+   Constraint: DELAY "A constraint with a delay of one hour after WOLE"
+   Condition: EVENT_DT IS WOLE 01:00:00
+#
+   Constraint: COMBINATION "A constraint combining two other constraints"
+   Expression: OSIRIS_CLASH AND SCAN_MODE
+#
+   Constraint: ORBIT "A constraint using the MOMENTARY event type"
+   Condition: MOMENTARY IS VAPO 18:00:00
+#
+   Constraint: EARTH "A constraint using the POINTING event type"
+   Condition: POINTING IS EARTH SLEW IS ANY
+#
+   Constraint: POWER "A constraint based on the POWER resource"
+   Constraint_group: POWER
+   Resource_constraint: POWER GT 55.0 [Watts]
+#
+   Constraint: DATA_STORE_MEM "A constraint based on the DS_MEMORY resource"
+   Resource_constraint: DS_MEMORY GE 123.0 [Mbytes]
+   Resource_mass_memory: SSMM
+#
+   Constraint: STATE_PAR "A constraint based on a state parameter"
+   Parameter_constraint: STATE_TIME LT 5.0 [secs ENG]
+#
+   Constraint: SUN_IN_CAMERA "A constraint when the Sun is in the CAMERA"
+   Condition: SUN_STRAY_ALWAYS IN CAMERA_FOV
+#
+   Constraint: SUN_ON_MIDAS "A constraint when the Sun is on MIDAS"
+   Condition: SUN_AREA ON MIDAS_BOX
+#
+Experiment: OSIRIS "The OSIRIS experiment"
+Mode: IMAGING "Imaging mode"
+#
+Experiment: SSMM "Solid state mass memory"
+Local_memory: 16 [MB]
+#
+Experiment: SSMM2 "Solid state mass memory with data stores"
+#
+Nr_of_data_stores: 7
+#
+Data_store: MIDAS   16 [MB] 4 [kbytes]  4 123
+Data_store: OSIRIS  32 [MB] 8 [kbytes] 12 456
+Data_store: TM [HK]  8 [MB] 1 [kbytes]  8 789
+#
+Data_store: MERMAG_HIGH  [MERMAG]            8 [MB] 1 [kbytes]  4 567
+Data_store: MERMAG_LOW   [MERMAG]           12 [MB] 2 [kbytes]  8 321
+Data_store: MERMAG_SEL   [MERMAG] SELECTIVE 16 [MB] 4 [kbytes] 16 987
+Data_store: SEL_TRANSFER [SHARED]           32 [MB] 2 [kbytes]  4 543
+#
+Nr_of_FTSs: 2
+#
+FTS: 321 ENABLE 2.0 [Mbytes]
+FTS: 456 ENABLE 4.0 [Mbytes]
+#
+Link_section: EXPERIMENT MIDAS
+#
+Link_section: ACTION WAIT
+Duration: 60.0 [seconds]
+#
+Parameter: NEW_PARAMETER
+Raw_type: UINT
+#

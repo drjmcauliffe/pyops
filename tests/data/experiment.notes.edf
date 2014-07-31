@@ -1,0 +1,1021 @@
+#
+# Filename: experiment.notes
+#
+# Author: Peter van der Plas
+# Date:   6 October 1999
+#
+# (c) ESA/Estec
+#
+# $Id: experiment.notes,v 3.12 2012/11/28 13:17:00 pvanderplas Exp $
+#
+# $Log: experiment.notes,v $
+# Revision 3.12  2012/11/28 13:17:00  pvanderplas
+# Update EPS version and templates for v2.5.7 beta-3 release.
+#
+# Revision 3.11  2010/10/23 11:29:26  pvanderplas
+# Issue #0001682: Update the EPS templates for the upcoming release v2.5.4.
+#
+# Revision 3.10  2010/01/13 15:13:57  pvanderplas
+# Issue #0001201: Update the EPS templates for the upcoming release v2.5.1.
+#
+# Revision 3.9  2009/07/25 16:41:34  pvdplas
+# SPR-0499: Update versions and templates for the new EPS v2.4.8 release.
+#
+# Revision 3.8  2009/03/16 19:36:13  pvdplas
+# SPR-0480: Update versions and templates for the new EPS v2.4.4 release.
+#
+# Revision 3.7  2009/02/25 12:17:58  pvdplas
+# SPR-0474: Update versions and templates for the new EPS v2.4.3 release.
+#
+# Revision 3.6  2008/07/08 15:30:19  pvdplas
+# SPR-0427: Update versions and templates for the new EPS v2.3.4 release.
+#
+# Revision 3.5  2007/07/19 10:18:29  pvdplas
+# SPR-0387: Update versions and templates for the new EPS v2.3.1 release.
+#
+# Revision 3.4  2007/07/09 16:04:58  pvdplas
+# SPR-0362: Update versions and templates for the new EPS v2.3 release.
+#
+# Revision 3.3  2007/01/30 22:21:55  peter
+# SPR-0334: Update versions and templates for the new EPS v2.2.5 release.
+#
+# Revision 3.2  2006/10/07 19:18:07  peter
+# SPR-0321: Update versions and templates for the new EPS v2.2.1 release.
+#
+# Revision 3.1  2006/04/19 16:19:11  peter
+# SPR-0289: Update versions and templates for the new EPS v2.1 release.
+#
+# Revision 3.0  2006/02/22 18:33:12  peter
+# Updated to revision 3.0 for EPS major release 2.0.
+#
+# Revision 2.10  2006/02/22 17:59:32  peter
+# SPR-0271: Update versions and templates for the EPS v2.0 major release.
+#
+# Revision 2.9  2005/08/15 06:13:40  peter
+# SPR-0227: Update templates and versions for EPS v1.9 release.
+#
+# Revision 2.8  2005/03/22 16:45:57  peter
+# SPR-0197: Update templates and versions for EPS v1.8 release.
+#
+# Revision 2.7  2004/11/15 11:20:52  peter
+# SPR-0174: Update templates and versions for EPS v1.7 release.
+#
+# Revision 2.6  2004/07/13 15:15:37  rosetta
+# SPR-0155: Update templates and versions for EPS v1.6 release.
+#
+# Revision 2.5  2004/04/08 15:17:07  rosetta
+# SPR-0127: Update templates and versions for EPS v1.5 release.
+#
+# Revision 2.4  2003/08/31 15:56:13  peter
+# SPR-0107: Update templates and versions for EPS v1.4 release.
+#
+# Revision 2.3  2003/04/03 13:45:38  rosetta
+# SPR-0088: Version updates for EPS v1.3 release needed.
+#
+# Revision 2.2  2002/12/10 14:18:42  rosetta
+# SPR-0069: Make necessary updates to support the release of EPS v1.2.
+#
+# Revision 2.1  2002/08/27 13:55:31  rosetta
+# SPR-0045: Templates need updating for EPS v1.1.
+#
+# Revision 2.0  2002/05/08 16:19:36  rosetta
+# This is the first official template version for EPS v1.0
+#
+#
+
+A few guidelines on the experiment description files:
+
+Basic syntax
+============
+- comment lines start with '#'
+- all characters after '#' are ignored
+- a '\' indicates a continuation line: it allows keyword values to
+  continue on the next line
+- a '\' should be the last character of a line, otherwise it is ignored
+- white spaces/tabs are used to separate words
+- a keyword is followed by a ':' and then by its keyword values
+- no white spaces within keywords/labels, use '_' instead
+- keyword/label recognition is not case sensitive
+- '|' stands for an exclusive or
+- values between [ ] brackets are optional
+- an optional number of values is indicated by ...
+- all keywords (lines in the file) are optional, except when resulting
+  in an inconsistent definition
+- a <description> starts and ends with a '"', upper/lowercase is
+  maintained here, white spaces and other special characters are allowed
+
+Use of labels
+=============
+- a <label> is the base type for identifiers, units and any values
+- no white spaces are allowed
+- a label shall consist of 'a..z', 'A..Z', '0..9' or any of [_+-.:*%^'/]
+- the '_' and '-' characters are considered different
+- the '_' character is considered as a letter, e.g. the identifier
+  ABCD is not the same as the identifier AB_CD
+- labels are not case sensitive, e.g. the identifier ABCD is the same
+  as identifier aBcD
+- labels used as identifier, e.g. as experiment label, mode label, etc,
+  shall not contain any of [+-.:*%^'/]
+- all identifiers need to be unique within their specific category,
+  e.g. for all actions each label needs to be different, but e.g.
+  two different modules may both have a module state that is <OFF>
+- a <keyword> is considered as an identifier followed by a ':'
+- parameter value text labels and unit labels may contain spaces or any
+  other special characters, but in this case the text values have to be
+  given between double-quotes ("")
+
+Use of units
+============
+- each parameter value may have an optional unit specifier
+- the use of a unit for a parameter value by default implies
+  that the value is given as an engineering value
+- the unit label needs to be specified between [ ] brackets
+- if no unit is specified then the default unit will be applied
+- unit sets will define the various unit options for a single
+  physical unit, e.g. Volts may be V, mV, volts, mvolts, etc
+- the unit specified for a value needs to be compatible with the
+  value's unit set, if a unit set is applicable for the value
+- unit conversions to the default unit will be done automatically,
+  but is only allowed for parameters of type REAL
+- for keywords with multiple values, a unit may either be given
+  for each value, or a unit may be given after the last value,
+  setting the same unit also on all previous values
+
+Use of values
+=============
+- <value> means a single value
+- an unsigned integer value shall consist of '0..9' or '+'
+- an unsigned integer may also be given in hexadecimal or octal format
+- a hexadecimal value is in the format '0xhhhhhhhh', where h is one of
+  '0-9', 'a-f' or 'A-F' and where the number of h ranges from 1 to 8
+- an octal value is an unsigned integer value that starts with a '0'
+  and only consists of any of the '0-7' characters
+- note that values starting with a '0' and having one or more '8-9'
+  characters are considered invalid octal values and not integers
+- a (signed) integer value shall consist of '0..9', '+' or '-'
+- a floating point value shall consist of '0..9', '+', '-', '.', 'e' or 'E'
+- a floating point value shall be in the IEEE format
+- an octet string consists of '0..9', 'a-f' or 'A-F', one pair per
+  byte of data, long octet strings may be defined as multiple strings
+  (exceeding the maximum string length of 80 characters)
+
+Date values
+===========
+- a date value may be given in the POR or EPS absolute time format
+- an EPS <date> value is in the format [dd-month-yyyy[_hh:mm:ss]]
+- [dd] is the day number
+- [dd] may consist of one or two digits, and may start with zero
+- [month] is the full (spelled out) month or any abbreviation
+  with a minimum of 3 characters
+- [yyyy] is the full year number
+- [_hh:mm:ss] is optional and is defined similarly as in the time format
+- the '_' character is mandatory here if the time of the day is given
+- the time of the day defaults to _00:00:00
+- a POR absolute time value is in the format [yy-dddThh:mm:ss[.mmm]Z]
+- [yy] is the year in the 21st century and must have two characters
+- [ddd] is the day number within the year, counting from 1
+- [hh:mm:ss] is defined similarly as in the time format
+- [.mmm] is optional and specifies the number of milliseconds
+- the EPS software will always ignore the [.mmm] value
+
+Time values
+===========
+- a time value may be given in the POR or EPS relative time format
+- an EPS <time> field is in the format [[sign][ddd_]hh:mm:ss]
+- [sign] is an optional sign ('-' or '+')
+- [ddd] is an optional day number
+- [ddd] may consist of one, two or three digits, and may be zero
+- [hh] is the number of hours (00..23)
+- [mm] is the number of minutes (00..59)
+- [ss] is the number of seconds (00..59)
+- [hh], [mm], [ss] must be specified and must have two characters each
+- a POR relative time value is in the format [[-][ddd.]hh:mm:ss[.mmm]]
+- [ddd] is the optional number of days
+- [hh], [mm], [ss] is defined similarly as above
+- [.mmm] is optional and specifies the number of milliseconds
+- the EPS software will always ignore the [.mmm] value
+
+Parameter lists
+===============
+- an action may have an optional parameter list defined between ( )
+- a parameter list consists of any number of parameters
+- each parameter may have an optional value
+- a '=' is used to separate a parameter from its value
+- a value may have an optional unit, or an indication if the value
+  is of RAW or ENG type
+- the use of a unit by default implies the ENG type
+- a value may have the FIXED qualifier indicating that the parameter
+  value may not be changed from a higher level calling action
+- value options such as units need to be given between [ ] brackets
+
+Counter keywords
+================
+- the counter keywords (i.e. starting with Nr_of_) are optional
+- if a counter keyword is specified for a section, then its number
+  needs to be correct
+- in this case all the section instances are expected right after the
+  counter keyword
+- if the counter keyword is not specified for a section, then the
+  number of instances for a section is determined automatically
+- in this case the instances may be even spread, but must be within
+  the same section level
+
+MDB version
+===========
+- the MDB version ID shall be a label value
+- the MDB version ID should be in the format DDMMYYYY
+- the MDB comment can be any string value
+- the MDB version keyword may appear multiple times
+- if configured, the MDB version keyword may differ, but only
+  in case the ID follows the given format, in this situation
+  the MDB version is set to the latest version found
+
+Data buses
+==========
+- any number of data buses may be defined
+- a data bus may have an optional data rate warning level; when defined
+  then the data rate on the bus will be checked against this level and
+  a warning will be reported if the level is exceeded
+- a data bus may have an optional data rate limit; when defined then
+  the data rate on the bus will be checked to not exceed the limit
+- when both warning level and limit are defined, then the warning
+  level may not be greater than the limit value
+
+Global data
+===========
+- All actions defined as either global actions or mode actions are
+  considered to be command sequences callable from the POR file
+- All command sequences and parameters used in the command sequences
+  should have unique names on a spacecraft wide basis (so not only
+  within a single experiment)
+- All command sequence names and their parameter names shall not be
+  longer than 8 characters
+- All unit labels used in command sequence parameters shall not be
+  longer than 4 characters
+
+Overall
+=======
+- a TO dataflow will point to a mass memory device
+- if an experiment has no local memory, then data is directly send to the
+  mass memory device, no negative datarates are allowed here, otherwise
+  negative datarates are used for data downlink to the mass memory
+- a FROM dataflow will point to a mass memory device
+- in this case the experiment is not allowed to have any local memory
+- the experiment is not allowed to have any negative datarates,
+  a positive datarate is used for data downlink from mass memory to ground
+- a mass memory device must not have its own dataflow defined
+- a mass memory device must have local memory defined
+- a mass memory device must not not have any negative datarates
+- a TO_DS dataflow will point to a specific data store in mass memory,
+  both the experiment and data store shall be defined here
+- a FROM_DS dataflow will point to a specific data store in mass memory,
+  both the experiment and data store shall be defined here
+- a FROM_FTS dataflow will refer to a mass memory device with file transfer
+  stores (FTS) defined, this dataflow will download data from data stores
+  for any of the enabled FTS definitions
+- an optional data bus may be given on a TO(_DS) or FROM(_DS|_FTS) data flow
+- an optional dataflow PID may be defined to route the experiment dataflow
+  to a specific data store using the given PID number
+- an optional auxiliary dataflow PID may be defined to route the experiment
+  auxiliary dataflow to a specific data store using the given PID number
+- the data volume data rate will be used to convert a data volume into
+  a data rate for a certain time period, when generating a data rate
+  profile during MTP or STP creation
+- the data volume data rate greater than or equal to zero; if zero then
+  not data volume conversion into a data rate will be applied
+- a HK_data_volume is only allowed on a downlink device
+- an event state label shall be specified here; whenever the event
+  changes it state into the specified state, then the downlink device
+  will first download the given amount of data before experiment data
+  can be downloaded
+- a TM frame overhead is only allowed on a downlink device
+- the frame overhead data rate is substracted from the downlink
+  device data rate, resulting in a net downlink rate
+- the power and data rate profile checks may have the following values:
+     MANDATORY   the power or data rate profile is mandatory
+     OPTIONAL    the power or data rate profile is optional
+     NEVER       the power or data rate profile is never allowed
+- action specific power and data rate profile will override the
+  experiment global profile checks
+- the profile checking will only be activated when using the "-pc"
+  EPS command line option
+- any number of exclusive subsystems may be defined; this will cause
+  the subsystem actions running in parallel with any other actions to
+  generate a conflict
+- if the exclusive subsystem is the experiment itself, then any non-
+  specific actions are exclusive with any other subsystem actions
+- global actions are the actions allowed for an experiment regardless
+  of the current experiment mode, these actions may appear in the
+  input timeline
+- global constraints are constraints which are always checked regardless
+  of the current experiment mode
+
+Use of alias names
+==================
+- alias names shall be valid identifiers (see above)
+- any parameter references may use the parameter alias in case defined
+- any action references may use the action alias in case defined
+
+Data stores
+===========
+- only mass memory devices may contain data stores
+- in case data stores are defined then no local memory is allowed
+- any number of data stores are allowed per mass memory
+- the data store label may not be redefined
+- a data store may optionally be qualified as SHARED or HK (house-keeping),
+  in this case the name of the data store may not be experiment specific
+- the data resources of HK data store flows will not be included in
+  the total experiment science data computations
+- a data store shall always be linked to a specific experiment, unless
+  qualified as SHARED or HK
+- the data store experiment may be defined implicitly, i.e. the name
+  of the data store is the same as the experiment name, or explicitly,
+  i.e. the experiment is given after the data store label
+- the experiment qualifier is not allowed on implicit data stores
+- the experiment qualifier is mandatory on explicit data stores, the
+  data store label is not allowed to be named after an experiment here
+- a data store may optionally be qualified as SELECTIVE, which is a
+  data store that will never be downloaded, but its data shall be moved
+  to a transfer store for actual downlink
+- no overflow of data will be reported for SELECTIVE data stores
+- the experiment dedicated memory size shall be a positive value
+- the experiment downlink packet size shall be a positive value
+- a packet size of zero is allowed, indicating that downlink is
+  not packetised but is continuous
+- the priority level shall be from 0 (high priority) until 99 or
+  higher, priorities >= 99 will result in no download of the data
+  from mass memory
+- the default priority is 16
+- within the same priority level, either packets shall al be defined
+  or shall all not be defined (i.e. set to zero size)
+- the identifier is used by the DATA_STORE resource to reference
+  a specific data store for priority updates
+
+PIDs
+====
+- any number of PIDs are allowed per experiment
+- PID numbers shall be unique across all experiments
+- a PID can only be used in the experiment where it was defined
+- a PID default state can be defined, although it is possible to
+  override its state using resource parameters from the timeline
+  or PID enable flags in a specific mode
+- the PID will refer to the data store as defined by its ID, as such
+  the data store shall have this (optional) ID defined
+- the PID data store will be a data store in the mass memory device
+  using the actual data routing; typically the experiment dataflow
+  will be used for this, however it is also possible to use a module
+  or action dataflow with a different mass memory device referenced
+
+FTSs
+====
+- any number of File Transfer Stores (FTS) may be defined
+- FTS definitions are only allowed in mass memory devices
+- the data store ID shall be a valid data store in the current mass memory
+  device, as such the data store shall have this (optional) ID defined
+- an FTS default state can be defined, although it is possible to
+  override its state using resource parameters from the timeline
+- in case an FTS is enabled, it will be subject to download using an
+  antenna device with a FROM_FTS dataflow
+- in case an FTS is disabled, the regular download of the data store
+  will be performed, typically a priority based round-robin downlink
+  scheme using a FROM dataflow
+- the data volume shall be a positive value and will set relative
+  priorities for FTS transfers by downloading smaller or larger data
+  amounts for each data store per download cycle
+
+FOVs
+====
+- any number of FOVs are allowed per experiment
+- the default FOV type is RECTANGULAR
+- the FOV algorithm is an identifier for use with an external application,
+  it is only allowed and mandatory for FOV type DYNAMIC
+- the FOV algorithm accepts two optional arguments, which default to 0
+- the geometric angles specify the scientific FOV
+- the blinding angles can be used to determine if Sun blinding occurs
+- the following angle values need to be given depending on the FOV type:
+     WIDTH_ONLY: <width>
+     RECTANGULAR: <width> <height> [default]
+     SQUARE: <width/height>
+     CIRCULAR: <diameter>
+     DYNAMIC: none
+- the geometric angles are mandatory
+- the geometric pixels are optional and depend on the FOV type:
+     WIDTH_ONLY: <width>
+     RECTANGULAR: <width> <height>
+     SQUARE: <width/height>
+- the sub-view angles are optional and depend on the FOV type:
+     WIDTH_ONLY: <left> <right>
+     RECTANGULAR: <left> <right> <bottom> <top>
+     SQUARE: <left> <right> <bottom> <top>
+- the sub_view values can be given in degrees or pixels (only in case the
+  FOV geometric pixels are defined), or may refer to a state parameter
+  (with the unit either degrees or pixels), in either case the unit is
+  mandatory to avoid any confusion
+- the angular values are defined from left (negative) to right (positive),
+  with zero being in the middle of the FOV width, and from bottom (negative)
+  to top (positive), with zero being in the middle of the FOV height
+- sub_view values specified as pixel values count from (0,0) being the
+  lower left corner of the CCD, and (width-1,height-1) as top right corner
+- any state parameters used as sub-view edges must be of type UINT|INT|REAL
+- the sub-view edges will default to the full FOV edges in case undefined,
+  invalid or inconsistent values are found during run-time
+- the blinding angles are optional
+- constraints can be put on the FOVs by the SUN_IN_FOV event (reported
+  immediately when the Sun shines in the FOV) and the SUN_IN_FOV_DURATION
+  event (when the Sun shines in the FOV for a duration longer than
+  specified in the experiment description file)
+- either global contraints or mode dependent constraints can be put on FOVs
+- a method to determine if the FOV is active can be defined here
+- the following FOV active methods can be specified
+     MODE   refers to mode by <mode>
+     MS     refers to module state by <module> <module state>
+- any number of active conditions are allowed
+- the default FOV image timing is DURATION, it indicates for the imaging
+  conditions when the actual image start/stop times are computed, i.e.
+     DURATION   the image starts at the start of the MS or action,
+                the image stops at the end of the MS or action
+     BEGIN      the image starts/stops at the start of the MS or action
+     END        the image starts/stops at the end of the MS or action
+- a method to determine if the FOV is taking an image can be defined here
+- the following FOV imaging methods can be specified
+     MS     refers to module state by <module> <module state>
+     ACTION refers to action by <action>
+- any number of imaging conditions are allowed
+- the optional FOV local pitch and yaw angles may be specified
+- pitch defines a rotation to above, yaw defines a rotation to the
+  left, as seen from the FOV pointing to the lookat vector and with
+  the upvector pointing in the upwards direction
+- the following pitch and yaw angles may be defined
+     <implicit>: <angle>     defines a constant pitch or yaw angle
+     MS: <module label>      use the pitch or yaw angle defined for
+                             the current module state of the given module
+     SP: <state parameter>   set the pitch or yaw angle to the current
+                             state parameter value
+- the constant value option is defined implicitly
+
+Areas
+=====
+- any number of areas are allowed per experiment
+- the lighting angle specifies when the Sun is shining on the area, this
+  is the halfcone angle between the Sun vector and the area orientation
+- constraints can be put on the areas by the SUN_ON_AREA event (reported
+  immediately when the Sun shines on the area) and the SUN_ON_AREA_DURATION
+  event (when the Sun shines on the area for a duration longer than
+  specified in the experiment description file)
+- either global contraints or mode dependent constraints can be put on areas
+
+Modules
+=======
+- any number of modules are allowed per experiment
+- the default module level if LEVEL1
+- a module with a certain level can only have sub-modules of equal or
+  higher detail level, e.g. a module at LEVEL2 may have a sub-module at
+  LEVEL2 or LEVEL3, but may not have a sub-module at LEVEL1
+- the module dataflow may overwrite the experiment dataflow for the
+  current module, the definition has to follow the same rules as defined
+  for the experiment dataflow
+- an optional data bus may be given on a TO(_DS) or FROM(_DS|_FTS) data flow
+- an optional dataflow PID may be defined to route the module dataflow
+  to a specific data store using the given PID number
+- an optional auxiliary dataflow PID may be defined to route the module
+  auxiliary dataflow to a specific data store using the given PID number
+- modules are computed starting from toplevel modules, toplevel modules
+  are modules which are not sub-modules from other modules
+- a sub-module may only be referenced by one single module
+- recursive modules (causing endless loops) are not allowed
+- any number of module states are allowed per module
+- the first module state is used as the default state
+- an optional dataflow PID may be defined to route the module state
+  dataflow to a specific data store using the given PID number
+- an optional auxiliary dataflow PID may be defined to route the module state
+  auxiliary dataflow to a specific data store using the given PID number
+- the values for a module state specify the average, peak and
+  low power and bitrate values, peak and low values are optional,
+  the low value may only be specified if the peak value is given
+- an optional module state auxiliary data rate may be defined, which
+  will apply the average, peak and low bitrate values
+- a positive bitrate indicates data production inside the experiment
+  (so local memory will be occupied), a negative bitrate indicates
+  data download on the spacecraft bus (so local memory is released)
+- if a module state power or data rate parameter is defined, then it
+  will override the average value defined for the current module state
+- a list of constraints can be given for a certain module state
+- the repeat action is an optional action which is executed repeatedly
+  when the module is in the given state
+- the repeat action is a single action with optional parameters
+- the pitch and yaw angles can optionally be defined per module state
+- these may be used by a FOV if it selects the module for pitch or yaw
+
+Modes
+=====
+- any number of modes are allowed per experiment
+- the first mode is assumed to be the default
+- the default mode class is OFF
+- the module states shall be defined as pairs of module and module state,
+  no more than one module state may be given for a single module here
+- when a module state is explicitly defined here, the module state is
+  not allowed to be update from an action during the mode
+- a module state may have a condition indicating that the mode is
+  updated using a set of module states, the mode can not be overwritten
+  from an action mode update in this case
+- in case a module state condition is defined, it has to be used
+  consistently throughout the experiment
+- a condition may contain the same module multiple times, indicating
+  an OR expression for the defined module states
+- a condition may have an optional NOT qualifier before the module
+- in case the same module is specified multiple times and the NOT
+  qualifier is used, it must be specified on all modules; this will
+  change the relation between the modules into an AND expression
+- modules in a condition are evaluated using an AND expression
+- multiple conditions for a mode are interpreted as an OR expression
+- an experiment may have an internal clock that is activated using
+  the RESET or ON states (default OFF)
+- the clock counter will be reset if the clock state was previously
+  OFF, or if the current clock state is RESET
+- the PID enable flags allow to change the state of one or more PIDs
+  upon entry into the current mode
+- the nominal values for a mode specify the power and bitrate
+  values for the mode, without any specific actions running
+- if a mode power or data rate parameter is defined, then it will
+  override the nominal value defined for the current mode
+- the power and data rate parameters shall be state parameters
+  with the base unit for power (Watts) and data rate (bits/sec)
+- the equivalent values for a mode specify the average, peak and
+  low power and bitrate values, peak and low values are optional,
+  the low value may only be specified if the peak value is given
+- a positive bitrate indicates data production inside the experiment
+  (so local memory will be occupied), a negative bitrate indicates
+  data download on the spacecraft bus (so local memory is released)
+- an optional mode auxiliary data rate may be defined, which will
+  apply the average, peak and low bitrate values
+- the equivalent values can be used without having to compute the
+  detailed values resulting from various actions
+- per mode the allowed mode transitions can be specified, these mode
+  transitions may appear in the input timeline
+- per mode the allowed mode actions can be specified, these actions
+  may appear in the input timeline
+- per mode any number of constraints can be specified
+
+Parameters
+==========
+- any number of parameters are allowed per experiment
+- setting the state parameter flag to YES (default is NO) causes the
+  parameter to be an experiment state parameter
+- state parameters may not have resources or parameter values defined
+- a parameter can by default be used by all actions; it is possible
+  to define a parameter for use with a specific action only, using
+  the keyword Parameter_action
+- a parameter shall have either its raw value type or its engineering
+  value type defined
+- the value types matching the possible parameter types are described
+  above, the raw STRING type should be specified as a string using '"'
+  and may contain any characters, the engineering TEXT type is defined
+  as an identifier, so as a label not containing any of '+-.:/'
+- it is possible to define both the raw and engineering types
+- if both types are defined then for each value reference an explicit
+  RAW or ENG qualifier has to be given
+- if only one of the raw or engineering value types is defined, the RAW
+  or ENG qualifier may be omitted when specifying the parameter value
+- it is possible to have a FIXED default value for a parameter, to
+  prevent changing the value from a higher level calling action
+- the raw or engineering limits may only be given if the matching
+  value type is defined
+- if a limit set is specified, both lower and upper limits must be given
+- the raw STRING type may not have any limits
+- the parameter resource specifies what action resource the parameter
+  will update, but it is applied only if the action does not have any
+  sub-actions to which the parameter is passed
+- the parameter resource of POWER_INCREASE, DATA_RATE_INCREASE and
+  DATA_VOLUME will have an effect on the average value
+- it is possible here to specify peak, low or all three values of the
+  specified resource to be effected
+- Parameters changing a resource must be of engineering type REAL and
+  have to be called with the ENG qualifier if also the raw type is defined
+- a parameter with resource REPEAT must be of raw type UINT or INT and must
+  have a value greater than one
+- a parameter with resource SEPARATION must be of raw type TIME and must
+  have a positive relative time value
+- if an action is called using a parameter with a REPEAT resource, also a
+  parameter with a SEPARATION resource shall be specified, unless a default
+  separation time is defined for the action
+- the REPEAT parameter resource triggers the repeat of the action for
+  which the parameter is not passed to any of its children
+- data store downlink priorities can be updated from the timeline
+  using the DATA_STORE and PRIORITY resources
+- the data store is an identifier of the current data store within
+  the mass memory device for which the action parameter is defined
+- the priority is an unsigned integer from 0..255, which is used
+  to set the downlink priority of the current data store
+- data store and priority are used in order of definition; therefore
+  the data store must be defined before the actual priority is set
+- the PID number resource parameter group allows updating the PID
+  number from the timeline and consists of the following parameters
+  being of the indicated type:
+     PID_NUMBER   UINT, INT [RAW]
+     PID_MODULE   STRING [RAW], TEXT [ENG]
+     PID_ACTION   STRING [RAW], TEXT [ENG]
+- the following combinations of PID number parameters are allowed:
+     PID_NUMBER
+     PID_MODULE + PID_NUMBER
+     PID_ACTION + PID_NUMBER
+- the PID definition resource parameter group allows updating the PID
+  state and data store routing from the timeline and consists of the
+  following parameters being of the indicated type:
+     PID_DEF           UINT, INT [RAW]
+     PID_ENABLE_FLAG   BOOL, ENUM, UINT [RAW], TEXT [ENG]
+     PID_DATA_STORE    ENUM, UINT [RAW], TEXT [ENG]
+- the following combinations of PID definition parameters are allowed:
+     PID_DEF + PID_ENABLE_FLAG
+     PID_DEF + PID_DATA_STORE
+     PID_DEF + PID_ENABLE_FLAG + PID_DATA_STORE
+- the FTS configuration resource parameter group allows updating the
+  FTS state and data volume from the timeline and consists of the
+  following parameters being of the indicated type:
+     FTS_DATA_STORE    ENUM, UINT [RAW], TEXT [ENG]
+     FTS_INDEX         UINT, INT [RAW]
+     FTS_UPDATE_FLAG   BOOL, ENUM, UINT [RAW], TEXT [ENG]
+     FTS_ENABLE_FLAG   BOOL, ENUM, UINT [RAW], TEXT [ENG]
+     FTS_DATA_VOLUME   REAL [ENG, bytes]
+- the following combinations of FTS configuration parameters are allowed:
+     FTS_DATA_STORE + [FTS_UPDATE_FLAG] + FTS_ENABLE_FLAG
+     FTS_DATA_STORE + [FTS_UPDATE_FLAG] + FTS_DATA_VOLUME
+     FTS_DATA_STORE + [FTS_UPDATE_FLAG] + FTS_ENABLE_FLAG + FTS_DATA_VOLUME
+     FTS_INDEX + [FTS_UPDATE_FLAG] + FTS_ENABLE_FLAG
+     FTS_INDEX + [FTS_UPDATE_FLAG] + FTS_DATA_VOLUME
+     FTS_INDEX + [FTS_UPDATE_FLAG] + FTS_ENABLE_FLAG + FTS_DATA_VOLUME
+- the data transfer resource parameter group allows transferring data
+  from selective to non-selective data stores from the timeline and
+  consists of the following parameters being of the indicated type:
+     SOURCE_STORE      ENUM, UINT [RAW], TEXT [ENG]
+     TARGET_STORE      ENUM, UINT [RAW], TEXT [ENG]
+     START_TIME        DATE, TIME [RAW]
+     END_TIME          DATE, TIME [RAW]
+     DELTA_TIME        TIME [RAW]
+     TRANSFER_VOLUME   REAL [ENG, bytes]
+- the following combinations of FTS configuration parameters are allowed:
+     SOURCE_STORE + TARGET_STORE + [START_TIME] + END_TIME
+     SOURCE_STORE + TARGET_STORE + [START_TIME] + DELTA_TIME
+     SOURCE_STORE + TARGET_STORE + [START_TIME] + TRANSFER_VOLUME
+- all resource parameter groups above only allow a single set of
+  parameters on a single action, except for the FTS configuration
+  group, where any number of parameter sets can be defined on a single
+  action, using the FTS_DATA_STORE and FTS_INDEX resources to start
+  a new parameter set (as such the parameter order is important)
+- the TEXT values above are optional and allow using parameter value
+  texts to map to raw values, to make the value more descriptive in the
+  timeline; data stores are in fact using the data store ID as a number,
+  the update and enable flags use a number being 0 or 1
+- the update flags above are optional; when defined when these shall
+  be true for the indicated changes to have any effect
+- time-based data transfers will only be allowed when the latency
+  computation has been activated
+- global actions and MTL commands may not be repeated using parameters
+- for parameters with raw type BOOL, ENUM, UINT or INT, and for parameters
+  with engineering type TEXT, any number of parameter values may be defined
+- depending on the raw or engineering type either the parameter values
+  or text labels may be given (or both)
+- if values are defined for a parameter, then the validity of either the
+  raw value or the engineering text will be verified when the parameter
+  value is set
+- any number of explicit parameter value aliases may be defined
+- a parameter value alias is a pair of raw value and textual label
+- only a single alias may be defined for a parameter raw value
+- no alias is allowed when an engineering TEXT value is already defined
+- when writing a POR file, aliases will be converted back to raw values
+- it is possible to specify a mode or module state change or a state
+  parameter update for a specific parameter value or text label
+- the following parameter update changes can be specified:
+     MODE refers to mode by <mode>
+     MS   refers to module state by <module> <module state>
+     MSP  refers to module state by <module state>
+     MP   refers to the module of a module state by <module>
+     SP   refers to state value by <state parameter> <value parameter>
+     PID  refers to PID state by <PID number> <DISABLE|ENABLE>
+- update changes may be performed at the start of an action (UAS =
+  update-at-start), or at the end of an action (UWR = update-when-ready)
+- for backwards compatibility, the "Parameter_update" keyword is still
+  supported (this keyword maps onto the "Parameter_uwr" keyword)
+- the MSP defines a parametrised module state update where the module
+  will be defined in the action and the module state is parametrised
+- the MP defines a parametrised module state update where the module
+  state will be defined in the action and the module is parametrised
+- the value parameter for a state parameter update may only be a state
+  parameter here; alternatively a constant value could be used
+- it is possible to specify an action to be run for a specific parameter
+  value or text label, this action is run from the start of the current
+  action and in parallel with any sub-actions of the current action
+- this action must be a single action with optional parameters
+
+Actions
+=======
+- any number of actions are allowed per experiment
+- the default action level if LEVEL1
+- an action with a certain level can only call actions of equal or
+  higher detail level, e.g. an action at LEVEL2 may call an action at
+  LEVEL2 or LEVEL3, but may not call an action at LEVEL1
+- any action level can be called from the input timeline, presuming that
+  the action is either allowed in the mode or if it is a global action
+- the action type is optional and if not defined no action hierarchy
+  check will be done, however in case defined the following applies:
+     BLOCK      can call BLOCK, SEQUENCE, COMMAND, OBCP or MODELLING types
+     SEQUENCE   can call SEQUENCE, COMMAND, OBCP or MODELLING types
+     COMMAND    can call INTERNAL, BACKGROUND or MODELLING types
+     OBCP       can call INTERNAL, BACKGROUND or MODELLING types
+     INTERNAL   can call INTERNAL, BACKGROUND or MODELLING types
+     BACKGROUND can call INTERNAL, BACKGROUND or MODELLING types
+     MODELLING  can call INTERNAL, BACKGROUND or MODELLING types
+- the action type is used e.g. when removing BLOCK sequences when
+  writing POR data or when removing SEQUENCE levels when generating
+  WINFOPS data, OBCPs are special types of COMMANDs for which some
+  additional constraints can be checked
+- BACKGROUND actions are executed independently of the parent action
+- MODELLING actions are always global and can always be called from
+  the timeline, however they are never written into a POR output file
+- an optional action subsystem may be defined; the subsystem is used
+  in the action overlap check and action multiple execution check
+  (for sequences and commands)
+- the action subsystem shall not be an existing experiment
+- any number of action parameters can be specified
+- it is possible to define a default value for each parameter
+- an optional default value unit may be specified, which has to be
+  compatible with the parameter unit (if any)
+- if a value unit is specified, the value is assumed to be an
+  engineering value
+- the value type specification RAW or ENG is optional and defaults
+  to the value type of the parameter
+- if the parameter value type is defined for both raw and engineering
+  values, then the RAW or ENG qualifier is mandatory (or a unit may
+  be defined, in which case the ENG type is defined implicitly)
+- the action parameter may be assigned to a state parameter
+- assigned parameters must be of compatible types and units
+- action parameters may be FIXED without having a value, in which case
+  the default value or value defined at lower level will be used
+- action parameters may be computed from any action parameters (including
+  the parameter itself) and including any state parameters
+- any number of internal variables may be defined
+- internal variables may be given an initial value
+- internal variables can be used as temporary parameters in computed
+  parameters (both as result parameters and as input value parameters),
+  in update change conditions as condition parameters, and as state
+  parameter update change value parameters
+- computed parameters will overwrite the current parameter values, it is
+  not possible to overwrite any FIXED parameter values here
+- a parameter computation is based on a simple expression (addition,
+  substraction, multiplication, division or power) using two other
+  parameters or constants
+- computed parameters must be of raw or engineering type BOOL, ENUM, UINT,
+  INT or REAL, the same is applicable to the expression parameters where
+  also DATE and TIME are allowed as input
+- computed parameter expressions are evaluated as REAL expressions, any
+  result parameters in the BOOL, ENUM, UINT or INT type are casted back
+  to the parameter type including any rounding off and limiting ranges
+- computed parameter expressions may be connected using an operator
+  (ADD, SUB, MUL, DIV or POW) as the result parameter label; this will
+  connect the previous parameter expression to the current expression
+  using the specified operator; expressions are evaluated left to right,
+  thus computing the parameter values in the user specified order
+- the action duration is optional
+- for actions with sub-actions, the action duration is computed from
+  the duration of the sub-actions, in this case the specified action
+  duration is ignored
+- the EPS execution level may cause the sub-actions not to be called,
+  in which case the current action duration is used instead
+- the action minimum duration will set a minimum value to the duration
+  of the action, regardless if sub-actions are being executed
+- the compression factor default value is 1.0
+- the separation time must be a positive value with unit seconds and will
+  be used as the default separation time in case a parameter with the
+  REPEAT resource is passed to the action
+- the action dataflow may overwrite the experiment dataflow for the
+  current action, the definition has to follow the same rules as defined
+  for the experiment dataflow
+- the COMPRESS and RESET dataflows will act on the local experiment
+  memory, no flow experiment is allowed here
+- the COMPRESS_DS and RESET_DS dataflows will act on the data store for
+  the specified experiment in the current mass memory device
+- an optional data bus may be given on a TO(_DS) or FROM(_DS) data flow
+- an optional dataflow PID may be defined to route the action dataflow
+  to a specific data store using the given PID number
+- for the power and bitrate increment values, and for the data volume
+  value, the average, peak and low values can be given, peak and low
+  values are optional, the low value may only be specified if the peak
+  value is given
+- a positive bitrate or data volume indicates data production inside the
+  experiment (so local memory will be occupied), a negative bitrate or
+  data volume indicates data download on the spacecraft bus (so local
+  memory is released)
+- power and data rate profiles can optionally be defined
+- profiles may have any number of (time,value) pairs
+- the profile times are defined relative to the sequence start time
+- the time value shall be non-negative and shall be increasing
+- the default unit for power values is Watts
+- the default unit for data rate values is bits/sec
+- if a power and/or data rate profile is available in the EDF and if the
+  Write_to_Z_record flag is set, then the power and/or data rate profile
+  will be written to the output ITL/POR
+- the default Write_to_Z_record value is FALSE
+- if power or data rate values are defined and active, then the experiment
+  power or data rate resources are taken directly from the profile values,
+  and the computed experiment resources will be overwritten
+- profiles may extend beyond the action duration; when a profile is used
+  during timeline execution, it will remain active until the next action
+  from the timeline is executed
+- any number of observation IDs may be defined
+- an observation ID shall be a valid identifier
+- an observation ID may be overwritten from a timeline entry, or from
+  a higher level action; if overwritten then all observation IDs in the
+  lower level action will be ignored
+- a mode change and/or a number of module state changes can be specified,
+  these are executed either when the action is started or completed
+- only a single MODE change is allowed
+- any number of MS or MSP changes are allowed
+- a MODE change may be combined with MS or MSP changes
+- the following update changes can be specified:
+     MODE refers to mode by <mode>
+     MS   refers to module state by <module> <module state>
+     MSP  refers to module state by <module> <parameter>
+     MP   refers to module state by <parameter> <module state>
+     SP   refers to state value by <state parameter> <value parameter>
+     PID  refers to PID state by <PID number> <DISABLE|ENABLE>
+- a MS, MSP or MP in an update change is only allowed when the module
+  state is not explicitly defined in the current experiment mode
+- a MSP must use a parameter defining a parametrised module update (MSP)
+- a MP must use a parameter defining a parametrised module update (MP)
+- a SP will set the value of a state parameter to the given parameter;
+  this parameter may be a state parameter as well
+- for state parameters, a constant value with optional unit and RAW or
+  ENG may be given as well; here an assignment construct shall be used
+- an update change may have an optional condition (per change)
+- a condition may have a list of parameters, an empty condition (with
+  no parameters) is interpreted as an ELSE condition
+- parameters may be specified more than once, indicating an OR expression
+- an optional NOT directive is allowed on a parameter condition
+- for multiple defined parameters within a condition, if the NOT directive
+  is used then it must be applied to all parameters; the relation between
+  the parameters changes into an AND expression in this case
+- parameter shall be of BOOL, ENUM, UINT, INT or TEXT type
+- the TEXT type is not allowed on a condition based on an internal variable
+- an internal variable of type REAL will be rounded off before compared
+- no conflicting updates are allowed within a condition
+- ranges can be defined using the [RANGE_START] directive on the first
+  parameter and [RANGE_END] directive on the second parameter, ranges
+  are including the start and end values
+- ranges must be complete, i.e. must have consecutive range start and
+  end directives, ranges shall be based on the same parameter and the
+  range end can not be less than the range start
+- recursive actions (causing endless loops) are not allowed
+- the default run actions type is RELATIVE, this field may be omitted
+- the run actions list may contain any number of actions
+- for each action an optional delta time may be defined
+- if the delta time is not defined it defaults to zero
+- the SEQUENTIAL type executes actions in sequence, the specified action
+  delta times are extra time gaps to be inserted after the previous
+  action completion time and before the current action start time
+- the PARALLEL type executes all actions at once, the specified action
+  delta times are applied from the start of the current action, so
+  resulting in an execution timeline with absolute values with respect
+  to the action start time
+- the RELATIVE run actions type behaves similarly as the SEQUENTIAL type,
+  with the difference that the delta time is measured from the start of
+  the previous action to the start of the current action
+- the ABSOLUTE run actions type behaves similarly as the PARALLEL type,
+  and is only available to make the behaviour of the delta time value
+  more obvious
+- the run actions start time can be delayed to a time defined using
+  a parameter
+- if the start time parameter is of type DATE, then the parameter value is
+  interpreted as an absolute time at which the run actions will be started
+- if the start time parameter is of type TIME, UINT, INT or REAL, then the
+  parameter value is interpreted as a relative time with respect to the
+  experiment internal clock
+- a relative time value is measured in seconds, if the parameter is of
+  engineering type REAL then a unit is allowed, however this unit must
+  represent a time value
+- if the run actions start time is before the current time, then a conflict
+  will be reported and the run actions are started at the current time
+- delta times may never be negative
+- in PARALLEL or ABSOLUTE mode the delta times need to be consecutive
+- for each action an optional parameter list may be defined, this list
+  is described above, however the FIXED qualifier is not allowed here
+- the parameter value in a run action may be assigned to the value of
+  an action parameter by using the parameter label instead of a value
+- assigned parameters must be of compatible types and units
+- an action is not allowed to be instanciated more than once, i.e. if an
+  action is running then the same action can not be started either from
+  the input timeline or from another action
+
+Constraints
+===========
+- the default constraint type is TIME
+- the default constraint severity is WARNING
+- an optional constraint group label may be given here
+- the constraint group shall be a valid identifier
+- the constraint group will override the default conflict source "CONSTRAINT"
+- constraint condition either "is"/"is not" relation
+     EVENT             refers to a global event by <event> label
+     EVENT_DT          refers to a global event by <event> label; here a delta
+                       time value shall be specified, defining a delay time
+                       until the constraint is violated
+     MOMENTARY         refers to a momentary event by <event> label; here a
+                       delta time value shall be specified, defining a time
+                       from the mometary event where the constraint is violated
+     MODE              refers to mode by <mode>
+     MS                refers to module state by <module> <module state>
+     ACTION            refers to action by <action>
+     POINTING          refers to a pointing request identified using the
+                       <group tag> label; NONE may be used here to specify
+                       any pointing requests without any specific group tag;
+                       the pointing excludes any slew period here
+     SLEW              indicates any slew period; the dummy label ANY shall
+                       be used as the mandatory condition label
+     SUN_GEO_ALWAYS    refers to a FOV by <FOV> label; the condition is active
+                       with the Sun (visible disk) within the given FOV, using
+                       the geometric angles for the defined FOV type
+     SUN_GEO_ACTIVE    refers to a FOV by <FOV> label; the condition is active
+                       with the Sun (visible disk) within the given FOV, using
+                       the geometric angles for the defined FOV type; as long
+                       as the FOV active condition is satisfied
+     SUN_GEO_IMAGING   refers to a FOV by <FOV> label; the condition is active
+                       with the Sun (visible disk) within the given FOV, using
+                       the geometric angles for the defined FOV type; as long
+                       as the FOV imaging condition is satisfied
+     SUN_STRAY_ALWAYS  refers to a FOV by <FOV> label; the condition is active
+                       with the Sun (visible disk) within the given FOV, using
+                       the straylight angles for the defined FOV type
+     SUN_STRAY_ACTIVE  refers to a FOV by <FOV> label; the condition is active
+                       with the Sun (visible disk) within the given FOV, using
+                       the straylight angles for the defined FOV type; as long
+                       as the FOV active condition is satisfied
+     SUN_STRAY_IMAGING refers to a FOV by <FOV> label; the condition is active
+                       with the Sun (visible disk) within the given FOV, using
+                       the straylight angles for the defined FOV type; as long
+                       as the FOV imaging condition is satisfied
+     SUN_AREA          refers to an area by <area> label; the condition is
+                       active with the Sun (visible disk) on the given area,
+                       using the half-cone angle for the defined area
+- note that the constraint happens if the condition is valid
+- events may have an optional parameter if required (e.g. for a FOV event
+  to define which FOV should be used)
+- any number of conditions are allowed here, multiple conditions are
+  evaluated using an (inclusive) OR expression
+- the condition relation and expression are only mandatory for the
+  first condition
+- when defining multiple conditions for the EVENT relation type, with
+  no current relation and expression specified, then the event parameter
+  is mandatory; if not required then a DUMMY parameter may be passed
+- a Sun illumination condition is only allowed on a FOV of type RECTANGULAR,
+  SQUARE or CIRCULAR
+- for straylight and area conditions, an optional duration may be defined,
+  when this time expires then the condition is valid, note that the timer
+  is being reset as soon as the Sun is not in the FOV or on the area, or
+  when the spacecraft enters into eclipse
+- the condition relation shall be <IN|NOT_IN> for FOV based conditions
+  and <ON|NOT_ON> for area based conditions; in any other case IS|NOT
+  shall be used
+- when using a SUN_STRAY_* condition and the straylight angles are not
+  defined for the FOV, then a fallback on the geometric angles is made
+- a optional resource constraint may be defined; this constraint type
+  can not be combined with either a condition or an expression
+- for a given experiment resource, the current value can be compared
+  against a constant value with optional unit, using any mathematical
+  relation, which can be of the following type:
+     EQ   equal to
+     NE   not equal to
+     LT   less than
+     LE   less than or equal to
+     GT   greater than
+     GE   greater than or equal to
+- for DS_MEMORY (data store memory) and DS_ACCUMULATED (data store
+  accumulated data), the mass memory device shall be explicitly defined
+- a optional parameter constraint may be defined; this constraint type
+  can not be combined with either a condition or an expression, or with
+  a resource based constraint
+- for a given experiment parameter, the current value can be compared
+  against a constant value with optional unit, using any mathematical
+  relation, which can be of the following type:
+     EQ   equal to
+     NE   not equal to
+     LT   less than
+     LE   less than or equal to
+     GT   greater than
+     GE   greater than or equal to
+- the parameter constraint shall be based on a state parameter
+- the constraint normally applies to the current experiment, unless the
+  constraint experiment is defined
+- an expression defines a condition using two other constraints
+- in case an expression is defined, no condition may be given
+- expression constraints may not be called resursively
+- the default expression condition relation is "is"; "not" is used here
+  to negate the total expression result
+- the expression relation is mandatory and is either "and"/"or"
+
+Linking sections
+================
+- it is possible to add or modify section keywords by linking to an existing
+  section; the section hierarchy has to be respected here, e.g. linking to
+  an action is only possible after linking to the correct experiment
+- it is possible to link to any section by using the instance label, for
+  parameter values either the raw value or the text label has to be given
+- for the PARAMETER section, an optional action label is allowed; this
+  is needed for multiple defined (sequence) parameters, which may be
+  unique for each action
