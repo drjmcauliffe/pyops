@@ -131,7 +131,107 @@ def datarate(fname, metadata=False, pandas=True):
         return data, header
 
 
-def power(fname, metadata=False, pandas=True):
+def dfdownsample(df):
+    deletes = [False]  # we wanna keep the first row ...
+    for i in range(df.shape[0] - 2):
+        deletes.append(df.irow(i).tolist() == df.irow(i + 1).tolist()
+                    == df.irow(i + 2).tolist())
+    deletes.append(False)  # ... and the last row.
+    keeps = [not i for i in deletes]  # flip the list
+    return df[keeps]
+
+
+def parseheader(fname):
+    """
+
+    """
+
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+
+    header = {}
+    # data = []
+    post_process = False
+    # headings = []
+
+    with open(fname, 'r') as fh:
+        for line in fh:
+            if 'len' in header:
+                header['len'] += 1
+            else:
+                header['len'] = 0
+
+            # Catch the header data and store it in dictionary.
+            if re.match(r'#(.*):(.*)', line, re.M | re.I):
+                keypair = line.strip('#\n').split(':')
+                header[keypair[0].strip()] = keypair[1].strip()
+                continue
+
+            # Catch the reference date and add to dictionary.
+            if re.match(r'Ref_date:(.*)', line, re.M | re.I):
+                keypair = line.strip('#\n').split(':')
+                ref_date = datetime.strptime(keypair[1].strip(), "%d-%b-%Y")
+                header['Reference Date'] = ref_date
+                continue
+
+            # Catch the column headers.
+            if re.match(r'Elapsed time(.*)', line, re.M | re.I):
+                _headings = line.split()
+                _headings[0:2] = [' '.join(_headings[0:2])]
+                _headings = [h.replace('_', ' ') for h in _headings]
+                header['headings'] = _headings
+                continue
+
+            # Catch the units line and process ...
+            if re.match(r'ddd_hh:mm:ss(.*)', line, re.M | re.I):
+                _units = line.replace('(', '').replace(')', '').split()
+                units = _units[0:2]
+                for u in range(2, len(_units)):
+                    if 'sec' in _units[u]:
+                        units.append(_units[u])
+                        units.append(_units[u])
+                    else:
+                        units.append(_units[u])
+                post_process = True
+                header['units'] = units
+                continue
+
+            if post_process:
+                # Raise an error if the the length of 'units' is not equal
+                # to the length of '_headings'.
+                if len(_headings) != len(units):
+                    logger.ERROR("ERROR: The number of headings does not ",
+                                 "match the number of units!")
+
+                # # Pair the headings and the units ...")
+                # for i in range(len(_headings)):
+                #     headings.append({'head': _headings[i], 'unit': units[i]})
+
+                # # Prepare 'data' array...
+                # header = np.array([x['head'] for x in headings])
+                # data = np.arange(len(header))
+                # post_process = False
+
+            # Check for start of data
+            if re.match(r'[0-9]{3}_[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)',
+                        line, re.M | re.I):
+                fh.close()
+                return header
+
+
+def parsetime(days_time, ref_date):
+    """
+
+    """
+    # _data = [float(x) for x in line.split()[1:]]
+    days, time = days_time.split('_')
+    hours, minutes, seconds = time.split(':')
+    time = ref_date + timedelta(days=int(days), hours=int(hours),
+                                minutes=int(minutes), seconds=float(seconds))
+    return time
+
+
+def power(fname, metadata=False):
     """
     This function reads an EPS generated power file and returns
     the data in a numpy array or pandas dataframe. The file metadata can
@@ -146,97 +246,14 @@ def power(fname, metadata=False, pandas=True):
     :returns:  pandas dataframe or numpy.array -- the return code.
     """
 
-    logging.basicConfig(level=logging.INFO)
-    logger = logging.getLogger(__name__)
+    header = parseheader(fname)
+    data = pd.read_table(fname, skiprows=header['len'], header=None,
+                         names=header['headings'], sep=r"\s*")
+    data['Elapsed time'] = [parsetime(x, header['Reference Date']) for x in data['Elapsed time']]
+    data = data.set_index(['Elapsed time'])
+    data = dfdownsample(data)
 
-    mdata = {}
-    data = []
-    post_process = False
-    headings = []
-
-    with open(fname, 'r') as fh:
-        for line in fh:
-
-            # Catch the header data and store it in dictionary.
-            if re.match(r'#(.*):(.*)', line, re.M | re.I):
-                keypair = line.strip('#\n').split(':')
-                mdata[keypair[0].strip()] = keypair[1].strip()
-                continue
-
-            # Catch the reference date and add to dictionary.
-            if re.match(r'Ref_date:(.*)', line, re.M | re.I):
-                keypair = line.strip('#\n').split(':')
-                mdata['Reference Date'] = keypair[1].strip()
-                ref_date = datetime.strptime(mdata['Reference Date'],
-                                             "%d-%b-%Y")
-                continue
-
-            # Catch the column headers.
-            if re.match(r'Elapsed time(.*)', line, re.M | re.I):
-                _headings = line.split()
-                _headings[0:2] = [' '.join(_headings[0:2])]
-                _headings = [h.replace('_', ' ') for h in _headings]
-                continue
-
-            # Catch the units line and process ...
-            if re.match(r'ddd_hh:mm:ss(.*)', line, re.M | re.I):
-                _units = line.replace('(', '').replace(')', '').split()
-                units = _units[0:2]
-                for u in range(2, len(_units)):
-                    if 'sec' in _units[u]:
-                        units.append(_units[u])
-                        units.append(_units[u])
-                    else:
-                        units.append(_units[u])
-                post_process = True
-                continue
-
-            if post_process:
-                # Raise an error if the the length of 'units' is not equal
-                # to the length of '_headings'.
-                if len(_headings) != len(units):
-                    logger.ERROR("ERROR: The number of headings does not ",
-                                 "match the number of units!")
-
-                # Pair the headings and the units ...")
-                for i in range(len(_headings)):
-                    headings.append({'head': _headings[i], 'unit': units[i]})
-
-                # Prepare 'data' array...
-                header = np.array([x['head'] for x in headings])
-                data = np.arange(len(header))
-                post_process = False
-
-            # Check for start of data
-            if re.match(r'[0-9]{3}_[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)',
-                        line, re.M | re.I):
-                days_time = line.split()[0]
-                _data = [float(x) for x in line.split()[1:]]
-                days, time = days_time.split('_')
-                hours, minutes, seconds = time.split(':')
-                _time = ref_date + timedelta(days=int(days), hours=int(hours),
-                                             minutes=int(minutes),
-                                             seconds=float(seconds))
-                _data.insert(0, _time)
-                _data = np.asarray(_data)
-
-                data = np.vstack((data, _data))
-
-    fh.close()
-
-    # remove first data row with dummy data
-    data = data[1:]
-
-    if pandas:
-        # tuples = list(zip(header, units))
-        # header = pd.MultiIndex.from_tuples(tuples, names=[' ', ' '])
-        data = pd.DataFrame(data, columns=header)
-        data = data.set_index(header[0])
-
-    if metadata:
-        return data, header, mdata
-    else:
-        return data, header
+    return data, header
 
 
 def dataratedemo():
