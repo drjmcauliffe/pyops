@@ -156,7 +156,7 @@ def read(fname, meta=False):
     if meta:
         return data, header
     else:
-        return header
+        return data
 
 
 def dataratedemo():
