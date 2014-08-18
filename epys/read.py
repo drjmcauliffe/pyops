@@ -2,16 +2,17 @@
 #!/usr/bin/env python
 
 import re
-import os
 import pandas as pd
 from datetime import datetime, timedelta
 import logging
 
 
-def dfdownsample(df):
+def down_sample(df):
+    """
+    Function to remove redundant lines in data frame. This is pretty slow
+    at the moment.
     """
 
-    """
     deletes = [False]  # we wanna keep the first row ...
     for i in range(df.shape[0] - 2):
         deletes.append(df.irow(i).tolist() == df.irow(i + 1).tolist()
@@ -23,7 +24,7 @@ def dfdownsample(df):
     return df[keeps]
 
 
-def parseheader(fname):
+def parse_header(fname):
     """
 
     """
@@ -114,30 +115,54 @@ def parseheader(fname):
                     logger.ERROR("ERROR: The number of headings does not ",
                                  "match the number of units!")
 
-            # if start of data close file and return header
+            # if start of data close file and return header ...
             if re.match(r'[0-9]{3}_[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)',
+                        line, re.M | re.I):
+                fh.close()
+                return header
+            # ... same but for data rate / power budget file
+            if re.match(r'[0-9]{2}-[0-9]{3}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z(.*)',
                         line, re.M | re.I):
                 fh.close()
                 return header
 
 
-def parsetime(days_time, ref_date):
+def parse_time(*arg):
     """
-
+    This function is a catch all for different time parsing methods.
     """
-    # _data = [float(x) for x in line.split()[1:]]
-    days, time = days_time.split('_')
-    hours, minutes, seconds = time.split(':')
-    time = ref_date + timedelta(days=int(days), hours=int(hours),
-                                minutes=int(minutes), seconds=float(seconds))
-    return time
+    if len(arg) == 1:  # 'probably' coming from power or data budgets 24-084T05:00:00.000Z
+        year_doy_time = arg[0]
+        if re.match(r'[0-9]{2}-[0-9]{3}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z(.*)',
+                    year_doy_time, re.M | re.I):
+            ref_date = datetime(int(year_doy_time.split('-')[0]) + 2000, 1, 1)
+            dtdelta = timedelta(days=int(year_doy_time.split('-')[1].split('T')[0]))
+            return ref_date + dtdelta
+        else:
+            print('Error: Can\'t recognise time string format of {}.'.format(year_doy_time))
+            return 1
+    elif len(arg) == 2:  # 'probably' coming from power or data rate outfiles.
+        days_time, ref_date = arg
+        if re.match(r'[0-9]{3}_[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)',
+                    days_time, re.M | re.I):
+            days, time = days_time.split('_')
+            hours, minutes, seconds = time.split(':')
+            time = ref_date + timedelta(days=int(days), hours=int(hours),
+                                        minutes=int(minutes), seconds=float(seconds))
+            return time
+        else:
+            print('Error: Can\'t recognise time string format of {}.'.format(days_time))
+            return 1
+    else:
+        print('Error: Can\'t handle {} arguments.'.format(len(arg)))
+        return 1
 
 
 def read(fname, meta=False):
     """
-    This function reads an EPS generated power or data rate file and returns
-    the data in a pandas dataframe. The file metadata can also be returned if
-    requested.
+    This function reads any one of a number of EPS input/output files and
+    returns the data in a pandas dataframe. The file metadata can also be
+    returned if requested.
 
     :param fname: The path to the power_avg.out or data_rate_avg.out
     :type fname: str.
@@ -145,76 +170,38 @@ def read(fname, meta=False):
     :type state: bool.
     :returns:  pandas dataframe -- the return code.
     """
+    print('parsing header')
+    header = parse_header(fname)
 
-    header = parseheader(fname)
-    data = pd.read_table(fname, skiprows=header['len'], header=None,
-                         names=header['headings'], sep=r"\s*", engine='python')
-    data['Elapsed time'] = [parsetime(x, header['Reference Date']) for x in data['Elapsed time']]
-    data = data.set_index(['Elapsed time'])
-    data = dfdownsample(data)
+    if 'Output Filename' in header:
+        try:
+            print('reading data table')
+            data = pd.read_table(fname, skiprows=header['len'], header=None,
+                                 names=header['headings'], sep=r"\s*", engine='python')
+            print('parsing times strings')
+            data['Elapsed time'] = [parse_time(x, header['Reference Date']) for x in data['Elapsed time']]
+            print('setting index')
+            data = data.set_index(['Elapsed time'])
+            print('downsampling')
+            data = down_sample(data)
 
-    if meta:
-        return data, header
+            if meta:
+                return data, header
+            else:
+                return data
+        except:
+            print('Error: Didn\'t recognise file format...')
+            return 1
     else:
-        return data
+        try:
+            budget = pd.read_table(fname, header=None, comment='#',
+                                   names=['date', 'value'], sep=r"\s*",
+                                   engine='python')
+            budget = budget[budget['value'].notnull()]
+            budget['date'] = [parse_time(x) for x in budget['date']]
+            budget = budget.set_index(['date'])
 
-
-def dataratedemo():
-    """
-    This function can be used to quickly get some data back for testing.
-    It uses a pre-defined test data_rate_avg.out file.
-    """
-    # Grab the working directory and current file name by splitting
-    # the os.path value.
-    this_dir, this_filename = os.path.split(__file__)
-
-    # Get the path to the parent directory for the current working directory.
-    parent_dir = os.path.abspath(os.path.join(this_dir, os.pardir))
-
-    # Build the path to the sample data files.
-    samplefile = os.path.join(parent_dir, "tests/data/data_rate_avg.out")
-
-    # Run the test file through epys.read and save returned object to 'data'.
-    # Ask for the return of the 'meta' and save to 'meta'.
-    data, header = read(samplefile, meta=True)
-
-    print('data array shape:   {}'.format(data.shape))
-    print('header length: {}'.format(len(header)))
-    print(header)
-
-    # Return 'data' and 'header' to the caller.
-    return data, header
-
-
-def powerdemo():
-    """
-    This function can be used to quickly get some data back for testing.
-    It uses a pre-defined test power_avg.out file.
-    """
-    # Grab the working directory and current file name by splitting
-    # the os.path value.
-    this_dir, this_filename = os.path.split(__file__)
-
-    # Get the path to the parent directory for the current working directory.
-    parent_dir = os.path.abspath(os.path.join(this_dir, os.pardir))
-
-    # Build the path to the sample data files.
-    samplefile = os.path.join(parent_dir, "tests/data/power_avg.out")
-
-    # Run the test file through epys.read and save returned object to 'data'.
-    # Ask for the return of the 'meta' and save to 'meta'.
-    data, header = read(samplefile, meta=True)
-
-    print('data array shape:   {}'.format(data.shape))
-    print('header length: {}'.format(len(header)))
-    print(header)
-
-    # Return 'data' and 'header' to the caller.
-    return data, header
-
-
-if __name__ == '__main__':
-    print('Power Demo:')
-    powerdemo()
-    print('\nData Rate Demo:')
-    dataratedemo()
+            return budget
+        except:
+            print('Error: Didn\'t recognise file format...')
+            return 1
