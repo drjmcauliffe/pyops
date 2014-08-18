@@ -75,7 +75,7 @@ def parse_header(fname):
             if re.match(r'Elapsed time(.*)', line, re.M | re.I):
                 _headings = line.split()
                 _headings[0:2] = [' '.join(_headings[0:2])]
-                _headings = [h.replace('_', ' ') for h in _headings]
+                _headings = [h.replace('_', '-') for h in _headings]
                 # if input is data rate file add experiments to headers
                 if file_type == 'data':
                     for j in range(1, 3):
@@ -201,7 +201,10 @@ def read(fname, meta=False):
             budget['date'] = [parse_time(x) for x in budget['date']]
             budget = budget.set_index(['date'])
 
-            return budget
+            if meta:
+                return budget, header
+            else:
+                return budget
         except:
             print('Error: Didn\'t recognise file format...')
             return 1
