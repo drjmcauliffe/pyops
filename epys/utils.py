@@ -1,19 +1,23 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-import sys
-import os
-import spice
+# -*- coding: utf-8 -*
+"""
+This module is very useful...
+"""
 from bisect import bisect_left
+import numpy as np
+import os
+import pandas as pd
+import sys
+import spice
 
 
 def getclosest(myList, myNumber):
     '''
-    @summary: Assumes myList is sorted. Returns closest value to myNumber.
+    Assumes myList is sorted. Returns closest value to myNumber.
     If two numbers are equally close, return the smallest number.
-    @param myList:
-    @param myNumber:
-    @result:
+
+    :param myList:
+    :param myNumber:
+    :returns:
     '''
     pos = bisect_left(myList, myNumber)
     if pos == 0:
@@ -77,15 +81,13 @@ def getorbelts(epoch, planet='MERCURY', spacecraft='MPO', verbose=False,
 
 
 def yesno(question, default="yes"):
-    """Ask a yes/no question via raw_input() and return their answer.
+    '''
+    Ask a yes/no question via raw_input() and return their answer.
 
-    "question" is a string that is presented to the user.
-    "default" is the presumed answer if the user just hits <Enter>.
-        It must be "yes" (the default), "no" or None (meaning
-        an answer is required of the user).
-
-    The "answer" return value is one of "yes" or "no".
-    """
+    :param question: is a string that is presented to the user.
+    :param default: is the presumed answer if the user just hits <Enter>. It must be "yes" (the default), "no" or None (meaning an answer is required of the user).
+    :returns: The "answer" return value is one of "yes" or "no".
+    '''
     valid = {"yes": True, "y": True, "ye": True,
              "no": False, "n": False}
     if default is None:
@@ -111,14 +113,27 @@ def yesno(question, default="yes"):
 
 def zipdir(path, zip):
     """
+    This function _add_summary_here_
 
+    :param path: _add_description_here_
+    :param zip: _add_description_here_
+    :returns:
     """
+
     for root, dirs, files in os.walk(path):
         for file in files:
             zip.write(os.path.join(root, file))
 
 
 def inifix(stem, no_levels):
+    """
+    This function _add_summary_here_
+
+    :param stem: _add_description_here_
+    :param no_levels: _add_description_here_
+    :returns:
+    """
+
     print('\n   Writing config chunk to {}.ini'.format(stem))
     iniChunk = open(os.path.join(stem, '{}.ini'.format(stem)), "w")
     iniChunk.write('***Update elements between asterisks***\n')
@@ -190,5 +205,37 @@ def plotly_prep(df):
     return lines_plotly
 
 
-# def merge_dataframes():
-#     pass
+def merge_dataframes(bigger, smaller):
+    """
+    This function merges two pandas data frames. The inital purpose was
+    to merge sparse power and data downlink budgets into non-sparse EPS/MAPPS
+    data_rate_avg.out and power_avg.out dataframes.
+
+    :param bigger: power or data rate dataframe.
+    :type bigger: pandas dataframe
+    :param smaller: power or data downlink budget.
+    :type smaller: pandas dataframe
+    :returns: a merged dataframe with redundant NaN rows removed.
+    """
+
+    bigger_cols = bigger.columns.tolist()
+    smaller_cols = smaller.columns.tolist()
+    merged = pd.merge(smaller, bigger, how='outer', left_index=True, right_index=True)
+    merged = merged[smaller_cols + bigger_cols]
+    smaller_new = merged[smaller_cols]
+    current_values = smaller.values[0]
+
+    for i in xrange(merged.shape[0]):
+        if np.isnan(smaller_new.values[i]).all():
+            smaller_new.values[i] = current_values
+        else:
+            current_values = smaller_new.values[i]
+
+    merged[smaller_cols] = smaller_new
+    merged = merged.truncate(before=bigger.index.values[0],
+                             after=bigger.index.values[-1])
+
+    # build index of NaN rows for removal in the return statement
+    inds = pd.isnull(merged[bigger_cols]).all(1).nonzero()[0]
+
+    return merged.drop(merged.index[inds])
