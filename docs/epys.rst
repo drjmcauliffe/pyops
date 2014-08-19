@@ -1,62 +1,58 @@
-epys package
-============
+Modules
+=======
 
-Submodules
-----------
+The e[py]s package has been divided into a number of modules. Each of these
+modules has a particular focus and maybe imported and used independently of
+the parent package.
 
-epys.draw module
-----------------
+epys.draw
+---------
 
 .. automodule:: epys.draw
     :members:
-    :undoc-members:
-    :show-inheritance:
+    :private-members:
 
-epys.events module
-------------------
+----
+
+epys.events
+-----------
 
 .. automodule:: epys.events
     :members:
-    :undoc-members:
-    :show-inheritance:
+    :private-members:
 
-epys.maps module
-----------------
+----
+
+epys.maps
+---------
 
 .. automodule:: epys.maps
     :members:
-    :undoc-members:
-    :show-inheritance:
+    :private-members:
 
-epys.orbit module
------------------
+----
+
+epys.orbit
+----------
 
 .. automodule:: epys.orbit
     :members:
-    :undoc-members:
-    :show-inheritance:
+    :private-members:
 
-epys.read module
-----------------
+----
+
+epys.read
+---------
 
 .. automodule:: epys.read
     :members:
-    :undoc-members:
-    :show-inheritance:
+    :private-members:
 
-epys.utils module
------------------
+----
+
+epys.utils
+----------
 
 .. automodule:: epys.utils
     :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: epys
-    :members:
-    :undoc-members:
-    :show-inheritance:
+    :private-members:

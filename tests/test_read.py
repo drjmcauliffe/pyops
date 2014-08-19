@@ -17,26 +17,47 @@ import epys as ep
 
 this_dir, this_filename = os.path.split(__file__)
 parent_dir = os.path.abspath(os.path.join(this_dir, os.pardir))
-_datarateFile = os.path.join(parent_dir, "tests/data/data_rate_avg.out")
+_dataRateFile = os.path.join(parent_dir, "tests/data/data_rate_avg.out")
+_powerFile = os.path.join(parent_dir, "tests/data/power_avg.out")
 
 
-# --- epys.read ---
-def test_epys_read_datarate_data_shape_numpy():
-    data, header, meta = ep.read.datarate(_datarateFile, metadata=True,
-                                          pandas=False)
-    assert data.shape == (366, 53)
-
-
-def test_epys_read_datarate_data_shape_pandas():
-    data, header, meta = ep.read.datarate(_datarateFile, metadata=True)
+# --- epys.read for data_rate_avg.out ---
+def test_epys_read_datarate():
+    data, header = ep.read(_dataRateFile, meta=True)
     assert data.shape == (366, 52)
+    assert len(header) == 20
+    assert header['experiments'] == ['ANTENNA',
+                                     'SSMM',
+                                     'BELA',
+                                     'ISA',
+                                     'MERMAG',
+                                     'MERTIS',
+                                     'MGNS',
+                                     'MORE',
+                                     'PHEBUS',
+                                     'SERENA',
+                                     'SIMBIOSYS-STC',
+                                     'SIMBIOSYS-HRIC',
+                                     'SIMBIOSYS-VIHI',
+                                     'MIXS-SIXS']
 
 
-def test_epys_read_datarate_meta_length():
-    data, header, meta = ep.read.datarate(_datarateFile, metadata=True)
-    assert len(meta) == 16
-
-
-def test_epys_read_datarate_header_length():
-    data, header, meta = ep.read.datarate(_datarateFile, metadata=True)
-    assert len(header) == 53
+# --- epys.read for power_avg.out ---
+def test_epys_read_power():
+    data, header = ep.read(_powerFile, meta=True)
+    assert data.shape == (354, 15)
+    assert len(header) == 20
+    assert header['experiments'] == ['ANTENNA',
+                                     'SSMM',
+                                     'BELA',
+                                     'ISA',
+                                     'MERMAG',
+                                     'MERTIS',
+                                     'MGNS',
+                                     'MORE',
+                                     'PHEBUS',
+                                     'SERENA',
+                                     'SIMBIOSYS-STC',
+                                     'SIMBIOSYS-HRIC',
+                                     'SIMBIOSYS-VIHI',
+                                     'MIXS-SIXS']

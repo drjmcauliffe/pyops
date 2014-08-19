@@ -1,75 +1,111 @@
-
-#!/usr/bin/env python
+# -*- coding: utf-8 -*
+"""
+This module contains a number of functions to read and parse various EPS/MAPPS
+input and output data file formats and return the information (usually) in the
+form of a pandas dataframe.
+"""
 
 import re
-import os
-import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
 import logging
 
 
-def datarate(fname, metadata=False, pandas=True):
+def remove_redundant_data(df):
     """
-    This function reads an EPS generated data-rate file and returns
-    the data in a numpy array.  The file metadata can also be returned
-    if requested.
+    This function reduces the size of a dataframe by reducing blocks of
+    sequential identical data lines greater than 2 to only the earliest
+    and latest.
 
-    :param fname: The path to the data_rate_avg.out
-    :type fname: str.
-    :param metadata: Flag to return the metadata dictionary
-    :type state: bool.
-    :param pandas: Flag to return a pandas dataframe (True) or numpy array
-    :type state: bool.
-    :returns:  pandas dataframe or numpy.array -- the return code.
+    :param df: pandas dataframe
+    :type df: pandas dataframe
+    :returns: a smaller pandas dataframe
+    """
+    deletes = [False]  # we wanna keep the first row ...
+    for i in range(df.shape[0] - 2):
+        deletes.append(df.irow(i).tolist() == df.irow(i + 1).tolist()
+                    == df.irow(i + 2).tolist())
+    deletes.append(False)  # ... and the last row.
+    keeps = [not i for i in deletes]  # flip the list
+    if keeps.count(False) != 0:
+        print('{} redundant lines removed'.format(keeps.count(False)))
+    return df[keeps]
+
+
+def parse_header(fname):
+    """
+    This function takes as input an EPS/MAPPS input or output data file and
+    attempts to parse the header and return a key-value dictionary of meta
+    data.
+
+    :param fname: EPS/MAPPS input or output data file name
+    :type fname: str
+    :returns: key-value dictionary of meta data.
     """
 
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
 
-    mdata = {}
-    data = []
+    header = {}
+    # data = []
     post_process = False
-    headings = []
     experiments = []
 
     with open(fname, 'r') as fh:
         for line in fh:
+            if 'len' in header:
+                header['len'] += 1
+            else:
+                header['len'] = 0
 
             # Catch the header data and store it in dictionary.
             if re.match(r'#(.*):(.*)', line, re.M | re.I):
                 keypair = line.strip('#\n').split(':')
-                mdata[keypair[0].strip()] = keypair[1].strip()
+                header[keypair[0].strip()] = keypair[1].strip()
+                if 'Output Filename' in header:
+                    if header['Output Filename'].split('_')[0] == 'data':
+                        file_type = 'data'
+                    elif header['Output Filename'].split('_')[0] == 'power':
+                        file_type = 'power'
+                    else:
+                        print('ERROR: The input file is not of recognised type.')
                 continue
 
             # Catch the reference date and add to dictionary.
             if re.match(r'Ref_date:(.*)', line, re.M | re.I):
                 keypair = line.strip('#\n').split(':')
-                mdata['Reference Date'] = keypair[1].strip()
-                ref_date = datetime.strptime(mdata['Reference Date'],
-                                             "%d-%b-%Y")
+                ref_date = datetime.strptime(keypair[1].strip(), "%d-%b-%Y")
+                header['Reference Date'] = ref_date
                 continue
 
-            # Catch the experiment names to list.
+            # Catch the experiment names to list - data rate file_type
             if re.match(r'(.*)\<(.*)\>', line, re.M | re.I):
                 for i in line.replace('.', '').replace('>', '').split():
                     experiments.append(i.replace('<', '').replace('_', '-'))
+                header['experiments'] = experiments
                 continue
 
-            # Catch the column headers and prefix them with experiment list.
+            # Catch the column headers
             if re.match(r'Elapsed time(.*)', line, re.M | re.I):
                 _headings = line.split()
                 _headings[0:2] = [' '.join(_headings[0:2])]
-                for j in range(1, 3):
-                    _headings[j] = experiments[0] + ' ' + _headings[j]
-                for j in range(3, 5):
-                    _headings[j] = experiments[1] + ' ' + _headings[j]
-                x = 2
-                for j in range(5, len(_headings), 4):
-                    for h in range(4):
-                        _headings[j + h] = experiments[x] + \
-                            ' ' + _headings[j + h]
-                    x = x + 1
+                _headings = [h.replace('_', '-') for h in _headings]
+                # if input is data rate file add experiments to headers
+                if file_type == 'data':
+                    for j in range(1, 3):
+                        _headings[j] = experiments[0] + ' ' + _headings[j]
+                    for j in range(3, 5):
+                        _headings[j] = experiments[1] + ' ' + _headings[j]
+                    x = 2
+                    for j in range(5, len(_headings), 4):
+                        for h in range(4):
+                            _headings[j + h] = experiments[x] + \
+                                ' ' + _headings[j + h]
+                        x = x + 1
+                if file_type == 'power':
+                    experiments = _headings[2:]
+                    header['experiments'] = experiments
+                header['headings'] = _headings
                 continue
 
             # Catch the units line and process ...
@@ -83,6 +119,7 @@ def datarate(fname, metadata=False, pandas=True):
                     else:
                         units.append(_units[u])
                 post_process = True
+                header['units'] = units
                 continue
 
             if post_process:
@@ -92,88 +129,103 @@ def datarate(fname, metadata=False, pandas=True):
                     logger.ERROR("ERROR: The number of headings does not ",
                                  "match the number of units!")
 
-                # Pair the headings and the units ...")
-                for i in range(len(_headings)):
-                    headings.append({'head': _headings[i], 'unit': units[i]})
-
-                # Prepare 'data' array...
-                header = np.array([x['head'] for x in headings])
-                data = np.arange(len(header))
-                post_process = False
-
-            # Check for start of data
+            # if start of data close file and return header ...
             if re.match(r'[0-9]{3}_[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)',
                         line, re.M | re.I):
-                days_time = line.split()[0]
-                _data = [float(x) for x in line.split()[1:]]
-                days, time = days_time.split('_')
-                hours, minutes, seconds = time.split(':')
-                _time = ref_date + timedelta(days=int(days), hours=int(hours),
-                                             minutes=int(minutes),
-                                             seconds=float(seconds))
-                _data.insert(0, _time)
-                _data = np.asarray(_data)
+                fh.close()
+                return header
+            # ... same but for data rate / power budget file
+            if re.match(r'[0-9]{2}-[0-9]{3}T[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)Z(.*)',
+                        line, re.M | re.I):
+                fh.close()
+                return header
 
-                data = np.vstack((data, _data))
 
-    fh.close()
+def parse_time(*arg):
+    """
+    This function is a catch all for different time parsing methods.
 
-    # remove first data row with dummy data
-    data = data[1:]
-
-    if pandas:
-        data = pd.DataFrame(data, columns=header)
-        data = data.set_index(header[0])
-
-    if metadata:
-        return data, header, mdata
+    :param *arg: date string
+    :returns: a datetime object
+    """
+    if len(arg) == 1:  # 'probably' coming from power or data budgets 24-084T05:00:00.000Z
+        year_doy_time = arg[0]
+        if re.match(r'[0-9]{2}-[0-9]{3}T[0-9]{2}:[0-9]{2}:(.*)Z(.*)',
+                    year_doy_time, re.M | re.I):
+            ref_date = datetime(int(year_doy_time.split('-')[0]) + 2000, 1, 1)
+            days = int(year_doy_time.split('-')[1].split('T')[0])
+            if days > 60 and ((int(year_doy_time.split('-')[0]) + 2000) % 4) == 0:
+                days -= 1
+            hours = int(year_doy_time.split('-')[1].split('T')[1].split(':')[0])
+            minutes = int(year_doy_time.split('-')[1].split('T')[1].split(':')[1])
+            seconds = int(round(float(year_doy_time.split('-')[1].split('T')[1].split(':')[2][:-1])))
+            dtdelta = timedelta(days=days, hours=hours, minutes=minutes, seconds=seconds)
+            return ref_date + dtdelta
+        else:
+            print('Error: Can\'t recognise time string format of {}.'.format(year_doy_time))
+            return 1
+    elif len(arg) == 2:  # 'probably' coming from power or data rate outfiles.
+        days_time, ref_date = arg
+        if re.match(r'[0-9]{3}_[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)',
+                    days_time, re.M | re.I):
+            days, time = days_time.split('_')
+            hours, minutes, seconds = time.split(':')
+            time = ref_date + timedelta(days=int(days), hours=int(hours),
+                                        minutes=int(minutes), seconds=float(seconds))
+            return time
+        else:
+            print('Error: Can\'t recognise time string format of {}.'.format(days_time))
+            return 1
     else:
-        return data, header
+        print('Error: Can\'t handle {} arguments.'.format(len(arg)))
+        return 1
 
 
-def power(fname, metadata=False, pandas=True):
+def read(fname, meta=False):
     """
-    This function reads an EPS generated power file and returns
-    the data in a numpy array or pandas dataframe. The file metadata can
-    also be returned if requested.
+    This function reads any one of a number of EPS input/output files and
+    returns the data in a pandas dataframe. The file metadata can also be
+    returned if requested.
 
-    :param fname: The path to the power_avg.out
+    :param fname: The path to the power_avg.out or data_rate_avg.out
     :type fname: str.
-    :param metadata: Flag to return the metadata dictionary
-    :type state: bool.
-    :param pandas: Flag to return a pandas dataframe (True) or numpy array
-    :type state: bool.
-    :returns:  pandas dataframe or numpy.array -- the return code.
+    :param meta: Flag to return the header dictionary
+    :type meta: bool.
+    :returns: pandas dataframe -- the return code.
     """
-    pass
-
-
-def dataratedemo():
-    """
-    This function can be used to quickly get some data back for testing.
-    It uses a pre-defined test data_rate_avg.out file.
-    """
-
-    # Grab the working directory and current file name by splitting
-    # the os.path value.
-    this_dir, this_filename = os.path.split(__file__)
-
-    # Get the path to the parent directory for the current working directory.
-    parent_dir = os.path.abspath(os.path.join(this_dir, os.pardir))
-
-    # Build the path to the sample data files.
-    samplefile = os.path.join(parent_dir, "tests/data/data_rate_avg.out")
-
-    # Run the test file through epys.read and save returned object to 'data'.
-    # Ask for the return of the 'metadata' and save to 'meta'.
-    data, header, meta = datarate(samplefile, metadata=True)
-
-    print('data array shape:   {}'.format(data.shape))
-    print('meta data length:   {}'.format(len(meta)))
-    print('header data length: {}'.format(len(header)))
-
-    # Return 'data' and 'meta' to the caller.
-    return data, header, meta
-
-if __name__ == '__main__':
-    dataratedemo()
+    header = {}
+    header = parse_header(fname)
+    # print(header)
+    if 'Output Filename' in header:
+        try:
+            data = pd.read_table(fname, skiprows=header['len'], header=None,
+                                 names=header['headings'], sep=r"\s*", engine='python')
+            data['Elapsed time'] = [parse_time(x, header['Reference Date']) for x in data['Elapsed time']]
+            data = data.set_index(['Elapsed time'])
+            data = remove_redundant_data(data)
+            if meta:
+                return data, header
+            else:
+                return data
+        except:
+            print('Error: Didn\'t recognise file format...')
+            return 1
+    else:
+        try:
+            budget = pd.read_table(fname, header=None, comment='#', sep=r"\s*",
+                                   # names=['date', 'value'],
+                                   engine='python')
+            # print(budget)
+            budget = budget[budget.ix[:, 1].notnull()]
+            budget.ix[:, 0] = [parse_time(x) for x in budget.ix[:, 0]]
+            cols = [str(x) for x in budget.columns.values]
+            cols[0] = 'date'
+            budget.columns = cols
+            budget = budget.set_index(['date'])
+            if meta:
+                return budget, header
+            else:
+                return budget
+        except:
+            print('Error: Didn\'t recognise file format...')
+            return 1

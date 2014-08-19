@@ -1,4 +1,7 @@
-# -*- coding: utf-8 -*-
+"""
+This module makes pretty orbit graphics.
+"""
+
 from utils import getclosest, getorbelts, yesno, planetmu
 from datetime import datetime
 from PyAstronomy import pyasl
