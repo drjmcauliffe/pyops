@@ -8,10 +8,13 @@ from bisect import bisect_left
 
 
 def getclosest(myList, myNumber):
-    """
-    Assumes myList is sorted. Returns closest value to myNumber.
+    '''
+    @summary: Assumes myList is sorted. Returns closest value to myNumber.
     If two numbers are equally close, return the smallest number.
-    """
+    @param myList:
+    @param myNumber:
+    @result:
+    '''
     pos = bisect_left(myList, myNumber)
     if pos == 0:
         return myList[0]
@@ -107,6 +110,9 @@ def yesno(question, default="yes"):
 
 
 def zipdir(path, zip):
+    """
+
+    """
     for root, dirs, files in os.walk(path):
         for file in files:
             zip.write(os.path.join(root, file))
@@ -157,7 +163,7 @@ def planetmu(planet):
     return planetmu[planet.title()]
 
 
-def plotlyprep(df):
+def plotly_prep(df):
     """
     Coverting a Pandas Data Frame to Plotly interface:
         http://nbviewer.ipython.org/gist/nipunreddevil/7734529
@@ -184,5 +190,5 @@ def plotlyprep(df):
     return lines_plotly
 
 
-if __name__ == '__main__':
-    print(getorbelts('2024/05/07 12:00'))
+# def merge_dataframes():
+#     pass
