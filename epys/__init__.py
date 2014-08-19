@@ -15,4 +15,4 @@ __url__ = 'https://github.com/johnnycakes79/epys'
 
 from epys.read import read
 
-from epys.utils import plotlyprep
+from epys.utils import plotly_prep
