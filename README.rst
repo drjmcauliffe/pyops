@@ -3,10 +3,10 @@ e[py]s
 
 .. image:: https://pypip.in/v/epys/badge.png
         :target: https://pypi.python.org/pypi/epys/
-        
+
 .. image:: https://travis-ci.org/johnnycakes79/epys.png?branch=master
         :target: https://travis-ci.org/johnnycakes79/epys/
-        
+
 .. image:: https://coveralls.io/repos/johnnycakes79/epys/badge.png?branch=master
         :target: https://coveralls.io/r/johnnycakes79/epys/
 
@@ -21,6 +21,7 @@ e[py]s
 
 .. image:: https://pypip.in/license/epys/badge.png
         :target: https://pypi.python.org/pypi/epys/
+
 
 
 ePYs is a python library for the manipulation, processing and plotting
@@ -41,7 +42,7 @@ Modules
 Installation
 ------------
 
-At the command line::
+At the command line:
 
 1. Clone the repo to your local machine::
 
@@ -60,7 +61,7 @@ At the command line::
 Testing
 -------
 
-Testing is very little at the moment. But it's a start... At the command line::
+Testing is very little at the moment. But it's a start... At the command line:
 
 1. Run py.test::
 

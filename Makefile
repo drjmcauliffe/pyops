@@ -42,13 +42,14 @@ coverage:
 	open htmlcov/index.html
 
 docs:
-	rm -f docs/epys.rst
-	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ epys
+	# rm -f docs/epys.rst
+	# rm -f docs/modules.rst
+	sphinx-apidoc -F -o docs/ epys
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs changes
 	$(MAKE) -C docs html
 	open docs/_build/html/index.html
+
 
 pycco:
 	pycco -p epys/*.py

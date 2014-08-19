@@ -1,5 +1,9 @@
-
-#!/usr/bin/env python
+# -*- coding: utf-8 -*
+"""
+This module contains a number of functions to read and parse various EPS/MAPPS
+input and output data file formats and return the information (usually) in the
+form of a pandas dataframe.
+"""
 
 import re
 import pandas as pd
@@ -9,10 +13,14 @@ import logging
 
 def remove_redundant_data(df):
     """
-    Function to remove redundant lines in data frame. This is pretty slow
-    at the moment.
-    """
+    This function reduces the size of a dataframe by reducing blocks of
+    sequential identical data lines greater than 2 to only the earliest
+    and latest.
 
+    :param df: pandas dataframe
+    :type df: pandas dataframe
+    :returns: a smaller pandas dataframe
+    """
     deletes = [False]  # we wanna keep the first row ...
     for i in range(df.shape[0] - 2):
         deletes.append(df.irow(i).tolist() == df.irow(i + 1).tolist()
@@ -25,11 +33,16 @@ def remove_redundant_data(df):
 
 
 def parse_header(fname):
-    '''
-    @summary:
-    @param fname:
-    @result:
-    '''
+    """
+    This function takes as input an EPS/MAPPS input or output data file and
+    attempts to parse the header and return a key-value dictionary of meta
+    data.
+
+    :param fname: EPS/MAPPS input or output data file name
+    :type fname: str
+    :returns: key-value dictionary of meta data.
+    """
+
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
 
@@ -129,12 +142,12 @@ def parse_header(fname):
 
 
 def parse_time(*arg):
-    '''
-    @summary: This function is a catch all for different time parsing methods.
-    @param *arg:
-    @result:
-    '''
+    """
+    This function is a catch all for different time parsing methods.
 
+    :param *arg: date string
+    :returns: a datetime object
+    """
     if len(arg) == 1:  # 'probably' coming from power or data budgets 24-084T05:00:00.000Z
         year_doy_time = arg[0]
         if re.match(r'[0-9]{2}-[0-9]{3}T[0-9]{2}:[0-9]{2}:(.*)Z(.*)',
@@ -177,8 +190,8 @@ def read(fname, meta=False):
     :param fname: The path to the power_avg.out or data_rate_avg.out
     :type fname: str.
     :param meta: Flag to return the header dictionary
-    :type state: bool.
-    :returns:  pandas dataframe -- the return code.
+    :type meta: bool.
+    :returns: pandas dataframe -- the return code.
     """
     header = {}
     header = parse_header(fname)

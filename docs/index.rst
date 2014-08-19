@@ -1,25 +1,46 @@
-.. complexity documentation master file, created by
-   sphinx-quickstart on Tue Jul  9 22:26:36 2013.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Welcome to the e[py]s documentation
+===================================
 
-Welcome to epys's documentation!
-======================================
+e[py]s is a python library for the manipulation, processing and plotting
+of the input and output files of ESA Experiment Planning Software (EPS).
 
-Contents:
+.. image:: https://pypip.in/v/epys/badge.png
+        :target: https://pypi.python.org/pypi/epys/
+
+.. image:: https://travis-ci.org/johnnycakes79/epys.png?branch=master
+        :target: https://travis-ci.org/johnnycakes79/epys/
+
+.. image:: https://coveralls.io/repos/johnnycakes79/epys/badge.png?branch=master
+        :target: https://coveralls.io/r/johnnycakes79/epys/
+
+.. image:: https://pypip.in/d/epys/badge.png
+        :target: https://pypi.python.org/pypi/epys/
+
+.. image:: https://pypip.in/egg/epys/badge.png
+        :target: https://pypi.python.org/pypi/epys/
+
+.. image:: https://pypip.in/wheel/epys/badge.png
+        :target: https://pypi.python.org/pypi/epys/
+
+.. image:: https://pypip.in/license/epys/badge.png
+        :target: https://pypi.python.org/pypi/epys/
+
+|
+
+Contents
+--------
 
 .. toctree::
    :maxdepth: 2
 
-   readme
+   epys
    installation
-   usage
    contributing
    authors
    history
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`

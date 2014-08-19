@@ -1,5 +1,7 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+"""
+This module processes mission analysis orbit files.
+"""
+
 
 import os
 import logging

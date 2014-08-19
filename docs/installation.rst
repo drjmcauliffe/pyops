@@ -2,7 +2,7 @@
 Installation
 ============
 
-At the command line::
+At the command line:
 
 1. Clone the repo to your local machine::
 
@@ -16,4 +16,4 @@ At the command line::
 4. Import and use module::
 
     $ python
-    >>> from epys import epys
+    >>> import epys

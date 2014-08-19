@@ -1,6 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
+"""
+This module does things with maps and images.
+"""
 from __future__ import print_function
 from wand.image import Image
 from lxml import etree

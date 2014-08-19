@@ -1,7 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-
+"""
+This module provides a series of time/date utilities.
+"""
 from __future__ import print_function
 from datetime import datetime, timedelta
 
@@ -235,11 +234,14 @@ def isHeader(line):
 
 # Text wrapped output
 def wrap(text, width):
-    """
-    A word-wrap function that preserves existing line breaks
+    '''
+    @summary: A word-wrap function that preserves existing line breaks
     and most spaces in the text. Expects that existing line
-    breaks are posix newlines (\n).
-    """
+    breaks are posix newlines.
+    @param text:
+    @param width:
+    @result:
+    '''
     return reduce(lambda line, word, width=width: '%s%s%s' %
                   (line,
                    ' \n'[(len(line) - line.rfind('\n') - 1
