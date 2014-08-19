@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 import logging
 
 
-def down_sample(df):
+def remove_redundant_data(df):
     """
     Function to remove redundant lines in data frame. This is pretty slow
     at the moment.
@@ -25,10 +25,11 @@ def down_sample(df):
 
 
 def parse_header(fname):
-    """
-
-    """
-
+    '''
+    @summary:
+    @param fname:
+    @result:
+    '''
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
 
@@ -121,22 +122,31 @@ def parse_header(fname):
                 fh.close()
                 return header
             # ... same but for data rate / power budget file
-            if re.match(r'[0-9]{2}-[0-9]{3}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z(.*)',
+            if re.match(r'[0-9]{2}-[0-9]{3}T[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)Z(.*)',
                         line, re.M | re.I):
                 fh.close()
                 return header
 
 
 def parse_time(*arg):
-    """
-    This function is a catch all for different time parsing methods.
-    """
+    '''
+    @summary: This function is a catch all for different time parsing methods.
+    @param *arg:
+    @result:
+    '''
+
     if len(arg) == 1:  # 'probably' coming from power or data budgets 24-084T05:00:00.000Z
         year_doy_time = arg[0]
-        if re.match(r'[0-9]{2}-[0-9]{3}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}Z(.*)',
+        if re.match(r'[0-9]{2}-[0-9]{3}T[0-9]{2}:[0-9]{2}:(.*)Z(.*)',
                     year_doy_time, re.M | re.I):
             ref_date = datetime(int(year_doy_time.split('-')[0]) + 2000, 1, 1)
-            dtdelta = timedelta(days=int(year_doy_time.split('-')[1].split('T')[0]))
+            days = int(year_doy_time.split('-')[1].split('T')[0])
+            if days > 60 and ((int(year_doy_time.split('-')[0]) + 2000) % 4) == 0:
+                days -= 1
+            hours = int(year_doy_time.split('-')[1].split('T')[1].split(':')[0])
+            minutes = int(year_doy_time.split('-')[1].split('T')[1].split(':')[1])
+            seconds = int(round(float(year_doy_time.split('-')[1].split('T')[1].split(':')[2][:-1])))
+            dtdelta = timedelta(days=days, hours=hours, minutes=minutes, seconds=seconds)
             return ref_date + dtdelta
         else:
             print('Error: Can\'t recognise time string format of {}.'.format(year_doy_time))
@@ -170,21 +180,16 @@ def read(fname, meta=False):
     :type state: bool.
     :returns:  pandas dataframe -- the return code.
     """
-    print('parsing header')
+    header = {}
     header = parse_header(fname)
-
+    # print(header)
     if 'Output Filename' in header:
         try:
-            print('reading data table')
             data = pd.read_table(fname, skiprows=header['len'], header=None,
                                  names=header['headings'], sep=r"\s*", engine='python')
-            print('parsing times strings')
             data['Elapsed time'] = [parse_time(x, header['Reference Date']) for x in data['Elapsed time']]
-            print('setting index')
             data = data.set_index(['Elapsed time'])
-            print('downsampling')
-            data = down_sample(data)
-
+            data = remove_redundant_data(data)
             if meta:
                 return data, header
             else:
@@ -194,13 +199,16 @@ def read(fname, meta=False):
             return 1
     else:
         try:
-            budget = pd.read_table(fname, header=None, comment='#',
-                                   names=['date', 'value'], sep=r"\s*",
+            budget = pd.read_table(fname, header=None, comment='#', sep=r"\s*",
+                                   # names=['date', 'value'],
                                    engine='python')
-            budget = budget[budget['value'].notnull()]
-            budget['date'] = [parse_time(x) for x in budget['date']]
+            # print(budget)
+            budget = budget[budget.ix[:, 1].notnull()]
+            budget.ix[:, 0] = [parse_time(x) for x in budget.ix[:, 0]]
+            cols = [str(x) for x in budget.columns.values]
+            cols[0] = 'date'
+            budget.columns = cols
             budget = budget.set_index(['date'])
-
             if meta:
                 return budget, header
             else:
