@@ -178,11 +178,29 @@ def planetmu(planet):
     return planetmu[planet.title()]
 
 
-def plotly_prep(df):
+def plotly_prep(df, slice=False):
     """
-    Coverting a Pandas Data Frame to Plotly interface:
+    This fuction prepares a Pandas dataframe for plotting in Plotly:
         http://nbviewer.ipython.org/gist/nipunreddevil/7734529
+
+
+    :param df: dataframe for pre-processing for plotly
+    :type df: pandas dataframe
+    :param slice: comma-separated list of filter choices
+    :type slice: str
+    :returns: plotly-ready list of dictionaries
     """
+
+    if slice.__class__.__name__ == 'str':
+        slice_orig = tuple([x for x in slice.replace(' ', '').split(',')])
+        slice_upper = tuple([x.upper() for x in slice_orig])
+        slice_lower = tuple([x.lower() for x in slice_orig])
+        slice_title = tuple([x.title() for x in slice_orig])
+        slice_swapcase = tuple([x.swapcase() for x in slice_title])
+        slice = slice_orig + slice_upper + slice_lower + slice_swapcase + slice_title
+        slice = list(set(slice))
+        slice = '|'.join(slice)
+        df = df.filter(regex=slice)
 
     if df.index.__class__.__name__ == "DatetimeIndex":
         #Convert the index to MySQL Datetime like strings
