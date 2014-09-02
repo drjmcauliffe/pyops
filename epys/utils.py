@@ -3,11 +3,56 @@
 This module is very useful...
 """
 from bisect import bisect_left
-import numpy as np
 import os
-import pandas as pd
 import sys
 import spice
+from plotly.graph_objs import Scatter
+
+
+def all_same(items):
+    return all(x == items[0] for x in items)
+
+
+def background_colors(top_limit=7000, limits=False, bg_alpha=False):
+    """
+    This function builds a list of plotly Scatter traces for the power
+    based seasons. Currently a manual hack.
+    TODO: read in power file and build color traces.
+
+    :param top_limit: maximum y-values of background traces.
+    :type top_limit: int or float
+    :returns: list of plotly Scatter objects
+    """
+    if not bg_alpha:
+        bg_alpha = 0.2
+
+    no_limit = u'''rgba(0, 255, 0, {})'''.format(bg_alpha)
+    some_limit = u'''rgba(255,165,0, {})'''.format(bg_alpha)
+    big_limit = u'''rgba(255,0,0, {})'''.format(bg_alpha)
+
+    bg_colors = []
+    bg_colors.append(Scatter(x=['2024-03-27 18:18:00', '2024-06-03 19:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=no_limit))  # 60
+    bg_colors.append(Scatter(x=['2024-06-03 19:18:00', '2024-06-09 20:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 301
+    bg_colors.append(Scatter(x=['2024-06-09 20:18:00', '2024-06-17 15:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=big_limit))  # 336
+    bg_colors.append(Scatter(x=['2024-06-17 15:48:00', '2024-06-23 17:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 25
+    bg_colors.append(Scatter(x=['2024-06-23 17:18:00', '2024-08-30 18:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=no_limit))  # 60
+    bg_colors.append(Scatter(x=['2024-08-30 18:18:00', '2024-09-05 19:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 301
+    bg_colors.append(Scatter(x=['2024-09-05 19:48:00', '2024-09-13 14:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=big_limit))  # 336
+    bg_colors.append(Scatter(x=['2024-09-13 14:48:00', '2024-09-19 16:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 25
+    bg_colors.append(Scatter(x=['2024-09-19 16:48:00', '2024-11-26 17:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=no_limit))  # 60
+    bg_colors.append(Scatter(x=['2024-11-26 17:48:00', '2024-12-02 18:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 301
+    bg_colors.append(Scatter(x=['2024-12-02 18:48:00', '2024-12-10 14:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=big_limit))  # 336
+    bg_colors.append(Scatter(x=['2024-12-10 14:18:00', '2024-12-16 15:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 25
+    bg_colors.append(Scatter(x=['2024-12-16 15:48:00', '2025-02-22 16:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=no_limit))  # 60
+    bg_colors.append(Scatter(x=['2025-02-22 16:48:00', '2025-02-28 18:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 301
+    bg_colors.append(Scatter(x=['2025-02-28 18:18:00', '2025-03-08 13:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=big_limit))  # 336
+    bg_colors.append(Scatter(x=['2025-03-08 13:18:00', '2025-03-14 15:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 25
+    bg_colors.append(Scatter(x=['2025-03-14 15:18:00', '2025-05-21 16:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=no_limit))  # 60
+    bg_colors.append(Scatter(x=['2025-05-21 16:18:00', '2025-05-27 17:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 301
+    bg_colors.append(Scatter(x=['2025-05-27 17:18:00', '2025-06-04 12:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=big_limit))  # 336
+    bg_colors.append(Scatter(x=['2025-06-04 12:48:00', '2025-06-08 00:00:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 25
+
+    return bg_colors
 
 
 def getclosest(myList, myNumber):
@@ -178,7 +223,7 @@ def planetmu(planet):
     return planetmu[planet.title()]
 
 
-def plotly_prep(df, slice=False):
+def plotly_prep(df):
     """
     This fuction prepares a Pandas dataframe for plotting in Plotly:
         http://nbviewer.ipython.org/gist/nipunreddevil/7734529
@@ -186,74 +231,85 @@ def plotly_prep(df, slice=False):
 
     :param df: dataframe for pre-processing for plotly
     :type df: pandas dataframe
-    :param slice: comma-separated list of filter choices
-    :type slice: str
     :returns: plotly-ready list of dictionaries
     """
-
-    if slice.__class__.__name__ == 'str':
-        slice_orig = tuple([x for x in slice.replace(' ', '').split(',')])
-        slice_upper = tuple([x.upper() for x in slice_orig])
-        slice_lower = tuple([x.lower() for x in slice_orig])
-        slice_title = tuple([x.title() for x in slice_orig])
-        slice_swapcase = tuple([x.swapcase() for x in slice_title])
-        slice = slice_orig + slice_upper + slice_lower + slice_swapcase + slice_title
-        slice = list(set(slice))
-        slice = '|'.join(slice)
-        df = df.filter(regex=slice)
-
     if df.index.__class__.__name__ == "DatetimeIndex":
-        #Convert the index to MySQL Datetime like strings
+        # convert the index to MySQL Datetime like strings
         x = df.index.format()
-        #Alternatively, directly use x, since DateTime index is np.datetime64
-        #see http://nbviewer.ipython.org/gist/cparmer/7721116
-        #x=df.index.values.astype('datetime64[s]')
+        # zlternatively, directly use x, since DateTime index is np.datetime64
+        # see http://nbviewer.ipython.org/gist/cparmer/7721116
+        # x=df.index.values.astype('datetime64[s]')
     else:
         x = df.index.values
 
     lines = {}
+    multidx = False
+    keeps = []
+
+    # if the columns header are tuples and not strings then we're
+    # dealing with a multi-index
+    if df.columns[0].__class__.__name__ == 'tuple':
+        multidx = True
+
+    if multidx:
+        # exclude redundant information from the legend.
+        for i in range(len(df.columns[0])):
+            keeps.append(not all_same([key[i] for key in df]))
+
+        if all_same(keeps) is True and keeps[0] is False:
+            keeps = [not i for i in keeps]
+            keeps[-1] = False
+
+        # get the set of axes by making a list of the last element
+        # of each key in the dataframe, then converting this to a
+        # set and then back to a list.
+        axes = list(set([key[-1] for key in df]))
+
+    # build a list of dictionaries for each trace with meta data.
     for key in df:
+        # if we're dealing with a multi-index assign this trace to the
+        # appropriate axis by checking the last element of the key list
+        # against the axes set.
+        if multidx:
+            axis = axes.index(key[-1]) + 1
+        # define dict for this trace
         lines[key] = {}
+        # assign the x values defined above to the dict key 'x'
         lines[key]["x"] = x
+        # assign the values for this key to the dict key 'y'
         lines[key]["y"] = df[key].values
-        lines[key]["name"] = key
-
-    #Appending all lines
-    lines_plotly = [lines[key] for key in df]
-    return lines_plotly
-
-
-def merge_dataframes(bigger, smaller):
-    """
-    This function merges two pandas data frames. The inital purpose was
-    to merge sparse power and data downlink budgets into non-sparse EPS/MAPPS
-    data_rate_avg.out and power_avg.out dataframes.
-
-    :param bigger: power or data rate dataframe.
-    :type bigger: pandas dataframe
-    :param smaller: power or data downlink budget.
-    :type smaller: pandas dataframe
-    :returns: a merged dataframe with redundant NaN rows removed.
-    """
-
-    bigger_cols = bigger.columns.tolist()
-    smaller_cols = smaller.columns.tolist()
-    merged = pd.merge(smaller, bigger, how='outer', left_index=True, right_index=True)
-    merged = merged[smaller_cols + bigger_cols]
-    smaller_new = merged[smaller_cols]
-    current_values = smaller.values[0]
-
-    for i in xrange(merged.shape[0]):
-        if np.isnan(smaller_new.values[i]).all():
-            smaller_new.values[i] = current_values
+        if multidx:
+            # if multi-index specify axis as defined above
+            lines[key]["yaxis"] = 'y{}'.format(axis)
+            # and build a name for the trace using the non-redundant parts
+            # of the key. what this means is that if you are plotting 10 traces
+            # all of the same variable then the name and unit of the variable
+            # will be redundant and need not show up in the name which will
+            # be used to populate the legend.
+            lines[key]["name"] = ' '.join([k for k in key if keeps[key.index(k)]])
         else:
-            current_values = smaller_new.values[i]
+            # if we're not dealing with a multi-index the key will just be a string
+            # and can bue used for the trace name.
+            lines[key]["name"] = key
 
-    merged[smaller_cols] = smaller_new
-    merged = merged.truncate(before=bigger.index.values[0],
-                             after=bigger.index.values[-1])
+    if multidx:
+        # if dealing with a multi-index flip the keeps list to define a
+        # 'what-to-cut' list.
+        cuts = [not i for i in keeps]
+        # build a  y-axis title stem using the bits cut from the trace name.
+        y_title = ' '.join([k for k in df.columns[0] if cuts[df.columns[0].index(k)]])
+        if len(axes) == 2:
+            # if we have 2 axes then build a tuple of the title stem and the units
+            # wrapped in brackets.
+            y_title = (y_title + ' [' + axes[0] + ']', y_title + ' [' + axes[1] + ']')
+        if len(axes) > 2:
+            # if we have more than 2 axes... panic. this isn't dealt with yet.
+            print('Hmmm, more than 2 unit types...')
+    else:
+        # other wise leave it empty
+        y_title = ''
 
-    # build index of NaN rows for removal in the return statement
-    inds = pd.isnull(merged[bigger_cols]).all(1).nonzero()[0]
-
-    return merged.drop(merged.index[inds])
+    # build list of all traces ..
+    lines_plotly = [lines[key] for key in df]
+    # and return the list as the y-title.
+    return lines_plotly, y_title
