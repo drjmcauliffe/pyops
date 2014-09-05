@@ -2,7 +2,7 @@
 This module makes pretty orbit graphics.
 """
 
-from utils import getclosest, getorbelts, yesno, planetmu
+from utils import getclosest, getorbelts, planetmu
 from datetime import datetime
 from PyAstronomy import pyasl
 from PyAstronomy import constants as consts
@@ -10,7 +10,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import svgfig as svg
 import inspect
-import shutil
 import spice
 import math
 import os
@@ -238,12 +237,13 @@ def _gatherhorizonsdata(delta="1d", scale=15):
 
 def _gatherorbitdata(delta="1d", scale=15, verbose=False):
 
-    print("Building orbit for planets with SPICE...")
+    # print("Building orbit for planets with SPICE...")
 
     spice.kclear()
 
     # Load the kernels that this program requires.
-    spice.furnsh('epys.mk')
+    this_dir = os.path.dirname(os.path.realpath(__file__))
+    spice.furnsh(os.path.join(this_dir, 'epys.mk'))
 
     # convert starting epoch to ET
     et0 = spice.str2et('2024/05/07 00:00')
@@ -260,7 +260,7 @@ def _gatherorbitdata(delta="1d", scale=15, verbose=False):
 
     for planet in planets:
 
-        print("     > {}".format(planet))
+        # print("     > {}".format(planet))
 
         dates = []
         rvec = []   # vector of centric radii
@@ -606,7 +606,7 @@ def planetsplot(userdates=None, delta="1d", master_scale=15, demo=False,
     ... explain what this does...
     """
 
-    outdir = '../sample_data/output'
+    outdir = './sample_data/output'
     # if demo:
     #     shutil.rmtree(outdir)
     #     os.makedirs(outdir)
@@ -644,7 +644,10 @@ def planetsplot(userdates=None, delta="1d", master_scale=15, demo=False,
 
         # Load the kernels that this program requires.
         spice.kclear()
-        spice.furnsh('epys.mk')
+        this_dir = os.path.dirname(os.path.realpath(__file__))
+        spice.furnsh(os.path.join(this_dir, 'epys.mk'))
+
+        output_files = []
 
         # A graphic will be created for each 'date' in 'userdates':
         for date in userdates:
@@ -752,11 +755,15 @@ def planetsplot(userdates=None, delta="1d", master_scale=15, demo=False,
                              ).SVG(svg.window(-wa, wa, -wa, wa))
 
             svgout.prepend(defs)
-            svgout.save(os.path.join(outdir,
-                                     "merc_orbit_plot_{}_{}.svg".format(
-                                         ep_name, nu)))
+            out_path = os.path.join(outdir,
+                                    "merc_orbit_plot_{}_{}.svg".format(
+                                        ep_name, nu))
+            svgout.save(out_path)
+            output_files.append(out_path)
 
         spice.kclear()
+
+        return output_files
 
     else:
         # You'll jump to hear if the epochs for all 3 planets are not equal.
