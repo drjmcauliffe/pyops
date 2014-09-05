@@ -17,8 +17,22 @@ import plotly.plotly as py
 
 
 class epstable:
-
+    """
+    This is the base class for data tables in epys. Upon instantiation it is
+    provided with a filename which is read into a header dictionary and a
+    Pandas dataframe. The class has a number of methods for querying its
+    characteristics, plotting its contents and merging other tables into it.
+    """
     def __init__(self, fname, columns=False):
+        """
+        This constructor method initialises the epstable object.
+
+        :param fname: input filename
+        :type fname: str
+        :param columns: user supplied list of column headings
+        :type columns: list or tuple
+        :returns: epstable object consisting of a header dictionary and Pandas dataframe
+        """
         self.data, self.header = read(fname, meta=True, columns=columns)
 
     # def __str__(self):
@@ -28,30 +42,80 @@ class epstable:
     #     return self.header
 
     def range(self):
+        """
+        This method returns the time range of the dataframe as pandas Timestamp objects
+        """
         return self.data.index[0], self.data.index[-1]
 
     def range_str(self):
+        """
+        This methond returns the time range of the dataframe as strings
+        """
         return str(self.data.index[0]), str(self.data.index[-1])
 
     def range_jd(self):
+        """
+        This method returns the time range of the dataframe as julian date floats
+        """
         return self.data.index[0].to_julian_date(), self.data.index[-1].to_julian_date()
 
     def range_datetime(self):
+        """
+        This method returns the time range of the dataframe as datetime objects pandas.tslib.Timestamp
+        """
         return self.data.index[0].to_datetime(), self.data.index[-1].to_datetime()
 
-    def head(self):
-        return self.data.head()
+    def head(self, n=False):
+        """
+        This method returns the first n (default 5) rows of the dataframe
+        """
+        if n:
+            return self.data.head(n=n)
+        else:
+            return self.data.head()
 
-    def tail(self):
-        return self.data.tail()
+    def tail(self, n=False):
+        """
+        This method returns the last n (default 5) rows of the dataframe
+        """
+        if n:
+            return self.data.tail(n=n)
+        else:
+            return self.data.tail()
 
     def thin(self):
+        """
+        This method removes columns with only zeros.
+        """
         self.data = self.data.ix[:, (self.data != 0).any(axis=0)]
 
     def iplot(self, selection=False, limits=False, title=False,
               x_title=False, x_range=False,
               y_title=False, y_range=False,
               showlegend=True, bg_alpha=False):
+        """
+        This method pre-processes the table object for plotting.
+
+        :param selection: a sub-selection of columns to plot
+        :type selection: list
+        :param limits: start and end times of data to plot
+        :type limits: datetime
+        :param title: plot title
+        :type title: str
+        :param x_title: x-axis title
+        :type x_title: str
+        :param x_range: x-axis plot range
+        :type x_range: list
+        :param y_title: y-axis title
+        :type y_title: str
+        :param y_range: y-axis plot range
+        :type y_range: list
+        :param showlegend: flag to show the plot legend or not
+        :type showlegend: boolean
+        :param bg_alpha: factor for transparency of seasonal background
+        :type bg_alpha: float (default=0.3)
+        :returns:
+        """
 
         if selection:
             if selection.__class__.__name__ == 'str':
@@ -72,6 +136,15 @@ class epstable:
             showlegend=showlegend, bg_alpha=bg_alpha)
 
     def join(self, df_to_join, in_place=False):
+        """
+        This method joins a second table object to this one
+
+        :param df_to_join: table object to joint to this one
+        :type df_to_join: epstable
+        :param in_place: flag to join in place or return new instance
+        :type in_place: boolean
+        :returns:
+        """
         # try:
         if in_place:
             self.data = merge_dataframes(self.data, df_to_join.data)
@@ -89,18 +162,21 @@ class epstable:
         #           'Or maybe the columns you\'re adding already exist.')
         #     return
 
-    def sub(self, table_to_subtract, chop=False):
+    def sub(self, table_to_subtract, in_place=False):
         """
-        This function __does_something_unbelievable__
+        This method subtracts the contents of second table from the
+        contents of this one. Be careful with this... it's not been widely
+        tested, I'm not sure what happens if the data tables have different
+        column numbers and/or names.
 
-        :param table_to_subtract: _add_description_here_
-        :type table_to_subtract: _add_type_here_
-        :param chop: _add_description_here_
-        :type chop: _add_type_here_
+        :param table_to_subtract: data table to subtract from this one
+        :type table_to_subtract: epstable
+        :param in_place: flag to perform the subtraction on this instance or return a new instance
+        :type in_place: boolean
         :returns:
         """
 
-        if chop:
+        if in_place:
             self.data = self.data.sub(table_to_subtract.data)
         else:
             table_copy = copy.deepcopy(self)
@@ -115,19 +191,27 @@ class powertable(epstable):
         self.columns = zip(self.header['headings'], self.header['units'])
         self.instruments = self.header['experiments']
 
-    # def select(self, level1, level2, level3, chop=False):
-    #     if not level1:
-    #         level1 = slice(None)
-    #     if not level2:
-    #         level2 = slice(None)
-    #     if not level3:
-    #         level3 = slice(None)
-    #     if chop:
-    #         self.data = self.data.loc[slice(None), (level1, level2, level3)]
-    #     else:
-    #         table_copy = copy.deepcopy(self)
-    #         table_copy.data = table_copy.data.loc[slice(None), (level1, level2, level3)]
-    #         return table_copy
+    def select(self, args, chop=False):
+        """
+        This function __does_something_unbelievable__
+
+        :param level1: _add_description_here_
+        :type level1: _add_type_here_
+        :param level2: _add_description_here_
+        :type level2: _add_type_here_
+        :param level3: _add_description_here_
+        :type level3: _add_type_here_
+        :param chop: _add_description_here_
+        :type chop: _add_type_here_
+        :returns:
+        """
+
+        if chop:
+            self.data = self.data[args]
+        else:
+            table_copy = copy.deepcopy(self)
+            table_copy.data = table_copy.data[args]
+            return table_copy
 
 
 class datatable(epstable):
