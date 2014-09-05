@@ -43,11 +43,11 @@ def background_colors(top_limit=7000, limits=False, bg_alpha=False):
     bg_colors.append(Scatter(x=['2024-11-26 17:48:00', '2024-12-02 18:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 301
     bg_colors.append(Scatter(x=['2024-12-02 18:48:00', '2024-12-10 14:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=big_limit))  # 336
     bg_colors.append(Scatter(x=['2024-12-10 14:18:00', '2024-12-16 15:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 25
-    bg_colors.append(Scatter(x=['2024-12-16 15:48:00', '2025-02-22 16:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=no_limit))  # 60
-    bg_colors.append(Scatter(x=['2025-02-22 16:48:00', '2025-02-28 18:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 301
-    bg_colors.append(Scatter(x=['2025-02-28 18:18:00', '2025-03-08 13:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=big_limit))  # 336
-    bg_colors.append(Scatter(x=['2025-03-08 13:18:00', '2025-03-14 15:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 25
-    bg_colors.append(Scatter(x=['2025-03-14 15:18:00', '2025-05-21 16:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=no_limit))  # 60
+    bg_colors.append(Scatter(x=['2024-12-16 15:48:00', '2025-02-23 16:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=no_limit))  # 60
+    bg_colors.append(Scatter(x=['2025-02-23 16:48:00', '2025-03-01 18:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 301
+    bg_colors.append(Scatter(x=['2025-03-01 18:18:00', '2025-03-09 13:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=big_limit))  # 336
+    bg_colors.append(Scatter(x=['2025-03-09 13:18:00', '2025-03-15 15:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 25
+    bg_colors.append(Scatter(x=['2025-03-15 15:18:00', '2025-05-21 16:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=no_limit))  # 60
     bg_colors.append(Scatter(x=['2025-05-21 16:18:00', '2025-05-27 17:18:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 301
     bg_colors.append(Scatter(x=['2025-05-27 17:18:00', '2025-06-04 12:48:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=big_limit))  # 336
     bg_colors.append(Scatter(x=['2025-06-04 12:48:00', '2025-06-08 00:00:00'], y=[top_limit, top_limit], fill='tozeroy', mode='line', yaxis='y1', showlegend=False, fillcolor=some_limit))  # 25
