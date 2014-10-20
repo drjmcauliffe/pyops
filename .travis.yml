@@ -3,18 +3,22 @@
 language: python
 
 python:
-  - "3.4"
-  - "3.3"
-  - "2.7"
-  - "2.6"
+  - 3.4
+  - 3.3
+  - 2.7
+  - 2.6
 
-install:
-    # - "pip install -r requirements.txt"
-    - "pip install coverage"
-    - "pip install coveralls"
+before_install:
+    - pip install -r requirements.txt
+    - pip install coverage
+    - pip install coveralls
+    - git clone https://github.com/sczesla/PyAstronomy.git
+    - cd PyAstronomy
+    - python setup.py --with-ext install
+    - cd ..
 
 script:
-    - "coverage run --source=epys setup.py test"
+    - coverage run --source=epys setup.py test
 
 after_success:
     coveralls
