@@ -32,4 +32,4 @@ rm -rf build dist epys.egg-info
 python setup.py test # run tests to check basic functionality
 
 # run an ipython notebook to see if things work
-ipython notebook
+ipython notebook --ip=127.0.0.1
