@@ -53,10 +53,13 @@ sample_data/output
 # miscellaneous
 support/
 pickles/
-*.zip
 
 # pycharm stuff
 .idea/
 
 # notebooks to exclude
-*.ipynb
+.ipynb_checkpoints/
+nb_eps_test_run.ipynb
+nb_mertis_fix_4_scenarios.ipynb
+nb_mertis_fix_option_b.ipynb
+nb_mpld3.ipynb
