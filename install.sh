@@ -28,6 +28,7 @@ cd ..
 # finally install e[PY]s
 cd epys
 python setup.py install
+rm -rf build dist epys.egg-info
 python setup.py test # run tests to check basic functionality
 
 # run an ipython notebook to see if things work
