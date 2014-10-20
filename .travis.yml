@@ -13,7 +13,7 @@ install:
   - sudo pip install conda
   # install deps
   - sudo conda init
-  - sudo conda update conda --yes
+  - sudo conda update conda
   - deps='pip numpy pandas scipy matplotlib'
   - conda create -p $HOME/py --yes $deps "python=$TRAVIS_PYTHON_VERSION"
   - export PATH=$HOME/py/bin:$PATH
