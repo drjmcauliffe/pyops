@@ -51,12 +51,7 @@ At the command line:
 3. Install your local copy::
 
     $ cd epys/
-    $ python setup.py install
-
-4. Import and use module::
-
-    $ python
-    >>> from epys import draw, events, maps, orbit, read, utils
+    $ ./install.sh
 
 Testing
 -------
