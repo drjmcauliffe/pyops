@@ -24,11 +24,13 @@ install:
   - python getspice.py
   - python setup.py install
   - cd ../
+  - pwd
     # install PyAstronomy
   - git clone https://github.com/sczesla/PyAstronomy.git pyastron
   - cd pyastron
   - python setup.py install
   - cd ../
+  - pwd
     # install epys
   - python setup.py install
 
