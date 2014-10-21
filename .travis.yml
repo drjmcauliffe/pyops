@@ -27,7 +27,7 @@ install:
     # install PyAstronomy
   - git clone https://github.com/sczesla/PyAstronomy.git pyastron
   - cd pyastron
-  - python setup.py --with-ext install
+  - python setup.py install
   - cd ..
     # install epys
   - python setup.py install
