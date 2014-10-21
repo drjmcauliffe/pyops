@@ -12,7 +12,7 @@ virtualenv:
   system_site_packages: true
 
 before_install:
- - sudo apt-get install -qq python-numpy python-scipy
+ - sudo apt-get install -qq python-numpy python-scipy python-matplotlib
 
 install:
   - pip install coverage
@@ -23,6 +23,11 @@ install:
   - cd pyspice
   - python getspice.py
   - python setup.py install
+  - cd ..
+    # install PyAstronomy
+  - git clone https://github.com/sczesla/PyAstronomy.git pyastron
+  - cd pyastron
+  - python setup.py --with-ext install
   - cd ..
     # install epys
   - python setup.py install
