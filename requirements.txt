@@ -1,12 +1,10 @@
 Jinja2==2.7.3
 ipython==2.3.0
 matplotlib==1.4.1
-numpy==1.9.0
 pandas==0.14.1
 plotly==1.2.6
 pytest==2.6.3
 pyzmq==14.4.0
 quantities==0.10.1
-scipy==0.14.0
 tornado==4.0.2
 backports.ssl-match-hostname==3.4.0.2
