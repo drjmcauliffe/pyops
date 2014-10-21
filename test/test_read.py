@@ -17,8 +17,8 @@ import epys as ep
 
 this_dir, this_filename = os.path.split(__file__)
 parent_dir = os.path.abspath(os.path.join(this_dir, os.pardir))
-_dataRateFile = os.path.join(parent_dir, "tests/data/data_rate_avg.out")
-_powerFile = os.path.join(parent_dir, "tests/data/power_avg.out")
+_dataRateFile = os.path.join(parent_dir, "test/data/data_rate_avg.out")
+_powerFile = os.path.join(parent_dir, "test/data/power_avg.out")
 
 
 # --- epys.read for data_rate_avg.out ---
