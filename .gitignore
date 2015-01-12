@@ -57,9 +57,6 @@ pickles/
 # pycharm stuff
 .idea/
 
-# notebooks to exclude
+# exclude scripts folder sim-link
 .ipynb_checkpoints/
-nb_eps_test_run.ipynb
-nb_mertis_fix_4_scenarios.ipynb
-nb_mertis_fix_option_b.ipynb
-nb_mpld3.ipynb
+scripts
