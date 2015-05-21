@@ -60,3 +60,6 @@ pickles/
 # exclude scripts folder sim-link
 .ipynb_checkpoints/
 scripts
+
+# IPython Notebooks folder
+notebooks/
