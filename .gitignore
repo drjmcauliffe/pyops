@@ -63,3 +63,5 @@ scripts
 
 # IPython Notebooks folder
 notebooks/
+
+cleanup/
