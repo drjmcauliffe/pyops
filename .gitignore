@@ -1,11 +1,16 @@
 *.py[cod]
 
-
-# Coverge folder
+# Folders to exlude
 htmlcov/
-
-# Sort Micellaneous folder
 sort/
+support/
+pickles/
+.idea/
+.ipynb_checkpoints/
+scripts
+notebooks/
+cleanup/
+sample_data/output
 
 # C extensions
 *.so
@@ -44,24 +49,4 @@ docs/_build
 *.sublime-project
 *.sublime-workspace
 
-# data output folder
-sample_data/output
 
-# omnioutliner files
-*oo3
-
-# miscellaneous
-support/
-pickles/
-
-# pycharm stuff
-.idea/
-
-# exclude scripts folder sim-link
-.ipynb_checkpoints/
-scripts
-
-# IPython Notebooks folder
-notebooks/
-
-cleanup/
