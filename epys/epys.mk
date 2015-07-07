@@ -1,7 +1,7 @@
 KPL/MK
 \begindata
 
- PATH_VALUES     = ( '/Users/jmcaulif/Code/naif/bepi/misc/kernels' )
+ PATH_VALUES     = ( '/Users/jmcaulif/Code/spice/missions/bepi/ftpsync/misc/kernels' )
  PATH_SYMBOLS = ( 'KERNELS' )
  KERNELS_TO_LOAD = (
       '$KERNELS/lsk/naif0010.tls',
