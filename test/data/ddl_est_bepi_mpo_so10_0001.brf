@@ -1,16 +1,16 @@
-
+#
 # Factors Considered:
 # - Solar Activity: Normal (1)
 # - Ground Station Availability: 95%
 # - Solar Conjunctions: Yes
 # - Bit Rate limitation: Yes (348.1204 kbps)
-
+#
 # Factors NOT Considered:
 # - Reaction Wheel Offloading: No (0)
 # - APM Speed Limitations: No (0)
 # - Turbo 1/2 for high bitrate: No (0)
-
-
+#
+#
 #  Data Columns:   CeX    CeK    CeB    MaX    MaK    MaB
 24-121T00:00:00Z  174.1  261.1  435.2  174.1  261.1  435.2
 24-122T00:00:00Z  174.1  208.9  382.9  174.1  261.1  435.2
