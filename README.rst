@@ -1,26 +1,11 @@
 e[py]s
 ======
 
-.. image:: https://pypip.in/v/epys/badge.png
-        :target: https://pypi.python.org/pypi/epys/
-
 .. image:: https://travis-ci.org/johnnycakes79/epys.png?branch=master
         :target: https://travis-ci.org/johnnycakes79/epys/
 
 .. image:: https://coveralls.io/repos/johnnycakes79/epys/badge.png?branch=master
         :target: https://coveralls.io/r/johnnycakes79/epys/
-
-.. image:: https://pypip.in/d/epys/badge.png
-        :target: https://pypi.python.org/pypi/epys/
-
-.. image:: https://pypip.in/egg/epys/badge.png
-        :target: https://pypi.python.org/pypi/epys/
-
-.. image:: https://pypip.in/wheel/epys/badge.png
-        :target: https://pypi.python.org/pypi/epys/
-
-.. image:: https://pypip.in/license/epys/badge.png
-        :target: https://pypi.python.org/pypi/epys/
 
 
 
