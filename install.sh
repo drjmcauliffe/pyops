@@ -5,7 +5,7 @@ pip install -r requirements.txt
 
 # install PyAstronomy - needs Numpy to be already installed.
 cd ..
-git clone https://github.com/sczesla/PyAstronomy.git
+git clone https://github.com/sczesla/PyAstronomy.git PyAstronomy
 cd PyAstronomy
 python setup.py --with-ext install
 cd ..
@@ -19,8 +19,8 @@ python setup.py install
 cd ..
 
 # install PySpice - for now! Soon to be updated to SpiceyPy
-git clone https://github.com/johnnycakes79/PySPICE.git
-cd PySpice
+git clone https://github.com/johnnycakes79/PySPICE.git PySPICE
+cd PySPICE
 python getspice.py
 python setup.py install
 cd ..

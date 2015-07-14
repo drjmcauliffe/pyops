@@ -44,6 +44,19 @@ class PyTest(TestCommand):
         sys.exit(errcode)
 
 
+class Tox(TestCommand):
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+
+    def run_tests(self):
+        # import here, cause outside the eggs aren't loaded
+        import tox
+        errcode = tox.cmdline(self.test_args)
+        sys.exit(errcode)
+
+
 def cleanup():
     cleanuplist = ('build', 'dist', 'epys.egg-info')
     for file in cleanuplist:
@@ -68,14 +81,15 @@ try:
         packages=['epys', 'test'],
         package_data={'test': ['data/*.out']},
         include_package_data=True,
-        cmdclass={'test': PyTest},
-        test_suite='test.test_read.py',
-        tests_require=['pytest'],
+        cmdclass={'test': Tox},
+        test_suite='test',
+        tests_require=['tox'],
         install_requires=['matplotlib==1.4.1',
-                        'pandas==0.14.1',
-                        'plotly==1.2.6',
-                        'pytest==2.6.3',
-                        'quantities==0.10.1'],
+                          'pandas==0.14.1',
+                          'plotly==1.2.6',
+                          'pytest==2.6.3',
+                          'quantities==0.10.1'
+                          ],
         license="BSD",
         zip_safe=False,
         keywords='epys',
