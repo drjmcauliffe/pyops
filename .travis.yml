@@ -13,6 +13,7 @@ virtualenv:
 
 before_install:
  - sudo apt-get install -qq python-numpy python-scipy python-matplotlib
+ - sudo apt-get install python-setuptools
 
 install:
   - pip install coverage
