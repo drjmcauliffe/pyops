@@ -16,6 +16,7 @@ before_install:
  - sudo apt-get install python-setuptools
 
 install:
+  - pip install --upgrade pip
   - pip install numpy --upgrade
   - pip install coverage
   - pip install coveralls
@@ -36,6 +37,7 @@ install:
   - pwd
     # install epys
   - python setup.py install
+  - pip freeze
 
 script:
   - python setup.py test
