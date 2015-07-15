@@ -16,7 +16,7 @@ before_install:
  - sudo apt-get install python-setuptools
 
 install:
-  - pip install numpy
+  - pip install numpy --upgrade
   - pip install coverage
   - pip install coveralls
   - pip install six
