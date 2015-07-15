@@ -19,6 +19,6 @@ __url__ = 'https://github.com/johnnycakes79/epys'
 
 from epys import read
 
-from epys.read import epstable, datatable, powertable, read
+#from epys.read import epstable, datatable, powertable, read
 
 # from epys.utils import plotly_prep

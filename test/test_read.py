@@ -12,7 +12,7 @@ Tests for `epys` module.
 # import pytest
 import os
 
-import epys as ep
+from epys.read import *
 
 
 this_dir, this_filename = os.path.split(__file__)
@@ -23,7 +23,7 @@ _powerFile = os.path.join(parent_dir, "test/data/power_avg.out")
 
 # --- epys.read for data_rate_avg.out ---
 def test_epys_read_datarate():
-    data, header = ep.read(_dataRateFile, meta=True)
+    data, header = read(_dataRateFile, meta=True)
     assert data.shape == (366, 52)
     assert len(header) == 20
     assert header['experiments'] == ['ANTENNA',
@@ -44,7 +44,7 @@ def test_epys_read_datarate():
 
 # --- epys.read for power_avg.out ---
 def test_epys_read_power():
-    data, header = ep.read(_powerFile, meta=True)
+    data, header = read(_powerFile, meta=True)
     assert data.shape == (354, 15)
     assert len(header) == 20
     assert header['experiments'] == ['ANTENNA',
