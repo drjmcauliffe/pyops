@@ -90,7 +90,7 @@ try:
                           'pandas==0.16.2',
                           'plotly==1.2.6',
                           'pytest==2.6.3',
-                          'quantities==0.10.1'
+                          'quantities==0.10.1',
                           'numpy>=1.7.0'
                           ],
         license="BSD",
