@@ -91,6 +91,7 @@ try:
                           'plotly==1.2.6',
                           'pytest==2.6.3',
                           'quantities==0.10.1'
+                          'numpy>=1.9.2'
                           ],
         license="BSD",
         zip_safe=False,
