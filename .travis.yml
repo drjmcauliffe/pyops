@@ -21,11 +21,12 @@ install:
   - pip install coveralls
   - pip install six
     # install pyspice
-  - git clone https://github.com/johnnycakes79/PySPICE.git pyspice
-  - cd pyspice
-  - python getspice.py
-  - python setup.py install
-  - cd ../
+    # disabling pyspice for now until we have the new library spicepy
+  # - git clone https://github.com/johnnycakes79/PySPICE.git pyspice
+  # - cd pyspice
+  # - python getspice.py
+  # - python setup.py install
+  # - cd ../
   - pwd
     # install PyAstronomy
   - git clone https://github.com/sczesla/PyAstronomy.git pyastron

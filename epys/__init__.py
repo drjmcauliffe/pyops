@@ -13,10 +13,12 @@ __email__ = 'watch.n.learn@gmail.com'
 __version__ = '0.3.1'
 __url__ = 'https://github.com/johnnycakes79/epys'
 
-from epys import classes, draw, events, maps, orbit, read, utils
+# from epys import classes, draw, events, maps, orbit, read, utils
 
 # from epys.draw import planetsplot
 
+from epys import read
+
 from epys.read import epstable, datatable, powertable, read
 
-from epys.utils import plotly_prep
+# from epys.utils import plotly_prep
