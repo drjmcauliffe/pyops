@@ -36,9 +36,12 @@ install:
   - cd ../
   - pwd
     # install epys
+  - pip freeze
+  - pip install numpy --upgrade
+  - pip freeze
   - python setup.py install
   - pip freeze
-  - pip install numpy==1.7.0
+  - pip install numpy --upgrade
   - pip freeze
 
 script:
