@@ -1,23 +1,25 @@
 language: python
 
 python:
-  - 2.7
-  # - 3.3
-  # - 3.4
+- 2.7
 
 before_install:
-    - pip install --upgrade pip
-    - pip install numpy
-    - pip install coverage
-    - pip install coveralls
-    - pip install six
+- pip install --upgrade pip
+- pip install numpy
+- pip install coverage
+- pip install coveralls
+- pip install six
 
 install:
-    - pip freeze
-    - python setup.py install
+- pip freeze
+- python setup.py install
 
 script:
-    - coverage run --source=epys setup.py test
+- coverage run --source=epys setup.py test
 
 after_success:
-    - coveralls
+- coveralls
+
+notifications:
+  slack:
+    secure: JGXo9wL/C/6IkXT+lJ8aabsbV15xCerDbKg5V3w2Tb/QdMir4TlEMsEI0UZoa5el8lSEEVvHKNnvjd0643VtoLGGYEC7ZM7N0ye8PU24Qi4TJyDXtWQPM9D1gfYy8ytab6UJsqwcnQfiJjbuV760RDXpeaYA8KWLFsmxQEY5Sns=
