@@ -6,6 +6,7 @@ from setuptools import setup
 from setuptools.command.test import test as TestCommand
 import os
 import sys
+from multiprocessing import util
 # from epys import __version__
 
 here = os.path.abspath(os.path.dirname(__file__))
