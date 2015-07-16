@@ -16,7 +16,7 @@ install:
     - python setup.py install
 
 script:
-    - coverage run --source=SpiceyPy setup.py test
+    - coverage run --source=epys setup.py test
 
 after_success:
     - coveralls
