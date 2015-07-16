@@ -49,6 +49,7 @@ docs/_build
 # Sublime Test files
 *.sublime-project
 *.sublime-workspace
+.sublime-backup
 
 # Auto-generated backup files in Linux
 *~
