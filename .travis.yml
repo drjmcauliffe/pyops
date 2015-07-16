@@ -12,12 +12,12 @@ virtualenv:
   system_site_packages: true
 
 before_install:
- - sudo apt-get install -qq python-scipy python-matplotlib
+ - sudo apt-get install -qq python-scipy python-matplotlib python-numpy
  - sudo apt-get install python-setuptools
 
 install:
   - pip install --upgrade pip
-  - pip install numpy==1.7.0
+  # - pip install numpy==1.7.0
   - pip install coverage
   - pip install coveralls
   - pip install six
@@ -37,11 +37,11 @@ install:
   - pwd
     # install epys
   - pip freeze
-  - pip install numpy --upgrade
+  # - pip install numpy --upgrade
   - pip freeze
   - python setup.py install
   - pip freeze
-  - pip install numpy --upgrade
+  # - pip install numpy --upgrade
   - pip freeze
 
 script:
