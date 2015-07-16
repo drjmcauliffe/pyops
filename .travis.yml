@@ -6,6 +6,7 @@ python:
   # - 3.4
 
 before_install:
+    - pip install --upgade pip
     - pip install --use-mirrors numpy
     - pip install --use-mirrors coverage
     - pip install --use-mirrors coveralls
