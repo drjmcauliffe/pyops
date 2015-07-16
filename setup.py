@@ -88,7 +88,7 @@ try:
         # tests_require=['tox'],
         tests_require=['pytest'],
         install_requires=['matplotlib==1.4.1',
-                          'pandas==0.16.2',
+                          'pandas>=0.16.2',
                           'plotly==1.2.6',
                           'pytest==2.6.3',
                           'quantities==0.10.1',
