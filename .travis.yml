@@ -14,6 +14,8 @@ install:
 - pip freeze
 - python setup.py install
 - ls -laR
+- python setup.py clean
+- ls -laR
 
 script:
 - coverage run --source=epys setup.py test
