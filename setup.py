@@ -87,12 +87,9 @@ try:
         test_suite='test',
         # tests_require=['tox'],
         tests_require=['pytest'],
-        install_requires=['matplotlib==1.4.1',
-                          'pandas>=0.16.2',
-                          'plotly==1.2.6',
+        install_requires=['plotly==1.2.6',
                           'pytest==2.6.3',
-                          'quantities==0.10.1',
-                          'numpy>=1.7.0'
+                          'quantities==0.10.1'
                           ],
         license="BSD",
         zip_safe=False,
