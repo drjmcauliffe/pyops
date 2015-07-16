@@ -7,6 +7,8 @@ before_install:
 - pip install --upgrade pip
 - pip install numpy
 - pip install coverage
+- pip install pandas
+- pip install matplotlib
 - pip install coveralls
 - pip install six
 
