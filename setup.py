@@ -5,11 +5,12 @@ from __future__ import print_function
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
 import os
+import shutil
 import sys
 # from multiprocessing import util
 # from epys import __version__
 
-here = os.path.dirname(os.path.dirname(__file__))
+root_dir = os.path.dirname(os.path.realpath(__file__))
 version = '0.3.1'  # __version__
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
@@ -62,9 +63,9 @@ def cleanup():
     cleanuplist = ('build', 'dist', 'epys.egg-info')
     for file in cleanuplist:
         try:
-            os.remove(os.path.join(here, file))
+            shutil.rmtree(os.path.join(root_dir, file))
         except OSError:
-            print('Cound not remove {}'.format(os.path.join(here, file)))
+            print('Cound not remove {}'.format(os.path.join(root_dir, file)))
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
