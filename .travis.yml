@@ -26,11 +26,12 @@ before_install:
 install:
   - pip install --upgrade pip
   # - pip install numpy==1.7.0
+  - pip install setuptools
   - pip install coverage
   - pip install coveralls
   - pip install six
-    # install pyspice
-    # disabling pyspice for now until we have the new library spicepy
+  #   # install pyspice
+  #   # disabling pyspice for now until we have the new library spicepy
   # - git clone https://github.com/johnnycakes79/PySPICE.git pyspice
   # - cd pyspice
   # - python getspice.py
@@ -45,11 +46,7 @@ install:
   - pwd
     # install epys
   - pip freeze
-  # - pip install numpy --upgrade
-  - pip freeze
   - python setup.py install
-  - pip freeze
-  # - pip install numpy --upgrade
   - pip freeze
 
 # before_script:
