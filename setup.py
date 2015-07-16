@@ -6,10 +6,10 @@ from setuptools import setup
 from setuptools.command.test import test as TestCommand
 import os
 import sys
-from multiprocessing import util
+# from multiprocessing import util
 # from epys import __version__
 
-here = os.path.abspath(os.path.dirname(__file__))
+here = os.path.dirname(os.path.dirname(__file__))
 version = '0.3.1'  # __version__
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
@@ -64,7 +64,7 @@ def cleanup():
         try:
             os.remove(os.path.join(here, file))
         except OSError:
-            pass
+            print('Cound not remove {}'.format(os.path.join(here, file)))
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
