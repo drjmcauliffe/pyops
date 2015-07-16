@@ -1,7 +1,10 @@
 language: python
+sudo: false
 
 python:
 - 2.7
+- 3.3
+- 3.4
 
 before_install:
 - pip install --upgrade pip
@@ -13,11 +16,7 @@ before_install:
 - pip install six
 
 install:
-- pip freeze
 - python setup.py install
-- ls -laR
-- python setup.py clean
-- ls -laR
 
 script:
 - coverage run --source=epys setup.py test
