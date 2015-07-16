@@ -7,10 +7,10 @@ python:
 
 before_install:
     - pip install --upgrade pip
-    - pip install --use-mirrors numpy
-    - pip install --use-mirrors coverage
-    - pip install --use-mirrors coveralls
-    - pip install --use-mirrors six
+    - pip install numpy
+    - pip install coverage
+    - pip install coveralls
+    - pip install six
 
 install:
     - pip freeze
