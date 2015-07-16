@@ -5,61 +5,18 @@ python:
   # - 3.3
   # - 3.4
 
-notifications:
-  email: false
-
-virtualenv:
-  system_site_packages: true
-
 before_install:
- - if [ ${TRAVIS_PYTHON_VERSION:0:1} == "2" ]; then wget http://repo.continuum.io/miniconda/Miniconda-3.5.5-Linux-x86_64.sh -O miniconda.sh; else wget http://repo.continuum.io/miniconda/Miniconda3-3.5.5-Linux-x86_64.sh -O miniconda.sh; fi
- - chmod +x miniconda.sh
- - ./miniconda.sh -b -p /home/travis/mc
- - export PATH=/home/travis/mc/bin:$PATH
- - sudo apt-get install -qq python-scipy python-matplotlib
- - sudo apt-get install python-setuptools
- - wget http://repo.continuum.io/miniconda/Miniconda-3.8.3-Linux-x86_64.sh -O miniconda.sh
- - chmod +x miniconda.sh
- - export PATH=/home/travis/miniconda/bin:$PATH
- - conda install --yes numpy=1.8
+    - pip install --use-mirrors numpy
+    - pip install --use-mirrors coverage
+    - pip install --use-mirrors coveralls
+    - pip install --use-mirrors six
 
 install:
-  - pip install --upgrade pip
-  # - pip install numpy==1.7.0
-  - pip install setuptools
-  - pip install coverage
-  - pip install coveralls
-  - pip install six
-  #   # install pyspice
-  #   # disabling pyspice for now until we have the new library spicepy
-  # - git clone https://github.com/johnnycakes79/PySPICE.git pyspice
-  # - cd pyspice
-  # - python getspice.py
-  # - python setup.py install
-  # - cd ../
-  - pwd
-    # install PyAstronomy
-  - git clone https://github.com/sczesla/PyAstronomy.git pyastron
-  - cd pyastron
-  - python setup.py install
-  - cd ../
-  - pwd
-    # install epys
-  - pip freeze
-  - python setup.py install
-  - pip freeze
-
-# before_script:
-#   - wget http://repo.continuum.io/miniconda/Miniconda-3.8.3-Linux-x86_64.sh -O miniconda.sh
-#   - chmod +x miniconda.sh
-#   - export PATH=/home/travis/miniconda/bin:$PATH
-#   - conda install --yes numpy=1.8
+    - pip freeze
+    - python setup.py install
 
 script:
-  - python -c 'import numpy; print numpy.version.version'
-  - pip freeze
-  - python setup.py test
-  # - coverage run --source=epys setup.py test
+    - coverage run --source=SpiceyPy setup.py test
 
 after_success:
-  # - coveralls
+    - coveralls
