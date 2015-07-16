@@ -13,6 +13,7 @@ before_install:
 install:
 - pip freeze
 - python setup.py install
+- ls test
 
 script:
 - coverage run --source=epys setup.py test
