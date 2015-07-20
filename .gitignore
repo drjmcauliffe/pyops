@@ -2,12 +2,13 @@
 
 # Folders to exlude
 .ipynb_checkpoints/
-data # this is a submodule for dev data sharing
-.eggs
+data # this is a symlink
+
 # C extensions
 *.so
 
 # Packages
+.eggs
 *.egg
 *.egg-info
 dist
