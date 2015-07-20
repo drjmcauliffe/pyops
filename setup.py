@@ -65,7 +65,7 @@ def cleanup():
         try:
             shutil.rmtree(os.path.join(root_dir, file))
         except OSError:
-            print('Cound not remove {}'.format(os.path.join(root_dir, file)))
+            pass
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
