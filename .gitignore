@@ -3,6 +3,7 @@
 # Folders to exlude
 .ipynb_checkpoints/
 data # this is a symlink
+pickles
 
 # C extensions
 *.so
