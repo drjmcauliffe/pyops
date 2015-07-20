@@ -1,0 +1,3 @@
+[submodule "data"]
+	path = data
+	url = gitolite@scigit02.esac.esa.int:BepiEPYS.git
