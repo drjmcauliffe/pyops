@@ -5,7 +5,7 @@ This module is very useful...
 from bisect import bisect_left
 import os
 import sys
-import spice
+# import spice
 from plotly.graph_objs import Scatter
 
 
@@ -55,74 +55,74 @@ def background_colors(top_limit=7000, limits=False, bg_alpha=False):
     return bg_colors
 
 
-def getclosest(myList, myNumber):
-    '''
-    Assumes myList is sorted. Returns closest value to myNumber.
-    If two numbers are equally close, return the smallest number.
+# def getclosest(myList, myNumber):
+#     '''
+#     Assumes myList is sorted. Returns closest value to myNumber.
+#     If two numbers are equally close, return the smallest number.
 
-    :param myList:
-    :param myNumber:
-    :returns:
-    '''
-    pos = bisect_left(myList, myNumber)
-    if pos == 0:
-        return myList[0]
-    if pos == len(myList):
-        return myList[-1]
-    before = myList[pos - 1]
-    after = myList[pos]
-    if after - myNumber < myNumber - before:
-        return after
-    else:
-        return before
+#     :param myList:
+#     :param myNumber:
+#     :returns:
+#     '''
+#     pos = bisect_left(myList, myNumber)
+#     if pos == 0:
+#         return myList[0]
+#     if pos == len(myList):
+#         return myList[-1]
+#     before = myList[pos - 1]
+#     after = myList[pos]
+#     if after - myNumber < myNumber - before:
+#         return after
+#     else:
+#         return before
 
 
-def getorbelts(epoch, planet='MERCURY', spacecraft='MPO', verbose=False,
-               ltcorr='NONE', reframe='J2000'):
-    """
-    Main function that ...
-    """
+# def getorbelts(epoch, planet='MERCURY', spacecraft='MPO', verbose=False,
+#                ltcorr='NONE', reframe='J2000'):
+#     """
+#     Main function that ...
+#     """
 
-    spice.kclear()
+#     spice.kclear()
 
-    # Load the kernels that this program requires.
-    spice.furnsh('epys.mk')
+#     # Load the kernels that this program requires.
+#     spice.furnsh('epys.mk')
 
-    # convert starting epoch to ET
-    et = spice.str2et(epoch)
+#     # convert starting epoch to ET
+#     et = spice.str2et(epoch)
 
-    orbelts = []
+#     orbelts = []
 
-    if verbose:
-        print('ET Seconds Past J2000: {}'.format(et))
-        print('Date: {}'.format(spice.et2utc(et, 'C', 0)))
+#     if verbose:
+#         print('ET Seconds Past J2000: {}'.format(et))
+#         print('Date: {}'.format(spice.et2utc(et, 'C', 0)))
 
-    # Compute the apparent state of MPO as seen from Mercury in J2000
-    starg, ltime = spice.spkezr(spacecraft, et, reframe, ltcorr, planet)
+#     # Compute the apparent state of MPO as seen from Mercury in J2000
+#     starg, ltime = spice.spkezr(spacecraft, et, reframe, ltcorr, planet)
 
-    # Let starg contain the initial state of a spacecraft relative to
-    # the center of a planet at epoch ET, and let GM be the gravitation
-    # parameter of the planet. The call
+#     # Let starg contain the initial state of a spacecraft relative to
+#     # the center of a planet at epoch ET, and let GM be the gravitation
+#     # parameter of the planet. The call
 
-    mu = planetmu(planet)
-    elts = spice.oscelt(starg, et, mu)
+#     mu = planetmu(planet)
+#     elts = spice.oscelt(starg, et, mu)
 
-    # elts.append(spice.et2utc(et,'ISOC', 0).split('T')[0])
+#     # elts.append(spice.et2utc(et,'ISOC', 0).split('T')[0])
 
-    orbelts.append(elts[0])
-    orbelts.append(elts[1] * spice.dpr())
-    orbelts.append(elts[2] * spice.dpr())
-    orbelts.append(elts[3] * spice.dpr())
-    if elts[4] * spice.dpr() > 180.:
-        orbelts.append(elts[4] * spice.dpr() - 360)
-    else:
-        orbelts.append(elts[4] * spice.dpr())
-    orbelts.append(elts[5] * spice.dpr())
-    orbelts.append(elts[0] - 2439)
+#     orbelts.append(elts[0])
+#     orbelts.append(elts[1] * spice.dpr())
+#     orbelts.append(elts[2] * spice.dpr())
+#     orbelts.append(elts[3] * spice.dpr())
+#     if elts[4] * spice.dpr() > 180.:
+#         orbelts.append(elts[4] * spice.dpr() - 360)
+#     else:
+#         orbelts.append(elts[4] * spice.dpr())
+#     orbelts.append(elts[5] * spice.dpr())
+#     orbelts.append(elts[0] - 2439)
 
-    # spice.kclear()
+#     # spice.kclear()
 
-    return orbelts
+#     return orbelts
 
 
 def yesno(question, default="yes"):
