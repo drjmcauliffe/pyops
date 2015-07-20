@@ -2,8 +2,8 @@
 
 # Folders to exlude
 .ipynb_checkpoints/
-data/ # this is a submodule for dev data sharing
-
+data # this is a submodule for dev data sharing
+.eggs
 # C extensions
 *.so
 
