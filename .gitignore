@@ -1,17 +1,8 @@
 *.py[cod]
 
 # Folders to exlude
-htmlcov/
-sort/
-support/
-pickles/
-.idea/
 .ipynb_checkpoints/
-scripts
-notebooks/
-cleanup/
-sample_data/output
-.eggs
+data/ # this is a submodule for dev data sharing
 
 # C extensions
 *.so
@@ -43,8 +34,7 @@ nosetests.xml
 docs/_build
 
 # Images
-*.svg
-*.png
+
 
 # Sublime Test files
 *.sublime-project
