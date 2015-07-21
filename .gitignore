@@ -4,6 +4,14 @@
 .ipynb_checkpoints/
 data # this is a symlink
 pickles
+scripts
+notebooks/
+cleanup/
+sample_data/output
+.eggs
+include/
+local/
+man/
 
 # C extensions
 *.so
