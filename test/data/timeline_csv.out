@@ -1,0 +1,1856 @@
+#
+# Output Filename: timeline.out
+# Generation Time: 21-July-2015_06:37:05 (UTC)
+# File Contents:   Executed Timeline
+#
+# EPS Version:     v2.5.36
+#
+# CFG Template:    v3.19
+# EDF Template:    v3.12
+# ITL Template:    v3.10
+# EVF Template:    v3.1
+#
+# POR Definition:  CRID issue C4
+# EVF (ESOC FD):   DDID appendix-H v2.1
+#
+# Input Timeline:  BC-SFT2_FM-FUNC_VER-ITL-GEN01A.itl
+# Input CFG:       eps.cfg
+# Input EDF:       bepi.edf
+# MDB version:     SISBCMAS "PFM v5.0 (1, 5, 0)"
+# Input EVF:       bepi_events_mpo_sft.evf
+#
+
+Version: 1
+#Ref_date: 6-October-2022
+Start_time: 20:00:00
+End_time: 23:45:00
+
+000_20:00:00   BELA        OFF         BL_PBS
+000_20:00:00   ISA         OFF         SA_STANDBY
+000_20:00:00   MERMAG      OFF         ME_ON
+000_20:00:00   MERTIS      OFF         SWITCH_MODE ( \
+                                          NEW_MODE = STANDBY [ENG])
+000_20:00:00   MGNS        OFF         MG_ONOFF ( \
+                                          MODE = 1)
+000_20:00:00   PHEBUS      OFF         SWITCH_MODE ( \
+                                          NEW_MODE = STANDBY [ENG])
+000_20:00:00   SERENA      OFF         ZPWMSEON
+000_20:00:10   ISA         STANDBY     SA_CONFIG
+000_20:15:01   MGNS        STANDBY     AMGSG01A
+000_20:15:01   MERTIS      STANDBY     ZMR00014 ( \
+                                          PMR00129 = "100msec(1)" [ENG] \
+                                          PMR00130 = 60 [s] \
+                                          PMR00277 = "no(0)" [ENG] \
+                                          PMR00131 = "on(1)" [ENG] \
+                                          PMR00132 = "off(0)" [ENG] \
+                                          PMR00278 = "off(0)" [ENG] \
+                                          PMR00134 = "on(1)" [ENG] \
+                                          PMR00135 = "on(1)" [ENG] \
+                                          PMR00136 = "on(1)" [ENG] \
+                                          PMR00137 = "on(1)" [ENG] \
+                                          PMR00138 = "on(1)" [ENG] \
+                                          PMR00270 = 10 [acqu] \
+                                          PMR00271 = "Move(1)" [ENG] \
+                                          PMR00272 = "1x1(0)" [ENG] \
+                                          PMR00273 = "100x80pixel(0)" [ENG] \
+                                          PMR00274 = "no compressio(0)" [ENG] \
+                                          PMR00297 = 8 \
+                                          PMR00143 = 10 [degC] \
+                                          PMR00144 = 60 [s] \
+                                          PMR00145 = 60 [s])
+000_20:15:04   PHEBUS      STANDBY     ZPH19022 ( \
+                                          PPH09911 = 3 [RAW])
+000_20:15:04   SERENA      STANDBY     ZSE04049
+000_20:15:05   ISA         CONFIGURATION ZSA00309 ( \
+                                          PSA08003 = 1 \
+                                          PSA08009 = 8)
+000_20:15:06   PHEBUS      STANDBY     ZPH19012 ( \
+                                          PPH09715 = 1 [RAW] \
+                                          PPH09714 = 1 [RAW] \
+                                          PPH09713 = 1 [RAW] \
+                                          PPH09712 = 1 [RAW] \
+                                          PPH09711 = 1 [RAW] \
+                                          PPH09710 = 1 [RAW] \
+                                          PPH09709 = 1 [RAW] \
+                                          PPH09708 = 1 [RAW] \
+                                          PPH09707 = 1 [RAW] \
+                                          PPH09706 = 1 [RAW] \
+                                          PPH09705 = 0 [RAW] \
+                                          PPH09704 = 1 [RAW] \
+                                          PPH09703 = 1 [RAW] \
+                                          PPH09702 = 1 [RAW] \
+                                          PPH09701 = 1 [RAW] \
+                                          PPH09700 = 1 [RAW] \
+                                          PPH09716 = 1 [RAW] \
+                                          PPH09717 = 1 [RAW])
+000_20:15:08   PHEBUS      STANDBY     ZPH19002 ( \
+                                          PPH09100 = 8 \
+                                          PPH09101 = 8 \
+                                          PPH09102 = 8 \
+                                          PPH09103 = 8 \
+                                          PPH09104 = 1024 \
+                                          PPH09105 = 18432 \
+                                          PPH09106 = 8 \
+                                          PPH09107 = 8 \
+                                          PPH09108 = 8 \
+                                          PPH09109 = 8 \
+                                          PPH09110 = 1024 \
+                                          PPH09111 = 18432 \
+                                          PPH09112 = 0 [RAW] \
+                                          PPH09113 = 4 [RAW] \
+                                          PPH09114 = 30 [RAW] \
+                                          PPH09115 = 30 [RAW] \
+                                          PPH09116 = 1447 [RAW] \
+                                          PPH09150 = 3 [RAW] \
+                                          PPH09123 = 2023 [RAW] \
+                                          PPH09124 = 2002 [RAW] \
+                                          PPH09131 = 16 \
+                                          PPH09138 = 16 \
+                                          PPH09139 = 0 \
+                                          PPH09140 = 0 \
+                                          PPH09141 = 0 \
+                                          PPH09142 = 0 \
+                                          PPH09143 = 64 [RAW] \
+                                          PPH09144 = 0 \
+                                          PPH09145 = 0 \
+                                          PPH09146 = 0 \
+                                          PPH09147 = 0 \
+                                          PPH09148 = 64 [RAW] \
+                                          PPH09153 = 4 \
+                                          PPH09154 = 2 \
+                                          PPH09155 = 2 \
+                                          PPH09156 = 40 [RAW])
+000_20:15:10   BELA        PBS         ZBL03129 ( \
+                                          PBL08003 = 1 \
+                                          PBL08004 = 80)
+000_20:15:10   MERMAG      BOOT_ROM    ZME02802
+000_20:15:10   PHEBUS      STANDBY     ZPH19001 ( \
+                                          PPH09000 = 10 [RAW] \
+                                          PPH09001 = 1 [RAW] \
+                                          PPH09002 = 0 [RAW] \
+                                          PPH09004 = 0 [RAW] \
+                                          PPH09080 = 0 [RAW] \
+                                          PPH09081 = 0 [RAW] \
+                                          PPH09005 = 1 [RAW] \
+                                          PPH09006 = 0 [RAW] \
+                                          PPH09007 = 0 [RAW] \
+                                          PPH09008 = 1 [RAW] \
+                                          PPH09009 = 1 [RAW] \
+                                          PPH09010 = 1 [RAW] \
+                                          PPH09011 = 0 [RAW] \
+                                          PPH09012 = 0 [RAW] \
+                                          PPH09013 = 0 \
+                                          PPH09014 = 9 \
+                                          PPH09024 = 1 [RAW] \
+                                          PPH09023 = 1 [RAW] \
+                                          PPH09022 = 1 [RAW] \
+                                          PPH09021 = 1 [RAW] \
+                                          PPH09020 = 1 [RAW] \
+                                          PPH09019 = 1 [RAW] \
+                                          PPH09018 = 1 [RAW] \
+                                          PPH09017 = 0 [RAW] \
+                                          PPH09016 = 1 [RAW] \
+                                          PPH09032 = 0 [RAW] \
+                                          PPH09033 = 4 [RAW] \
+                                          PPH09034 = 8 [RAW] \
+                                          PPH09035 = 14 [RAW] \
+                                          PPH09036 = 17 [RAW] \
+                                          PPH09037 = 5 [RAW] \
+                                          PPH09038 = 6 [RAW] \
+                                          PPH09039 = 6 [RAW] \
+                                          PPH09040 = 8 [RAW] \
+                                          PPH09046 = 0 [RAW] \
+                                          PPH09045 = 4 [RAW] \
+                                          PPH09044 = 0 [RAW] \
+                                          PPH09053 = 0 [RAW] \
+                                          PPH09042 = 0 [RAW] \
+                                          PPH09047 = 89 \
+                                          PPH09062 = 1 [RAW] \
+                                          PPH09050 = 1 [RAW] \
+                                          PPH09051 = 0 [RAW] \
+                                          PPH09052 = 1 [RAW] \
+                                          PPH09063 = 1 [RAW] \
+                                          PPH09054 = 0 [RAW] \
+                                          PPH09055 = 1 [RAW] \
+                                          PPH09057 = 1 \
+                                          PPH09058 = 256 [pix] \
+                                          PPH09059 = 128 [pix] \
+                                          PPH09060 = 512 \
+                                          PPH09061 = 256 \
+                                          PPH09003 = 0 [RAW] \
+                                          PPH09064 = 0 [RAW] \
+                                          PPH09067 = 0 [RAW] \
+                                          PPH09069 = 0 [RAW] \
+                                          PPH09070 = 0 [RAW] \
+                                          PPH09071 = 0 [RAW] \
+                                          PPH09072 = 0 [RAW] \
+                                          PPH09073 = 0 [RAW] \
+                                          PPH09074 = 1 [RAW] \
+                                          PPH09075 = 0 [RAW] \
+                                          PPH09076 = 0)
+000_20:15:11   BELA        PBS         ZBL03129 ( \
+                                          PBL08003 = 2 \
+                                          PBL08004 = 80)
+000_20:15:14   PHEBUS      STANDBY     ZPH19003 ( \
+                                          PPH92001 = 1 \
+                                          PPH92002 = 0 [pix] \
+                                          PPH92003 = 2 \
+                                          PPH92004 = 256 \
+                                          PPH92005 = 0 [pix] \
+                                          PPH92006 = 64 \
+                                          PPH92007 = 4 \
+                                          PPH92008 = 0 [pix] \
+                                          PPH92009 = 1 \
+                                          PPH92010 = 1024 \
+                                          PPH92011 = 32 [pix] \
+                                          PPH92012 = 16 \
+                                          PPH92013 = 4 \
+                                          PPH92014 = 0 [pix] \
+                                          PPH92015 = 1 \
+                                          PPH92016 = 1024 \
+                                          PPH92017 = 32 [pix] \
+                                          PPH92018 = 16 \
+                                          PPH92019 = 4 \
+                                          PPH92020 = 0 [pix] \
+                                          PPH92021 = 1 \
+                                          PPH92022 = 1024 \
+                                          PPH92023 = 32 [pix] \
+                                          PPH92024 = 16 \
+                                          PPH92025 = 4 \
+                                          PPH92026 = 0 [pix] \
+                                          PPH92027 = 1 \
+                                          PPH92028 = 1024 \
+                                          PPH92029 = 32 [pix] \
+                                          PPH92030 = 16 \
+                                          PPH92031 = 4 \
+                                          PPH92032 = 0 [pix] \
+                                          PPH92033 = 1 \
+                                          PPH92034 = 1024 \
+                                          PPH92035 = 32 [pix] \
+                                          PPH92036 = 16 \
+                                          PPH92037 = 4 \
+                                          PPH92038 = 0 [pix] \
+                                          PPH92039 = 1 \
+                                          PPH92040 = 1024 \
+                                          PPH92041 = 32 [pix] \
+                                          PPH92042 = 16 \
+                                          PPH92043 = 4 \
+                                          PPH92044 = 0 [pix] \
+                                          PPH92045 = 1 \
+                                          PPH92046 = 1024 \
+                                          PPH92047 = 32 [pix] \
+                                          PPH92048 = 16 \
+                                          PPH92049 = 4)
+000_20:15:16   PHEBUS      STANDBY     ZPH19005 ( \
+                                          PPH94001 = 9 \
+                                          PPH94002 = 90 [RAW] \
+                                          PPH94003 = 91 [RAW] \
+                                          PPH94004 = 92 [RAW] \
+                                          PPH94005 = 93 [RAW] \
+                                          PPH94006 = 94 [RAW] \
+                                          PPH94007 = 95 [RAW] \
+                                          PPH94008 = 96 [RAW] \
+                                          PPH94009 = 97 [RAW] \
+                                          PPH94010 = 98 [RAW] \
+                                          PPH94011 = 1 [RAW] \
+                                          PPH94012 = 1 [RAW] \
+                                          PPH94013 = 1 [RAW] \
+                                          PPH94014 = 1 [RAW] \
+                                          PPH94015 = 1 [RAW] \
+                                          PPH94016 = 1 [RAW] \
+                                          PPH94017 = 1 [RAW] \
+                                          PPH94018 = 1 [RAW] \
+                                          PPH94019 = 1 [RAW] \
+                                          PPH94020 = 1 [RAW] \
+                                          PPH94021 = 1 [RAW] \
+                                          PPH94022 = 1 [RAW] \
+                                          PPH94023 = 1 [RAW] \
+                                          PPH94024 = 1 [RAW] \
+                                          PPH94025 = 1 [RAW] \
+                                          PPH94026 = 1 [RAW] \
+                                          PPH94027 = 1 [RAW] \
+                                          PPH94028 = 1 [RAW] \
+                                          PPH94029 = 1 [RAW] \
+                                          PPH94030 = 1 [RAW] \
+                                          PPH94031 = 1 [RAW] \
+                                          PPH94032 = 1 [RAW] \
+                                          PPH94033 = 1 [RAW] \
+                                          PPH94034 = 1 [RAW] \
+                                          PPH94035 = 1 [RAW] \
+                                          PPH94036 = 1 [RAW] \
+                                          PPH94037 = 1 [RAW] \
+                                          PPH94038 = 1 [RAW] \
+                                          PPH94039 = 1 [RAW] \
+                                          PPH94040 = 1 [RAW] \
+                                          PPH94041 = 1 [RAW] \
+                                          PPH94042 = 1 [RAW] \
+                                          PPH94043 = 1 [RAW] \
+                                          PPH94044 = 1 [RAW] \
+                                          PPH94045 = 1 [RAW] \
+                                          PPH94046 = 1 [RAW] \
+                                          PPH94047 = 1 [RAW] \
+                                          PPH94048 = 1 [RAW] \
+                                          PPH94049 = 1 [RAW] \
+                                          PPH94050 = 1 [RAW] \
+                                          PPH94051 = 1 [RAW] \
+                                          PPH94052 = 1 [RAW] \
+                                          PPH94053 = 1 [RAW] \
+                                          PPH94054 = 1 [RAW] \
+                                          PPH94055 = 1 [RAW] \
+                                          PPH94056 = 1 [RAW] \
+                                          PPH94057 = 1 [RAW] \
+                                          PPH94058 = 1 [RAW] \
+                                          PPH94059 = 1 [RAW] \
+                                          PPH94060 = 1 [RAW] \
+                                          PPH94061 = 1 [RAW] \
+                                          PPH94062 = 1 [RAW] \
+                                          PPH94063 = 1 [RAW] \
+                                          PPH94064 = 1 [RAW] \
+                                          PPH94065 = 1 [RAW] \
+                                          PPH94066 = 1 [RAW] \
+                                          PPH94067 = 1 [RAW] \
+                                          PPH94068 = 1 [RAW] \
+                                          PPH94069 = 1 [RAW] \
+                                          PPH94070 = 1 [RAW] \
+                                          PPH94071 = 1 [RAW] \
+                                          PPH94072 = 1 [RAW] \
+                                          PPH94073 = 1 [RAW] \
+                                          PPH94074 = 1 [RAW] \
+                                          PPH94075 = 1 [RAW] \
+                                          PPH94076 = 1 [RAW] \
+                                          PPH94077 = 1 [RAW] \
+                                          PPH94078 = 1 [RAW] \
+                                          PPH94079 = 1 [RAW] \
+                                          PPH94080 = 1 [RAW] \
+                                          PPH94081 = 1 [RAW] \
+                                          PPH94082 = 1 [RAW] \
+                                          PPH94083 = 1 [RAW] \
+                                          PPH94084 = 1 [RAW] \
+                                          PPH94085 = 1 [RAW] \
+                                          PPH94086 = 1 [RAW] \
+                                          PPH94087 = 1 [RAW] \
+                                          PPH94088 = 1 [RAW] \
+                                          PPH94089 = 1 [RAW] \
+                                          PPH94090 = 1 [RAW] \
+                                          PPH94091 = 1 [RAW] \
+                                          PPH94092 = 1 [RAW] \
+                                          PPH94093 = 1 [RAW] \
+                                          PPH94094 = 1 [RAW] \
+                                          PPH94095 = 1 [RAW] \
+                                          PPH94096 = 1 [RAW] \
+                                          PPH94097 = 1 [RAW] \
+                                          PPH94098 = 1 [RAW] \
+                                          PPH94099 = 1 [RAW] \
+                                          PPH94100 = 1 [RAW] \
+                                          PPH94101 = 1 [RAW] \
+                                          PPH94102 = 1 [RAW] \
+                                          PPH94103 = 1 [RAW] \
+                                          PPH94104 = 1 [RAW] \
+                                          PPH94105 = 1 [RAW] \
+                                          PPH94106 = 1 [RAW] \
+                                          PPH94107 = 1 [RAW] \
+                                          PPH94108 = 1 [RAW])
+000_20:15:18   PHEBUS      STANDBY     ZPH19009 ( \
+                                          PPH99001 = 9 \
+                                          PPH99002 = 80 [RAW] \
+                                          PPH99003 = 81 [RAW] \
+                                          PPH99004 = 82 [RAW] \
+                                          PPH99005 = 83 [RAW] \
+                                          PPH99006 = 84 [RAW] \
+                                          PPH99007 = 85 [RAW] \
+                                          PPH99008 = 86 [RAW] \
+                                          PPH99009 = 87 [RAW] \
+                                          PPH99010 = 88 [RAW] \
+                                          PPH99011 = 1 [RAW] \
+                                          PPH99012 = 1 [RAW] \
+                                          PPH99013 = 1 [RAW] \
+                                          PPH99014 = 1 [RAW] \
+                                          PPH99015 = 1 [RAW] \
+                                          PPH99016 = 1 [RAW] \
+                                          PPH99017 = 1 [RAW] \
+                                          PPH99018 = 1 [RAW] \
+                                          PPH99019 = 1 [RAW] \
+                                          PPH99020 = 1 [RAW] \
+                                          PPH99021 = 1 [RAW] \
+                                          PPH99022 = 1 [RAW] \
+                                          PPH99023 = 1 [RAW] \
+                                          PPH99024 = 1 [RAW] \
+                                          PPH99025 = 1 [RAW] \
+                                          PPH99026 = 1 [RAW] \
+                                          PPH99027 = 1 [RAW] \
+                                          PPH99028 = 1 [RAW] \
+                                          PPH99029 = 1 [RAW] \
+                                          PPH99030 = 1 [RAW] \
+                                          PPH99031 = 1 [RAW] \
+                                          PPH99032 = 1 [RAW] \
+                                          PPH99033 = 1 [RAW] \
+                                          PPH99034 = 1 [RAW] \
+                                          PPH99035 = 1 [RAW] \
+                                          PPH99036 = 1 [RAW] \
+                                          PPH99037 = 1 [RAW] \
+                                          PPH99038 = 1 [RAW] \
+                                          PPH99039 = 1 [RAW] \
+                                          PPH99040 = 1 [RAW] \
+                                          PPH99041 = 1 [RAW] \
+                                          PPH99042 = 1 [RAW] \
+                                          PPH99043 = 1 [RAW] \
+                                          PPH99044 = 1 [RAW] \
+                                          PPH99045 = 1 [RAW] \
+                                          PPH99046 = 1 [RAW] \
+                                          PPH99047 = 1 [RAW] \
+                                          PPH99048 = 1 [RAW] \
+                                          PPH99049 = 1 [RAW] \
+                                          PPH99050 = 1 [RAW] \
+                                          PPH99051 = 1 [RAW] \
+                                          PPH99052 = 1 [RAW] \
+                                          PPH99053 = 1 [RAW] \
+                                          PPH99054 = 1 [RAW] \
+                                          PPH99055 = 1 [RAW] \
+                                          PPH99056 = 1 [RAW] \
+                                          PPH99057 = 1 [RAW] \
+                                          PPH99058 = 1 [RAW] \
+                                          PPH99059 = 1 [RAW] \
+                                          PPH99060 = 1 [RAW] \
+                                          PPH99061 = 1 [RAW] \
+                                          PPH99062 = 1 [RAW] \
+                                          PPH99063 = 1 [RAW] \
+                                          PPH99064 = 1 [RAW] \
+                                          PPH99065 = 1 [RAW] \
+                                          PPH99066 = 1 [RAW] \
+                                          PPH99067 = 1 [RAW] \
+                                          PPH99068 = 1 [RAW] \
+                                          PPH99069 = 1 [RAW] \
+                                          PPH99070 = 1 [RAW] \
+                                          PPH99071 = 1 [RAW] \
+                                          PPH99072 = 1 [RAW] \
+                                          PPH99073 = 1 [RAW] \
+                                          PPH99074 = 1 [RAW] \
+                                          PPH99075 = 1 [RAW] \
+                                          PPH99076 = 1 [RAW] \
+                                          PPH99077 = 1 [RAW] \
+                                          PPH99078 = 1 [RAW] \
+                                          PPH99079 = 1 [RAW] \
+                                          PPH99080 = 1 [RAW] \
+                                          PPH99081 = 1 [RAW] \
+                                          PPH99082 = 1 [RAW] \
+                                          PPH99083 = 1 [RAW] \
+                                          PPH99084 = 1 [RAW] \
+                                          PPH99085 = 1 [RAW] \
+                                          PPH99086 = 1 [RAW] \
+                                          PPH99087 = 1 [RAW] \
+                                          PPH99088 = 1 [RAW] \
+                                          PPH99089 = 1 [RAW] \
+                                          PPH99090 = 1 [RAW] \
+                                          PPH99091 = 1 [RAW] \
+                                          PPH99092 = 1 [RAW] \
+                                          PPH99093 = 1 [RAW] \
+                                          PPH99094 = 1 [RAW] \
+                                          PPH99095 = 1 [RAW] \
+                                          PPH99096 = 1 [RAW] \
+                                          PPH99097 = 1 [RAW] \
+                                          PPH99098 = 1 [RAW] \
+                                          PPH99099 = 1 [RAW] \
+                                          PPH99100 = 1 [RAW] \
+                                          PPH99101 = 1 [RAW] \
+                                          PPH99102 = 1 [RAW] \
+                                          PPH99103 = 1 [RAW] \
+                                          PPH99104 = 1 [RAW] \
+                                          PPH99105 = 1 [RAW] \
+                                          PPH99106 = 1 [RAW] \
+                                          PPH99107 = 1 [RAW] \
+                                          PPH99108 = 1 [RAW])
+000_20:15:20   MERMAG      BOOT_ROM    ZCD00982 ( \
+                                          PCD09821 = 89 \
+                                          PCD09822 = 0)
+000_20:15:20   SERENA      STANDBY     ZSE03002 ( \
+                                          PSE06021 = 0 [RAW] \
+                                          PSE08004 = 30 [s])
+000_20:15:22   PHEBUS      STANDBY     ZPH19008
+000_20:15:22   SERENA      STANDBY     ZSE03016 ( \
+                                          PSE06073 = 15 [s] \
+                                          PSE06072 = 1 [RAW] \
+                                          PSE06074 = 1 [RAW] \
+                                          PSE06075 = 1 [RAW] \
+                                          PSE06076 = Simulated [ENG])
+000_20:15:24   SERENA      STANDBY     ZSE03014
+000_20:15:25   ISA         CONFIGURATION ZSA23001 ( \
+                                          PSA06101 = RAM [ENG] \
+                                          PSA06102 = 5 \
+                                          PSA06110 = AutoSet [ENG] \
+                                          PSA06116 = Digital [ENG] \
+                                          PSA06117 = 200 [degC] \
+                                          PSA06111 = 4100 [degC] \
+                                          PSA06118 = 100 [degC] \
+                                          PSA06112 = 1 [s] \
+                                          PSA06113 = 0.9 \
+                                          PSA06114 = 0.0036 \
+                                          PSA06115 = 0 \
+                                          PSA06126 = 1 \
+                                          PSA06127 = 300 [degC] \
+                                          PSA06121 = 3400 [degC] \
+                                          PSA06128 = 200 [degC] \
+                                          PSA06122 = 1 [s] \
+                                          PSA06123 = 50 \
+                                          PSA06124 = 0.022 \
+                                          PSA06125 = 0 \
+                                          PSA06136 = 1 \
+                                          PSA06137 = 400 [degC] \
+                                          PSA06131 = 3400 [degC] \
+                                          PSA06138 = 300 [degC] \
+                                          PSA06132 = 1 [s] \
+                                          PSA06133 = 20 \
+                                          PSA06134 = 0.013 \
+                                          PSA06135 = 0 \
+                                          PSA06146 = 1 \
+                                          PSA06147 = 500 [degC] \
+                                          PSA06141 = 3400 [degC] \
+                                          PSA06148 = 400 [degC] \
+                                          PSA06142 = 1 [s] \
+                                          PSA06143 = 35 \
+                                          PSA06144 = 0.032 \
+                                          PSA06145 = 0 \
+                                          PSA06150 = HotSpot [ENG] \
+                                          PSA06151 = Analog [ENG] \
+                                          PSA06181 = "PID Ctrl Disab" [ENG] \
+                                          PSA06182 = "PID Ctrl Disab" [ENG] \
+                                          PSA06183 = "PID Ctrl Disab" [ENG] \
+                                          PSA06184 = "PID Ctrl Disab" [ENG] \
+                                          PSA06191 = 70 \
+                                          PSA06192 = 150 \
+                                          PSA06193 = 150 \
+                                          PSA06194 = 150 \
+                                          PSA06158 = 3900 [degC] \
+                                          PSA06159 = 4600 [degC] \
+                                          PSA06160 = 5400 [degC] \
+                                          PSA06161 = 6100 [degC] \
+                                          PSA06162 = 6800 [degC] \
+                                          PSA06163 = 6800 [degC] \
+                                          PSA06164 = 6800 [degC] \
+                                          PSA06165 = 6800 [degC] \
+                                          PSA06166 = 6800 [degC] \
+                                          PSA06167 = 6800 [degC] \
+                                          PSA06168 = 6800 [degC] \
+                                          PSA06169 = 6800 [degC] \
+                                          PSA06170 = 500 [degC] \
+                                          PSA06171 = 1300 [degC] \
+                                          PSA06172 = 2100 [degC] \
+                                          PSA06173 = 2900 [degC] \
+                                          PSA06174 = 3700 [degC] \
+                                          PSA06175 = 4500 [degC] \
+                                          PSA06176 = 4500 [degC] \
+                                          PSA06177 = 4500 [degC] \
+                                          PSA06178 = 4500 [degC] \
+                                          PSA06179 = 4500 [degC] \
+                                          PSA06180 = 4500 [degC] \
+                                          PSA06185 = 4500 [degC] \
+                                          PSA06186 = 4500 [degC] \
+                                          PSA06187 = 100 [degC] \
+                                          PSA06188 = 100 [degC] \
+                                          PSA06104 = 0 \
+                                          PSA06105 = 0 \
+                                          PSA06106 = 0 \
+                                          PSA06107 = 0 \
+                                          PSA06154 = 0 \
+                                          PSA06155 = 0 \
+                                          PSA06156 = 0 \
+                                          PSA06157 = 0 \
+                                          PSA06195 = 0)
+000_20:15:25   MERMAG      BOOT_ROM    ZME02902 ( \
+                                          PME06063 = 191 [RAW])
+000_20:15:26   MERTIS      STANDBY     ZMR00025
+000_20:15:27   ISA         CONFIGURATION ZSA23028 ( \
+                                          PSA07230 = RAM [ENG])
+000_20:15:29   ISA         CONFIGURATION ZSA23002 ( \
+                                          PSA06201 = RAM [ENG] \
+                                          PSA06202 = 0 \
+                                          PSA06203 = "Dith. Enable" [ENG] \
+                                          PSA06221 = 0 \
+                                          PSA06251 = 2 \
+                                          PSA06252 = 4 \
+                                          PSA06261 = 8 \
+                                          PSA06222 = 0 \
+                                          PSA06253 = 2 \
+                                          PSA06254 = 4 \
+                                          PSA06262 = 8 \
+                                          PSA06223 = 0 \
+                                          PSA06255 = 2 \
+                                          PSA06256 = 4 \
+                                          PSA06263 = 8 \
+                                          PSA06241 = 0 \
+                                          PSA06243 = 0 [RAW] \
+                                          PSA06242 = 1200 [s] \
+                                          PSA06230 = 0 \
+                                          PSA06233 = Active [ENG] \
+                                          PSA06234 = Active [ENG] \
+                                          PSA06235 = Active [ENG] \
+                                          PSA06231 = "Nominal rate" [ENG] \
+                                          PSA06244 = Inactive [ENG] \
+                                          PSA06245 = Inactive [ENG] \
+                                          PSA06246 = Inactive [ENG] \
+                                          PSA06247 = Inactive [ENG] \
+                                          PSA06248 = Inactive [ENG] \
+                                          PSA06249 = Inactive [ENG] \
+                                          PSA06271 = 0 \
+                                          PSA06272 = 0 \
+                                          PSA06274 = 0 \
+                                          PSA06275 = 0 \
+                                          PSA06277 = 0 \
+                                          PSA06278 = 0 \
+                                          PSA06280 = 0 \
+                                          PSA06281 = 0 \
+                                          PSA06282 = 0 \
+                                          PSA06283 = 0 \
+                                          PSA06284 = 0 \
+                                          PSA06285 = 0 \
+                                          PSA06286 = 0 \
+                                          PSA06287 = 0 \
+                                          PSA06288 = 0 \
+                                          PSA06289 = 0 \
+                                          PSA06290 = 0 \
+                                          PSA06291 = 0 \
+                                          PSA06292 = 0 \
+                                          PSA06293 = 0 \
+                                          PSA06294 = 0 \
+                                          PSA06299 = 0)
+000_20:15:30   MERMAG      SCIENCE_X   ZCD00982 ( \
+                                          PCD09821 = 89 \
+                                          PCD09822 = 0)
+000_20:15:31   ISA         CONFIGURATION ZSA23029 ( \
+                                          PSA07230 = RAM [ENG])
+000_20:15:33   ISA         CONFIGURATION ZSA23003 ( \
+                                          PSA06301 = RAM [ENG] \
+                                          PSA06312 = 0 \
+                                          PSA06310 = 0 \
+                                          PSA06368 = "Freq not exec" [ENG] \
+                                          PSA06367 = "Freq not exec" [ENG] \
+                                          PSA06366 = "Freq not exec" [ENG] \
+                                          PSA06365 = "Freq not exec" [ENG] \
+                                          PSA06364 = "Freq not exec" [ENG] \
+                                          PSA06363 = "Freq not exec" [ENG] \
+                                          PSA06362 = "Freq not exec" [ENG] \
+                                          PSA06361 = "Freq exec" [ENG] \
+                                          PSA06369 = "TM(21,130)disab" [ENG] \
+                                          PSA06319 = 136990 \
+                                          PSA06320 = 121334 \
+                                          PSA06321 = 121334 \
+                                          PSA06322 = 136990 \
+                                          PSA06323 = 136990 \
+                                          PSA06331 = 121334 \
+                                          PSA06332 = 121334 \
+                                          PSA06333 = 136990 \
+                                          PSA06334 = 136990 \
+                                          PSA06335 = 121334 \
+                                          PSA06336 = 121334 \
+                                          PSA06337 = 136990 \
+                                          PSA06338 = 5 [s] \
+                                          PSA06339 = 30 \
+                                          PSA06340 = 20 [s] \
+                                          PSA06341 = 6 \
+                                          PSA06342 = 30 [s] \
+                                          PSA06343 = 7 \
+                                          PSA06344 = 40 [s] \
+                                          PSA06345 = 8 \
+                                          PSA06346 = 50 [s] \
+                                          PSA06347 = 9 \
+                                          PSA06348 = 60 [s] \
+                                          PSA06349 = 10 \
+                                          PSA06350 = 70 [s] \
+                                          PSA06351 = 11 \
+                                          PSA06352 = 80 [s] \
+                                          PSA06353 = 12 \
+                                          PSA06313 = 0)
+000_20:15:35   ISA         CONFIGURATION ZSA23030 ( \
+                                          PSA07230 = RAM [ENG])
+000_20:15:35   MERMAG      SCIENCE_X   ZME01701
+000_20:15:37   ISA         CONFIGURATION ZSA23004 ( \
+                                          PSA06401 = RAM [ENG] \
+                                          PSA06402 = 0 \
+                                          PSA06410 = 6 \
+                                          PSA06411 = 30 [s] \
+                                          PSA06412 = 5 [s] \
+                                          PSA06413 = EveryCalibStep [ENG] \
+                                          PSA06409 = "TM(21,3)enab" [ENG] \
+                                          PSA06414 = 2000 \
+                                          PSA06424 = 0 \
+                                          PSA06415 = 8192 \
+                                          PSA06425 = 0 \
+                                          PSA06416 = 1000 \
+                                          PSA06426 = 0 \
+                                          PSA06417 = 30000 \
+                                          PSA06418 = 61443 \
+                                          PSA06419 = 60000 \
+                                          PSA06450 = 1 \
+                                          PSA06453 = 1 \
+                                          PSA06451 = 1 \
+                                          PSA06454 = 1 \
+                                          PSA06452 = 1 \
+                                          PSA06455 = 1 \
+                                          PSA06456 = 0.002 \
+                                          PSA06457 = 0.002 \
+                                          PSA06458 = 0.002 \
+                                          PSA06449 = 50 \
+                                          PSA06420 = "SelfCalib Enab" [ENG] \
+                                          PSA06421 = "SelfCalib Enab" [ENG] \
+                                          PSA06422 = "SelfCalib Enab" [ENG] \
+                                          PSA06431 = 0 \
+                                          PSA06432 = 0 \
+                                          PSA06433 = 0 \
+                                          PSA06434 = 0 \
+                                          PSA06435 = 0 \
+                                          PSA06436 = 0 \
+                                          PSA06440 = 0 [s] \
+                                          PSA06441 = 10 [s] \
+                                          PSA06442 = 500 \
+                                          PSA06443 = 500 \
+                                          PSA06444 = 500 \
+                                          PSA06445 = 1 \
+                                          PSA06446 = 90 \
+                                          PSA06447 = 90 \
+                                          PSA06448 = 100 \
+                                          PSA06430 = 0)
+000_20:15:39   ISA         CONFIGURATION ZSA23031 ( \
+                                          PSA07230 = RAM [ENG])
+000_20:15:40   MERMAG      SCIENCE_X   ZME01701
+000_20:15:45   ISA         CONFIGURATION ZSA23401 ( \
+                                          PSA09011 = Active [ENG] \
+                                          PSA09012 = Active [ENG] \
+                                          PSA09013 = Active [ENG] \
+                                          PSA09014 = Active [ENG])
+000_20:15:45   MERMAG      SCIENCE_X   ZME01701
+000_20:15:50   MERMAG      SCIENCE_X   ZME01701
+000_20:15:55   MERMAG      SCIENCE_X   ZME01701
+000_20:16:10   MERTIS      WARMUP      ZMR00014 ( \
+                                          PMR00129 = "100msec(1)" [ENG] \
+                                          PMR00130 = 60 [s] \
+                                          PMR00277 = "no(0)" [ENG] \
+                                          PMR00131 = "on(1)" [ENG] \
+                                          PMR00132 = "off(0)" [ENG] \
+                                          PMR00278 = "off(0)" [ENG] \
+                                          PMR00134 = "on(1)" [ENG] \
+                                          PMR00135 = "on(1)" [ENG] \
+                                          PMR00136 = "on(1)" [ENG] \
+                                          PMR00137 = "on(1)" [ENG] \
+                                          PMR00138 = "on(1)" [ENG] \
+                                          PMR00270 = 10 [acqu] \
+                                          PMR00271 = "Move(1)" [ENG] \
+                                          PMR00272 = "1x1(0)" [ENG] \
+                                          PMR00273 = "100x80pixel(0)" [ENG] \
+                                          PMR00274 = "no compressio(0)" [ENG] \
+                                          PMR00297 = 8 \
+                                          PMR00143 = 10 [degC] \
+                                          PMR00144 = 60 [s] \
+                                          PMR00145 = 60 [s])
+000_20:16:27   MERTIS      WARMUP      ZMR00015 ( \
+                                          PMR00147 = 30 [degC] \
+                                          PMR00298 = "Nominal(0)" [ENG] \
+                                          PMR00148 = "withPosSensor(1)" [ENG] \
+                                          PMR00149 = 100 [ms] \
+                                          PMR00168 = "Nominal frequ(1)" [ENG] \
+                                          PMR00279 = "automatic(1)" [ENG] \
+                                          PMR00150 = "yes(1)" [ENG] \
+                                          PMR00151 = "yes(1)" [ENG] \
+                                          PMR00165 = 3.5 [V] \
+                                          PMR00166 = 5.342 [V] \
+                                          PMR00299 = 0 \
+                                          PMR00167 = "Coil1+2(0)" [ENG] \
+                                          PMR00232 = 30 [pix] \
+                                          PMR00233 = 47 [pix] \
+                                          PMR00234 = 43 [pix] \
+                                          PMR00235 = 13 [pix])
+000_20:16:50   MERTIS      WARMUP      ZMR00010 ( \
+                                          PMR00128 = "Science Data(63)" [ENG])
+000_20:17:00   MERMAG      SCIENCE_X   ZME02614 ( \
+                                          PME02078 = Off [ENG] \
+                                          PME02096 = Off [ENG] \
+                                          PME02094 = 0 [RAW] \
+                                          PME02095 = 0 [RAW])
+# ^-- *** Conflict [WARNING]: Invalid mode CAL_SCIENCE (current SCIENCE_X) for action ZME02614 *** --^
+000_20:17:10   MERMAG      SCIENCE_X   ZME02705 ( \
+                                          PME02104 = 3 [RAW])
+# ^-- *** Conflict [WARNING]: Invalid mode CAL_SCIENCE (current SCIENCE_X) for action ZME02705 *** --^
+000_20:17:20   MERMAG      SCIENCE_X   ZME02704 ( \
+                                          PME02030 = 2 [RAW] \
+                                          PME02103 = 2048 [ENG])
+000_20:17:30   MERMAG      SCIENCE_X   ZME02701 ( \
+                                          PME08005 = 85 [RAW] \
+                                          PME02030 = 2 [RAW] \
+                                          PME02100 = 128 [ENG])
+000_20:17:40   MERMAG      SCIENCE_X   ZME02612 ( \
+                                          PME02030 = 2 [RAW])
+000_20:19:00   SERENA      SCIENCE     ZSE03013
+000_20:19:02   SERENA      STANDBY     ZSE03054 ( \
+                                          PSE06062 = Disable [ENG])
+000_20:19:25   MERTIS      SCI_RAW     ZMR00011 ( \
+                                          PMR00128 = "Science Data(63)" [ENG])
+000_20:19:30   SERENA      STANDBY     ZSE04002 ( \
+                                          PSE06023 = 0 [RAW] \
+                                          PSE08004 = 15 [s])
+000_20:19:40   SERENA      STANDBY     ZSE04078
+000_20:20:00   BELA        PBS         ZBL18501 ( \
+                                          PBL18500 = 0x20000000)
+000_20:20:02   SERENA      STANDBY     ZSE04014
+000_20:20:10   BELA        APS_STANDBY ZBL03129 ( \
+                                          PBL08003 = 5 \
+                                          PBL08004 = 80)
+000_20:20:11   BELA        APS_STANDBY ZBL03129 ( \
+                                          PBL08003 = 6 \
+                                          PBL08004 = 80)
+000_20:20:40   SERENA      STANDBY     ZSE04069 ( \
+                                          PSE06266 = 5 \
+                                          PSE06267 = 5 \
+                                          PSE06268 = 4 \
+                                          PSE06269 = 1 \
+                                          PSE06278 = 0 [RAW] \
+                                          PSE06279 = 0 \
+                                          PSE06280 = 0)
+000_20:20:42   SERENA      STANDBY     ZSE04054 ( \
+                                          PSE06222 = 0x1 [RAW] \
+                                          PSE06223 = 0x33)
+000_20:21:00   ISA         CONFIGURATION ZSA23401 ( \
+                                          PSA09011 = Inactive [ENG] \
+                                          PSA09012 = Inactive [ENG] \
+                                          PSA09013 = Inactive [ENG] \
+                                          PSA09014 = Inactive [ENG])
+000_20:21:00   MERTIS      WARMUP      ZMR00010 ( \
+                                          PMR00128 = "Science Data(62)" [ENG])
+000_20:21:30   ISA         CONFIGURATION ZSA23205
+000_20:22:00   BELA        APS_STANDBY ZBL18665 ( \
+                                          PBL86000 = 3124 \
+                                          PBL86001 = 3124 \
+                                          PBL86002 = 3124 \
+                                          PBL86003 = 3124 \
+                                          PBL86004 = 3120 \
+                                          PBL86005 = 3124 \
+                                          PBL86018 = EnableErrCheck [ENG] \
+                                          PBL86019 = 0 \
+                                          PBL86020 = 0 [RAW] \
+                                          PBL86021 = 0 [RAW] \
+                                          PBL86022 = 0 [RAW] \
+                                          PBL86023 = 0 [RAW] \
+                                          PBL86024 = 0 [RAW] \
+                                          PBL86025 = 0 [RAW] \
+                                          PBL86026 = 0 [RAW] \
+                                          PBL86027 = 0 [RAW] \
+                                          PBL86028 = 0 [RAW] \
+                                          PBL86029 = 0 [RAW] \
+                                          PBL86030 = 0 [RAW] \
+                                          PBL86031 = 0 [RAW] \
+                                          PBL86032 = 0 [RAW] \
+                                          PBL86033 = 0 [RAW] \
+                                          PBL86034 = 0 [RAW] \
+                                          PBL86035 = 0 \
+                                          PBL86036 = 0 [RAW] \
+                                          PBL86037 = 0 [RAW] \
+                                          PBL86038 = 0 [RAW] \
+                                          PBL86039 = 0 [RAW] \
+                                          PBL86040 = 0 [RAW] \
+                                          PBL86041 = 0 [RAW] \
+                                          PBL86042 = 0 [RAW] \
+                                          PBL86043 = 0 [RAW] \
+                                          PBL86044 = 0 [RAW] \
+                                          PBL86045 = 0 [RAW] \
+                                          PBL86046 = 0 [RAW] \
+                                          PBL86047 = 0 [RAW] \
+                                          PBL86048 = 0 [RAW] \
+                                          PBL86049 = 0 [RAW] \
+                                          PBL86050 = 0 [RAW] \
+                                          PBL86051 = 0 \
+                                          PBL86052 = 0 [RAW] \
+                                          PBL86053 = 0 [RAW] \
+                                          PBL86054 = 0 [RAW] \
+                                          PBL86055 = 0 [RAW] \
+                                          PBL86056 = 0 [RAW] \
+                                          PBL86057 = 0 [RAW] \
+                                          PBL86058 = 0 [RAW] \
+                                          PBL86059 = 0 [RAW] \
+                                          PBL86060 = 0 [RAW] \
+                                          PBL86061 = 0 [RAW] \
+                                          PBL86062 = 0 [RAW] \
+                                          PBL86063 = 0 [RAW] \
+                                          PBL86064 = 0 [RAW] \
+                                          PBL86065 = 0 [RAW] \
+                                          PBL86066 = 0 [RAW] \
+                                          PBL86067 = 0 \
+                                          PBL86068 = 0 [RAW] \
+                                          PBL86069 = 0 [RAW] \
+                                          PBL86070 = 0 [RAW] \
+                                          PBL86071 = 0 [RAW] \
+                                          PBL86072 = 0 [RAW] \
+                                          PBL86073 = 0 [RAW] \
+                                          PBL86074 = 0 [RAW] \
+                                          PBL86075 = 0 [RAW] \
+                                          PBL86076 = 0 [RAW] \
+                                          PBL86077 = 0 [RAW] \
+                                          PBL86078 = 0 [RAW] \
+                                          PBL86079 = 0 [RAW] \
+                                          PBL86080 = 0 [RAW] \
+                                          PBL86081 = 0 [RAW] \
+                                          PBL86082 = 0 [RAW] \
+                                          PBL86083 = 0 \
+                                          PBL86084 = 0 [RAW] \
+                                          PBL86085 = 0 [RAW] \
+                                          PBL86086 = 0 [RAW] \
+                                          PBL86087 = 0 [RAW] \
+                                          PBL86088 = 0 [RAW] \
+                                          PBL86089 = 0 [RAW] \
+                                          PBL86090 = 0 [RAW] \
+                                          PBL86091 = 0 [RAW] \
+                                          PBL86092 = 0 [RAW] \
+                                          PBL86093 = 0 [RAW] \
+                                          PBL86094 = 0 [RAW] \
+                                          PBL86095 = 0 [RAW] \
+                                          PBL86096 = 0 [RAW] \
+                                          PBL86097 = 0 [RAW] \
+                                          PBL86098 = 0 [RAW] \
+                                          PBL86099 = 0 \
+                                          PBL86100 = 0 [RAW] \
+                                          PBL86101 = 0 [RAW] \
+                                          PBL86102 = 0 [RAW] \
+                                          PBL86103 = 0 [RAW] \
+                                          PBL86104 = 0 [RAW] \
+                                          PBL86105 = 0 [RAW] \
+                                          PBL86106 = 0 [RAW] \
+                                          PBL86107 = 0 [RAW] \
+                                          PBL86108 = 0 [RAW] \
+                                          PBL86109 = 0 [RAW] \
+                                          PBL86110 = 0 [RAW] \
+                                          PBL86111 = 0 [RAW] \
+                                          PBL86112 = 0 [RAW] \
+                                          PBL86113 = 0 [RAW])
+000_20:22:00   ISA         DIAGNOSTIC  ZSA23228
+000_20:22:00   SERENA      STANDBY     ZSE04067 ( \
+                                          PSE06264 = "Compres. Disable" [ENG] \
+                                          PSE06277 = "Standard mapping" [ENG])
+000_20:22:10   BELA        APS_STANDBY ZBL18621 ( \
+                                          PBL18649 = 8 \
+                                          PBL18650 = 0 \
+                                          PBL18651 = 25783)
+000_20:22:11   BELA        APS_STANDBY ZBL18617 ( \
+                                          PBL18631 = 0 \
+                                          PBL18604 = 4 \
+                                          PBL18605 = 2 \
+                                          PBL18606 = 0)
+000_20:22:12   BELA        APS_STANDBY ZBL18617 ( \
+                                          PBL18631 = 0 \
+                                          PBL18604 = 2 \
+                                          PBL18605 = 1 \
+                                          PBL18606 = 0)
+000_20:22:13   BELA        APS_STANDBY ZBL18617 ( \
+                                          PBL18631 = 0 \
+                                          PBL18604 = 17 \
+                                          PBL18605 = 5 \
+                                          PBL18606 = 44000)
+000_20:22:14   BELA        APS_STANDBY ZBL18621 ( \
+                                          PBL18649 = 4 \
+                                          PBL18650 = 0 \
+                                          PBL18651 = 0)
+000_20:22:15   BELA        APS_STANDBY ZBL18621 ( \
+                                          PBL18649 = 5 \
+                                          PBL18650 = 0 \
+                                          PBL18651 = 12038)
+000_20:22:15   ISA         SAFE        ZSA23208
+000_20:22:30   ISA         STANDBY     ZSA23207
+000_20:22:40   MERMAG      SCIENCE_X   ZME02701 ( \
+                                          PME08005 = 85 [RAW] \
+                                          PME02030 = 2 [RAW] \
+                                          PME02100 = 2 [ENG])
+000_20:22:45   ISA         CONFIGURATION ZSA23205
+000_20:23:00   BELA        APS_STANDBY ZBL18628 ( \
+                                          PBL08005 = 65)
+000_20:23:00   ISA         DIAGNOSTIC  ZSA23207
+000_20:23:15   ISA         CONFIGURATION ZSA23203
+000_20:23:30   BELA        APS_STANDBY ZBL18618 ( \
+                                          PBL18632 = 2 \
+                                          PBL18633 = 36 \
+                                          PBL18634 = 30 \
+                                          PBL18635 = 255)
+000_20:23:30   ISA         CHAIN_CAL   ZSA23228
+000_20:23:35   MERTIS      SCI_RAW     ZMR00011 ( \
+                                          PMR00128 = "Science Data(62)" [ENG])
+000_20:23:45   ISA         SAFE        ZSA23208
+000_20:24:00   ISA         STANDBY     ZSA23207
+000_20:24:00   SERENA      STANDBY     ZSE04066 ( \
+                                          PSE06236 = 0 \
+                                          PSE06237 = 0 \
+                                          PSE06238 = 0 \
+                                          PSE06239 = 0 \
+                                          PSE06240 = 0 \
+                                          PSE06241 = 0 \
+                                          PSE06242 = 0 \
+                                          PSE06243 = 0 \
+                                          PSE06244 = 0 \
+                                          PSE06245 = 0)
+000_20:24:10   SERENA      SCIENCE     ZSE04012
+000_20:24:12   SERENA      STANDBY     ZSE02017 ( \
+                                          PSE07001 = 0x1100 \
+                                          PSE07006 = PROG1 [ENG])
+000_20:24:14   SERENA      STANDBY     ZSE01043 ( \
+                                          PSE06026 = 0 [RAW])
+000_20:24:15   ISA         CONFIGURATION ZSA23203
+000_20:24:16   SERENA      STANDBY     ZSE02228 ( \
+                                          PSE07228 = 0xe410 \
+                                          PSE07271 = ON [ENG] \
+                                          PSE07270 = ON [ENG] \
+                                          PSE07269 = OFF [ENG] \
+                                          PSE07268 = ON [ENG] \
+                                          PSE07267 = ON [ENG] \
+                                          PSE07266 = OFF [ENG] \
+                                          PSE07265 = OFF [ENG] \
+                                          PSE07264 = OFF [ENG])
+000_20:24:20   SERENA      STANDBY     ZSE02084 ( \
+                                          PSE07084 = 0x5410 \
+                                          PSE07022 = Off [ENG] \
+                                          PSE07024 = Off [ENG] \
+                                          PSE07025 = HADAMARD [ENG] \
+                                          PSE07026 = Off [ENG] \
+                                          PSE07021 = MC_HR511_HE [ENG] \
+                                          PSE07023 = 0)
+000_20:24:55   ISA         CHAIN_CAL   ZSA23207
+000_20:25:00   BELA        APS_STANDBY ZBL18625 ( \
+                                          PBL18616 = "RFM ON" [ENG] \
+                                          PBL18652 = 0)
+000_20:25:01   BELA        APS_CONFIG  ZBL18624 ( \
+                                          PBL18612 = "Laser A ON" [ENG])
+# ^-- *** Conflict [WARNING]: Invalid mode APS_STANDBY (current APS_CONFIG) for action ZBL18624 *** --^
+000_20:25:10   ISA         CONFIGURATION ZSA23209
+000_20:25:10   MERTIS      WARMUP      ZMR00026
+000_20:25:24   SERENA      STANDBY     ZSE02236 ( \
+                                          PSE07236 = 0xec10 \
+                                          PSE07278 = 1 [RAW] \
+                                          PSE07277 = 0 [RAW] \
+                                          PSE07276 = 1 [RAW] \
+                                          PSE07275 = 0 [RAW] \
+                                          PSE07274 = 0 [RAW] \
+                                          PSE07273 = 0 [RAW] \
+                                          PSE07272 = 1 [RAW] \
+                                          PSE07285 = ON [ENG] \
+                                          PSE07284 = DIV_1 [ENG] \
+                                          PSE07283 = OFF [ENG] \
+                                          PSE07281 = OFF [ENG] \
+                                          PSE07280 = OFF [ENG])
+000_20:26:00   ISA         ASS_CAL     ZSA23228
+000_20:26:15   ISA         SAFE        ZSA23208
+000_20:26:28   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea80 \
+                                          PSE07011 = 0xffff)
+000_20:26:30   ISA         STANDBY     ZSA23207
+000_20:26:30   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea82 \
+                                          PSE07011 = 0xffff)
+000_20:26:32   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea84 \
+                                          PSE07011 = 0xffff)
+000_20:26:34   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea86 \
+                                          PSE07011 = 0xffff)
+000_20:26:36   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea88 \
+                                          PSE07011 = 0xffff)
+000_20:26:38   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea8a \
+                                          PSE07011 = 0xffff)
+000_20:26:40   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea8c \
+                                          PSE07011 = 0xffff)
+000_20:26:42   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea8e \
+                                          PSE07011 = 0xffff)
+000_20:26:44   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea90 \
+                                          PSE07011 = 0xffff)
+000_20:26:45   ISA         CONFIGURATION ZSA23209
+000_20:26:46   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea92 \
+                                          PSE07011 = 0xffff)
+000_20:26:48   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea94 \
+                                          PSE07011 = 0xffff)
+000_20:26:50   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea96 \
+                                          PSE07011 = 0xffff)
+000_20:26:52   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea98 \
+                                          PSE07011 = 0xffff)
+000_20:26:54   MERTIS      STANDBY     ZMR00025
+000_20:26:54   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea9a \
+                                          PSE07011 = 0xffff)
+000_20:26:56   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea9c \
+                                          PSE07011 = 0xffff)
+000_20:26:58   SERENA      STANDBY     ZSE02242 ( \
+                                          PSE07242 = 0xf220 \
+                                          PSE07035 = 0xea9e \
+                                          PSE07011 = 0xffff)
+000_20:27:00   SERENA      STANDBY     ZSE02081 ( \
+                                          PSE07081 = 0x5100)
+000_20:27:30   ISA         ASS_CAL     ZSA23207
+000_20:27:45   ISA         CONFIGURATION ZSA23202
+000_20:27:54   MERTIS      WARMUP      ZMR00031
+000_20:28:30   SERENA      SCIENCE     ZSE01043 ( \
+                                          PSE06026 = 1 [RAW])
+000_20:29:04   MERTIS      DIAGNOSTIC  ZMR00032
+000_20:30:00   BELA        APS_CONFIG  ZBL18633 ( \
+                                          PBL18613 = 21 \
+                                          PBL18615 = 1000 \
+                                          PBL18654 = 180)
+000_20:30:00   SERENA      SCIENCE     ZSE02080 ( \
+                                          PSE07080 = 0x5000)
+000_20:30:02   SERENA      STANDBY     ZSE05075 ( \
+                                          PSE08008 = 0 [RAW])
+000_20:30:04   SERENA      STANDBY     ZSE05001
+000_20:30:06   SERENA      STANDBY     ZSE05002 ( \
+                                          PSE08005 = 160 [1/8s])
+000_20:30:08   SERENA      STANDBY     ZSE05000
+000_20:30:10   ISA         OBSERVATION ZSA23228
+000_20:30:10   SERENA      STANDBY     ZSE05049 ( \
+                                          PSE08008 = 0 [RAW] \
+                                          PSE08023 = 1 [RAW] \
+                                          PSE08028 = 5 [RAW])
+000_20:30:12   SERENA      SCIENCE     ZSE05050 ( \
+                                          PSE08008 = 0 [RAW] \
+                                          PSE08029 = 100)
+000_20:30:30   ISA         SAFE        ZSA23208
+000_20:30:50   ISA         STANDBY     ZSA23207
+000_20:30:50   MERTIS      WARMUP      ZMR00052
+000_20:31:00   MERTIS      CALIBRATION ZMR00053
+000_20:31:15   ISA         CONFIGURATION ZSA23401 ( \
+                                          PSA09011 = Active [ENG] \
+                                          PSA09012 = Active [ENG] \
+                                          PSA09013 = Active [ENG] \
+                                          PSA09014 = Active [ENG])
+000_20:31:15   MERTIS      WARMUP      ZMR00026
+000_20:31:24   SERENA      SCIENCE     ZSE05049 ( \
+                                          PSE08008 = 0 [RAW] \
+                                          PSE08023 = 0 [RAW] \
+                                          PSE08028 = 5 [RAW])
+000_20:31:26   SERENA      STANDBY     ZSE05050 ( \
+                                          PSE08008 = 0 [RAW] \
+                                          PSE08029 = 0)
+000_20:31:28   SERENA      STANDBY     ZSE05024 ( \
+                                          PSE08008 = 0 [RAW] \
+                                          PSE08015 = 8)
+000_20:31:40   ISA         CONFIGURATION ZSA23202
+000_20:31:54   MERTIS      STANDBY     ZMR00029
+000_20:32:34   MERTIS      TEST        ZMR00030
+000_20:33:28   SERENA      STANDBY     ZSE01034
+000_20:33:30   SERENA      STANDBY     ZSE01033
+000_20:33:32   SERENA      STANDBY     ZSE03016 ( \
+                                          PSE06073 = 15 [s] \
+                                          PSE06072 = 1 [RAW] \
+                                          PSE06074 = 1 [RAW] \
+                                          PSE06075 = 1 [RAW] \
+                                          PSE06076 = Simulated [ENG])
+000_20:33:34   SERENA      STANDBY     ZSE03014
+000_20:34:30   ISA         OBSERVATION ZSA23207
+000_20:34:30   SERENA      SCIENCE     ZSE03013
+000_20:34:50   ISA         CONFIGURATION ZSA23204
+000_20:35:00   MGNS        SCIENCE_NEUTRON AMGSG02A
+000_20:35:10   BELA        APS_CONFIG  ZBL18633 ( \
+                                          PBL18613 = 2 \
+                                          PBL18615 = 100 \
+                                          PBL18654 = 62)
+000_20:35:32   SERENA      STANDBY     ZSE04078
+000_20:37:25   ISA         HI_RATE_OBS ZSA23228
+000_20:37:40   ISA         SAFE        ZSA23208
+000_20:37:55   ISA         STANDBY     ZSA23207
+000_20:38:00   SERENA      STANDBY     ZSE04014
+000_20:38:15   ISA         CONFIGURATION ZSA23401 ( \
+                                          PSA09011 = Active [ENG] \
+                                          PSA09012 = Active [ENG] \
+                                          PSA09013 = Active [ENG] \
+                                          PSA09014 = Active [ENG])
+000_20:38:40   ISA         CONFIGURATION ZSA23204
+000_20:38:54   MERTIS      STANDBY     ZMR00014 ( \
+                                          PMR00129 = "100msec(1)" [ENG] \
+                                          PMR00130 = 60 [s] \
+                                          PMR00277 = "no(0)" [ENG] \
+                                          PMR00131 = "on(1)" [ENG] \
+                                          PMR00132 = "off(0)" [ENG] \
+                                          PMR00278 = "off(0)" [ENG] \
+                                          PMR00134 = "on(1)" [ENG] \
+                                          PMR00135 = "on(1)" [ENG] \
+                                          PMR00136 = "on(1)" [ENG] \
+                                          PMR00137 = "on(1)" [ENG] \
+                                          PMR00138 = "on(1)" [ENG] \
+                                          PMR00270 = 10 [acqu] \
+                                          PMR00271 = "Move(1)" [ENG] \
+                                          PMR00272 = "1x1(0)" [ENG] \
+                                          PMR00273 = "160x120pixel(3)" [ENG] \
+                                          PMR00274 = "no compressio(0)" [ENG] \
+                                          PMR00297 = 8 \
+                                          PMR00143 = 10 [degC] \
+                                          PMR00144 = 60 [s] \
+                                          PMR00145 = 60 [s])
+000_20:39:30   SERENA      STANDBY     ZSE04066 ( \
+                                          PSE06236 = 0 \
+                                          PSE06237 = 0 \
+                                          PSE06238 = 0 \
+                                          PSE06239 = 0 \
+                                          PSE06240 = 0 \
+                                          PSE06241 = 0 \
+                                          PSE06242 = 0 \
+                                          PSE06243 = 0 \
+                                          PSE06244 = 0 \
+                                          PSE06245 = 0)
+000_20:39:34   MERTIS      STANDBY     ZMR00025
+000_20:40:27   PHEBUS      STANDBY     ZPW01144
+000_20:40:29   MERTIS      WARMUP      ZMR00058 ( \
+                                          PMR00311 = "enabled(1)" [ENG] \
+                                          PMR00312 = "enabled(1)" [ENG] \
+                                          PMR00282 = "enabled(1)" [ENG] \
+                                          PMR00300 = "enabled(1)" [ENG] \
+                                          PMR00313 = "enabled(1)" [ENG] \
+                                          PMR00301 = "enabled(1)" [ENG] \
+                                          PMR00302 = "enabled(1)" [ENG] \
+                                          PMR00303 = "enabled(1)" [ENG] \
+                                          PMR00304 = "enabled(1)" [ENG] \
+                                          PMR00305 = "enabled(1)" [ENG] \
+                                          PMR00290 = "disabled(0)" [ENG] \
+                                          PMR00291 = "disabled(0)" [ENG] \
+                                          PMR00292 = "disabled(0)" [ENG] \
+                                          PMR00293 = "disabled(0)" [ENG] \
+                                          PMR00294 = "disabled(0)" [ENG] \
+                                          PMR00295 = "disabled(0)" [ENG] \
+                                          PMR00296 = "disabled(0)" [ENG])
+000_20:40:34   SERENA      SCIENCE     ZSE04012
+000_20:40:44   MERTIS      WARMUP      ZMR00031
+000_20:41:40   SERENA      STANDBY     ZSE02017 ( \
+                                          PSE07001 = 0x1100 \
+                                          PSE07006 = PROG1 [ENG])
+000_20:42:00   ISA         HI_RATE_OBS ZSA23207
+000_20:42:00   SERENA      STANDBY     ZSE02007 ( \
+                                          PSE06022 = 2 \
+                                          PSE08005 = 16 [1/8s])
+000_20:42:15   ISA         CONFIGURATION ZSA23201
+000_20:42:30   SERENA      STANDBY     ZSE02081 ( \
+                                          PSE07081 = 0x5100)
+000_20:43:57   PHEBUS      OFF         ZPW01145
+000_20:43:59   PHEBUS      STANDBY     ZCD00982 ( \
+                                          PCD09821 = 70 [RAW] \
+                                          PCD09822 = 0 [RAW])
+000_20:44:30   PHEBUS      STANDBY     ZPH19022 ( \
+                                          PPH09911 = 3 [RAW])
+000_20:44:32   PHEBUS      STANDBY     ZPH19012 ( \
+                                          PPH09715 = 1 [RAW] \
+                                          PPH09714 = 1 [RAW] \
+                                          PPH09713 = 1 [RAW] \
+                                          PPH09712 = 1 [RAW] \
+                                          PPH09711 = 1 [RAW] \
+                                          PPH09710 = 1 [RAW] \
+                                          PPH09709 = 1 [RAW] \
+                                          PPH09708 = 1 [RAW] \
+                                          PPH09707 = 1 [RAW] \
+                                          PPH09706 = 1 [RAW] \
+                                          PPH09705 = 0 [RAW] \
+                                          PPH09704 = 1 [RAW] \
+                                          PPH09703 = 1 [RAW] \
+                                          PPH09702 = 1 [RAW] \
+                                          PPH09701 = 1 [RAW] \
+                                          PPH09700 = 1 [RAW] \
+                                          PPH09716 = 1 [RAW] \
+                                          PPH09717 = 1 [RAW])
+000_20:44:34   PHEBUS      STANDBY     ZPH19002 ( \
+                                          PPH09100 = 8 \
+                                          PPH09101 = 8 \
+                                          PPH09102 = 8 \
+                                          PPH09103 = 8 \
+                                          PPH09104 = 1024 \
+                                          PPH09105 = 18432 \
+                                          PPH09106 = 8 \
+                                          PPH09107 = 8 \
+                                          PPH09108 = 8 \
+                                          PPH09109 = 8 \
+                                          PPH09110 = 1024 \
+                                          PPH09111 = 18432 \
+                                          PPH09112 = 2 [RAW] \
+                                          PPH09113 = 0 [RAW] \
+                                          PPH09114 = 30 [RAW] \
+                                          PPH09115 = 30 [RAW] \
+                                          PPH09116 = 1447 [RAW] \
+                                          PPH09150 = 3 [RAW] \
+                                          PPH09123 = 2023 [RAW] \
+                                          PPH09124 = 2002 [RAW] \
+                                          PPH09131 = 16 \
+                                          PPH09138 = 16 \
+                                          PPH09139 = 0 \
+                                          PPH09140 = 0 \
+                                          PPH09141 = 0 \
+                                          PPH09142 = 0 \
+                                          PPH09143 = 64 [RAW] \
+                                          PPH09144 = 0 \
+                                          PPH09145 = 0 \
+                                          PPH09146 = 0 \
+                                          PPH09147 = 0 \
+                                          PPH09148 = 64 [RAW] \
+                                          PPH09153 = 4 \
+                                          PPH09154 = 2 \
+                                          PPH09155 = 2 \
+                                          PPH09156 = 40 [RAW])
+000_20:44:36   PHEBUS      STANDBY     ZPH19001 ( \
+                                          PPH09000 = 8 [RAW] \
+                                          PPH09001 = 3 [RAW] \
+                                          PPH09002 = 0 [RAW] \
+                                          PPH09004 = 0 [RAW] \
+                                          PPH09080 = 0 [RAW] \
+                                          PPH09081 = 0 [RAW] \
+                                          PPH09005 = 1 [RAW] \
+                                          PPH09006 = 0 [RAW] \
+                                          PPH09007 = 1 [RAW] \
+                                          PPH09008 = 0 [RAW] \
+                                          PPH09009 = 1 [RAW] \
+                                          PPH09010 = 1 [RAW] \
+                                          PPH09011 = 0 [RAW] \
+                                          PPH09012 = 0 [RAW] \
+                                          PPH09013 = 0 \
+                                          PPH09014 = 4 \
+                                          PPH09024 = 1 [RAW] \
+                                          PPH09023 = 1 [RAW] \
+                                          PPH09022 = 1 [RAW] \
+                                          PPH09021 = 1 [RAW] \
+                                          PPH09020 = 1 [RAW] \
+                                          PPH09019 = 1 [RAW] \
+                                          PPH09018 = 1 [RAW] \
+                                          PPH09017 = 0 [RAW] \
+                                          PPH09016 = 1 [RAW] \
+                                          PPH09032 = 0 [RAW] \
+                                          PPH09033 = 4 [RAW] \
+                                          PPH09034 = 8 [RAW] \
+                                          PPH09035 = 14 [RAW] \
+                                          PPH09036 = 17 [RAW] \
+                                          PPH09037 = 5 [RAW] \
+                                          PPH09038 = 6 [RAW] \
+                                          PPH09039 = 6 [RAW] \
+                                          PPH09040 = 8 [RAW] \
+                                          PPH09046 = 0 [RAW] \
+                                          PPH09045 = 4 [RAW] \
+                                          PPH09044 = 0 [RAW] \
+                                          PPH09053 = 0 [RAW] \
+                                          PPH09042 = 0 [RAW] \
+                                          PPH09047 = 239 \
+                                          PPH09062 = 1 [RAW] \
+                                          PPH09050 = 1 [RAW] \
+                                          PPH09051 = 0 [RAW] \
+                                          PPH09052 = 1 [RAW] \
+                                          PPH09063 = 1 [RAW] \
+                                          PPH09054 = 0 [RAW] \
+                                          PPH09055 = 1 [RAW] \
+                                          PPH09057 = 1 \
+                                          PPH09058 = 256 [pix] \
+                                          PPH09059 = 128 [pix] \
+                                          PPH09060 = 512 \
+                                          PPH09061 = 256 \
+                                          PPH09003 = 0 [RAW] \
+                                          PPH09064 = 0 [RAW] \
+                                          PPH09067 = 0 [RAW] \
+                                          PPH09069 = 0 [RAW] \
+                                          PPH09070 = 0 [RAW] \
+                                          PPH09071 = 0 [RAW] \
+                                          PPH09072 = 0 [RAW] \
+                                          PPH09073 = 0 [RAW] \
+                                          PPH09074 = 1 [RAW] \
+                                          PPH09075 = 0 [RAW] \
+                                          PPH09076 = 0)
+000_20:44:40   PHEBUS      STANDBY     ZPH19003 ( \
+                                          PPH92001 = 1 \
+                                          PPH92002 = 0 [pix] \
+                                          PPH92003 = 2 \
+                                          PPH92004 = 256 \
+                                          PPH92005 = 0 [pix] \
+                                          PPH92006 = 64 \
+                                          PPH92007 = 4 \
+                                          PPH92008 = 0 [pix] \
+                                          PPH92009 = 1 \
+                                          PPH92010 = 1024 \
+                                          PPH92011 = 32 [pix] \
+                                          PPH92012 = 16 \
+                                          PPH92013 = 4 \
+                                          PPH92014 = 0 [pix] \
+                                          PPH92015 = 1 \
+                                          PPH92016 = 1024 \
+                                          PPH92017 = 32 [pix] \
+                                          PPH92018 = 16 \
+                                          PPH92019 = 4 \
+                                          PPH92020 = 0 [pix] \
+                                          PPH92021 = 1 \
+                                          PPH92022 = 1024 \
+                                          PPH92023 = 32 [pix] \
+                                          PPH92024 = 16 \
+                                          PPH92025 = 4 \
+                                          PPH92026 = 0 [pix] \
+                                          PPH92027 = 1 \
+                                          PPH92028 = 1024 \
+                                          PPH92029 = 32 [pix] \
+                                          PPH92030 = 16 \
+                                          PPH92031 = 4 \
+                                          PPH92032 = 0 [pix] \
+                                          PPH92033 = 1 \
+                                          PPH92034 = 1024 \
+                                          PPH92035 = 32 [pix] \
+                                          PPH92036 = 16 \
+                                          PPH92037 = 4 \
+                                          PPH92038 = 0 [pix] \
+                                          PPH92039 = 1 \
+                                          PPH92040 = 1024 \
+                                          PPH92041 = 32 [pix] \
+                                          PPH92042 = 16 \
+                                          PPH92043 = 4 \
+                                          PPH92044 = 0 [pix] \
+                                          PPH92045 = 1 \
+                                          PPH92046 = 1024 \
+                                          PPH92047 = 32 [pix] \
+                                          PPH92048 = 16 \
+                                          PPH92049 = 4)
+000_20:44:42   PHEBUS      STANDBY     ZPH19005 ( \
+                                          PPH94001 = 4 \
+                                          PPH94002 = 90 [RAW] \
+                                          PPH94003 = 91 [RAW] \
+                                          PPH94004 = 92 [RAW] \
+                                          PPH94005 = 93 [RAW] \
+                                          PPH94006 = 1 [RAW] \
+                                          PPH94007 = 1 [RAW] \
+                                          PPH94008 = 1 [RAW] \
+                                          PPH94009 = 1 [RAW] \
+                                          PPH94010 = 1 [RAW] \
+                                          PPH94011 = 1 [RAW] \
+                                          PPH94012 = 1 [RAW] \
+                                          PPH94013 = 1 [RAW] \
+                                          PPH94014 = 1 [RAW] \
+                                          PPH94015 = 1 [RAW] \
+                                          PPH94016 = 1 [RAW] \
+                                          PPH94017 = 1 [RAW] \
+                                          PPH94018 = 1 [RAW] \
+                                          PPH94019 = 1 [RAW] \
+                                          PPH94020 = 1 [RAW] \
+                                          PPH94021 = 1 [RAW] \
+                                          PPH94022 = 1 [RAW] \
+                                          PPH94023 = 1 [RAW] \
+                                          PPH94024 = 1 [RAW] \
+                                          PPH94025 = 1 [RAW] \
+                                          PPH94026 = 1 [RAW] \
+                                          PPH94027 = 1 [RAW] \
+                                          PPH94028 = 1 [RAW] \
+                                          PPH94029 = 1 [RAW] \
+                                          PPH94030 = 1 [RAW] \
+                                          PPH94031 = 1 [RAW] \
+                                          PPH94032 = 1 [RAW] \
+                                          PPH94033 = 1 [RAW] \
+                                          PPH94034 = 1 [RAW] \
+                                          PPH94035 = 1 [RAW] \
+                                          PPH94036 = 1 [RAW] \
+                                          PPH94037 = 1 [RAW] \
+                                          PPH94038 = 1 [RAW] \
+                                          PPH94039 = 1 [RAW] \
+                                          PPH94040 = 1 [RAW] \
+                                          PPH94041 = 1 [RAW] \
+                                          PPH94042 = 1 [RAW] \
+                                          PPH94043 = 1 [RAW] \
+                                          PPH94044 = 1 [RAW] \
+                                          PPH94045 = 1 [RAW] \
+                                          PPH94046 = 1 [RAW] \
+                                          PPH94047 = 1 [RAW] \
+                                          PPH94048 = 1 [RAW] \
+                                          PPH94049 = 1 [RAW] \
+                                          PPH94050 = 1 [RAW] \
+                                          PPH94051 = 1 [RAW] \
+                                          PPH94052 = 1 [RAW] \
+                                          PPH94053 = 1 [RAW] \
+                                          PPH94054 = 1 [RAW] \
+                                          PPH94055 = 1 [RAW] \
+                                          PPH94056 = 1 [RAW] \
+                                          PPH94057 = 1 [RAW] \
+                                          PPH94058 = 1 [RAW] \
+                                          PPH94059 = 1 [RAW] \
+                                          PPH94060 = 1 [RAW] \
+                                          PPH94061 = 1 [RAW] \
+                                          PPH94062 = 1 [RAW] \
+                                          PPH94063 = 1 [RAW] \
+                                          PPH94064 = 1 [RAW] \
+                                          PPH94065 = 1 [RAW] \
+                                          PPH94066 = 1 [RAW] \
+                                          PPH94067 = 1 [RAW] \
+                                          PPH94068 = 1 [RAW] \
+                                          PPH94069 = 1 [RAW] \
+                                          PPH94070 = 1 [RAW] \
+                                          PPH94071 = 1 [RAW] \
+                                          PPH94072 = 1 [RAW] \
+                                          PPH94073 = 1 [RAW] \
+                                          PPH94074 = 1 [RAW] \
+                                          PPH94075 = 1 [RAW] \
+                                          PPH94076 = 1 [RAW] \
+                                          PPH94077 = 1 [RAW] \
+                                          PPH94078 = 1 [RAW] \
+                                          PPH94079 = 1 [RAW] \
+                                          PPH94080 = 1 [RAW] \
+                                          PPH94081 = 1 [RAW] \
+                                          PPH94082 = 1 [RAW] \
+                                          PPH94083 = 1 [RAW] \
+                                          PPH94084 = 1 [RAW] \
+                                          PPH94085 = 1 [RAW] \
+                                          PPH94086 = 1 [RAW] \
+                                          PPH94087 = 1 [RAW] \
+                                          PPH94088 = 1 [RAW] \
+                                          PPH94089 = 1 [RAW] \
+                                          PPH94090 = 1 [RAW] \
+                                          PPH94091 = 1 [RAW] \
+                                          PPH94092 = 1 [RAW] \
+                                          PPH94093 = 1 [RAW] \
+                                          PPH94094 = 1 [RAW] \
+                                          PPH94095 = 1 [RAW] \
+                                          PPH94096 = 1 [RAW] \
+                                          PPH94097 = 1 [RAW] \
+                                          PPH94098 = 1 [RAW] \
+                                          PPH94099 = 1 [RAW] \
+                                          PPH94100 = 1 [RAW] \
+                                          PPH94101 = 1 [RAW] \
+                                          PPH94102 = 1 [RAW] \
+                                          PPH94103 = 1 [RAW] \
+                                          PPH94104 = 1 [RAW] \
+                                          PPH94105 = 1 [RAW] \
+                                          PPH94106 = 1 [RAW] \
+                                          PPH94107 = 1 [RAW] \
+                                          PPH94108 = 1 [RAW])
+000_20:44:44   PHEBUS      STANDBY     ZPH19009 ( \
+                                          PPH99001 = 9 \
+                                          PPH99002 = 80 [RAW] \
+                                          PPH99003 = 81 [RAW] \
+                                          PPH99004 = 82 [RAW] \
+                                          PPH99005 = 83 [RAW] \
+                                          PPH99006 = 84 [RAW] \
+                                          PPH99007 = 85 [RAW] \
+                                          PPH99008 = 86 [RAW] \
+                                          PPH99009 = 87 [RAW] \
+                                          PPH99010 = 88 [RAW] \
+                                          PPH99011 = 1 [RAW] \
+                                          PPH99012 = 1 [RAW] \
+                                          PPH99013 = 1 [RAW] \
+                                          PPH99014 = 1 [RAW] \
+                                          PPH99015 = 1 [RAW] \
+                                          PPH99016 = 1 [RAW] \
+                                          PPH99017 = 1 [RAW] \
+                                          PPH99018 = 1 [RAW] \
+                                          PPH99019 = 1 [RAW] \
+                                          PPH99020 = 1 [RAW] \
+                                          PPH99021 = 1 [RAW] \
+                                          PPH99022 = 1 [RAW] \
+                                          PPH99023 = 1 [RAW] \
+                                          PPH99024 = 1 [RAW] \
+                                          PPH99025 = 1 [RAW] \
+                                          PPH99026 = 1 [RAW] \
+                                          PPH99027 = 1 [RAW] \
+                                          PPH99028 = 1 [RAW] \
+                                          PPH99029 = 1 [RAW] \
+                                          PPH99030 = 1 [RAW] \
+                                          PPH99031 = 1 [RAW] \
+                                          PPH99032 = 1 [RAW] \
+                                          PPH99033 = 1 [RAW] \
+                                          PPH99034 = 1 [RAW] \
+                                          PPH99035 = 1 [RAW] \
+                                          PPH99036 = 1 [RAW] \
+                                          PPH99037 = 1 [RAW] \
+                                          PPH99038 = 1 [RAW] \
+                                          PPH99039 = 1 [RAW] \
+                                          PPH99040 = 1 [RAW] \
+                                          PPH99041 = 1 [RAW] \
+                                          PPH99042 = 1 [RAW] \
+                                          PPH99043 = 1 [RAW] \
+                                          PPH99044 = 1 [RAW] \
+                                          PPH99045 = 1 [RAW] \
+                                          PPH99046 = 1 [RAW] \
+                                          PPH99047 = 1 [RAW] \
+                                          PPH99048 = 1 [RAW] \
+                                          PPH99049 = 1 [RAW] \
+                                          PPH99050 = 1 [RAW] \
+                                          PPH99051 = 1 [RAW] \
+                                          PPH99052 = 1 [RAW] \
+                                          PPH99053 = 1 [RAW] \
+                                          PPH99054 = 1 [RAW] \
+                                          PPH99055 = 1 [RAW] \
+                                          PPH99056 = 1 [RAW] \
+                                          PPH99057 = 1 [RAW] \
+                                          PPH99058 = 1 [RAW] \
+                                          PPH99059 = 1 [RAW] \
+                                          PPH99060 = 1 [RAW] \
+                                          PPH99061 = 1 [RAW] \
+                                          PPH99062 = 1 [RAW] \
+                                          PPH99063 = 1 [RAW] \
+                                          PPH99064 = 1 [RAW] \
+                                          PPH99065 = 1 [RAW] \
+                                          PPH99066 = 1 [RAW] \
+                                          PPH99067 = 1 [RAW] \
+                                          PPH99068 = 1 [RAW] \
+                                          PPH99069 = 1 [RAW] \
+                                          PPH99070 = 1 [RAW] \
+                                          PPH99071 = 1 [RAW] \
+                                          PPH99072 = 1 [RAW] \
+                                          PPH99073 = 1 [RAW] \
+                                          PPH99074 = 1 [RAW] \
+                                          PPH99075 = 1 [RAW] \
+                                          PPH99076 = 1 [RAW] \
+                                          PPH99077 = 1 [RAW] \
+                                          PPH99078 = 1 [RAW] \
+                                          PPH99079 = 1 [RAW] \
+                                          PPH99080 = 1 [RAW] \
+                                          PPH99081 = 1 [RAW] \
+                                          PPH99082 = 1 [RAW] \
+                                          PPH99083 = 1 [RAW] \
+                                          PPH99084 = 1 [RAW] \
+                                          PPH99085 = 1 [RAW] \
+                                          PPH99086 = 1 [RAW] \
+                                          PPH99087 = 1 [RAW] \
+                                          PPH99088 = 1 [RAW] \
+                                          PPH99089 = 1 [RAW] \
+                                          PPH99090 = 1 [RAW] \
+                                          PPH99091 = 1 [RAW] \
+                                          PPH99092 = 1 [RAW] \
+                                          PPH99093 = 1 [RAW] \
+                                          PPH99094 = 1 [RAW] \
+                                          PPH99095 = 1 [RAW] \
+                                          PPH99096 = 1 [RAW] \
+                                          PPH99097 = 1 [RAW] \
+                                          PPH99098 = 1 [RAW] \
+                                          PPH99099 = 1 [RAW] \
+                                          PPH99100 = 1 [RAW] \
+                                          PPH99101 = 1 [RAW] \
+                                          PPH99102 = 1 [RAW] \
+                                          PPH99103 = 1 [RAW] \
+                                          PPH99104 = 1 [RAW] \
+                                          PPH99105 = 1 [RAW] \
+                                          PPH99106 = 1 [RAW] \
+                                          PPH99107 = 1 [RAW] \
+                                          PPH99108 = 1 [RAW])
+000_20:44:48   PHEBUS      STANDBY     ZPH19008
+000_20:44:55   ISA         OBSERVATION ZSA23228
+000_20:45:00   SERENA      SCIENCE     ZSE02080 ( \
+                                          PSE07080 = 0x5000)
+000_20:45:20   BELA        APS_CONFIG  ZBL18605
+000_20:45:25   ISA         SAFE        ZSA23208
+000_20:45:45   ISA         STANDBY     ZSA23207
+000_20:46:00   BELA        APS_STANDBY ZBL18619 ( \
+                                          PBL18636 = 29 \
+                                          PBL18637 = 1 \
+                                          PBL18638 = 51 \
+                                          PBL18639 = 42 \
+                                          PBL18687 = 32 [RAW] \
+                                          PBL18642 = 16)
+# ^-- *** Conflict [WARNING]: Invalid mode APS_CONFIG (current APS_STANDBY) for action ZBL18619 *** --^
+000_20:46:01   BELA        APS_STANDBY ZBL18620 ( \
+                                          PBL18643 = 26 \
+                                          PBL18644 = 0 \
+                                          PBL18645 = 1000 \
+                                          PBL18646 = 2 \
+                                          PBL18647 = 0 \
+                                          PBL86114 = 0 [RAW] \
+                                          PBL86115 = 0 [RAW] \
+                                          PBL86116 = 0 [RAW] \
+                                          PBL86117 = 0 [RAW] \
+                                          PBL86118 = 0 [RAW] \
+                                          PBL86119 = 0 [RAW] \
+                                          PBL86120 = 0 [RAW] \
+                                          PBL86121 = 0 [RAW] \
+                                          PBL86122 = 0 [RAW] \
+                                          PBL86123 = 0 [RAW] \
+                                          PBL86124 = 0 [RAW] \
+                                          PBL86125 = 0 [RAW] \
+                                          PBL86126 = 0 [RAW] \
+                                          PBL86127 = 0 [RAW] \
+                                          PBL86128 = 0 [RAW] \
+                                          PBL86129 = 0 [RAW] \
+                                          PBL86130 = 0 [RAW] \
+                                          PBL86131 = 0 [RAW] \
+                                          PBL86132 = 0 [RAW] \
+                                          PBL86133 = 0 [RAW] \
+                                          PBL86134 = 0 [RAW] \
+                                          PBL86135 = 0 [RAW] \
+                                          PBL86136 = 0 [RAW] \
+                                          PBL86137 = 0 [RAW] \
+                                          PBL86138 = 0 [RAW] \
+                                          PBL86139 = 0 [RAW] \
+                                          PBL86140 = 0 [RAW] \
+                                          PBL86141 = 0 [RAW] \
+                                          PBL86142 = 0 [RAW] \
+                                          PBL86143 = 0 [RAW] \
+                                          PBL86144 = 0 [RAW] \
+                                          PBL86145 = 0 [RAW])
+# ^-- *** Conflict [WARNING]: Invalid mode APS_CONFIG (current APS_STANDBY) for action ZBL18620 *** --^
+000_20:46:02   BELA        APS_STANDBY ZBL18620 ( \
+                                          PBL18643 = 23 \
+                                          PBL18644 = 0 \
+                                          PBL18645 = 1001 \
+                                          PBL18646 = 1 \
+                                          PBL18647 = 255 \
+                                          PBL86114 = 0 [RAW] \
+                                          PBL86115 = 0 [RAW] \
+                                          PBL86116 = 0 [RAW] \
+                                          PBL86117 = 0 [RAW] \
+                                          PBL86118 = 0 [RAW] \
+                                          PBL86119 = 0 [RAW] \
+                                          PBL86120 = 0 [RAW] \
+                                          PBL86121 = 0 [RAW] \
+                                          PBL86122 = 0 [RAW] \
+                                          PBL86123 = 0 [RAW] \
+                                          PBL86124 = 0 [RAW] \
+                                          PBL86125 = 0 [RAW] \
+                                          PBL86126 = 0 [RAW] \
+                                          PBL86127 = 0 [RAW] \
+                                          PBL86128 = 0 [RAW] \
+                                          PBL86129 = 0 [RAW] \
+                                          PBL86130 = 0 [RAW] \
+                                          PBL86131 = 0 [RAW] \
+                                          PBL86132 = 0 [RAW] \
+                                          PBL86133 = 0 [RAW] \
+                                          PBL86134 = 0 [RAW] \
+                                          PBL86135 = 0 [RAW] \
+                                          PBL86136 = 0 [RAW] \
+                                          PBL86137 = 0 [RAW] \
+                                          PBL86138 = 0 [RAW] \
+                                          PBL86139 = 0 [RAW] \
+                                          PBL86140 = 0 [RAW] \
+                                          PBL86141 = 0 [RAW] \
+                                          PBL86142 = 0 [RAW] \
+                                          PBL86143 = 0 [RAW] \
+                                          PBL86144 = 0 [RAW] \
+                                          PBL86145 = 0 [RAW])
+# ^-- *** Conflict [WARNING]: Invalid mode APS_CONFIG (current APS_STANDBY) for action ZBL18620 *** --^
+000_20:46:05   ISA         CONFIGURATION ZSA23201
+000_20:46:10   BELA        APS_STANDBY ZBL18616 ( \
+                                          PBL18603 = 3 [RAW] \
+                                          PBL18630 = 0)
+# ^-- *** Conflict [WARNING]: Invalid mode APS_CONFIG (current APS_STANDBY) for action ZBL18616 *** --^
+000_20:46:11   BELA        APS_STANDBY ZBL18616 ( \
+                                          PBL18603 = 4 [RAW] \
+                                          PBL18630 = 0)
+# ^-- *** Conflict [WARNING]: Invalid mode APS_CONFIG (current APS_STANDBY) for action ZBL18616 *** --^
+000_20:47:00   BELA        APS_STANDBY ZBL18625 ( \
+                                          PBL18616 = "RFM ON" [ENG] \
+                                          PBL18652 = 0)
+000_20:47:00   SERENA      STANDBY     ZSE05075 ( \
+                                          PSE08008 = 0 [RAW])
+000_20:47:01   BELA        APS_CONFIG  ZBL18624 ( \
+                                          PBL18612 = "Laser A ON" [ENG])
+# ^-- *** Conflict [WARNING]: Invalid mode APS_STANDBY (current APS_CONFIG) for action ZBL18624 *** --^
+000_20:47:04   SERENA      STANDBY     ZSE05049 ( \
+                                          PSE08008 = 0 [RAW] \
+                                          PSE08023 = 1 [RAW] \
+                                          PSE08028 = 5 [RAW])
+000_20:47:06   SERENA      SCIENCE     ZSE05050 ( \
+                                          PSE08008 = 0 [RAW] \
+                                          PSE08029 = 100)
+000_20:48:35   ISA         OBSERVATION ZSA23207
+000_20:49:00   ISA         CONFIGURATION ZSA23203
+000_20:49:00   SERENA      SCIENCE     ZSE05024 ( \
+                                          PSE08008 = 0 [RAW] \
+                                          PSE08015 = 8)
+000_20:51:00   SERENA      SCIENCE     ZSE01034
+000_20:51:02   SERENA      STANDBY     ZSE01033
+000_20:52:00   BELA        APS_CONFIG  ZBL18633 ( \
+                                          PBL18613 = 2 \
+                                          PBL18615 = 100 \
+                                          PBL18654 = 62)
+000_20:53:00   SERENA      STANDBY     ZSE03016 ( \
+                                          PSE06073 = 15 [s] \
+                                          PSE06072 = 1 [RAW] \
+                                          PSE06074 = 1 [RAW] \
+                                          PSE06075 = 1 [RAW] \
+                                          PSE06076 = Simulated [ENG])
+000_20:53:10   SERENA      STANDBY     ZSE03014
+000_20:54:10   BELA        APS_CONFIG  ZBL18633 ( \
+                                          PBL18613 = 20 \
+                                          PBL18615 = 100 \
+                                          PBL18654 = 62)
+000_20:55:00   ISA         CHAIN_CAL   ZSA23201
+000_20:55:00   MGNS        SCIENCE_GAMMA AMGSG03A
+000_20:55:00   SERENA      SCIENCE     ZSE04078
+000_20:56:12   SERENA      SCIENCE     ZSE04014
+000_20:56:20   BELA        APS_CONFIG  ZBL18633 ( \
+                                          PBL18613 = 23 \
+                                          PBL18615 = 1000 \
+                                          PBL18654 = 62)
+000_20:57:00   SERENA      SCIENCE     ZSE02017 ( \
+                                          PSE07001 = 0x1100 \
+                                          PSE07006 = PROG1 [ENG])
+000_20:57:02   SERENA      SCIENCE     ZSE02081 ( \
+                                          PSE07081 = 0x5100)
+000_20:58:00   SERENA      SCIENCE     ZSE05075 ( \
+                                          PSE08008 = 0 [RAW])
+000_20:58:03   SERENA      SCIENCE     ZSE05049 ( \
+                                          PSE08008 = 0 [RAW] \
+                                          PSE08023 = 1 [RAW] \
+                                          PSE08028 = 5 [RAW])
+000_20:58:06   SERENA      SCIENCE     ZSE05050 ( \
+                                          PSE08008 = 0 [RAW] \
+                                          PSE08029 = 100)
+000_20:58:30   BELA        APS_CONFIG  ZBL18605
+000_20:59:30   BELA        APS_STANDBY ZCD01605 ( \
+                                          PCD16041 = 65 [RAW])
+000_21:01:00   BELA        APS_STANDBY ZBL86255
+000_21:08:06   SERENA      SCIENCE     ZSE03013
+000_21:09:18   SERENA      SCIENCE     ZSE04066 ( \
+                                          PSE06236 = 0 \
+                                          PSE06237 = 0 \
+                                          PSE06238 = 0 \
+                                          PSE06239 = 0 \
+                                          PSE06240 = 0 \
+                                          PSE06241 = 0 \
+                                          PSE06242 = 0 \
+                                          PSE06243 = 0 \
+                                          PSE06244 = 0 \
+                                          PSE06245 = 0)
+000_21:09:53   PHEBUS      STANDBY     ZPW01144
+000_21:10:30   SERENA      SCIENCE     ZSE04012
+000_21:11:42   SERENA      SCIENCE     ZSE02080 ( \
+                                          PSE07080 = 0x5000)
+000_21:12:30   ISA         OBSERVATION ZSA23207
+000_21:12:54   SERENA      SCIENCE     ZSE05024 ( \
+                                          PSE08008 = 0 [RAW] \
+                                          PSE08015 = 8)
+000_21:13:00   ISA         CONFIGURATION ZSA00309 ( \
+                                          PSA08003 = 1 \
+                                          PSA08009 = 128)
+000_21:14:00   MGNS        SCIENCE_TOTAL_SEL AMGSG04A
+000_21:14:54   SERENA      SCIENCE     ZSE01034
+# ^-- *** Conflict [WARNING]: Invalid mode STANDBY (current SCIENCE) for action ZSE01034 *** --^
+000_21:14:56   SERENA      STANDBY     ZSE01033
+000_21:17:40   MERMAG      SCIENCE_X   ZME01701
+000_21:17:45   MERMAG      SCIENCE_X   ZME01701
+000_21:17:50   MERMAG      SCIENCE_X   ZME01701
+000_21:17:55   MERMAG      SCIENCE_X   ZME01701
+000_21:18:00   MERMAG      SCIENCE_X   ZME01701
+000_21:23:15   MERTIS      DIAGNOSTIC  ZMR00026
+# ^-- *** Conflict [WARNING]: Invalid mode WARMUP (current DIAGNOSTIC) for action ZMR00026 *** --^
+000_21:24:35   MERTIS      STANDBY     ZMR00014 ( \
+                                          PMR00129 = "100msec(1)" [ENG] \
+                                          PMR00130 = 60 [s] \
+                                          PMR00277 = "no(0)" [ENG] \
+                                          PMR00131 = "on(1)" [ENG] \
+                                          PMR00132 = "off(0)" [ENG] \
+                                          PMR00278 = "off(0)" [ENG] \
+                                          PMR00134 = "on(1)" [ENG] \
+                                          PMR00135 = "on(1)" [ENG] \
+                                          PMR00136 = "on(1)" [ENG] \
+                                          PMR00137 = "on(1)" [ENG] \
+                                          PMR00138 = "on(1)" [ENG] \
+                                          PMR00270 = 10 [acqu] \
+                                          PMR00271 = "Move(1)" [ENG] \
+                                          PMR00272 = "1x1(0)" [ENG] \
+                                          PMR00273 = "100x80pixel(0)" [ENG] \
+                                          PMR00274 = "no compressio(0)" [ENG] \
+                                          PMR00297 = 8 \
+                                          PMR00143 = 10 [degC] \
+                                          PMR00144 = 60 [s] \
+                                          PMR00145 = 60 [s])

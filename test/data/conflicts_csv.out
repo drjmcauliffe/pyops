@@ -1,0 +1,57 @@
+#
+# Output Filename: conflicts.out
+# Generation Time: 21-July-2015_06:37:05 (UTC)
+# File Contents:   Conflicts List
+#
+# EPS Version:     v2.5.36
+#
+# CFG Template:    v3.19
+# EDF Template:    v3.12
+# ITL Template:    v3.10
+# EVF Template:    v3.1
+#
+# POR Definition:  CRID issue C4
+# EVF (ESOC FD):   DDID appendix-H v2.1
+#
+# Input Timeline:  BC-SFT2_FM-FUNC_VER-ITL-GEN01A.itl
+# Input CFG:       eps.cfg
+# Input EDF:       bepi.edf
+# MDB version:     SISBCMAS "PFM v5.0 (1, 5, 0)"
+# Input EVF:       bepi_events_mpo_sft.evf
+#
+
+#Ref_date: 6-October-2022
+
+000_20:17:00   Experiment MERMAG conflict EXPERIMENT_MODE group TIMELINE severity WARNING type VIOLATED
+               Description: Invalid mode CAL_SCIENCE (current SCIENCE_X) for action ZME02614
+               Time: 06-Oct-2022_20:17:00
+000_20:17:10   Experiment MERMAG conflict EXPERIMENT_MODE group TIMELINE severity WARNING type VIOLATED
+               Description: Invalid mode CAL_SCIENCE (current SCIENCE_X) for action ZME02705
+               Time: 06-Oct-2022_20:17:10
+000_20:25:01   Experiment BELA conflict EXPERIMENT_MODE group TIMELINE severity WARNING type VIOLATED
+               Description: Invalid mode APS_STANDBY (current APS_CONFIG) for action ZBL18624
+               Time: 06-Oct-2022_20:25:01
+000_20:46:00   Experiment BELA conflict EXPERIMENT_MODE group TIMELINE severity WARNING type VIOLATED
+               Description: Invalid mode APS_CONFIG (current APS_STANDBY) for action ZBL18619
+               Time: 06-Oct-2022_20:46:00
+000_20:46:01   Experiment BELA conflict EXPERIMENT_MODE group TIMELINE severity WARNING type VIOLATED
+               Description: Invalid mode APS_CONFIG (current APS_STANDBY) for action ZBL18620
+               Time: 06-Oct-2022_20:46:01
+000_20:46:02   Experiment BELA conflict EXPERIMENT_MODE group TIMELINE severity WARNING type VIOLATED
+               Description: Invalid mode APS_CONFIG (current APS_STANDBY) for action ZBL18620
+               Time: 06-Oct-2022_20:46:02
+000_20:46:10   Experiment BELA conflict EXPERIMENT_MODE group TIMELINE severity WARNING type VIOLATED
+               Description: Invalid mode APS_CONFIG (current APS_STANDBY) for action ZBL18616
+               Time: 06-Oct-2022_20:46:10
+000_20:46:11   Experiment BELA conflict EXPERIMENT_MODE group TIMELINE severity WARNING type VIOLATED
+               Description: Invalid mode APS_CONFIG (current APS_STANDBY) for action ZBL18616
+               Time: 06-Oct-2022_20:46:11
+000_20:47:01   Experiment BELA conflict EXPERIMENT_MODE group TIMELINE severity WARNING type VIOLATED
+               Description: Invalid mode APS_STANDBY (current APS_CONFIG) for action ZBL18624
+               Time: 06-Oct-2022_20:47:01
+000_21:14:54   Experiment SERENA conflict EXPERIMENT_MODE group TIMELINE severity WARNING type VIOLATED
+               Description: Invalid mode STANDBY (current SCIENCE) for action ZSE01034
+               Time: 06-Oct-2022_21:14:54
+000_21:23:15   Experiment MERTIS conflict EXPERIMENT_MODE group TIMELINE severity WARNING type VIOLATED
+               Description: Invalid mode WARMUP (current DIAGNOSTIC) for action ZMR00026
+               Time: 06-Oct-2022_21:23:15
