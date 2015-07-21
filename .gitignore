@@ -12,6 +12,9 @@ notebooks/
 cleanup/
 sample_data/output
 .eggs
+include/
+local/
+man/
 
 # C extensions
 *.so
