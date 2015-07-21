@@ -61,3 +61,18 @@ def test_epys_read_power():
                                      'SIMBIOSYS-HRIC',
                                      'SIMBIOSYS-VIHI',
                                      'MIXS-SIXS']
+
+
+def test_remove_redundant_data():
+    """
+    This function reduces the size of a dataframe by reducing blocks of
+    sequential identical data lines greater than 2 to only the earliest
+    and latest.
+
+    :param df: pandas dataframe
+    :type df: pandas dataframe
+    :returns: a smaller pandas dataframe
+    """
+    # TODO
+
+    assert 1 == 1

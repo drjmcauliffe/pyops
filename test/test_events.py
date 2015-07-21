@@ -33,7 +33,7 @@ def test_getMonthFromIntToString():
             'Sep', 'Oct', 'Nov', 'Dec']
     number = 1
     for month in mons:
-        assert events.getMonth(1) == month
+        assert events.getMonth(number) == month
         number += 1
 
 
@@ -65,11 +65,11 @@ Time values
 
 
 # def test_extract_time_eps_format():
-    """
+"""
         extracts time from an event file input line
         and returns a datetime object.
     """
-    """
+"""
     eps_line = '01:02:03   SUN_IN_FOV (EXP = OSIRIS ITEM = NAC)'
     time = events.extractTime(eps_line)
     assert time.day == 0
@@ -115,11 +115,11 @@ Time values
 
 def test_extract_time_por_format():
     """
-    """
+"""
         extracts time from an event file input line
         and returns a datetime object.
     """
-    """
+"""
     por_line = '01:02:03   SUN_IN_FOV (EXP = OSIRIS ITEM = NAC)'
     time = events.extractTime(por_line)
     assert time.day == 0
@@ -190,11 +190,11 @@ Date values
 
 
 # def test_extract_date_eps_format():
-    """
+"""
         extracts date from an event file input line
         and returns a datetime object.
     """
-    """
+"""
     eps_line = '1-Feb-1995   SUN_IN_FOV (EXP = OSIRIS ITEM = NAC)'
     time = events.extractTime(eps_line)
     assert time.day == 1
@@ -220,12 +220,12 @@ Date values
     assert time.second == 3
     """
 
-#def test_extract_date_por_format():
-    """
+# def test_extract_date_por_format():
+"""
         extracts date from an event file input line
         and returns a datetime object.
     """
-    """
+"""
     por_line = '02-23T01:02:03Z   SUN_IN_FOV (EXP = OSIRIS ITEM = NAC)'
     time = events.extractTime(por_line)
     assert time.year == 2002
