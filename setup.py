@@ -3,15 +3,23 @@
 
 from __future__ import print_function
 from setuptools import setup
-from setuptools.command.test import test as TestCommand
+from setuptools.command.test import test as testcommand
 import os
 import shutil
 import sys
+# import epys
 # from multiprocessing import util
-# from epys import __version__
 
 root_dir = os.path.dirname(os.path.realpath(__file__))
-version = '0.3.1'  # __version__
+
+with open('requirements.txt') as f:
+    required = f.read().splitlines()
+
+with open('epys/__init__.py') as f:
+    for line in f.readlines():
+        if line.startswith('__version__'):
+            version = line.split('=')[-1].strip('\n \'')
+
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 authors = open('AUTHORS.rst').read()
@@ -34,9 +42,9 @@ the input and output files of ESA Experiment Planning Software (EPS).
 """
 
 
-class PyTest(TestCommand):
+class PyTest(testcommand):
     def finalize_options(self):
-        TestCommand.finalize_options(self)
+        testcommand.finalize_options(self)
         self.test_args = []
         self.test_suite = True
 
@@ -46,9 +54,9 @@ class PyTest(TestCommand):
         sys.exit(errcode)
 
 
-class Tox(TestCommand):
+class Tox(testcommand):
     def finalize_options(self):
-        TestCommand.finalize_options(self)
+        testcommand.finalize_options(self)
         self.test_args = []
         self.test_suite = True
 
@@ -88,10 +96,7 @@ try:
         test_suite='test',
         # tests_require=['tox'],
         tests_require=['pytest'],
-        install_requires=['plotly==1.2.6',
-                          'pytest==2.6.3',
-                          'quantities==0.10.1'
-                          ],
+        install_requires=required,
         license="BSD",
         zip_safe=False,
         keywords='epys',
