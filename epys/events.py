@@ -110,7 +110,7 @@ def getMonth(month):
 
 def extractTime(line):
     """
-        extracts time from an event file input line
+        extracts date or time from an event file input line
         and returns a datetime object.
     """
     dt = line.split(None, 1)[0]
@@ -124,6 +124,52 @@ def extractTime(line):
     hour, minute, second = t.split(':')
     return datetime(int(year), int(month), int(day),
                     int(hour), int(minute), int(second))
+
+
+def extractActualTime(timeText):
+    """
+        extracts time from an event file input line
+        and returns a datetime object.
+    """
+    if '.' not in timeText:
+        # EPS format: [[sign][ddd_]hh:mm:ss]
+        return extractActualEPSTime(timeText)
+    else:
+        # POR format: [[-][ddd.]hh:mm:ss[.mmm]]
+        return extractActualPORTime(timeText)
+
+
+def extractActualEPSTime(timeText):
+    """
+        extracts EPS time from an event file input line
+        and returns a datetime object.
+        EPS format: [[sign][ddd_]hh:mm:ss]
+    """
+    output = datetime(2000, 1, 1)  # Initial Value year 2000, January the first
+    delta = timedelta()
+    if '_' in timeText:
+        timeAndDays = timeText.split('_')
+        time = timeAndDays[1]
+        days = timeAndDays[0]
+    else:
+        time = timeText.split(':')
+
+    return
+
+
+def extractActualPORTime(line):
+    """
+        extracts POR time from an event file input line
+        and returns a datetime object.
+        POR format: [[-][ddd.]hh:mm:ss[.mmm]]
+    """
+
+
+def extractDate(line):
+    """
+        extracts time from an event file input line
+        and returns a datetime object.
+    """
 
 
 def insertTime(line, time):
