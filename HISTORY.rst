@@ -6,6 +6,11 @@ History
 0.3.4 (2015-07-21)
 ++++++++++++++++++
 
+* Patch: mock removed from reqs & ipython notebook improved
+
+0.3.4 (2015-07-21)
+++++++++++++++++++
+
 * Requirements parser code added to setup.py
 
 0.3.3 (2015-07-20)
