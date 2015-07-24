@@ -97,7 +97,7 @@ class epstable:
     def iplot(self, selection=False, limits=False, title=False,
               x_title=False, x_range=False,
               y_title=False, y_range=False,
-              showlegend=True, bg_alpha=False):
+              showlegend=True, bg_alpha=False, with_layout=False):
         """
         This method pre-processes the table object for plotting.
 
@@ -138,7 +138,7 @@ class epstable:
         plot(data_to_plot, limits=limits, title=title,
             x_title=x_title, x_range=x_range,
             y_title=y_title, y_range=y_range,
-            showlegend=showlegend, bg_alpha=bg_alpha)
+            showlegend=showlegend, bg_alpha=bg_alpha, with_layout=with_layout)
 
     def join(self, df_to_join, in_place=False):
         """
@@ -303,7 +303,7 @@ class datatable(epstable):
 
 def plot(data, limits=False, title=False, x_title=False, x_range=False,
         y_title=False, y_range=False, showlegend=True, bg_alpha=False,
-        yaxis1_limit=7000):
+        yaxis1_limit=7000, with_layout=False):
     """
     This function __does_something_unbelievable__
 
@@ -321,6 +321,12 @@ def plot(data, limits=False, title=False, x_title=False, x_range=False,
     :type y_range: _add_type_here_
     :returns:
     """
+
+    if not with_layout:
+        data_plotly, y_title_backup = plotly_prep(data)
+        fig = Figure(data=data_plotly)
+        py.iplot(fig)
+        return 0
 
     multiaxis = False
 
@@ -703,6 +709,9 @@ def read_csv_header(fname, meta=False, columns=False):
     header = {}
     with open(fname) as f:
         for line in f:
+            # Filtering new lines characters
+            if line.endswith("\n"):
+                line = line[:-1]
             # Filtering lines with comments
             if '#' in line.split(' ')[0]:
                 aux = line.split(':')
@@ -724,7 +733,7 @@ def read_csv_header(fname, meta=False, columns=False):
                         header["headings"] += line.split(',')
                 else:
                     # Storing useful data in the temporary file
-                    temporaryFile.write(line)
+                    temporaryFile.write(line + "\n")
     # Filtering the experiments from the header, not a very scalable filter
     # but it works for now...
     header["experiments"] = [x for x in header["headings"] if x.upper() == x]
