@@ -55,6 +55,29 @@ def background_colors(top_limit=7000, limits=False, bg_alpha=False):
     return bg_colors
 
 
+# Time functions
+def getMonth(month):
+    """
+        returns the number of the month if given a string
+        and returns the name of the month if given and int
+    """
+    # months = ['January', 'February', 'March', 'April', 'May', 'June',
+    #           'July', 'August', 'September', 'October' 'November',
+    #           'December']
+    mons = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
+            'Sep', 'Oct', 'Nov', 'Dec']
+    if type(month) == str:
+        month = month[0:3]
+        try:
+            return mons.index(month) + 1
+        except ValueError as err:
+            print('Shall we list the months: {}'.format(err))
+    if type(month) == int:
+        try:
+            return mons[month - 1]
+        except IndexError as err:
+            print('How many months are there in the year: {}'.format(err))
+
 # def getclosest(myList, myNumber):
 #     '''
 #     Assumes myList is sorted. Returns closest value to myNumber.
