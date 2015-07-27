@@ -252,22 +252,26 @@ class datatable(epstable):
             for u in range(len(self.header['units'])):
                 if swap[0] in self.header['units'][u]:
                     self.header['units'][u] = self.header['units'][u].replace(swap[0], swap[1])
+                    # Removing parenthesis
+                    if self.header['units'][u][0] == '(':
+                        self.header['units'][u] = self.header['units'][u][1:]
+                    if self.header['units'][u][-1] == ')':
+                        self.header['units'][u] = self.header['units'][u][:-1]
         self.columns = zip(self.temp_header['headings'], self.header['units'])
         if not ("csv" in fname):
             cols = self.columns[1:]
             arrays = [[x[0].split()[0] for x in cols],
                       [x[0].split()[1] for x in cols],
                       [x[1] for x in cols]]
-            print arrays
             self.data.columns = pd.MultiIndex.from_arrays(arrays)
         else:
-            cols = [self.instruments[1:], self.temp_header['headings'][1:], self.header['units'][1:]]
-            print cols
+            cols = [self.instruments, self.temp_header['headings'][1:], self.header['units'][1:]]
             self.data.columns = pd.MultiIndex.from_arrays(cols)
         self.data = self.data.sortlevel(axis=1)
         # from each 'Accum' column produce a 'Volume column'
         for inst in self.instruments:
             try:
+                # [inst, 'Volume', 'Gbit'] = [inst, 'Accum', 'Gbit'][i] - [inst, 'Accum', 'Gbit'][i+1] 
                 self.data[inst, 'Volume', 'Gbit'] = self.data[inst, 'Accum', 'Gbit'].sub(self.data[inst, 'Accum', 'Gbit'].shift(), fill_value=0)
             except:
                 print('The conversion of \'Accum\' to \'Volume\' didn\'t work for \'{}\'.'.format(inst))
@@ -736,7 +740,7 @@ def read_csv_header(fname, meta=False, columns=False):
                     temporaryFile.write(line + "\n")
     # Filtering the experiments from the header, not a very scalable filter
     # but it works for now...
-    header["experiments"] = [x for x in header["headings"] if x.upper() == x]
+    header["experiments"] = [x for x in header["headings"] if x.upper() == x and len(x)>0]
     # Closing source file and setting temp. file's cursor at the beginning
     f.close()
     temporaryFile.seek(0, 0)
@@ -755,13 +759,13 @@ def read_csv(header, temporaryFile):
     :type meta: bool.
     :returns: pandas dataframe -- the return code.
     """ 
+
     # Inserting useful data into pandas
-    data = pd.read_table(temporaryFile, header=None, engine='python', sep=",",
-        names=header["headings"])
+    data = pd.read_csv(temporaryFile, header=None, sep=",", decimal='.')
+    data.columns = header["headings"]
     # Closing and deleting temporary file
     temporaryFile.close()
     os.unlink(temporaryFile.name)
-
     # Preparing data to behave as the main Jonathan's script does
     data = prepare_table(data, header)
 
