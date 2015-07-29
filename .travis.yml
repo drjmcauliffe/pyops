@@ -14,6 +14,7 @@ before_install:
 - pip install matplotlib
 - pip install coveralls
 - pip install six
+- pip install bokeh
 
 install:
 - python setup.py install
