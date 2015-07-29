@@ -190,6 +190,15 @@ class epstable:
             return table_copy
 
 
+class Modes(epstable):
+
+    def __init__(self, fname):
+        # read in the data
+        self.header, temporaryFile = read_csv_header(fname, meta=True)
+        self.header["headings"] = ["Elapsed time"] + self.header["units"][1:]
+        self.data = read_csv(self.header, temporaryFile)
+
+
 class powertable(epstable):
 
     def __init__(self, fname):
@@ -746,7 +755,8 @@ def read_csv_header(fname, meta=False, columns=False):
                     temporaryFile.write(line + "\n")
     # Filtering the experiments from the header, not a very scalable filter
     # but it works for now...
-    header["experiments"] = [x for x in header["headings"] if x.upper() == x and len(x)>0]
+    if "headings" in header:
+        header["experiments"] = [x for x in header["headings"] if x.upper() == x and len(x)>0]
     # Closing source file and setting temp. file's cursor at the beginning
     f.close()
     temporaryFile.seek(0, 0)
