@@ -15,6 +15,7 @@ from datetime import datetime, timedelta
 import logging
 from plotly.graph_objs import Data, Layout, Figure, XAxis, YAxis
 import plotly.plotly as py
+from epys.plots import brewer_plot
 
 
 class epstable:
@@ -136,9 +137,9 @@ class epstable:
             data_to_plot = self.data
 
         plot(data_to_plot, limits=limits, title=title,
-            x_title=x_title, x_range=x_range,
-            y_title=y_title, y_range=y_range,
-            showlegend=showlegend, bg_alpha=bg_alpha, with_layout=with_layout)
+             x_title=x_title, x_range=x_range,
+             y_title=y_title, y_range=y_range,
+             showlegend=showlegend, bg_alpha=bg_alpha, with_layout=with_layout)
 
     def join(self, df_to_join, in_place=False):
         """
@@ -222,6 +223,11 @@ class powertable(epstable):
             table_copy = copy.deepcopy(self)
             table_copy.data = table_copy.data[args]
             return table_copy
+
+    def brewer_plot(self, instruments=None):
+        if instruments is None:
+            instruments = self.instruments
+        brewer_plot(self.data, self.instruments, instruments)
 
 
 class datatable(epstable):
