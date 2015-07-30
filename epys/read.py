@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 import logging
 from plotly.graph_objs import Data, Layout, Figure, XAxis, YAxis
 import plotly.plotly as py
-from epys.plots import brewer_plot
+from epys.plots import brewer_plot, modes_schedule
 
 
 class epstable:
@@ -198,6 +198,8 @@ class Modes(epstable):
         self.header["headings"] = ["Elapsed time"] + self.header["units"][1:]
         self.data = read_csv(self.header, temporaryFile)
 
+    def plot_schedule(self):
+        modes_schedule(self.data)
 
 class powertable(epstable):
 
