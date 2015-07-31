@@ -8,7 +8,7 @@ from bokeh.models import ColumnDataSource, Range1d, FactorRange
 from datetime import datetime
 
 # BREWER_PLOT
-def brewer_plot(data, instruments_all, instruments=None,):
+def brewer_plot(data, instruments_all, instruments=None):
 
     output_notebook(hide_banner=True)
 
@@ -82,7 +82,7 @@ def stacked(df, categories):
 
 # MODES_SCHEDULE
 def modes_schedule(data):
-    output_notebook()
+    output_notebook(hide_banner=True)
     data = add_difference_column(data)
     start_end_table = build_start_end_table(data)
     source = ColumnDataSource(start_end_table)
@@ -91,7 +91,7 @@ def modes_schedule(data):
     p = figure(
         x_range=Range1d(start_end_table["Start_time"].min(), start_end_table["End_time"].max()),
         y_range=FactorRange(factors=instruments),
-        plot_height=600, plot_width=1000, tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset"
+        tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset"
     )
 
     p.quad(left='Start_time', right='End_time', top='Instrument_top',
@@ -109,15 +109,17 @@ def add_difference_column(data):
     difference = [[]]
     data = data.transpose()
     prev_row = data[data.columns.values[0]]
-    difference[0] = [element for element in prev_row.index]
+    difference[0] = [element for element in prev_row.index if prev_row[element] != "OFF"]
     pos = 0
     for row in data:
         for element in data[row].index:
-            if not prev_row[element] == data[row][element]:
+            if (not prev_row[element] == data[row][element]) and (data[row][element] != "OFF"):
                 if not len(difference) == pos + 1:
                     difference.append([element])
                 else:
                     difference[pos].append(element)
+        if not len(difference) == pos + 1:
+            difference.append([])
         prev_row = data[row]
         pos += 1
 

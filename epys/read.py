@@ -195,11 +195,15 @@ class Modes(epstable):
     def __init__(self, fname):
         # read in the data
         self.header, temporaryFile = read_csv_header(fname, meta=True)
-        self.header["headings"] = ["Elapsed time"] + self.header["units"][1:]
+        if "module_states" in fname:
+            self.header["headings"] = ["Elapsed time"] + ["("+self.header["headings"][i+1]+") "+self.header["units"][i+1] for i in range(len(self.header["units"][1:]))]
+        else:
+            self.header["headings"] = ["Elapsed time"] + self.header["units"][1:]
         self.data = read_csv(self.header, temporaryFile)
 
     def plot_schedule(self):
         modes_schedule(self.data)
+
 
 class powertable(epstable):
 
