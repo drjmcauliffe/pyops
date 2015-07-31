@@ -22,7 +22,7 @@ def brewer_plot(data, instruments_all, instruments=None,):
 
 def create_plot(data, instruments, x_range=None):
     # Create a set of tools to use
-    tools = "pan,wheel_zoom,box_zoom,reset,hover"
+    tools = "resize,hover,save,pan,box_zoom,wheel_zoom,reset"
 
     areas = stacked(data, instruments)
 
@@ -41,12 +41,6 @@ def create_plot(data, instruments, x_range=None):
                 legend=instruments[pos], line_color=None, alpha=0.8)
 
     f.grid.minor_grid_line_color = '#eeeeee'
-
-    hover = f.select(dict(type=HoverTool))
-    hover.tooltips = [
-        # add to this
-        ("index", "$index"),
-    ]
 
     return f
 
@@ -95,14 +89,19 @@ def modes_schedule(data):
     instruments = [colum for colum in data if colum.upper() == colum]
 
     p = figure(
-        x_range=Range1d(start_end_table["Start time"].min(), start_end_table["End time"].max()),
+        x_range=Range1d(start_end_table["Start_time"].min(), start_end_table["End_time"].max()),
         y_range=FactorRange(factors=instruments),
-        plot_height=600, plot_width=1000
+        plot_height=600, plot_width=1000, tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset"
     )
-    p.quad(left='Start time', right='End time', top='Instrument_top',
-           bottom='Instrument_bottom', source=source)
-    show(p)
 
+    p.quad(left='Start_time', right='End_time', top='Instrument_top',
+           bottom='Instrument_bottom', color='Color', source=source)
+
+    hover = p.select(dict(type=HoverTool))
+    hover.tooltips = OrderedDict([
+        ('Mode', '@Mode'),
+    ])
+    show(p)
 
 
 def add_difference_column(data):
@@ -110,6 +109,7 @@ def add_difference_column(data):
     difference = [[]]
     data = data.transpose()
     prev_row = data[data.columns.values[0]]
+    difference[0] = [element for element in prev_row.index]
     pos = 0
     for row in data:
         for element in data[row].index:
@@ -123,13 +123,14 @@ def add_difference_column(data):
 
     data = data.transpose()
     data["Change"] = difference
+
     return data
 
 
 def build_start_end_table(data):
 
-    df = pd.DataFrame({"End time": [], "Instrument": [],
-                       "Mode": [], "Start time": []})
+    df = pd.DataFrame({"End_time": [], "Instrument": [],
+                       "Mode": [], "Start_time": []})
 
     data = data.transpose()
     for row in data:
@@ -144,14 +145,19 @@ def build_start_end_table(data):
         shift = df.loc[df["Instrument"] == ins].shift(-1)
         if len(shift) > 1:
             for i in range(len(shift.index.values)):
-                df.loc[shift.index.values[i], "End time"] = \
-                    shift["Start time"][shift.index.values[i]]
+                df.loc[shift.index.values[i], "End_time"] = \
+                    shift["Start_time"][shift.index.values[i]]
 
-    for pos in range(len(df["End time"])):
-        if not type(df["End time"][pos+1]) is pd.tslib.Timestamp:
-            df.loc[pos+1, "End time"] = df["Start time"].max()
-    df[["End time", "Start time"]] = df[["End time", "Start time"]].astype(datetime)
+    for pos in range(len(df["End_time"])):
+        if not type(df["End_time"][pos + 1]) is pd.tslib.Timestamp:
+            df.loc[pos + 1, "End_time"] = df["Start_time"].max()
+    df[["End_time", "Start_time"]] = df[["End_time", "Start_time"]].astype(datetime)
 
     df["Instrument_bottom"] = [row + ":0.1" for row in df["Instrument"].values]
     df["Instrument_top"] = [row + ":0.9" for row in df["Instrument"].values]
+
+    modes = df["Mode"].unique()
+    colors = dict(zip(modes, palette(len(modes))))
+    df["Color"] = [colors[row] for row in df["Mode"].values]
+
     return df
