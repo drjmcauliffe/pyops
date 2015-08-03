@@ -6,6 +6,7 @@ from bokeh.models import HoverTool
 import numpy as np
 from bokeh.models import ColumnDataSource, Range1d, FactorRange
 from datetime import datetime
+import time
 
 
 # BREWER_PLOT
@@ -135,19 +136,25 @@ def modes_schedule(data):
     :type data: pandas DataFrame
     :returns: Nothing
     """
+    start_time = time.time()
     # Hidding anoying warnings on the top of the plot
     output_notebook(hide_banner=True)
 
+    print ("Creating new column...")
     # Adding new column to see which instruments are changing in each entry
     data = add_difference_column(data)
-
+    print("--- %s seconds ---" % (time.time() - start_time))
+    start_time = time.time()
+    print ("Building new table...")
     # Building a new table to make the data plotable by bokeh
     start_end_table = build_start_end_table(data)
     source = ColumnDataSource(start_end_table)
-
+    print("--- %s seconds ---" % (time.time() - start_time))
+    start_time = time.time()
     # Selecting the instruments detected in the data
     instruments = [colum for colum in data if colum.upper() == colum]
 
+    print ("Creating figure, only bokeh is working now...")
     # Creating the figure
     p = figure(
         x_range=Range1d(start_end_table["Start_time"].min(),
@@ -164,6 +171,7 @@ def modes_schedule(data):
     hover.tooltips = OrderedDict([
         ('Mode', '@Mode'),
     ])
+    print("--- %s seconds ---" % (time.time() - start_time))
     show(p)
 
 
@@ -216,19 +224,31 @@ def build_start_end_table(data):
     :type data: pandas DataFrame
     :returns: pandas DataFrame
     """
+    start_time = time.time()
     # Creating the DataFrame manually
-    df = pd.DataFrame({"End_time": [], "Instrument": [],
-                       "Mode": [], "Start_time": []})
+    di = {"End_time": [], "Instrument": [],
+          "Mode": [], "Start_time": []}
 
+    print ("    Filling new DataFrame")
+    print ("        Transposing matrix")
     # Filling the new DataFrame with the instrument, mode and start time
     data_aux = data.transpose()
+    print("        --- %s seconds ---" % (time.time() - start_time))
+    start_time = time.time()
     for row in data_aux:
         row_t = data_aux[row].transpose()
         for instrument in row_t["Change"]:
-            df.loc[len(df) + 1] = [None, instrument, row_t[instrument], row]
+            di["End_time"].append(None)
+            di["Instrument"].append(instrument)
+            di["Mode"].append(row_t[instrument])
+            di["Start_time"].append(row)
+    df = pd.DataFrame(di)
 
+    print("    --- %s seconds ---" % (time.time() - start_time))
+    start_time = time.time()
     instruments = [colum for colum in data if colum.upper() == colum]
 
+    print ("    Shifting and adding end time")
     # Calculating and adding the end time for each task
     for ins in instruments:
         shift = df.loc[df["Instrument"] == ins].shift(-1)
@@ -236,24 +256,27 @@ def build_start_end_table(data):
             for i in range(len(shift.index.values)):
                 df.loc[shift.index.values[i], "End_time"] = \
                     shift["Start_time"][shift.index.values[i]]
-
+    print("    --- %s seconds ---" % (time.time() - start_time))
+    start_time = time.time()
     # Calculating and adding the end time for tasks without unespecified end
     for pos in range(len(df["End_time"])):
-        if not type(df["End_time"][pos + 1]) is pd.tslib.Timestamp:
-            df.loc[pos + 1, "End_time"] = df["Start_time"].max()
+        if not type(df["End_time"][pos]) is pd.tslib.Timestamp:
+            df.loc[pos, "End_time"] = df["Start_time"].max()
 
+    print ("    Deleting OFF states")
     # Deleting OFF states, we don't want to plot it
     df = df[df.Mode != "OFF"]
     df[["End_time", "Start_time"]] = \
         df[["End_time", "Start_time"]].astype(datetime)
-
+    print("    --- %s seconds ---" % (time.time() - start_time))
+    start_time = time.time()
     # Creating new rows needed for making the bars wider in the plot
     df["Instrument_bottom"] = [row + ":0.1" for row in df["Instrument"].values]
     df["Instrument_top"] = [row + ":0.9" for row in df["Instrument"].values]
 
     # Setting different colors for each different mode in the DataFrame
     modes = df["Mode"].unique()
-    colors = dict(zip(df["Mode"].unique(), palette(len(modes))))
+    colors = dict(zip(modes, palette(len(modes))))
     df["Color"] = [colors[row] for row in df["Mode"].values]
 
     return df
