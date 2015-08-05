@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 import logging
 from plotly.graph_objs import Data, Layout, Figure, XAxis, YAxis
 import plotly.plotly as py
-from epys.plots import brewer_plot, modes_schedule
+from epys.plots import brewer_plot, modes_schedule, create_plot, get_modes_schedule
 
 
 class epstable:
@@ -204,6 +204,9 @@ class Modes(epstable):
     def plot_schedule(self):
         modes_schedule(self.data)
 
+    def get_plot_schedule(self, x_range=None):
+        return get_modes_schedule(self.data, x_range)
+
 
 class powertable(epstable):
 
@@ -243,6 +246,11 @@ class powertable(epstable):
         if instruments is None:
             instruments = self.instruments
         brewer_plot(self.data, self.instruments, instruments)
+
+    def get_brewer_plot(self, instruments=None, x_range=None):
+        if instruments is None:
+            instruments = self.instruments
+        return create_plot(self.data, instruments, x_range)
 
 
 class datatable(epstable):
@@ -802,6 +810,7 @@ def prepare_table(data, header):
     ref_date = datetime.strptime(ref_date, "%d-%m-%Y")
     data["Elapsed time"] = \
        [parse_time(x, ref_date) for x in data["Elapsed time"]]
+    data = data.sort_index(by=['Elapsed time'], ascending=[True])
     data = data.set_index("Elapsed time")
     #data[0] = \
     #    [parse_time(x, ref_date) for x in data[0]]

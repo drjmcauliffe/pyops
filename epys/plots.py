@@ -129,6 +129,13 @@ def stacked(df, categories):
 
 # MODES_SCHEDULE
 def modes_schedule(data):
+    # Hidding anoying warnings on the top of the plot
+    output_notebook(hide_banner=True)
+
+    show(get_modes_schedule(data))
+
+
+def get_modes_schedule(data, x_range=None):
     """
     This function create a time line plot based on the data form modes or
     module_states files.
@@ -137,9 +144,6 @@ def modes_schedule(data):
     :type data: pandas DataFrame
     :returns: Nothing
     """
-    # Hidding anoying warnings on the top of the plot
-    output_notebook(hide_banner=True)
-
     # Adding new column to see which instruments are changing in each entry
     data = add_difference_column(data)
 
@@ -151,12 +155,19 @@ def modes_schedule(data):
     instruments = [colum for colum in data if colum.upper() == colum]
 
     # Creating the figure
-    p = figure(
-        x_range=Range1d(start_end_table["Start_time"].min(),
-                        start_end_table["End_time"].max()),
-        y_range=FactorRange(factors=instruments),
-        tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset"
-    )
+    if x_range is None:
+        p = figure(
+            x_range=Range1d(start_end_table["Start_time"].min(),
+                            start_end_table["End_time"].max()),
+            y_range=FactorRange(factors=instruments),
+            tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset"
+        )
+    else:
+        p = figure(
+            x_range=x_range,
+            y_range=FactorRange(factors=instruments),
+            tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset"
+        )
 
     p.quad(left='Start_time', right='End_time', top='Instrument_top',
            bottom='Instrument_bottom', color='Color', source=source)
@@ -167,7 +178,7 @@ def modes_schedule(data):
         ('Mode', '@Mode'),
     ])
 
-    show(p)
+    return p
 
 
 def add_difference_column(data):
