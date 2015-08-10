@@ -153,6 +153,7 @@ def get_modes_schedule(data, x_range=None):
 
     # Selecting the instruments detected in the data
     instruments = [colum for colum in data if colum.upper() == colum]
+    instruments.sort(reverse=True)
 
     # Creating the figure
     if x_range is None:
@@ -268,8 +269,8 @@ def build_start_end_table(data):
         df[["End_time", "Start_time"]].astype(datetime)
 
     # Creating new rows needed for making the bars wider in the plot
-    df["Instrument_bottom"] = [row + ":0.1" for row in df["Instrument"].values]
-    df["Instrument_top"] = [row + ":0.9" for row in df["Instrument"].values]
+    df["Instrument_bottom"] = [row + ":0.25" if " " in row else row + ":0.1" for row in df["Instrument"].values]
+    df["Instrument_top"] = [row + ":0.75" if " " in row else row + ":0.9" for row in df["Instrument"].values]
 
     # Setting different colors for each different mode in the DataFrame
     modes = df["Mode"].unique()

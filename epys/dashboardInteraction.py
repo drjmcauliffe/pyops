@@ -1,6 +1,9 @@
 import os
 from epys.read import Modes, powertable
 from bokeh.plotting import show, output_notebook, gridplot
+from bokeh.io import vform
+from bokeh.models.widgets import Panel, Tabs
+from bokeh.models.widgets import CheckboxButtonGroup
 
 
 class Dashboard():
@@ -67,12 +70,34 @@ class Dashboard():
     def _module_states_schedule_plot(self, x_range=None):
         return self.module_states.get_plot_schedule(x_range)
 
-    def launch(self):
-        top_left = self._brewer_power_plot()
-        top_right = self._brewer_power_plot(['MERTIS', 'BELA'], top_left.x_range)
-        bottom_left = self._modes_schedule_plot(top_left.x_range)
-        bottom_right = self._module_states_schedule_plot(top_left.x_range)
+    def _merged_schedule_plot(self, get_plot=False, x_range=None):
+        return self.module_states.merge_schedule(self.modes.data, get_plot, x_range)
 
-        p = gridplot([[top_left, top_right], [bottom_left, bottom_right]])
+    def launch(self, instruments=None):
+        if instruments is None:
+            instruments = self.powertable.instruments
+        top_left = self._brewer_power_plot()
+        top_right = self._brewer_power_plot(instruments, top_left.x_range)
+        bottom_left = self._merged_schedule_plot(instruments, get_plot=True, x_range=top_left.x_range)
+        # bottom_right = self._module_states_schedule_plot(top_left.x_range)
+        p = gridplot([[top_left, top_right], [bottom_left]])
 
         show(p)
+
+    def launch_tab(self, instruments=None):
+        if instruments is None:
+            instruments = self.powertable.instruments
+        top_left = self._brewer_power_plot()
+        top_right = self._brewer_power_plot(instruments, top_left.x_range)
+        bottom_left = self._merged_schedule_plot(True)
+
+        active = [self.powertable.instruments.index(x) for x in instruments]
+        checkbox_button_group = CheckboxButtonGroup(
+            labels=self.powertable.instruments, active=active)
+
+        # show(vform(checkbox_button_group))
+        p1 = vform(checkbox_button_group, gridplot([[top_left, top_right]]))
+        tab1 = Panel(child=p1, title="Power")
+        tab2 = Panel(child=bottom_left, title="Timeline")
+        tabs = Tabs(tabs=[tab1, tab2])
+        show(tabs)
