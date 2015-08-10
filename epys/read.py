@@ -10,7 +10,7 @@ import os
 import pandas as pd
 import numpy as np
 import tempfile as tf
-from epys.utils import plotly_prep, background_colors, getMonth
+from epys.utils import plotly_prep, background_colors, getMonth, get_unique_from_list
 from datetime import datetime, timedelta
 import logging
 from plotly.graph_objs import Data, Layout, Figure, XAxis, YAxis
@@ -196,7 +196,7 @@ class Modes(epstable):
         # read in the data
         self.header, temporaryFile = read_csv_header(fname, meta=True)
         if "module_states" in fname:
-            self.header["headings"] = ["Elapsed time"] + ["("+self.header["headings"][i+1]+") "+self.header["units"][i+1] for i in range(len(self.header["units"][1:]))]
+            self.header["headings"] = ["Elapsed time"] + [self.header["headings"][i+1]+" "+self.header["units"][i+1] for i in range(len(self.header["units"][1:]))]
         else:
             self.header["headings"] = ["Elapsed time"] + self.header["units"][1:]
         self.data = read_csv(self.header, temporaryFile)
@@ -206,6 +206,25 @@ class Modes(epstable):
 
     def get_plot_schedule(self, x_range=None):
         return get_modes_schedule(self.data, x_range)
+
+    def merge_schedule(self, df, get_plot=False, x_range=None):
+        new_df = pd.merge(self.data, df, how='outer', left_index=True,
+                          right_index=True, sort=True)
+
+        new_df.fillna(method='ffill', inplace=True)
+
+        """
+        deleted_columns = [x for x in new_df.columns.values if x in instruments]
+        print deleted_columns
+        new_df = new_df.drop(deleted_columns, 1, inplace=True)
+        print new_df
+        """
+
+        if get_plot:
+            return get_modes_schedule(new_df, x_range)
+
+        return new_df
+
 
 
 class powertable(epstable):
@@ -297,8 +316,9 @@ class datatable(epstable):
             cols = [self.instruments, self.temp_header['headings'][1:], self.header['units'][1:]]
             self.data.columns = pd.MultiIndex.from_arrays(cols)
         self.data = self.data.sortlevel(axis=1)
+
         # from each 'Accum' column produce a 'Volume column'
-        for inst in self.instruments:
+        for inst in get_unique_from_list(self.instruments):
             try:
                 # [inst, 'Volume', 'Gbit'] = [inst, 'Accum', 'Gbit'][i] - [inst, 'Accum', 'Gbit'][i+1] 
                 self.data[inst, 'Volume', 'Gbit'] = self.data[inst, 'Accum', 'Gbit'].sub(self.data[inst, 'Accum', 'Gbit'].shift(), fill_value=0)

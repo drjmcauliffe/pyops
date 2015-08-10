@@ -336,3 +336,22 @@ def plotly_prep(df):
     lines_plotly = [lines[key] for key in df]
     # and return the list as the y-title.
     return lines_plotly, y_title
+
+
+def get_unique_from_list(seq, idfun=None):
+    # order preserving
+    if idfun is None:
+        def idfun(x):
+            return x
+    seen = {}
+    result = []
+    for item in seq:
+        marker = idfun(item)
+        # in old Python versions:
+        # if seen.has_key(marker)
+        # but in new ones:
+        if marker in seen:
+            continue
+        seen[marker] = 1
+        result.append(item)
+    return result
