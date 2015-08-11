@@ -23,11 +23,11 @@ class Dashboard():
                  if os.path.isfile(os.path.join(directory, f))]
 
         for f in files:
-            if "power_avg_csv" in f:
+            if "power_avg2_csv" in f:
                 self.load_power_avg_file(f)
-            if "modes_csv" in f:
+            if "modes2_csv" in f:
                 self.load_modes_file(f)
-            if "module_states_csv" in f:
+            if "module_states2_csv" in f:
                 self.load_module_states_file(f)
             if "data_rate_avg2_csv" in f:
                 self.load_data_rate_avg_file(f)
@@ -79,15 +79,15 @@ class Dashboard():
     def _module_states_schedule_plot(self, x_range=None):
         return self.module_states.get_plot_schedule(x_range)
 
-    def _merged_schedule_plot(self, get_plot, x_range=None):
-        return self.module_states.merge_schedule(self.modes.data, get_plot, x_range)
+    def _merged_schedule_plot(self, instruments, get_plot, x_range=None):
+        return self.module_states.merge_schedule(self.modes.data, instruments, get_plot, x_range)
 
     def launch(self, instruments=None, parameters=None):
         if instruments is None:
             instruments = self.powertable.instruments
         p1 = self._power_plot(instruments)
         p2 = self._data_plot(instruments, parameters, p1.x_range)
-        p3 = self._merged_schedule_plot(True, p1.x_range)
+        p3 = self._merged_schedule_plot(instruments, True, p1.x_range)
         # bottom_right = self._module_states_schedule_plot(top_left.x_range)
 
         # put all the plots in a VBox

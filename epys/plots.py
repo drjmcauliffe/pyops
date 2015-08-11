@@ -152,19 +152,11 @@ def get_modes_schedule(data, x_range=None):
     instruments.sort(reverse=True)
 
     # Creating the figure
-    if x_range is None:
-        p = figure(x_axis_type="datetime",
-            x_range=Range1d(start_end_table["Start_time"].min(),
-                            start_end_table["End_time"].max()),
-            y_range=FactorRange(factors=instruments),
-            tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset"
-        )
-    else:
-        p = figure(x_axis_type="datetime",
-            x_range=x_range,
-            y_range=FactorRange(factors=instruments),
-            tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset"
-        )
+    p = figure(x_axis_type="datetime",
+        x_range=x_range,
+        y_range=FactorRange(factors=instruments),
+        tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset"
+    )
 
     p.quad(left='Start_time', right='End_time', top='Instrument_top',
            bottom='Instrument_bottom', color='Color', source=source)
@@ -173,6 +165,7 @@ def get_modes_schedule(data, x_range=None):
     hover = p.select(dict(type=HoverTool))
     hover.tooltips = OrderedDict([
         ('Mode', '@Mode'),
+        ('Time', '@Time')
     ])
 
     return p
@@ -229,7 +222,7 @@ def build_start_end_table(data):
     """
     # Creating the DataFrame manually
     di = {"End_time": [], "Instrument": [],
-          "Mode": [], "Start_time": []}
+          "Mode": [], "Start_time": [], "Time": []}
 
     # Filling the new DataFrame with the instrument, mode and start time
     data_aux = data.transpose()
@@ -240,6 +233,7 @@ def build_start_end_table(data):
             di["Instrument"].append(instrument)
             di["Mode"].append(row_t[instrument])
             di["Start_time"].append(row)
+    di["Time"] = [str(x) for x in di["Start_time"]]
     df = pd.DataFrame(di)
     df = df.sort(["Start_time"], ascending=True)
 
@@ -315,14 +309,14 @@ def power_plot(data, instruments):
     show(get_power_plot(data, instruments))
 
 
-def get_power_plot(data, instruments, raw_time):
+def get_power_plot(data, instruments):
 
     r = figure(x_axis_type="datetime", tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
 
     colors = palette(len(instruments))
     i = 0
     d = data.copy(deep=True)
-    d['Time'] = raw_time
+    d['Time'] = [str(x) for x in pd.to_datetime(data.index.values)]
     for ins in instruments:
         r.line(data.index.values, data[ins], color=colors[i], legend=ins)
         source = ColumnDataSource(d)

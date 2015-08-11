@@ -199,7 +199,7 @@ class Modes(epstable):
             self.header["headings"] = ["Elapsed time"] + [self.header["headings"][i+1]+" "+self.header["units"][i+1] for i in range(len(self.header["units"][1:]))]
         else:
             self.header["headings"] = ["Elapsed time"] + self.header["units"][1:]
-        self.data, self.raw_time = read_csv(self.header, temporaryFile)
+        self.data = read_csv(self.header, temporaryFile)
 
     def plot_schedule(self):
         modes_schedule(self.data)
@@ -207,19 +207,19 @@ class Modes(epstable):
     def get_plot_schedule(self, x_range=None):
         return get_modes_schedule(self.data, x_range)
 
-    def merge_schedule(self, df, get_plot=False, x_range=None):
+    def merge_schedule(self, df, instruments, get_plot=False, x_range=None):
 
         new_df = pd.merge(self.data, df, how='outer', left_index=True,
                           right_index=True, sort=True)
 
         new_df.fillna(method='ffill', inplace=True)
 
-        """
-        deleted_columns = [x for x in new_df.columns.values if x in instruments]
-        print deleted_columns
-        new_df = new_df.drop(deleted_columns, 1, inplace=True)
-        print new_df
-        """
+        columns_to_show = [x for x in new_df.columns.values
+                           for y in x.split(' ') if y in instruments]
+        deleted_columns = [x for x in new_df.columns.values
+                           if x not in columns_to_show]
+
+        new_df.drop(deleted_columns, axis=1, inplace=True)
 
         if get_plot:
             return get_modes_schedule(new_df, x_range)
@@ -233,7 +233,7 @@ class powertable(epstable):
         # read in the data
         if "csv" in fname:
             self.header, temporaryFile = read_csv_header(fname, meta=True)
-            self.data, self.raw_time = read_csv(self.header, temporaryFile)
+            self.data = read_csv(self.header, temporaryFile)
         else:
             self.data, self.header = read(fname, meta=True)
         self.columns = zip(self.header['headings'], self.header['units'])
@@ -279,7 +279,7 @@ class powertable(epstable):
     def get_power_plot(self, instruments=None):
         if instruments is None:
             instruments = self.instruments
-        return get_power_plot(self.data, instruments, self.raw_time)
+        return get_power_plot(self.data, instruments)
 
 
 class datatable(epstable):
@@ -298,7 +298,7 @@ class datatable(epstable):
             self.temp_header = copy.deepcopy(self.header)
             self.temp_header["headings"] = self.temp_header["headings"][
                 len(self.temp_header["headings"]) / 2:]
-            self.data, self.raw_time = read_csv(self.temp_header, temporaryFile)
+            self.data = read_csv(self.temp_header, temporaryFile)
         else:
             self.data, self.header = read(fname, meta=True)
             self.temp_header = self.header
@@ -832,7 +832,7 @@ def read_csv(header, temporaryFile):
     :param meta: Flag to return the header dictionary
     :type meta: bool.
     :returns: pandas dataframe -- the return code.
-    """ 
+    """
 
     # Inserting useful data into pandas
     data = pd.read_csv(temporaryFile, header=None, sep=",", decimal='.')
@@ -841,14 +841,13 @@ def read_csv(header, temporaryFile):
     temporaryFile.close()
     os.unlink(temporaryFile.name)
     # Preparing data to behave as the main Jonathan's script does
-    data, raw_time = prepare_table(data, header)
+    data = prepare_table(data, header)
 
-    return data, raw_time
+    return data
 
 
 def prepare_table(data, header):
 
-    raw_time = copy.deepcopy(data["Elapsed time"])
     ref_date = header["Ref_date"].split('-')[0] + "-" +\
         str(getMonth(header["Ref_date"].split('-')[1])) + "-" + \
         header["Ref_date"].split('-')[2]
@@ -862,8 +861,7 @@ def prepare_table(data, header):
     #data = data.set_index(0)
     data.index.names = ['Date & Time']
     data = remove_redundant_data(data)
-    raw_time = [x for x in raw_time if pd.Timestamp(np.datetime64(parse_time(x, ref_date)).astype(datetime)) in pd.to_datetime(data.index.values)]
     #columns = pd.MultiIndex.from_tuples(zip(header['headings'][1:],
     #    header['units'][1:]), names=['Instruments', 'Units'])
     #data.columns = columns
-    return data, raw_time
+    return data
