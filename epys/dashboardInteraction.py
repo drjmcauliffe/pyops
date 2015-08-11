@@ -1,6 +1,6 @@
 import os
 from epys.read import Modes, powertable, datatable
-from bokeh.plotting import show, output_notebook, vplot
+from bokeh.plotting import show, output_notebook, vplot, gridplot
 from bokeh.io import vform
 from bokeh.models.widgets import Panel, Tabs
 from bokeh.models.widgets import CheckboxButtonGroup
@@ -80,7 +80,8 @@ class Dashboard():
         return self.module_states.get_plot_schedule(x_range)
 
     def _merged_schedule_plot(self, instruments, get_plot, x_range=None):
-        return self.module_states.merge_schedule(self.modes.data, instruments, get_plot, x_range)
+        return self.module_states.merge_schedule(self.modes.data, instruments,
+                                                 get_plot, x_range)
 
     def launch(self, instruments=None, parameters=None):
         if instruments is None:

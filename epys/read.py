@@ -269,7 +269,7 @@ class powertable(epstable):
     def get_brewer_plot(self, instruments=None):
         if instruments is None:
             instruments = self.instruments
-        return create_plot(self.data, instruments, x_range)
+        return create_plot(self.data, instruments)
 
     def power_plot(self, instruments=None):
         if instruments is None:
@@ -370,8 +370,9 @@ class datatable(epstable):
 
     def get_data_plot(self, instruments=None, parameters=None, x_range=None):
         if parameters is None:
-            instruments = get_unique_from_list(self.instruments)
-            parameters = ['Accum', 'Volume']
+            if instruments is None:
+                instruments = get_unique_from_list(self.instruments)
+            parameters = ['Volume']
             instruments = [(ins, p) for ins in instruments for p in parameters]
         else:
             instruments = parameters

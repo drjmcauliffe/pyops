@@ -79,7 +79,6 @@ def create_plot(data, instruments, x_range=None):
     # Setting the color of the line of the background
     f.grid.minor_grid_line_color = '#eeeeee'
 
-
     return f
 
 
@@ -153,10 +152,9 @@ def get_modes_schedule(data, x_range=None):
 
     # Creating the figure
     p = figure(x_axis_type="datetime",
-        x_range=x_range,
-        y_range=FactorRange(factors=instruments),
-        tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset"
-    )
+               x_range=x_range,
+               y_range=FactorRange(factors=instruments),
+               tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
 
     p.quad(left='Start_time', right='End_time', top='Instrument_top',
            bottom='Instrument_bottom', color='Color', source=source)
@@ -259,8 +257,10 @@ def build_start_end_table(data):
         df[["End_time", "Start_time"]].astype(datetime)
 
     # Creating new rows needed for making the bars wider in the plot
-    df["Instrument_bottom"] = [row + ":0.25" if " " in row else row + ":0.1" for row in df["Instrument"].values]
-    df["Instrument_top"] = [row + ":0.75" if " " in row else row + ":0.9" for row in df["Instrument"].values]
+    df["Instrument_bottom"] = [row + ":0.25" if " " in row else row + ":0.1"
+                               for row in df["Instrument"].values]
+    df["Instrument_top"] = [row + ":0.75" if " " in row else row + ":0.9" for
+                            row in df["Instrument"].values]
 
     # Setting different colors for each different mode in the DataFrame
     modes = df["Mode"].unique()
@@ -285,8 +285,13 @@ def get_data_plot(data, instruments, x_range=None):
 
     colors = palette(len(instruments))
     i = 0
+    d = transform_multiindex_df(data, instruments)
     for ins in instruments:
-        r.line(data.index.values, data[ins[0], ins[1]], color=colors[i], legend=ins[0] + " - " + ins[1])
+        r.line(d['index'], d[ins[0] + "_" + ins[1]], color=colors[i],
+               legend=ins[0] + " - " + ins[1], line_width=3)
+        source = ColumnDataSource(d)
+        r.scatter(d['index'], d[ins[0] + "_" + ins[1]], color=colors[i],
+                  source=source, fill_color=None, size=8)
         i += 1
 
     r.title = "Data Rate"
@@ -294,11 +299,23 @@ def get_data_plot(data, instruments, x_range=None):
 
     # Adding the hover tool to see info when putting the mouse over the plot
     hover = r.select(dict(type=HoverTool))
-    hover.tooltips = OrderedDict([
-        ('Info', '@BELA @Volume'),
-    ])
+    hover.tooltips = OrderedDict([("Time", "@Time")] +
+                                 [(ins[0] + " - " + ins[1], "@" + ins[0] + "_"
+                                   + ins[1]) for ins in instruments])
 
     return r
+
+
+def transform_multiindex_df(data, instruments):
+    d = {}
+    d['Time'] = [str(x) for x in pd.to_datetime(data.index.values)]
+    d['index'] = data.index.values
+    for ins in instruments:
+        d[ins[0] + "_" + ins[1]] = \
+            [x[0] for x in data[ins[0], ins[1]].values.tolist()]
+
+    df = pd.DataFrame(d)
+    return df
 
 
 # POWER_PLOT
@@ -311,16 +328,21 @@ def power_plot(data, instruments):
 
 def get_power_plot(data, instruments):
 
-    r = figure(x_axis_type="datetime", tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
+    r = figure(x_axis_type="datetime",
+               tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
 
     colors = palette(len(instruments))
     i = 0
     d = data.copy(deep=True)
     d['Time'] = [str(x) for x in pd.to_datetime(data.index.values)]
     for ins in instruments:
-        r.line(data.index.values, data[ins], color=colors[i], legend=ins)
+        r.line(data.index.values, data[ins], color=colors[i],
+               legend=ins, line_width=3)
+        # I don't know why, but if this source is not rebuilt every single
+        # time, it doesn't plot correctly
         source = ColumnDataSource(d)
-        r.scatter(data.index.values, data[ins], color=colors[i], source=source, fill_color=None, size=8)
+        r.scatter(data.index.values, data[ins], color=colors[i], source=source,
+                  fill_color=None, size=8)
         i += 1
 
     r.title = "Power"
@@ -328,6 +350,7 @@ def get_power_plot(data, instruments):
 
     # Adding the hover tool to see info when putting the mouse over the plot
     hover = r.select(dict(type=HoverTool))
-    hover.tooltips = OrderedDict([("Time", "@Time")]+[(ins, "@" + ins) for ins in instruments])
+    hover.tooltips = OrderedDict([("Time", "@Time")] +
+                                 [(ins, "@" + ins) for ins in instruments])
 
     return r
