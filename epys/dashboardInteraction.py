@@ -71,7 +71,7 @@ class Dashboard():
         return self.powertable.get_power_plot(instruments)
 
     def _data_plot(self, instruments, parameters, x_range=None):
-        return self.data_rate.get_data_plot(instruments, parameters)
+        return self.data_rate.get_data_plot(instruments, parameters, x_range)
 
     def _modes_schedule_plot(self, x_range=None):
         return self.modes.get_plot_schedule(x_range)

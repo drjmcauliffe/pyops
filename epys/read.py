@@ -369,13 +369,12 @@ class datatable(epstable):
         data_plot(self.data, instruments)
 
     def get_data_plot(self, instruments=None, parameters=None, x_range=None):
-        if instruments is None:
-            instruments = get_unique_from_list(self.instruments)
         if parameters is None:
+            instruments = get_unique_from_list(self.instruments)
             parameters = ['Accum', 'Volume']
             instruments = [(ins, p) for ins in instruments for p in parameters]
         else:
-            instruments = zip(self.instruments, self.temp_header["headings"][1:])
+            instruments = parameters
         return get_data_plot(self.data, instruments, x_range)
 
 def plot(data, limits=False, title=False, x_title=False, x_range=False,
