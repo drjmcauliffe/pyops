@@ -1,6 +1,6 @@
 import os
-from epys.read import Modes, powertable
-from bokeh.plotting import show, output_notebook, gridplot
+from epys.read import Modes, powertable, datatable
+from bokeh.plotting import show, output_notebook, vplot
 from bokeh.io import vform
 from bokeh.models.widgets import Panel, Tabs
 from bokeh.models.widgets import CheckboxButtonGroup
@@ -29,6 +29,8 @@ class Dashboard():
                 self.load_modes_file(f)
             if "module_states_csv" in f:
                 self.load_module_states_file(f)
+            if "data_rate_avg_csv" in f:
+                self.load_data_rate_avg_file(f)
 
     def load_power_avg_file(self, file_name):
         if os.path.isfile(file_name):
@@ -41,6 +43,7 @@ class Dashboard():
     def load_data_rate_avg_file(self, file_name):
         if os.path.isfile(file_name):
             self.data_rate_avg_file = file_name
+            self.data_rate = datatable(file_name)
         else:
             print ("I don't think that file exists...")
             raise NameError('File not found')
@@ -64,23 +67,31 @@ class Dashboard():
     def _brewer_power_plot(self, instruments=None, x_range=None):
         return self.powertable.get_brewer_plot(instruments, x_range)
 
+    def _power_plot(self, instruments):
+        return self.powertable.get_power_plot(instruments)
+
+    def _data_plot(self, instruments, parameters, x_range=None):
+        return self.data_rate.get_data_plot(instruments, parameters)
+
     def _modes_schedule_plot(self, x_range=None):
         return self.modes.get_plot_schedule(x_range)
 
     def _module_states_schedule_plot(self, x_range=None):
         return self.module_states.get_plot_schedule(x_range)
 
-    def _merged_schedule_plot(self, get_plot=False, x_range=None):
+    def _merged_schedule_plot(self, get_plot, x_range=None):
         return self.module_states.merge_schedule(self.modes.data, get_plot, x_range)
 
-    def launch(self, instruments=None):
+    def launch(self, instruments=None, parameters=None):
         if instruments is None:
             instruments = self.powertable.instruments
-        top_left = self._brewer_power_plot()
-        top_right = self._brewer_power_plot(instruments, top_left.x_range)
-        bottom_left = self._merged_schedule_plot(instruments, get_plot=True, x_range=top_left.x_range)
+        p1 = self._power_plot(instruments)
+        # p2 = self._data_plot(instruments, parameters, p1.x_range)
+        p3 = self._merged_schedule_plot(True, p1.x_range)
         # bottom_right = self._module_states_schedule_plot(top_left.x_range)
-        p = gridplot([[top_left, top_right], [bottom_left]])
+
+        # put all the plots in a VBox
+        p = vplot(p1, p3)
 
         show(p)
 
@@ -97,7 +108,7 @@ class Dashboard():
 
         # show(vform(checkbox_button_group))
         p1 = vform(checkbox_button_group, gridplot([[top_left, top_right]]))
-        tab1 = Panel(child=p1, title="Power")
-        tab2 = Panel(child=bottom_left, title="Timeline")
-        tabs = Tabs(tabs=[tab1, tab2])
+        tab2 = Panel(child=p1, title="Power Stacked")
+        tab3 = Panel(child=bottom_left, title="Timeline")
+        tabs = Tabs(tabs=[tab2, tab3])
         show(tabs)

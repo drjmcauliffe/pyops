@@ -79,6 +79,7 @@ def create_plot(data, instruments, x_range=None):
     # Setting the color of the line of the background
     f.grid.minor_grid_line_color = '#eeeeee'
 
+
     return f
 
 
@@ -94,16 +95,11 @@ def palette(number):
         print ("Ooops, too many parameters, not enough colors...")
 
     # Selecting the colors from different bokeh palettes
-    if number < 3:
-        palette = brewer["Spectral"][3]
-    elif number < 12:
-        palette = brewer["Spectral"][number]
-    else:
-        palette = brewer["Spectral"][11]
-        palette += list(reversed(brewer["RdBu"][11]))
-        palette += brewer["YlGnBu"][9]
-        palette += list(reversed(brewer["YlGn"][9]))
-        palette += brewer["PiYG"][11]
+    palette = brewer["Spectral"][11]
+    palette += list(reversed(brewer["RdBu"][11]))
+    palette += brewer["YlGnBu"][9]
+    palette += list(reversed(brewer["YlGn"][9]))
+    palette += brewer["PiYG"][11]
 
     return palette[:number]
 
@@ -157,14 +153,14 @@ def get_modes_schedule(data, x_range=None):
 
     # Creating the figure
     if x_range is None:
-        p = figure(
+        p = figure(x_axis_type="datetime",
             x_range=Range1d(start_end_table["Start_time"].min(),
                             start_end_table["End_time"].max()),
             y_range=FactorRange(factors=instruments),
             tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset"
         )
     else:
-        p = figure(
+        p = figure(x_axis_type="datetime",
             x_range=x_range,
             y_range=FactorRange(factors=instruments),
             tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset"
@@ -278,3 +274,70 @@ def build_start_end_table(data):
     df["Color"] = [colors[row] for row in df["Mode"].values]
 
     return df
+
+
+# DATA_PLOT
+def data_plot(data, instruments):
+    # Hidding anoying warnings on the top of the plot
+    output_notebook(hide_banner=True)
+
+    show(get_data_plot(data, instruments))
+
+
+def get_data_plot(data, instruments, x_range=None):
+
+    r = figure(x_axis_type="datetime", x_range=x_range,
+               tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
+
+    colors = palette(len(instruments))
+    i = 0
+    print instruments
+    for ins in instruments:
+        r.line(data.index.values, data[ins[0], ins[1]], color=colors[i], legend=ins[0] + " - " + ins[1])
+        i += 1
+
+    r.title = "Data Rate"
+    r.grid.grid_line_alpha = 0.3
+
+    # Adding the hover tool to see info when putting the mouse over the plot
+    hover = r.select(dict(type=HoverTool))
+    hover.tooltips = OrderedDict([
+        ('Info', '@BELA @Volume'),
+    ])
+
+    return r
+
+
+# POWER_PLOT
+def power_plot(data, instruments):
+    # Hidding anoying warnings on the top of the plot
+    output_notebook(hide_banner=True)
+
+    show(get_power_plot(data, instruments))
+
+
+def get_power_plot(data, instruments, raw_time):
+
+    r = figure(x_axis_type="datetime", tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
+
+    colors = palette(len(instruments))
+    i = 0
+    d = data.copy(deep=True)
+    print len(raw_time)
+    print len(d.index.values)
+    d['Time'] = raw_time
+
+    for ins in instruments:
+        r.line(data.index.values, data[ins], color=colors[i], legend=ins)
+        source = ColumnDataSource(d)
+        r.scatter(data.index.values, data[ins], color=colors[i], source=source, fill_color=None, size=8)
+        i += 1
+
+    r.title = "Power"
+    r.grid.grid_line_alpha = 0.3
+
+    # Adding the hover tool to see info when putting the mouse over the plot
+    hover = r.select(dict(type=HoverTool))
+    hover.tooltips = OrderedDict([("Time", "@Time")]+[(ins, "@" + ins) for ins in instruments])
+
+    return r

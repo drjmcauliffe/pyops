@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 import logging
 from plotly.graph_objs import Data, Layout, Figure, XAxis, YAxis
 import plotly.plotly as py
-from epys.plots import brewer_plot, modes_schedule, create_plot, get_modes_schedule
+from epys.plots import brewer_plot, modes_schedule, create_plot, get_modes_schedule, data_plot, power_plot, get_power_plot, get_data_plot
 
 
 class epstable:
@@ -199,7 +199,7 @@ class Modes(epstable):
             self.header["headings"] = ["Elapsed time"] + [self.header["headings"][i+1]+" "+self.header["units"][i+1] for i in range(len(self.header["units"][1:]))]
         else:
             self.header["headings"] = ["Elapsed time"] + self.header["units"][1:]
-        self.data = read_csv(self.header, temporaryFile)
+        self.data, self.raw_time = read_csv(self.header, temporaryFile)
 
     def plot_schedule(self):
         modes_schedule(self.data)
@@ -208,6 +208,7 @@ class Modes(epstable):
         return get_modes_schedule(self.data, x_range)
 
     def merge_schedule(self, df, get_plot=False, x_range=None):
+
         new_df = pd.merge(self.data, df, how='outer', left_index=True,
                           right_index=True, sort=True)
 
@@ -226,14 +227,13 @@ class Modes(epstable):
         return new_df
 
 
-
 class powertable(epstable):
 
     def __init__(self, fname):
         # read in the data
         if "csv" in fname:
             self.header, temporaryFile = read_csv_header(fname, meta=True)
-            self.data = read_csv(self.header, temporaryFile)
+            self.data, self.raw_time = read_csv(self.header, temporaryFile)
         else:
             self.data, self.header = read(fname, meta=True)
         self.columns = zip(self.header['headings'], self.header['units'])
@@ -266,10 +266,20 @@ class powertable(epstable):
             instruments = self.instruments
         brewer_plot(self.data, self.instruments, instruments)
 
-    def get_brewer_plot(self, instruments=None, x_range=None):
+    def get_brewer_plot(self, instruments=None):
         if instruments is None:
             instruments = self.instruments
         return create_plot(self.data, instruments, x_range)
+
+    def power_plot(self, instruments=None):
+        if instruments is None:
+            instruments = self.instruments
+        power_plot(self.data, instruments)
+
+    def get_power_plot(self, instruments=None):
+        if instruments is None:
+            instruments = self.instruments
+        return get_power_plot(self.data, instruments, self.raw_time)
 
 
 class datatable(epstable):
@@ -288,7 +298,7 @@ class datatable(epstable):
             self.temp_header = copy.deepcopy(self.header)
             self.temp_header["headings"] = self.temp_header["headings"][
                 len(self.temp_header["headings"]) / 2:]
-            self.data = read_csv(self.temp_header, temporaryFile)
+            self.data, self.raw_time = read_csv(self.temp_header, temporaryFile)
         else:
             self.data, self.header = read(fname, meta=True)
             self.temp_header = self.header
@@ -353,6 +363,20 @@ class datatable(epstable):
             table_copy.data = table_copy.data.loc[slice(None), (level1, level2, level3)]
             return table_copy
 
+    def data_plot(self, instruments=None):
+        if instruments is None:
+            instruments = [ins.split(' ') for ins in self.temp_header["headings"][1:]]
+        data_plot(self.data, instruments)
+
+    def get_data_plot(self, instruments=None, parameters=None, x_range=None):
+        if instruments is None:
+            instruments = get_unique_from_list(self.instruments)
+        if parameters is None:
+            parameters = ['Accum', 'Volume']
+            instruments = [(ins, p) for ins in instruments for p in parameters]
+        else:
+            instruments = zip(self.instruments, self.temp_header["headings"][1:])
+        return get_data_plot(self.data, instruments, x_range)
 
 def plot(data, limits=False, title=False, x_title=False, x_range=False,
         y_title=False, y_range=False, showlegend=True, bg_alpha=False,
@@ -817,13 +841,14 @@ def read_csv(header, temporaryFile):
     temporaryFile.close()
     os.unlink(temporaryFile.name)
     # Preparing data to behave as the main Jonathan's script does
-    data = prepare_table(data, header)
+    data, raw_time = prepare_table(data, header)
 
-    return data
+    return data, raw_time
 
 
 def prepare_table(data, header):
 
+    raw_time = copy.deepcopy(data["Elapsed time"])
     ref_date = header["Ref_date"].split('-')[0] + "-" +\
         str(getMonth(header["Ref_date"].split('-')[1])) + "-" + \
         header["Ref_date"].split('-')[2]
@@ -837,7 +862,9 @@ def prepare_table(data, header):
     #data = data.set_index(0)
     data.index.names = ['Date & Time']
     data = remove_redundant_data(data)
+
+    raw_time = [x for x in raw_time if pd.Timestamp(np.datetime64(parse_time(x, ref_date)).astype(datetime)) in pd.to_datetime(data.index.values)]
     #columns = pd.MultiIndex.from_tuples(zip(header['headings'][1:],
     #    header['units'][1:]), names=['Instruments', 'Units'])
     #data.columns = columns
-    return data
+    return data, raw_time
