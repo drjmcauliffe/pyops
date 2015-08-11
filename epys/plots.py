@@ -291,7 +291,6 @@ def get_data_plot(data, instruments, x_range=None):
 
     colors = palette(len(instruments))
     i = 0
-    print instruments
     for ins in instruments:
         r.line(data.index.values, data[ins[0], ins[1]], color=colors[i], legend=ins[0] + " - " + ins[1])
         i += 1
@@ -323,10 +322,7 @@ def get_power_plot(data, instruments, raw_time):
     colors = palette(len(instruments))
     i = 0
     d = data.copy(deep=True)
-    print len(raw_time)
-    print len(d.index.values)
     d['Time'] = raw_time
-
     for ins in instruments:
         r.line(data.index.values, data[ins], color=colors[i], legend=ins)
         source = ColumnDataSource(d)

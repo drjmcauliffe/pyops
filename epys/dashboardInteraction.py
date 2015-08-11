@@ -29,7 +29,7 @@ class Dashboard():
                 self.load_modes_file(f)
             if "module_states_csv" in f:
                 self.load_module_states_file(f)
-            if "data_rate_avg_csv" in f:
+            if "data_rate_avg2_csv" in f:
                 self.load_data_rate_avg_file(f)
 
     def load_power_avg_file(self, file_name):
@@ -86,12 +86,12 @@ class Dashboard():
         if instruments is None:
             instruments = self.powertable.instruments
         p1 = self._power_plot(instruments)
-        # p2 = self._data_plot(instruments, parameters, p1.x_range)
+        p2 = self._data_plot(instruments, parameters, p1.x_range)
         p3 = self._merged_schedule_plot(True, p1.x_range)
         # bottom_right = self._module_states_schedule_plot(top_left.x_range)
 
         # put all the plots in a VBox
-        p = vplot(p1, p3)
+        p = vplot(p1, p2, p3)
 
         show(p)
 

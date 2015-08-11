@@ -862,7 +862,6 @@ def prepare_table(data, header):
     #data = data.set_index(0)
     data.index.names = ['Date & Time']
     data = remove_redundant_data(data)
-
     raw_time = [x for x in raw_time if pd.Timestamp(np.datetime64(parse_time(x, ref_date)).astype(datetime)) in pd.to_datetime(data.index.values)]
     #columns = pd.MultiIndex.from_tuples(zip(header['headings'][1:],
     #    header['units'][1:]), names=['Instruments', 'Units'])
