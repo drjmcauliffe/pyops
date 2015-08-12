@@ -177,7 +177,8 @@ class epstable:
 
         :param table_to_subtract: data table to subtract from this one
         :type table_to_subtract: epstable
-        :param in_place: flag to perform the subtraction on this instance or return a new instance
+        :param in_place: flag to perform the subtraction on this instance or
+        return a new instance
         :type in_place: boolean
         :returns:
         """
@@ -193,32 +194,76 @@ class epstable:
 class Modes(epstable):
 
     def __init__(self, fname):
+        """
+        This constructor method initialises the Modes object.
+
+        :param fname: input filename
+        :type fname: str
+        :returns: Modes object
+        """
         # read in the data
         self.header, temporaryFile = read_csv_header(fname, meta=True)
         if "module_states" in fname:
-            self.header["headings"] = ["Elapsed time"] + [self.header["headings"][i+1]+" "+self.header["units"][i+1] for i in range(len(self.header["units"][1:]))]
+            self.header["headings"] = \
+                ["Elapsed time"] + [self.header["headings"][i + 1] + " "
+                + self.header["units"][i + 1]
+                for i in range(len(self.header["units"][1:]))]
         else:
-            self.header["headings"] = ["Elapsed time"] + self.header["units"][1:]
+            self.header["headings"] = \
+                ["Elapsed time"] + self.header["units"][1:]
         self.data = read_csv(self.header, temporaryFile)
 
     def plot_schedule(self):
+        """
+        This function plots module states or modes timeline, it can be possibly
+        linked with some other plot trough the given x_range.
+
+        :returns: nothing
+        """
         modes_schedule(self.data)
 
     def get_plot_schedule(self, x_range=None):
+        """
+        This function returns a plot of the module states or modes timeline,
+        it can be possibly linked with some other plot trough the given x_range
+
+        :param x_range: x_range from another figure to link with
+        :type x_range: x_range bokeh format
+        :returns: if get_plot bokeh figure, else pandas dataframe
+        """
         return get_modes_schedule(self.data, x_range)
 
     def merge_schedule(self, df, instruments, get_plot=False, x_range=None):
+        """
+        This function returns a plot of the module states and modes merged
+        timeline, it can be possibly linked with some other plot trough the
+        given x_range It is possible to just received the pandas dataframe if
+        we don't want to recive the plot throught the get_plot parameter. We
+        can also select what instruments to plot through the instruments
+        parameter.
 
+        :param df: Data frame to be merged with self.data
+        :type: pandas dataframe
+        :param instruments: list of the instruments to plot
+        :type instruments: list of strings
+        :param get_plot: Flag to return a figure or pandas dataframe
+        :type get_plot: boolean
+        :param x_range: x_range from another figure to link with
+        :type x_range: x_range bokeh format
+        :returns: if get_plot bokeh figure, else pandas dataframe
+        """
+        # Merging both dataframes
         new_df = pd.merge(self.data, df, how='outer', left_index=True,
                           right_index=True, sort=True)
-
+        # Filling the NaN fields with the last not NaN value in the column
         new_df.fillna(method='ffill', inplace=True)
 
+        # Filtering the values we want to show based on the instruments
         columns_to_show = [x for x in new_df.columns.values
                            for y in x.split(' ') if y in instruments]
         deleted_columns = [x for x in new_df.columns.values
                            if x not in columns_to_show]
-
+        # Dropping the filtered values
         new_df.drop(deleted_columns, axis=1, inplace=True)
 
         if get_plot:
@@ -230,6 +275,13 @@ class Modes(epstable):
 class powertable(epstable):
 
     def __init__(self, fname):
+        """
+        This constructor method initialises the powertable object.
+
+        :param fname: input filename
+        :type fname: str
+        :returns: powertable object
+        """
         # read in the data
         if "csv" in fname:
             self.header, temporaryFile = read_csv_header(fname, meta=True)
@@ -262,21 +314,59 @@ class powertable(epstable):
             return table_copy
 
     def brewer_plot(self, instruments=None):
+        """
+        This function plots a stacked power usage df, the instruments to be
+        plotted can be given as a parameter.
+
+        :param instruments: list of parameters to be plotted
+        :type instruments: list of strings
+        :returns: nothing
+        """
         if instruments is None:
             instruments = self.instruments
         brewer_plot(self.data, self.instruments, instruments)
 
     def get_brewer_plot(self, instruments=None, x_range=None):
+        """
+        This function returns a figure of a stacked power usage df, 
+        the instruments to be plotted can be given as a parameter. We can also
+        link it to another figure using the x_range parameter.
+
+        :param instruments: list of parameters to be plotted
+        :type instruments: list of strings
+        :param x_range: x_range from another figure to link with
+        :type x_range: x_range bokeh format
+        :returns: nothing
+        """
         if instruments is None:
             instruments = self.instruments
         return create_plot(self.data, instruments, x_range)
 
     def power_plot(self, instruments=None):
+        """
+        This function plots a power usage df, the instruments to be
+        plotted can be given as a parameter.
+
+        :param instruments: list of parameters to be plotted
+        :type instruments: list of strings
+        :returns: nothing
+        """
         if instruments is None:
             instruments = self.instruments
         power_plot(self.data, instruments)
 
     def get_power_plot(self, instruments=None):
+        """
+        This function returns a figure of a power usage df, 
+        the instruments to be plotted can be given as a parameter. We can also
+        link it to another figure using the x_range parameter.
+
+        :param instruments: list of parameters to be plotted
+        :type instruments: list of strings
+        :param x_range: x_range from another figure to link with
+        :type x_range: x_range bokeh format
+        :returns: nothing
+        """
         if instruments is None:
             instruments = self.instruments
         return get_power_plot(self.data, instruments)
@@ -286,11 +376,11 @@ class datatable(epstable):
 
     def __init__(self, fname):
         """
-        This function __does_something_unbelievable__
+        This constructor method initialises the datatable object.
 
-        :param fname: _add_description_here_
-        :type fname: _add_type_here_
-        :returns:
+        :param fname: input filename
+        :type fname: str
+        :returns: datatable object
         """
         # read in the data
         if "csv" in fname:
@@ -364,11 +454,32 @@ class datatable(epstable):
             return table_copy
 
     def data_plot(self, instruments=None):
+        """
+        This function plots a data rate df, the instruments to be
+        plotted can be given as a parameter.
+
+        :param instruments: list of parameters to be plotted
+        :type instruments: list of strings
+        :returns: nothing
+        """
         if instruments is None:
             instruments = [ins.split(' ') for ins in self.temp_header["headings"][1:]]
         data_plot(self.data, instruments)
 
     def get_data_plot(self, instruments=None, parameters=None, x_range=None):
+        """
+        This function returns a  plot of the data rate for the given
+        instruments and linked to a possible x_range. If parameters is not None
+        they include the exact parameters to be plotted (Instruement and Value)
+
+        :param instruments: list of the instruments to plot
+        :type instruments: list of strings
+        :param parameters: list of the exact values to be plotted
+        :type parameters: list of tuples of a couple of strings
+        :param x_range: x_range from another figure to link with
+        :type x_range: x_range bokeh format
+        :returns: bokeh figure
+        """
         if parameters is None:
             if instruments is None:
                 instruments = get_unique_from_list(self.instruments)
@@ -377,6 +488,7 @@ class datatable(epstable):
         else:
             instruments = parameters
         return get_data_plot(self.data, instruments, x_range)
+
 
 def plot(data, limits=False, title=False, x_title=False, x_range=False,
         y_title=False, y_range=False, showlegend=True, bg_alpha=False,
@@ -770,9 +882,9 @@ def is_elapsed_time(element):
 
 def read_csv_header(fname, meta=False, columns=False):
     """
-    This function reads any one of a number of EPS input/output files in csv format
-    and returns the data in a pandas dataframe. The file metadata can also be
-    returned if requested.
+    This function reads from a filename and processes the header. The rest of
+    the file is copied in a temporary file which will be processed later and
+    removed at the end.
 
     :param fname: The path to the power_avg.out or data_rate_avg.out
     :type fname: str.
@@ -823,15 +935,14 @@ def read_csv_header(fname, meta=False, columns=False):
 
 def read_csv(header, temporaryFile):
     """
-    This function reads any one of a number of EPS input/output files in csv format
-    and returns the data in a pandas dataframe. The file metadata can also be
-    returned if requested.
+    This function reads a temporary file and dumps all the data in csv format
+    into a pandas dataframe.
 
-    :param fname: The path to the power_avg.out or data_rate_avg.out
-    :type fname: str.
-    :param meta: Flag to return the header dictionary
-    :type meta: bool.
-    :returns: pandas dataframe -- the return code.
+    :param header: data frame cotaining information of the header of the file
+    :type header: pandas dataframe
+    :param temporaryFile: path to the temporaryFile which contains the data
+    :type temporaryFile: string
+    :returns: pandas dataframe
     """
 
     # Inserting useful data into pandas
@@ -847,21 +958,32 @@ def read_csv(header, temporaryFile):
 
 
 def prepare_table(data, header):
+    """
+    This function prepares de input data to be handled for the rest of the
+    functions in this library.
 
+    :param data: raw data
+    :type data: pandas dataframe
+    :param header: data frame cotaining information of the header of the file
+    :type header: pandas dataframe
+    :returns: pandas dataframe
+    """
+
+    # Getting the reference date from the header and transforming it into
+    # datetime format
     ref_date = header["Ref_date"].split('-')[0] + "-" +\
         str(getMonth(header["Ref_date"].split('-')[1])) + "-" + \
         header["Ref_date"].split('-')[2]
     ref_date = datetime.strptime(ref_date, "%d-%m-%Y")
+
+    # Converting the Elapsed time column into datetime format and we set it
+    # as the new index of the table
     data["Elapsed time"] = \
-       [parse_time(x, ref_date) for x in data["Elapsed time"]]
+        [parse_time(x, ref_date) for x in data["Elapsed time"]]
     data = data.sort_index(by=['Elapsed time'], ascending=[True])
     data = data.set_index("Elapsed time")
-    #data[0] = \
-    #    [parse_time(x, ref_date) for x in data[0]]
-    #data = data.set_index(0)
     data.index.names = ['Date & Time']
+
+    # Removing redundant data from the dataframe
     data = remove_redundant_data(data)
-    #columns = pd.MultiIndex.from_tuples(zip(header['headings'][1:],
-    #    header['units'][1:]), names=['Instruments', 'Units'])
-    #data.columns = columns
     return data
