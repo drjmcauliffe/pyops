@@ -279,6 +279,16 @@ def build_start_end_table(data):
 
 # DATA_PLOT
 def data_plot(data, instruments):
+    """
+    This function shows a data plot in the ipython notebook using the given
+    data for the given instruments.
+
+    :param data: data_rate pandas DataFrame
+    :type data: pandas DataFrame
+    :param instruments: list of the instruments to plot
+    :type instruments: list of strings
+    :returns: nothing
+    """
     # Hidding anoying warnings on the top of the plot
     output_notebook(hide_banner=True)
 
@@ -286,7 +296,19 @@ def data_plot(data, instruments):
 
 
 def get_data_plot(data, instruments, x_range=None):
+    """
+    This function returns a data rate plot bokeh figure using the given
+    data for the given instruments.
 
+    :param data: data_rate pandas DataFrame
+    :type data: pandas DataFrame
+    :param instruments: list of the instruments to plot
+    :type instruments: list of strings
+    :param x_range: x_range from another figure to link with
+    :type x_range: x_range bokeh format
+    :returns: bokeh figure
+    """
+    # Creating the figure depending if we want to link it to another figure
     if x_range is None:
         r = figure(x_axis_type="datetime",
                    x_range=Range1d(min(data.index.values),
@@ -296,13 +318,20 @@ def get_data_plot(data, instruments, x_range=None):
         r = figure(x_axis_type="datetime", x_range=x_range,
                    tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
 
+    # Getting the appropiate list of colors
     colors = palette(len(instruments))
     i = 0
+    # Transforming the multiindex dataframe into a normal one to use hover tool
     d = transform_multiindex_df(data, instruments)
+    # Inserting the lines in the plot
     for ins in instruments:
         r.line(d['index'], d[ins[0] + "_" + ins[1]], color=colors[i],
                legend=ins[0] + " - " + ins[1], line_width=3)
+        # I don't know why, but if this source is not rebuilt every single
+        # time, it doesn't plot correctly
         source = ColumnDataSource(d)
+        # WARNING: THIS IS A HACK
+        # Hover tool doesn't work over lines show I have created points
         r.scatter(d['index'], d[ins[0] + "_" + ins[1]], color=colors[i],
                   source=source, fill_color=None, size=8)
         i += 1
@@ -320,6 +349,17 @@ def get_data_plot(data, instruments, x_range=None):
 
 
 def transform_multiindex_df(data, instruments):
+    """
+    This function returns a pandas DataFrame without a multiindex and prepared
+    to be plotted and used by the hover tool when converted to the proper
+    format.
+
+    :param data: power usage pandas DataFrame
+    :type data: pandas DataFrame
+    :param instruments: list of the instruments to plot
+    :type instruments: list of strings
+    :returns: pandas DataFrame
+    """
     d = {}
     d['Time'] = [str(x) for x in pd.to_datetime(data.index.values)]
     d['index'] = data.index.values
@@ -333,6 +373,16 @@ def transform_multiindex_df(data, instruments):
 
 # POWER_PLOT
 def power_plot(data, instruments):
+    """
+    This function shows a power plot in the ipython notebook using the given
+    data for the given instruments.
+
+    :param data: power usage pandas DataFrame
+    :type data: pandas DataFrame
+    :param instruments: list of the instruments to plot
+    :type instruments: list of strings
+    :returns: nothing
+    """
     # Hidding anoying warnings on the top of the plot
     output_notebook(hide_banner=True)
 
@@ -340,7 +390,19 @@ def power_plot(data, instruments):
 
 
 def get_power_plot(data, instruments, x_range=None):
+    """
+    This function returns a power plot bokeh figure using the given
+    data for the given instruments.
 
+    :param data: data_rate pandas DataFrame
+    :type data: pandas DataFrame
+    :param instruments: list of the instruments to plot
+    :type instruments: list of strings
+    :param x_range: x_range from another figure to link with
+    :type x_range: x_range bokeh format
+    :returns: bokeh figure
+    """
+    # Creating the figure depending if we want to link it to another figure
     if x_range is None:
         r = figure(x_axis_type="datetime",
                    x_range=Range1d(min(data.index.values),
@@ -350,16 +412,21 @@ def get_power_plot(data, instruments, x_range=None):
         r = figure(x_axis_type="datetime", x_range=x_range,
                    tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
 
+    # Getting the appropiate list of colors
     colors = palette(len(instruments))
     i = 0
+    # Preparing a set of data to convert into a source for the hover tool
     d = data.copy(deep=True)
     d['Time'] = [str(x) for x in pd.to_datetime(data.index.values)]
+    # Inserting the lines in the plot
     for ins in instruments:
         r.line(data.index.values, data[ins], color=colors[i],
                legend=ins, line_width=3)
         # I don't know why, but if this source is not rebuilt every single
         # time, it doesn't plot correctly
         source = ColumnDataSource(d)
+        # WARNING: THIS IS A HACK
+        # Hover tool doesn't work over lines show I have created points
         r.scatter(data.index.values, data[ins], color=colors[i], source=source,
                   fill_color=None, size=8)
         i += 1
