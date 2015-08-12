@@ -151,10 +151,17 @@ def get_modes_schedule(data, x_range=None):
     instruments.sort(reverse=True)
 
     # Creating the figure
-    p = figure(x_axis_type="datetime",
-               x_range=x_range,
-               y_range=FactorRange(factors=instruments),
-               tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
+    if x_range is None:
+        p = figure(x_axis_type="datetime",
+                   x_range=Range1d(min(start_end_table['Start_time']),
+                                   max(start_end_table['End_time'])),
+                   y_range=FactorRange(factors=instruments),
+                   tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
+    else:
+        p = figure(x_axis_type="datetime",
+                   x_range=x_range,
+                   y_range=FactorRange(factors=instruments),
+                   tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
 
     p.quad(left='Start_time', right='End_time', top='Instrument_top',
            bottom='Instrument_bottom', color='Color', source=source)
@@ -280,8 +287,14 @@ def data_plot(data, instruments):
 
 def get_data_plot(data, instruments, x_range=None):
 
-    r = figure(x_axis_type="datetime", x_range=x_range,
-               tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
+    if x_range is None:
+        r = figure(x_axis_type="datetime",
+                   x_range=Range1d(min(data.index.values),
+                                   max(data.index.values)),
+                   tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
+    else:
+        r = figure(x_axis_type="datetime", x_range=x_range,
+                   tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
 
     colors = palette(len(instruments))
     i = 0
@@ -326,10 +339,16 @@ def power_plot(data, instruments):
     show(get_power_plot(data, instruments))
 
 
-def get_power_plot(data, instruments):
+def get_power_plot(data, instruments, x_range=None):
 
-    r = figure(x_axis_type="datetime",
-               tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
+    if x_range is None:
+        r = figure(x_axis_type="datetime",
+                   x_range=Range1d(min(data.index.values),
+                                   max(data.index.values)),
+                   tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
+    else:
+        r = figure(x_axis_type="datetime", x_range=x_range,
+                   tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
 
     colors = palette(len(instruments))
     i = 0

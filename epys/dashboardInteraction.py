@@ -101,13 +101,12 @@ class Dashboard():
             instruments = self.powertable.instruments
         top_left = self._brewer_power_plot()
         top_right = self._brewer_power_plot(instruments, top_left.x_range)
-        bottom_left = self._merged_schedule_plot(True)
+        bottom_left = self._merged_schedule_plot(instruments, True)
 
         active = [self.powertable.instruments.index(x) for x in instruments]
         checkbox_button_group = CheckboxButtonGroup(
             labels=self.powertable.instruments, active=active)
 
-        # show(vform(checkbox_button_group))
         p1 = vform(checkbox_button_group, gridplot([[top_left, top_right]]))
         tab2 = Panel(child=p1, title="Power Stacked")
         tab3 = Panel(child=bottom_left, title="Timeline")

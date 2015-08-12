@@ -266,10 +266,10 @@ class powertable(epstable):
             instruments = self.instruments
         brewer_plot(self.data, self.instruments, instruments)
 
-    def get_brewer_plot(self, instruments=None):
+    def get_brewer_plot(self, instruments=None, x_range=None):
         if instruments is None:
             instruments = self.instruments
-        return create_plot(self.data, instruments)
+        return create_plot(self.data, instruments, x_range)
 
     def power_plot(self, instruments=None):
         if instruments is None:
