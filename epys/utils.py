@@ -5,6 +5,8 @@ This module is very useful...
 from bisect import bisect_left
 import os
 import sys
+import re
+from datetime import datetime, timedelta
 # import spice
 from plotly.graph_objs import Scatter
 
@@ -355,3 +357,59 @@ def get_unique_from_list(seq, idfun=None):
         seen[marker] = 1
         result.append(item)
     return result
+
+
+def is_elapsed_time(element):
+    """
+    1.[[sign][ddd_]hh:mm:ss]
+    2.[[-][ddd.]hh:mm:ss[.mmm]]
+    3.[yy-dddThh:mm:ss[.mmm]Z]
+    4.[dd-month-yyyy[_hh:mm:ss]]
+    1, 2, 3 always will contain hh:mm:ss --> [0-2][0-9]:[0-5][0-9]:[0-5][0-9]
+    4 always will contain dd-month-yyyy --> [0-3][0-9]-*-[0-9][0-9][0-9][0-9]
+
+    """
+    firstRule = "[0-2][0-9]:[0-5][0-9]:[0-5][0-9]"
+    secondRule = "[0-3][0-9]-*-[0-9][0-9][0-9][0-9]"
+    return bool(re.search(firstRule, element)) or \
+        bool(re.search(secondRule, element))
+
+
+def parse_time(*arg):
+    """
+    This function is a catch all for different time parsing methods.
+
+    :param *arg: date string
+    :returns: a datetime object
+    """
+    if len(arg) == 1:  # 'probably' coming from power or data budgets 24-084T05:00:00.000Z
+        year_doy_time = arg[0]
+        if re.match(r'[0-9]{2}-[0-9]{3}T[0-9]{2}:[0-9]{2}:(.*)Z(.*)',
+                    year_doy_time, re.M | re.I):
+            ref_date = datetime(int(year_doy_time.split('-')[0]) + 2000, 1, 1)
+            days = int(year_doy_time.split('-')[1].split('T')[0])
+            if days > 60 and ((int(year_doy_time.split('-')[0]) + 2000) % 4) == 0:
+                days -= 1
+            hours = int(year_doy_time.split('-')[1].split('T')[1].split(':')[0])
+            minutes = int(year_doy_time.split('-')[1].split('T')[1].split(':')[1])
+            seconds = int(round(float(year_doy_time.split('-')[1].split('T')[1].split(':')[2][:-1])))
+            dtdelta = timedelta(days=days, hours=hours, minutes=minutes, seconds=seconds)
+            return ref_date + dtdelta
+        else:
+            print('Error: Can\'t recognise time string format of {}.'.format(year_doy_time))
+            return 1
+    elif len(arg) == 2:  # 'probably' coming from power or data rate outfiles.
+        days_time, ref_date = arg
+        if re.match(r'[0-9]{3}_[0-9]{2}:[0-9]{2}:[0-9]{2}(.*)',
+                    days_time, re.M | re.I):
+            days, time = days_time.split('_')
+            hours, minutes, seconds = time.split(':')
+            time = ref_date + timedelta(days=int(days), hours=int(hours),
+                                        minutes=int(minutes), seconds=float(seconds))
+            return time
+        else:
+            print('Error: Can\'t recognise time string format of {}.'.format(days_time))
+            return 1
+    else:
+        print('Error: Can\'t handle {} arguments.'.format(len(arg)))
+        return 1
