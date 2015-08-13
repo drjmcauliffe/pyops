@@ -43,10 +43,11 @@ class Evf:
 
     def _read_events(self, line, aux_dict):
         # Consecutive whitespace are regarded as a single separator
-        l = [e.upper() for e in line.split()]
+        l = line.split()
         aux_dict['raw_time'].append(l[0])
         aux_dict['time'].append(self._to_datetime(l[0]))
         aux_dict['event'].append(l[1])
+        l = [e.upper() for e in line.split()]
 
         if 'ITEM' in l:
             # In the file it should be: EXP = <experiment> ITEM = <item>
