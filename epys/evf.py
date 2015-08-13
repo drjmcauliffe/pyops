@@ -20,7 +20,8 @@ class Evf:
         # Storing the name of the file for editting purposes
         self.fname = fname
         # Auxiliary dictionary to speed up the data convertion into pandas
-        aux_dict = dict(raw_time=[], time=[], event=[], experiment=[], item=[])
+        aux_dict = dict(raw_time=[], time=[], event=[], experiment=[], item=[],
+                        count=[])
 
         # Importing the file
         with open(fname) as f:
@@ -61,6 +62,18 @@ class Evf:
             aux_dict['experiment'].append(None)
             aux_dict['item'].append(None)
 
+        if 'COUNT' in l or '(COUNT' in l:
+            if 'COUNT' in l:
+                # In the file it should be: COUNT = <count>
+                aux_dict['count'].append(l[l.index('COUNT') + 2])
+            else:
+                # In the file it should be: (COUNT = <count>)
+                aux_dict['count'].append(l[l.index('(COUNT') + 2])
+            if aux_dict['count'][-1][-1] == ')':
+                aux_dict['count'][-1] = aux_dict['count'][-1][:-1]
+        else:
+            aux_dict['count'].append(None)
+
         return aux_dict
 
     def _read_header_line(self, line):
@@ -69,10 +82,7 @@ class Evf:
             self.raw_ref_time = line[1]
             # Getting the reference date from the header and transforming it
             # into datetime format
-            ref_date = line[1].split('-')[0] + "-" +\
-                str(getMonth(line[1].split('-')[1])) + "-" + \
-                line[1].split('-')[2]
-            self.ref_date = datetime.strptime(ref_date, "%d-%m-%Y")
+            self.ref_date = self._ref_date_to_datetime(line[1])
         elif 'Start_time:' in line:
             # Storing them in "raw" format
             self.raw_start_time = line[1]
@@ -88,13 +98,23 @@ class Evf:
         elif 'Init_value:' in line:
             # Storing them in "raw" format
             self.init_values.append(line[1:])
-        elif 'Include_file:' in line:
+        # Sometimes it appears as Include instead of Include_file
+        elif 'Include_file:' in line or 'Include:' in line:
             self.include_files.append(line[1:])
 
+    def _ref_date_to_datetime(self, ref_date):
+        ref_date = ref_date.split('-')[0] + "-" +\
+            str(getMonth(ref_date.split('-')[1])) + "-" + \
+            ref_date.split('-')[2]
+        return datetime.strptime(ref_date, "%d-%m-%Y")
+
     def _to_datetime(self, element):
-        if self.ref_date is None:
+        if self.ref_date is None and '-' not in element:
             return parse_time(element)
         else:
+            if '-' in element:
+                date = self._ref_date_to_datetime(element.split('_')[0])
+                return parse_time("000_" + element.split('_')[1], date)
             return parse_time(element, self.ref_date)
 
     def to_file(self, fname):
@@ -144,6 +164,8 @@ class Evf:
                 if row['experiment'] is not None:
                     output += "  (EXP = " + row['experiment'] + " "
                     output += "ITEM = " + row['item'] + ")"
+                if row['count'] is not None:
+                    output += " (COUNT = " + row['count'] + ")"
                 output += "\n"
                 f.write(output)
 
