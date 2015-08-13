@@ -43,7 +43,7 @@ class Evf:
 
     def _read_events(self, line, aux_dict):
         # Consecutive whitespace are regarded as a single separator
-        l = line.split()
+        l = [e.upper() for e in line.split()]
         aux_dict['raw_time'].append(l[0])
         aux_dict['time'].append(self._to_datetime(l[0]))
         aux_dict['event'].append(l[1])

@@ -69,7 +69,7 @@ def getMonth(month):
     mons = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
             'Sep', 'Oct', 'Nov', 'Dec']
     if type(month) == str:
-        month = month[0:3]
+        month = month[0].upper() + month[1:3].lower()
         try:
             return mons.index(month) + 1
         except ValueError as err:
