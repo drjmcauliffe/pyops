@@ -25,8 +25,11 @@ class Evf:
         # Importing the file
         with open(fname) as f:
             for line in f:
+
+                if '\n' in line[0]:
+                    pass
                 # Filtering lines with comments
-                if '#' in line[0]:
+                elif '#' in line[0]:
                     self.header.append(line)
                 # Storing events
                 elif is_elapsed_time(line.split()[0]):
