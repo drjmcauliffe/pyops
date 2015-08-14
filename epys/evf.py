@@ -7,6 +7,7 @@ class EVF:
 
     def __init__(self, fname):
         # Variable initialization
+        self.WTF = list()
         self.meta = dict()
         self.header = list()
         self.ref_date = None
@@ -36,11 +37,15 @@ class EVF:
                     if not out_ouf_metadata:
                         self.header.append(line)
                         self._read_metada(line)
+                    else:
+                        self.WTF.append(line)
                 # Storing events
                 elif is_elapsed_time(line.split()[0]):
                     aux_dict = self._read_events(line, aux_dict)
                 # Useful data from the header
                 else:
+                    # We can say we are out of the metadate here because
+                    # start_time and end_time are mandatory in the files
                     out_ouf_metadata = True
                     self._read_header_line(line.split())
         # Creating the pandas dataframe
