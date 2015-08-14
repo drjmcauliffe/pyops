@@ -25,7 +25,7 @@ class epstable:
     Pandas dataframe. The class has a number of methods for querying its
     characteristics, plotting its contents and merging other tables into it.
     """
-    def __init__(self, fname, columns=False):
+    def __init__(self, fname, csv, columns=False):
         """
         This constructor method initialises the epstable object.
 
@@ -36,7 +36,7 @@ class epstable:
         :returns: epstable object consisting of a header dictionary and Pandas dataframe
         """
         # read in the data
-        if "csv" in fname:
+        if csv:
             self.data, self.header = read_csv(fname, meta=True, columns=columns)
         else:
             self.data, self.header = read(fname, meta=True, columns=columns)
@@ -274,7 +274,7 @@ class Modes(epstable):
 
 class powertable(epstable):
 
-    def __init__(self, fname):
+    def __init__(self, fname, csv):
         """
         This constructor method initialises the powertable object.
 
@@ -283,11 +283,11 @@ class powertable(epstable):
         :returns: powertable object
         """
         # read in the data
-        # if "csv" in fname:
-        self.header, temporaryFile = read_csv_header(fname, meta=True)
-        self.data = read_csv(self.header, temporaryFile)
-        # else:
-        #    self.data, self.header = read(fname, meta=True)
+        if csv:
+            self.header, temporaryFile = read_csv_header(fname, meta=True)
+            self.data = read_csv(self.header, temporaryFile)
+        else:
+            self.data, self.header = read(fname, meta=True)
         self.columns = zip(self.header['headings'], self.header['units'])
         self.instruments = self.header['experiments']
 
@@ -374,7 +374,7 @@ class powertable(epstable):
 
 class datatable(epstable):
 
-    def __init__(self, fname):
+    def __init__(self, fname, csv):
         """
         This constructor method initialises the datatable object.
 
@@ -383,15 +383,15 @@ class datatable(epstable):
         :returns: datatable object
         """
         # read in the data
-        # if "csv" in fname:
-        self.header, temporaryFile = read_csv_header(fname, meta=True)
-        self.temp_header = copy.deepcopy(self.header)
-        self.temp_header["headings"] = self.temp_header["headings"][
-            len(self.temp_header["headings"]) / 2:]
-        self.data = read_csv(self.temp_header, temporaryFile)
-        # else:
-        #    self.data, self.header = read(fname, meta=True)
-        #    self.temp_header = self.header
+        if csv:
+            self.header, temporaryFile = read_csv_header(fname, meta=True)
+            self.temp_header = copy.deepcopy(self.header)
+            self.temp_header["headings"] = self.temp_header["headings"][
+                len(self.temp_header["headings"]) / 2:]
+            self.data = read_csv(self.temp_header, temporaryFile)
+        else:
+            self.data, self.header = read(fname, meta=True)
+            self.temp_header = self.header
         # define experiments list
         self.instruments = self.header['experiments']
         # correct poorly- or un-named columns...
@@ -406,15 +406,15 @@ class datatable(epstable):
                     if self.header['units'][u][-1] == ')':
                         self.header['units'][u] = self.header['units'][u][:-1]
         self.columns = zip(self.temp_header['headings'], self.header['units'])
-        # if not ("csv" in fname):
-        #    cols = self.columns[1:]
-        #    arrays = [[x[0].split()[0] for x in cols],
-        #              [x[0].split()[1] for x in cols],
-        #              [x[1] for x in cols]]
-        #    self.data.columns = pd.MultiIndex.from_arrays(arrays)
-        # else:
-        cols = [self.instruments, self.temp_header['headings'][1:], self.header['units'][1:]]
-        self.data.columns = pd.MultiIndex.from_arrays(cols)
+        if not csv:
+            cols = self.columns[1:]
+            arrays = [[x[0].split()[0] for x in cols],
+                      [x[0].split()[1] for x in cols],
+                      [x[1] for x in cols]]
+            self.data.columns = pd.MultiIndex.from_arrays(arrays)
+        else:
+            cols = [self.instruments, self.temp_header['headings'][1:], self.header['units'][1:]]
+            self.data.columns = pd.MultiIndex.from_arrays(cols)
 
         self.data = self.data.sortlevel(axis=1)
 

@@ -52,7 +52,7 @@ class Dashboard():
         """
         if os.path.isfile(file_name):
             self.power_avg_file = file_name
-            self.powertable = powertable(file_name)
+            self.powertable = powertable(file_name,True)
         else:
             print ("I don't think that file exists...")
             raise NameError('File not found')
@@ -68,7 +68,7 @@ class Dashboard():
         """
         if os.path.isfile(file_name):
             self.data_rate_avg_file = file_name
-            self.data_rate = datatable(file_name)
+            self.data_rate = datatable(file_name, True)
         else:
             print ("I don't think that file exists...")
             raise NameError('File not found')
