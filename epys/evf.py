@@ -21,7 +21,7 @@ class EVF:
         self.fname = fname
         # Auxiliary dictionary to speed up the data convertion into pandas
         aux_dict = dict(raw_time=[], time=[], event=[], experiment=[], item=[],
-                        count=[])
+                        count=[], comment=[])
 
         # Importing the file
         with open(fname) as f:
@@ -42,13 +42,24 @@ class EVF:
         self.events = pd.DataFrame(aux_dict)
         # Sorting by the time
         self.events = self.events.sort(['time'])
+        # Sorting the columns in the dataframe
+        cols = ['raw_time', 'time', 'event', 'experiment', 'item', 'count',
+                'comment']
+        self.events = self.events[cols]
 
     def _read_events(self, line, aux_dict):
+        # Storing comments
+        if '#' in line:
+            index = line.index('#')
+            aux_dict['comment'].append(line[index:-1])
+        else:
+            aux_dict['comment'].append(None)
         # Consecutive whitespace are regarded as a single separator
         l = line.split()
         aux_dict['raw_time'].append(l[0])
         aux_dict['time'].append(self._to_datetime(l[0]))
         aux_dict['event'].append(l[1])
+
         l = [e.upper() for e in line.split()]
 
         if 'ITEM' in l:
@@ -60,6 +71,9 @@ class EVF:
             # Removing last parenthesis if exist
             if aux_dict['item'][-1][-1] == ')':
                 aux_dict['item'][-1] = aux_dict['item'][-1][:-1]
+            if '#' in aux_dict['item'][-1]:
+                aux_dict['item'][-1] = \
+                    aux_dict['item'][-1][:aux_dict['item'][-1].index('#') - 1]
         else:
             # Storing empty values
             aux_dict['experiment'].append(None)
@@ -74,6 +88,10 @@ class EVF:
                 aux_dict['count'].append(l[l.index('(COUNT') + 2])
             if aux_dict['count'][-1][-1] == ')':
                 aux_dict['count'][-1] = aux_dict['count'][-1][:-1]
+            if '#' in aux_dict['count'][-1]:
+                aux_dict['count'][-1] = \
+                    aux_dict[
+                        'count'][-1][:aux_dict['count'][-1].index('#') - 1]
         else:
             aux_dict['count'].append(None)
 
@@ -169,6 +187,8 @@ class EVF:
                     output += "ITEM = " + row['item'] + ")"
                 if row['count'] is not None:
                     output += " (COUNT = " + row['count'] + ")"
+                if row['comment'] is not None:
+                    output += " #" + row['comment']
                 output += "\n"
                 f.write(output)
 
