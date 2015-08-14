@@ -7,6 +7,7 @@ class EVF:
 
     def __init__(self, fname):
         # Variable initialization
+        self.meta = dict()
         self.header = list()
         self.ref_date = None
         self.init_values = list()
@@ -24,6 +25,7 @@ class EVF:
                         count=[], comment=[])
 
         # Importing the file
+        out_ouf_metadata = False
         with open(fname) as f:
             for line in f:
 
@@ -31,12 +33,15 @@ class EVF:
                     pass
                 # Filtering lines with comments
                 elif '#' in line[0]:
-                    self.header.append(line)
+                    if not out_ouf_metadata:
+                        self.header.append(line)
+                        self._read_metada(line)
                 # Storing events
                 elif is_elapsed_time(line.split()[0]):
                     aux_dict = self._read_events(line, aux_dict)
                 # Useful data from the header
                 else:
+                    out_ouf_metadata = True
                     self._read_header_line(line.split())
         # Creating the pandas dataframe
         self.events = pd.DataFrame(aux_dict)
@@ -46,6 +51,11 @@ class EVF:
         cols = ['raw_time', 'time', 'event', 'experiment', 'item', 'count',
                 'comment']
         self.events = self.events[cols]
+
+    def _read_metada(self, line):
+        if ': ' in line:
+            self.meta[line[1:line.index(': ')].strip()] = \
+                line[line.index(': ') + 1:-1].strip()
 
     def _read_events(self, line, aux_dict):
         # Storing comments
@@ -86,6 +96,7 @@ class EVF:
             else:
                 # In the file it should be: (COUNT = <count>)
                 aux_dict['count'].append(l[l.index('(COUNT') + 2])
+            # Removing useless characters at the end
             if aux_dict['count'][-1][-1] == ')':
                 aux_dict['count'][-1] = aux_dict['count'][-1][:-1]
             if '#' in aux_dict['count'][-1]:
