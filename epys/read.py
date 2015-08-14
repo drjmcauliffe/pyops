@@ -283,11 +283,11 @@ class powertable(epstable):
         :returns: powertable object
         """
         # read in the data
-        if "csv" in fname:
-            self.header, temporaryFile = read_csv_header(fname, meta=True)
-            self.data = read_csv(self.header, temporaryFile)
-        else:
-            self.data, self.header = read(fname, meta=True)
+        # if "csv" in fname:
+        self.header, temporaryFile = read_csv_header(fname, meta=True)
+        self.data = read_csv(self.header, temporaryFile)
+        # else:
+        #    self.data, self.header = read(fname, meta=True)
         self.columns = zip(self.header['headings'], self.header['units'])
         self.instruments = self.header['experiments']
 
@@ -357,7 +357,7 @@ class powertable(epstable):
 
     def get_power_plot(self, instruments=None):
         """
-        This function returns a figure of a power usage df, 
+        This function returns a figure of a power usage df,
         the instruments to be plotted can be given as a parameter. We can also
         link it to another figure using the x_range parameter.
 
@@ -383,15 +383,15 @@ class datatable(epstable):
         :returns: datatable object
         """
         # read in the data
-        if "csv" in fname:
-            self.header, temporaryFile = read_csv_header(fname, meta=True)
-            self.temp_header = copy.deepcopy(self.header)
-            self.temp_header["headings"] = self.temp_header["headings"][
-                len(self.temp_header["headings"]) / 2:]
-            self.data = read_csv(self.temp_header, temporaryFile)
-        else:
-            self.data, self.header = read(fname, meta=True)
-            self.temp_header = self.header
+        # if "csv" in fname:
+        self.header, temporaryFile = read_csv_header(fname, meta=True)
+        self.temp_header = copy.deepcopy(self.header)
+        self.temp_header["headings"] = self.temp_header["headings"][
+            len(self.temp_header["headings"]) / 2:]
+        self.data = read_csv(self.temp_header, temporaryFile)
+        # else:
+        #    self.data, self.header = read(fname, meta=True)
+        #    self.temp_header = self.header
         # define experiments list
         self.instruments = self.header['experiments']
         # correct poorly- or un-named columns...
@@ -406,15 +406,16 @@ class datatable(epstable):
                     if self.header['units'][u][-1] == ')':
                         self.header['units'][u] = self.header['units'][u][:-1]
         self.columns = zip(self.temp_header['headings'], self.header['units'])
-        if not ("csv" in fname):
-            cols = self.columns[1:]
-            arrays = [[x[0].split()[0] for x in cols],
-                      [x[0].split()[1] for x in cols],
-                      [x[1] for x in cols]]
-            self.data.columns = pd.MultiIndex.from_arrays(arrays)
-        else:
-            cols = [self.instruments, self.temp_header['headings'][1:], self.header['units'][1:]]
-            self.data.columns = pd.MultiIndex.from_arrays(cols)
+        # if not ("csv" in fname):
+        #    cols = self.columns[1:]
+        #    arrays = [[x[0].split()[0] for x in cols],
+        #              [x[0].split()[1] for x in cols],
+        #              [x[1] for x in cols]]
+        #    self.data.columns = pd.MultiIndex.from_arrays(arrays)
+        # else:
+        cols = [self.instruments, self.temp_header['headings'][1:], self.header['units'][1:]]
+        self.data.columns = pd.MultiIndex.from_arrays(cols)
+
         self.data = self.data.sortlevel(axis=1)
 
         # from each 'Accum' column produce a 'Volume column'

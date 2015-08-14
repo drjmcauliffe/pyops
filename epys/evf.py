@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime
 
 
-class Evf:
+class EVF:
 
     def __init__(self, fname):
         # Variable initialization
@@ -38,8 +38,10 @@ class Evf:
                 # Useful data from the header
                 else:
                     self._read_header_line(line.split())
-
+        # Creating the pandas dataframe
         self.events = pd.DataFrame(aux_dict)
+        # Sorting by the time
+        self.events = self.events.sort(['time'])
 
     def _read_events(self, line, aux_dict):
         # Consecutive whitespace are regarded as a single separator
@@ -173,3 +175,17 @@ class Evf:
             f.write("#\n")
 
         f.close()
+
+    def check_consistency(self):
+        if self.events['time'].min() < self.start_time:
+            print ("There is an time event before the official start_time")
+            print (self.events['time'].min() + " is before than "
+                   + self.start_time)
+            raise NameError('Events before start_time')
+        elif self.events['time'].max() > self.end_time:
+            print ("There is an time event after the official end_time")
+            print (self.events['time'].max() + " is after than "
+                   + self.end_time)
+            raise NameError('Events after end_time')
+        else:
+            print ("Everything seems to be ok, congratulations! :)")

@@ -18,6 +18,6 @@ __url__ = 'https://github.com/johnnycakes79/epys'
 # from epys.draw import planetsplot
 
 from epys.read import epstable, datatable, powertable, read, Modes
-from epys.dashboardInteraction import Dashboard
-from epys.evf import Evf
+from epys.dashboard import Dashboard
+from epys.evf import EVF
 from epys.utils import plotly_prep, background_colors

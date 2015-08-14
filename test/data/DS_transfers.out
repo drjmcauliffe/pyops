@@ -1,0 +1,26 @@
+#
+# Output Filename: DS_transfers.out
+# Generation Time: 3-August-2015_07:36:10 (UTC)
+# File Contents:   Data Store Transfers
+#
+# EPS Version:     v2.5.36
+#
+# CFG Template:    v3.19
+# EDF Template:    v3.12
+# ITL Template:    v3.10
+# EVF Template:    v3.1
+#
+# POR Definition:  CRID issue C4
+# EVF (ESOC FD):   DDID appendix-H v2.1
+#
+# Input Timeline:  BC-SFT2_FM-FUNC_VER-ITL-GEN01A.itl
+# Input CFG:       eps.cfg
+# Input EDF:       bepi.edf
+# MDB version:     SISBCMAS "PFM v5.0 (1, 5, 0)"
+# Input EVF:       bepi_events_mpo_sft.evf
+#
+
+#Ref_date: 6-October-2022
+
+Elapsed time,,,,Data Volume,Acquisition,Acquisition
+ddd_hh:mm:ss,Mass Memory,Source Store,Target Store,(Gbits),Start Time, End Time
