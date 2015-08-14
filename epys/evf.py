@@ -1,6 +1,7 @@
 from epys.utils import is_elapsed_time, parse_time, getMonth
 import pandas as pd
 from datetime import datetime
+import os
 
 
 class EVF:
@@ -223,5 +224,23 @@ class EVF:
             print (self.events['time'].max() + " is after than "
                    + self.end_time)
             raise NameError('Events after end_time')
-        else:
+        elif self.check_if_included_files_exist_in_directory():
             print ("Everything seems to be ok, congratulations! :)")
+
+    def check_if_included_files_exist_in_directory(self):
+        files_exist = True
+        # Getting the path of the directory where we are working
+        path = os.path.dirname(os.path.abspath(self.fname))
+
+        for fname in self.include_files:
+            # Removing possible problematic characters
+            fname = fname[0].strip('"')
+
+            if not os.path.isfile(os.path.join(path, fname)):
+                files_exist = False
+                output = "It seems as if " + fname + "is not in the same "
+                output += "directory as " + os.path.basename(self.fname)
+                print output
+                # Perhaps raising an exception here in the future...
+
+        return files_exist
