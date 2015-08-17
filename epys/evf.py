@@ -196,6 +196,7 @@ class EVF:
                 f.write("#\n")
 
             # Copying events
+            f.write("# Events_in_list: " + len(self.events.index) + "\n#\n")
             f.write("#\n# Time         Event\n#\n")
             for index, row in self.events.iterrows():
                 output = row['raw_time'] + "   " + row['event']
@@ -240,7 +241,7 @@ class EVF:
                 files_exist = False
                 output = "It seems as if " + fname + "is not in the same "
                 output += "directory as " + os.path.basename(self.fname)
-                print output
+                print (output)
                 # Perhaps raising an exception here in the future...
 
         return files_exist
