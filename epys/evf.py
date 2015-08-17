@@ -196,8 +196,9 @@ class EVF:
                 f.write("#\n")
 
             # Copying events
-            f.write("# Events_in_list: " + len(self.events.index) + "\n#\n")
-            f.write("#\n# Time         Event\n#\n")
+            f.write("# Events_in_list: " + str(len(self.events.index))
+                    + "\n#\n")
+            f.write("# Time                 Event\n#\n")
             for index, row in self.events.iterrows():
                 output = row['raw_time'] + "   " + row['event']
                 if row['experiment'] is not None:
@@ -206,7 +207,7 @@ class EVF:
                 if row['count'] is not None:
                     output += " (COUNT = " + row['count'] + ")"
                 if row['comment'] is not None:
-                    output += " #" + row['comment']
+                    output += " # " + row['comment']
                 output += "\n"
                 f.write(output)
 
