@@ -49,6 +49,8 @@ class EVF:
                     # start_time and end_time are mandatory in the files
                     out_ouf_metadata = True
                     self._read_header_line(line.split())
+        # Closing the file
+        f.close()
         # Creating the pandas dataframe
         self.events = pd.DataFrame(aux_dict)
         # Sorting by the time
