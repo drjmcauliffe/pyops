@@ -18,9 +18,6 @@ class ITL:
         self.merged_events = None
         self.include_files = list()
         self.propagation_delay = None
-        # Auxiliary dictionary to speed up the data convertion into pandas
-        self.aux_dict = dict(raw_time=[], time=[], experiment=[], mode=[],
-                             action=[], parameters=[], comment=[])
 
         # Loading the given file
         self.load(fname)
@@ -28,6 +25,10 @@ class ITL:
     def load(self, fname):
         # Storing the name of the file for editting purposes
         self.fname = fname
+
+        # Auxiliary dictionary to speed up the data convertion into pandas
+        aux_dict = dict(raw_time=[], time=[], experiment=[], mode=[],
+                        action=[], parameters=[], comment=[])
 
         # Importing the file
         out_ouf_metadata = False
@@ -66,8 +67,8 @@ class ITL:
                 # Storing events
                 elif len(line.split()) > 0 and \
                         is_elapsed_time(line.split()[0]):
-                    self.aux_dict = \
-                        self._read_events(line, self.aux_dict, line_comments)
+                    aux_dict = \
+                        self._read_events(line, aux_dict, line_comments)
                 # Useful data from the header
                 else:
                     # We can say we are out of the metadate here because
@@ -80,7 +81,7 @@ class ITL:
         # Closing the file
         f.close()
         # Creating the pandas dataframe
-        self.events = pd.DataFrame(self.aux_dict)
+        self.events = pd.DataFrame(aux_dict)
         self.events = self.order_colums_in_dataframe(self.events)
 
         self.merged_events = self.events
