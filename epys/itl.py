@@ -215,11 +215,15 @@ class ITL:
                 return time(elements[0], elements[1], elements[2])
             return parse_time(element)
         else:
-            if '-' in element:
+            # Only hh:mm:ss case
+            if len(element) == 8:
+                return parse_time("000_" + element, self.ref_date)
+            elif '-' in element:
                 date = self._ref_date_to_datetime(element.split('_')[0])
                 return parse_time("000_" + element.split('_')[1], date)
             return parse_time(element, self.ref_date)
 
+    # This method has to be adapted.
     def to_file(self, fname):
         # Creating file if the file doesn't exist and truncating it if exists
         with open(fname, 'w') as f:
