@@ -6,17 +6,21 @@ import os
 
 class ITL:
 
-    def __init__(self, fname):
+    def __init__(self, fname, ref_date=None):
         # Variable initialization
         self.WTF = list()
         self.meta = dict()
         self.header = list()
         self.end_time = None
-        self.ref_date = None
+        self.ref_date = ref_date
         self.start_time = None
         self.init_values = list()
+        self.merged_events = None
         self.include_files = list()
         self.propagation_delay = None
+        # Auxiliary dictionary to speed up the data convertion into pandas
+        self.aux_dict = dict(raw_time=[], time=[], experiment=[], mode=[],
+                             action=[], parameters=[], comment=[])
 
         # Loading the given file
         self.load(fname)
@@ -24,9 +28,6 @@ class ITL:
     def load(self, fname):
         # Storing the name of the file for editting purposes
         self.fname = fname
-        # Auxiliary dictionary to speed up the data convertion into pandas
-        aux_dict = dict(raw_time=[], time=[], experiment=[], mode=[],
-                        action=[], parameters=[], comment=[])
 
         # Importing the file
         out_ouf_metadata = False
@@ -37,7 +38,8 @@ class ITL:
                 # Formatting just in case there is no space between parenthesis
                 l = l.replace('(', ' ( ').replace(')', ' ) ')
                 # Concatening lines if '\' found
-                if '\\' in l and '#' not in l[0]:
+                if '\\' in l and '#' not in l[0] and \
+                   '\\' not in l[l.index('\\') + 1]:
                     line += l[:l.index('\\')]
                     line_comments.append(l[l.index('\\') + 1: - 1])
                     # Continues with the next iteration of the loop
@@ -64,7 +66,8 @@ class ITL:
                 # Storing events
                 elif len(line.split()) > 0 and \
                         is_elapsed_time(line.split()[0]):
-                    aux_dict = self._read_events(line, aux_dict, line_comments)
+                    self.aux_dict = \
+                        self._read_events(line, self.aux_dict, line_comments)
                 # Useful data from the header
                 else:
                     # We can say we are out of the metadate here because
@@ -77,13 +80,10 @@ class ITL:
         # Closing the file
         f.close()
         # Creating the pandas dataframe
-        self.events = pd.DataFrame(aux_dict)
-        # Sorting by the time
-        self.events = self.events.sort(['time'])
-        # Sorting the columns in the dataframe
-        cols = ['raw_time', 'time', 'experiment', 'mode', 'action',
-                'parameters', 'comment']
-        self.events = self.events[cols]
+        self.events = pd.DataFrame(self.aux_dict)
+        self.events = self.order_colums_in_dataframe(self.events)
+
+        self.merged_events = self.events
 
     def _read_metada(self, line):
         if ': ' in line:
@@ -223,7 +223,9 @@ class ITL:
                 return parse_time("000_" + element.split('_')[1], date)
             return parse_time(element, self.ref_date)
 
-    # This method has to be adapted.
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # This method has to be adapted!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     def to_file(self, fname):
         # Creating file if the file doesn't exist and truncating it if exists
         with open(fname, 'w') as f:
@@ -284,6 +286,14 @@ class ITL:
 
         f.close()
 
+    def order_colums_in_dataframe(self, df):
+        # Sorting by the time
+        df = df.sort(['time'])
+        # Sorting the columns in the dataframe
+        cols = ['raw_time', 'time', 'experiment', 'mode', 'action',
+                'parameters', 'comment']
+        return df[cols]
+
     def check_consistency(self):
         if self.start_time is not None and \
            self.events['time'].min() < self.start_time:
@@ -317,3 +327,25 @@ class ITL:
                 # Perhaps raising an exception here in the future...
 
         return files_exist
+
+    def merge_includes(self):
+        # Getting the path to load correctly the files
+        path = os.path.dirname(os.path.abspath(self.fname))
+        for f in self.include_files:
+            print ("Reading " + f[0] + "...")
+            fname = os.path.join(path, f[0].strip('"'))
+            # There is an existing time
+            if len(f) > 1 and is_elapsed_time(f[1]):
+                ref_date = self._to_datetime(f[1])
+                itl = ITL(fname, ref_date=ref_date)
+            else:
+                itl = ITL(fname)
+
+            itl.check_consistency()
+            # Recursing over the itl files
+            itl.merge_includes()
+            # Merging the dataframes
+            self.merged_events = \
+                pd.concat([self.merged_events, itl.merged_events],
+                          ignore_index=True)
+        self.merged_events = self.order_colums_in_dataframe(self.merged_events)
