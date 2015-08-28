@@ -2,6 +2,7 @@ from epys.utils import is_elapsed_time, parse_time, getMonth
 import pandas as pd
 from datetime import datetime, time
 import os
+from plots import modes_schedule
 
 
 class ITL:
@@ -83,8 +84,6 @@ class ITL:
         # Creating the pandas dataframe
         self.events = pd.DataFrame(aux_dict)
         self.events = self.order_colums_in_dataframe(self.events)
-
-        self.merged_events = self.events
 
     def _read_metada(self, line):
         if ': ' in line:
@@ -330,6 +329,7 @@ class ITL:
         return files_exist
 
     def merge_includes(self):
+        self.merged_events = self.events
         # Getting the path to load correctly the files
         path = os.path.dirname(os.path.abspath(self.fname))
         for f in self.include_files:
@@ -350,3 +350,60 @@ class ITL:
                 pd.concat([self.merged_events, itl.merged_events],
                           ignore_index=True)
         self.merged_events = self.order_colums_in_dataframe(self.merged_events)
+
+    def plot(self):
+        # If the includes are still not merged, we merge them
+        if self.merged_events is None:
+            self.merge_includes()
+
+        df = self._convert_df_to_mode_plot_table_format(
+            self.merged_events, 'mode')
+        df = df.set_index(['time'])
+        df.index.names = ['Time']
+
+        modes_schedule(df)
+
+    def _convert_df_to_mode_plot_table_format(self, df, attribute):
+        df = df[['time', 'experiment', attribute]]
+        experiments_unique = df['experiment'].unique()
+
+        # Initializating the output table
+        # We create a new dictionary and convert it to a df because working
+        # with the dataframe has a high computational cost
+        output = dict()
+        for exp in experiments_unique:
+            output[exp] = list()
+
+        # Adding the times
+        output['time'] = pd.to_datetime(df['time'].values).tolist()
+        experiments = df['experiment'].values.tolist()
+        modes = df['mode'].values.tolist()
+        # Creating the new table
+        for experiment, mode in zip(experiments, modes):
+            for exp in experiments_unique:
+                if exp == experiment:
+                    output[exp].append(mode)
+                else:
+                    output[exp].append(None)
+
+        # Merging entries with the same time
+        pos_to_delete = list()
+        for pos in range(len(output['time']) - 1):
+            if output['time'][pos + 1] == output['time'][pos]:
+                for exp in experiments_unique:
+                    if output[exp][pos] is not None and \
+                       output[exp][pos + 1] is None:
+                        output[exp][pos + 1] = output[exp][pos]
+                pos_to_delete.append(pos)
+
+        # Starting from the end to avoid keys shifting
+        pos_to_delete.reverse()
+        for pos in pos_to_delete:
+            for key in output:
+                del output[key][pos]
+
+        out_df = pd.DataFrame(output)
+        # Filling the NaN fields with the last not NaN value in the column
+        out_df.fillna(method='ffill', inplace=True)
+
+        return out_df
