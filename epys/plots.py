@@ -198,7 +198,7 @@ def add_difference_column(data):
     # since the previous row
     pos = 0
     for row in data_aux:
-        for element in data_aux[row].index:
+        for element in data_aux.index:
             if not prev_row[element] == data_aux[row][element]:
                 if not len(difference) == pos + 1:
                     difference.append([element])
