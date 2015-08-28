@@ -66,12 +66,13 @@ def create_plot(data, instruments, x_range=None):
     # Creating the figure
     if x_range is None:
         f = figure(x_axis_label=data.index.name, y_axis_label='Watts',
-                   x_axis_type="datetime", tools=tools,
+                   x_axis_type="datetime", tools=tools, logo = None,
                    x_range=Range1d(min(data.index.values),
                                    max(data.index.values)))
     else:
         f = figure(x_axis_label=data.index.name, y_axis_label='Watts',
-                   x_axis_type="datetime", x_range=x_range, tools=tools)
+                   x_axis_type="datetime", x_range=x_range, tools=tools,
+                    logo = None)
     for pos in range(len(colors)):
         f.patch(x2, list(areas.values())[pos], color=colors[pos],
                 legend=instruments[pos], line_color=None, alpha=0.8)
@@ -152,13 +153,13 @@ def get_modes_schedule(data, x_range=None):
 
     # Creating the figure
     if x_range is None:
-        p = figure(x_axis_type="datetime",
+        p = figure(x_axis_type="datetime", logo = None,
                    x_range=Range1d(min(start_end_table['Start_time']),
                                    max(start_end_table['End_time'])),
                    y_range=FactorRange(factors=instruments),
                    tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
     else:
-        p = figure(x_axis_type="datetime",
+        p = figure(x_axis_type="datetime", logo = None,
                    x_range=x_range,
                    y_range=FactorRange(factors=instruments),
                    tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
@@ -310,12 +311,12 @@ def get_data_plot(data, instruments, x_range=None):
     """
     # Creating the figure depending if we want to link it to another figure
     if x_range is None:
-        r = figure(x_axis_type="datetime",
+        r = figure(x_axis_type="datetime", logo = None,
                    x_range=Range1d(min(data.index.values),
                                    max(data.index.values)),
                    tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
     else:
-        r = figure(x_axis_type="datetime", x_range=x_range,
+        r = figure(x_axis_type="datetime", x_range=x_range, logo = None,
                    tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
 
     # Getting the appropiate list of colors
@@ -404,12 +405,12 @@ def get_power_plot(data, instruments, x_range=None):
     """
     # Creating the figure depending if we want to link it to another figure
     if x_range is None:
-        r = figure(x_axis_type="datetime",
+        r = figure(x_axis_type="datetime", logo = None,
                    x_range=Range1d(min(data.index.values),
                                    max(data.index.values)),
                    tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
     else:
-        r = figure(x_axis_type="datetime", x_range=x_range,
+        r = figure(x_axis_type="datetime", x_range=x_range, logo = None,
                    tools="resize,hover,save,pan,box_zoom,wheel_zoom,reset")
 
     # Getting the appropiate list of colors
