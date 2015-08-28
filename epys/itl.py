@@ -2,7 +2,7 @@ from epys.utils import is_elapsed_time, parse_time, getMonth
 import pandas as pd
 from datetime import datetime, time
 import os
-from plots import modes_schedule
+from epys.plots import modes_schedule
 
 
 class ITL:
