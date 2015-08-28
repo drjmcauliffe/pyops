@@ -193,7 +193,11 @@ class epstable:
 
 class Modes(epstable):
 
-    def __init__(self, fname):
+    def __init__(self, fname=None):
+        if fname is not None:
+            self.load_file(fname)
+
+    def load_file(self, fname):
         """
         This constructor method initialises the Modes object.
 
