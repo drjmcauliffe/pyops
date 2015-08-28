@@ -377,7 +377,7 @@ class ITL:
         # Adding the times
         output['time'] = pd.to_datetime(df['time'].values).tolist()
         experiments = df['experiment'].values.tolist()
-        modes = df['mode'].values.tolist()
+        modes = df[attribute].values.tolist()
         # Creating the new table
         for experiment, mode in zip(experiments, modes):
             for exp in experiments_unique:
