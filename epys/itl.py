@@ -1,6 +1,6 @@
 from epys.utils import is_elapsed_time, parse_time, getMonth
 import pandas as pd
-from datetime import datetime, time
+from datetime import datetime, time, timedelta
 import os
 from epys.plots import modes_schedule
 
@@ -407,3 +407,16 @@ class ITL:
         out_df.fillna(method='ffill', inplace=True)
 
         return out_df
+
+
+def shift_time(df, days=0, seconds=0, microseconds=0, milliseconds=0,
+               minutes=0, hours=0, weeks=0):
+
+    delta = timedelta(days=days, seconds=seconds, minutes=minutes,
+                      microseconds=microseconds, milliseconds=milliseconds,
+                      hours=hours, weeks=weeks)
+
+    for times in pd.to_datetime(df['time'].unique()).tolist():
+        df.loc[df['time'] == times, 'time'] = times + delta
+
+    return df
