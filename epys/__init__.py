@@ -21,4 +21,5 @@ from epys.read import epstable, datatable, powertable, read, Modes
 from epys.dashboard import Dashboard
 from epys.evf import EVF
 from epys.itl import ITL, shift_time
+from epys.edf import EDF
 from epys.utils import plotly_prep, background_colors
