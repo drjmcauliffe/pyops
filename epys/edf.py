@@ -31,7 +31,13 @@ class EDF:
         self.MODULES = None
         self._modules = dict()
         self.MODES = None
-        self._modules = dict()
+        self._modes = {"Mode": [], "Mode_class": [], "Module_states": [],
+                       "Internal_clock": [], "PID_enable_flags": [],
+                       "Nominal_power": [], "Power_parameter": [],
+                       "Nominal_data_rate": [], "Data_rate_parameter": [],
+                       "Mode_aux_data_rate": [], "Equivalent_power": [],
+                       "Equivalent_data_rate": [], "Mode_transitions": [],
+                       "Mode_actions": [], "Mode_constraints": []}
         self.PARAMETERS = None
         self._parameters = dict()
         self.ACTIONS = None
@@ -52,8 +58,9 @@ class EDF:
 
         with open(fname) as f:
             content = f.readlines()
-        # Closing the file
-        f.close()
+            # Closing the file
+            f.close()
+            content = self._concatenate_lines(content)
 
         lines_to_remove = 0
         # Read Header
@@ -79,7 +86,7 @@ class EDF:
                 # We have found a variable
                 if ':' in l[0][-1]:
                     # Checking if we have already found a keyword
-                    if l[0][-1].upper() in self.keywords:
+                    if l[0][:-1].upper() in self.keywords:
                         break
                     else:
                         self.variables[l[0][:-1]] = l[1:]
@@ -103,17 +110,8 @@ class EDF:
         # Creating the pandas tables
         self._convert_dictionaries_into_dataframes()
 
-    def _read_metada(self, line):
-        if ': ' in line:
-            self.meta[line[1:line.index(': ')].strip()] = \
-                line[line.index(': ') + 1:-1].strip()
-
-    def _read_data_stores(self, content):
-        print "data store detected"
-        return 1
-
-    def _read_fov(self, content):
-        counter = 0
+    def _concatenate_lines(self, content):
+        out = list()
         line = ""
         for l in content:
             # Concatening lines if '\' found
@@ -121,7 +119,6 @@ class EDF:
                '\\' not in l[l.index('\\') + 1]:
                 line += l[:l.index('\\')]
                 # Continues with the next iteration of the loop
-                counter += 1
                 continue
 
             # If there was no concatenation of lines
@@ -134,6 +131,25 @@ class EDF:
                 else:
                     line += l
 
+            if line[0] == '\n':
+                out.append(line)
+            else:
+                out.append(' '.join(line.split()))
+            line = ""
+        return out
+
+    def _read_metada(self, line):
+        if ': ' in line:
+            self.meta[line[1:line.index(': ')].strip()] = \
+                line[line.index(': ') + 1:-1].strip()
+
+    def _read_data_stores(self, content):
+        print "data store detected"
+        return 1
+
+    def _read_fov(self, content):
+        counter = 0
+        for line in content:
             line = line.split()
             if len(line) > 1:
                 if line[0][:-1] in self._fov:
@@ -141,24 +157,16 @@ class EDF:
                         # If another FOV detected we ensure to keep same length
                         # of all the elements in the dictionary
                         if line[0][:-1] == 'FOV':
-                            # Adding None value to the empty fields
-                            maximum = max(
-                                [len(self._fov[x]) for x in self._fov])
-                            for x in self._fov:
-                                if len(self._fov[x]) < maximum:
-                                    self._fov[x].append(None)
+                            self._fov = \
+                                self._add_none_to_empty_fields(self._fov)
                         self._fov[line[0][:-1]].append(line[1])
                     else:
                         self._fov[line[0][:-1]].append(line[1:])
                 else:
-                    # Adding None value to the empty fields
-                    maximum = max([len(self._fov[x]) for x in self._fov])
-                    for x in self._fov:
-                        if len(self._fov[x]) < maximum:
-                            self._fov[x].append(None)
+                    self._fov = \
+                        self._add_none_to_empty_fields(self._fov)
                     break
             counter += 1
-            line = ""
 
         return counter
 
@@ -167,8 +175,37 @@ class EDF:
         return 1
 
     def _read_mode(self, content):
-        print "mode detected"
-        return 1
+        counter = 0
+        for line in content:
+            line = line.split()
+            if len(line) > 1:
+                if line[0][:-1] in self._modes:
+                    # If another MODE detected we ensure to keep same
+                    # length of all the elements in the dictionary
+                    if line[0][:-1].upper() == 'MODE':
+                        self._modes = \
+                            self._add_none_to_empty_fields(self._modes)
+                    if len(line[1:]) == 1:
+                        self._modes[line[0][:-1]].append(line[1])
+                    else:
+                        self._modes[line[0][:-1]].append(line[1:])
+                else:
+                    self._modes = \
+                        self._add_none_to_empty_fields(self._modes)
+                    break
+            counter += 1
+
+        return counter
+
+    def _add_none_to_empty_fields(self, dictionary):
+        # Adding None value to the empty fields
+        maximum = max(
+            [len(dictionary[x]) for x in dictionary])
+        for x in dictionary:
+            if len(dictionary[x]) < maximum:
+                dictionary[x].append(None)
+        return dictionary
 
     def _convert_dictionaries_into_dataframes(self):
         self.FOV = pd.DataFrame(self._fov)
+        self.MODES = pd.DataFrame(self._modes)
