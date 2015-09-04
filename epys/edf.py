@@ -155,7 +155,7 @@ class EDF:
                 line[line.index(': ') + 1:-1].strip()
 
     def _read_data_stores(self, content):
-        print "data store detected"
+        print ("data store detected")
         return 1
 
     def _read_fov(self, content):
