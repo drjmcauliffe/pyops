@@ -29,7 +29,18 @@ class EDF:
         self.AREA = None
         self._area = dict()
         self.MODULES = None
-        self._modules = dict()
+        self._modules = {"Module": [], "Module_level": [],
+                         "Module_dataflow": [], "Module_PID": [],
+                         "Module_aux_PID": [], "Sub_modules": [],
+                         "Nr_of_module_states": []}
+        self.MODULE_STATES = None
+        self._module_states = {"Module_state": [], "MS_PID": [],
+                               "MS_aux_PID": [], "MS_power": [],
+                               "MS_power_parameter": [], "MS_data_rate": [],
+                               "MS_data_rate_parameter": [],
+                               "MS_aux_data_rate": [], "MS_constraints": [],
+                               "Repeat_action": [], "MS_pitch": [],
+                               "MS_yaw": []}
         self.MODES = None
         self._modes = {"Mode": [], "Mode_class": [], "Module_states": [],
                        "Internal_clock": [], "PID_enable_flags": [],
@@ -162,6 +173,8 @@ class EDF:
                         self._fov[line[0][:-1]].append(line[1])
                     else:
                         self._fov[line[0][:-1]].append(line[1:])
+                elif '#' in line[0][0]:
+                    pass
                 else:
                     self._fov = \
                         self._add_none_to_empty_fields(self._fov)
@@ -171,8 +184,47 @@ class EDF:
         return counter
 
     def _read_module(self, content):
-        print "module detected"
-        return 1
+        counter = 0
+        for line in content:
+            line = line.split()
+            if len(line) > 1:
+                if line[0][:-1] in self._modules:
+                    # If another MODULE detected we ensure to keep same
+                    # length of all the elements in the dictionary
+                    if line[0][:-1].upper() == 'MODULE':
+                        self._modules = \
+                            self._add_none_to_empty_fields(self._modules)
+                    if len(line[1:]) == 1:
+                        self._modules[line[0][:-1]].append(line[1])
+                    else:
+                        self._modules[line[0][:-1]].append(line[1:])
+                elif line[0][:-1] in self._module_states:
+                    # If another MODULE_STATE detected we ensure to keep
+                    # same length of all the elements in the dictionary
+                    if line[0][:-1].upper() == 'MODULE_STATE':
+                        # Adding module name for every module state
+                        if isinstance(self._modules['Module'][-1], list):
+                            line[1] = self._modules['Module'][-1][0] \
+                                + " - " + line[1]
+                        else:
+                            line[1] += self._modules['Module'][-1] + " - "
+                        self._module_states = \
+                            self._add_none_to_empty_fields(self._module_states)
+                    if len(line[1:]) == 1:
+                        self._module_states[line[0][:-1]].append(line[1])
+                    else:
+                        self._module_states[line[0][:-1]].append(line[1:])
+                elif '#' in line[0][0]:
+                    pass
+                else:
+                    self._modules = \
+                        self._add_none_to_empty_fields(self._modules)
+                    self._module_states = \
+                        self._add_none_to_empty_fields(self._module_states)
+                    break
+            counter += 1
+
+        return counter
 
     def _read_mode(self, content):
         counter = 0
@@ -189,6 +241,8 @@ class EDF:
                         self._modes[line[0][:-1]].append(line[1])
                     else:
                         self._modes[line[0][:-1]].append(line[1:])
+                elif '#' in line[0][0]:
+                    pass
                 else:
                     self._modes = \
                         self._add_none_to_empty_fields(self._modes)
@@ -209,3 +263,5 @@ class EDF:
     def _convert_dictionaries_into_dataframes(self):
         self.FOV = pd.DataFrame(self._fov)
         self.MODES = pd.DataFrame(self._modes)
+        self.MODULES = pd.DataFrame(self._modules)
+        self.MODULE_STATES = pd.DataFrame(self._module_states)
