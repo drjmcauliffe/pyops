@@ -50,7 +50,15 @@ class EDF:
                        "Equivalent_data_rate": [], "Mode_transitions": [],
                        "Mode_actions": [], "Mode_constraints": []}
         self.PARAMETERS = None
-        self._parameters = dict()
+        self._parameters = {"Parameter": [], "Parameter_alias": [],
+                            "State_parameter": [], "Parameter_action": [],
+                            "Raw_type": [], "Eng_type": [],
+                            "Default_value": [], "Unit": [], "Raw_limits": [],
+                            "Eng_limits": [], "Resource": [],
+                            "Value_alias": [], "Nr_of_parameter_values": []}
+        self.PARAMETER_VALUES = None
+        self._parameter_values = {"Parameter_value": [], "Parameter_uas": [],
+                                  "Parameter_uwr": [], "Parameter_run": []}
         self.ACTIONS = None
         self._actions = dict()
         self.CONSTRAINTS = None
@@ -164,12 +172,12 @@ class EDF:
             line = line.split()
             if len(line) > 1:
                 if line[0][:-1] in self._fov:
+                    # If another FOV detected we ensure to keep same length
+                    # of all the elements in the dictionary
+                    if line[0] == 'FOV:':
+                        self._fov = \
+                            self._add_none_to_empty_fields(self._fov)
                     if len(line[1:]) == 1:
-                        # If another FOV detected we ensure to keep same length
-                        # of all the elements in the dictionary
-                        if line[0][:-1] == 'FOV':
-                            self._fov = \
-                                self._add_none_to_empty_fields(self._fov)
                         self._fov[line[0][:-1]].append(line[1])
                     else:
                         self._fov[line[0][:-1]].append(line[1:])
