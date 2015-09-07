@@ -15,9 +15,11 @@ class EDF:
         self.DATA_STORES = None
         self._data_stores = dict()
         self.PIDS = None
-        self._pids = dict()
+        self._pids = {"PID number": [], "Status": [], "Data Store ID": [],
+                      "Comment": []}
         self.FTS = None
-        self._fts = dict()
+        self._fts = {"Data Store ID": [], "Status": [], "Data Volume": [],
+                     "Comment": []}
         self.FOV = None
         self._fov = {"FOV": [], "FOV_lookat": [], "FOV_upvector": [],
                      "FOV_type": [], "FOV_algorithm": [],
@@ -83,7 +85,8 @@ class EDF:
                              "Condition_experiment": [], "Expression": []}
 
         # Keywords to detect in the filed linked to their reading functions
-        self.keywords = {'FOV': self._read_fov, 'MODULE': self._read_module,
+        self.keywords = {'PID': self._read_pid, 'FTS': self._read_fts,
+                         'FOV': self._read_fov, 'MODULE': self._read_module,
                          'MODE': self._read_mode,
                          'PARAMETER': self._read_parameter,
                          'ACTION': self._read_action,
@@ -105,13 +108,14 @@ class EDF:
         lines_to_remove = 0
         # Read Header
         for line in content:
-            if '\n' in line[0]:
-                pass
-            elif '#' in line.split()[0][0]:
-                self.header.append(line)
-                self._read_metada(line)
-            else:
-                break
+            if len(line) > 1:
+                if '\n' in line[0]:
+                    pass
+                elif '#' in line.split()[0][0]:
+                    self.header.append(line)
+                    self._read_metada(line)
+                else:
+                    break
             # Removing the line from content
             lines_to_remove += 1
         content = content[lines_to_remove:]
@@ -119,22 +123,23 @@ class EDF:
         lines_to_remove = 0
         # Read other entries
         for line in content:
-            if '\n' in line[0]:
-                pass
-            else:
-                l = line.split()
-                # We have found a variable
-                if ':' in l[0][-1]:
-                    # Checking if we have already found a keyword
-                    if l[0][:-1].upper() in self.keywords:
-                        break
-                    else:
-                        self.variables[l[0][:-1]] = l[1:]
-                # We have found a comment
-                elif '#' in l[0][0]:
-                    self.WTF.append(line)
+            if len(line) > 1:
+                if '\n' in line[0]:
+                    pass
                 else:
-                    break
+                    l = line.split()
+                    # We have found a variable
+                    if ':' in l[0][-1]:
+                        # Checking if we have already found a keyword
+                        if l[0][:-1].upper() in self.keywords:
+                            break
+                        else:
+                            self.variables[l[0][:-1]] = l[1:]
+                    # We have found a comment
+                    elif '#' in l[0][0]:
+                        self.WTF.append(line)
+                    else:
+                        break
             # Removing the line from content
             lines_to_remove += 1
         content = content[lines_to_remove:]
@@ -142,11 +147,30 @@ class EDF:
         pos = 0
         while pos < len(content):
             l = content[pos].split()
-            if len(l) > 1 and l[0][:-1].upper() in self.keywords:
-                pos += self.keywords[l[0][:-1].upper()](content[pos:])
+            if len(l) > 0:
+                if '\n' in content[pos][0]:
+                    pos += 1
+                else:
+                    # We have found a variable
+                    if ':' in l[0][-1]:
+                        # Checking if we have already found a keyword
+                        if l[0][:-1].upper() not in self.keywords:
+                            self.variables[l[0][:-1]] = l[1:]
+                            pos += 1
+                        elif len(l) > 1 and l[0][:-1].upper() in self.keywords:
+                            pos += self.keywords[l[0][:-1].upper()](
+                                content[pos:])
+                        else:
+                            pos += 1
+                    # We have found a comment
+                    elif '#' in l[0][0]:
+                        self.WTF.append(line)
+                        pos += 1
             else:
                 pos += 1
 
+        # Removing the content from memory
+        content = None
         # Creating the pandas tables
         self._convert_dictionaries_into_dataframes()
 
@@ -183,9 +207,64 @@ class EDF:
             self.meta[line[1:line.index(': ')].strip()] = \
                 line[line.index(': ') + 1:-1].strip()
 
-    def _read_data_stores(self, content):
+    def _read_data_store(self, content):
         print ("data store detected")
         return 1
+
+    def _read_pid(self, content):
+        counter = 0
+        for line in content:
+            line = line.split()
+            if len(line) > 1:
+                if line[0] == 'PID:':
+                    # If another PID detected we ensure to keep same length
+                    # of all the elements in the dictionary
+                    self._pids = \
+                        self._add_none_to_empty_fields(self._pids)
+                    self._pids['PID number'].append(line[1])
+                    self._pids['Status'].append(line[2])
+                    self._pids['Data Store ID'].append(line[3])
+                    if len(line) > 4:
+                        self._pids['Comment'].append(' '.join(line[4:]))
+                elif '#' in line[0][0]:
+                    pass
+                else:
+                    self._pids = \
+                        self._add_none_to_empty_fields(self._pids)
+                    break
+            counter += 1
+        self._pids = \
+            self._add_none_to_empty_fields(self._pids)
+        return counter
+
+    def _read_fts(self, content):
+        counter = 0
+        for line in content:
+            line = line.split()
+            if len(line) > 1:
+                if line[0] == 'FTS:':
+                    # If another FTS detected we ensure to keep same length
+                    # of all the elements in the dictionary
+                    self._fts = \
+                        self._add_none_to_empty_fields(self._fts)
+                    self._fts['Data Store ID'].append(line[1])
+                    self._fts['Status'].append(line[2])
+                    if len(line) > 4:
+                        self._fts['Data Volume'].append(' '.join(line[3:4]))
+                    else:
+                        self._fts['Data Volume'].append(line[3])
+                    if len(line) > 5:
+                        self._fts['Comment'].append(' '.join(line[5:]))
+                elif '#' in line[0][0]:
+                    pass
+                else:
+                    self._fts = \
+                        self._add_none_to_empty_fields(self._fts)
+                    break
+            counter += 1
+        self._fts = \
+            self._add_none_to_empty_fields(self._fts)
+        return counter
 
     def _read_fov(self, content):
         counter = 0
@@ -400,6 +479,8 @@ class EDF:
         return dictionary
 
     def _convert_dictionaries_into_dataframes(self):
+        self.PIDS = pd.DataFrame(self._pids)
+        self.FTS = pd.DataFrame(self._fts)
         self.FOV = pd.DataFrame(self._fov)
         self.MODES = pd.DataFrame(self._modes)
         self.MODULES = pd.DataFrame(self._modules)
