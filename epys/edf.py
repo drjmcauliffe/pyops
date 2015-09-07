@@ -13,7 +13,9 @@ class EDF:
 
         # Tables to fill in order as they appear in the file
         self.DATA_STORES = None
-        self._data_stores = dict()
+        self._data_stores = {"Label": [], "Memory size": [],
+                             "Packet size": [], "Priority": [],
+                             "Identifier": [], "Comment": []}
         self.PIDS = None
         self._pids = {"PID number": [], "Status": [], "Data Store ID": [],
                       "Comment": []}
@@ -28,8 +30,9 @@ class EDF:
                      "FOV_straylight_duration": [], "FOV_active": [],
                      "FOV_image_timing": [], "FOV_imaging": [],
                      "FOV_pitch": [], "FOV_yaw": []}
-        self.AREA = None
-        self._area = dict()
+        self.AREAS = None
+        self._areas = {"Area": [], "Area_orientation": [],
+                       "Area_lighting_angle": [], "Area_lighting_duration": []}
         self.MODULES = None
         self._modules = {"Module": [], "Module_level": [],
                          "Module_dataflow": [], "Module_PID": [],
@@ -85,7 +88,9 @@ class EDF:
                              "Condition_experiment": [], "Expression": []}
 
         # Keywords to detect in the filed linked to their reading functions
-        self.keywords = {'PID': self._read_pid, 'FTS': self._read_fts,
+        self.keywords = {'DATA_STORE': self._read_data_store,
+                         'PID': self._read_pid, 'FTS': self._read_fts,
+                         'AREA': self._read_area,
                          'FOV': self._read_fov, 'MODULE': self._read_module,
                          'MODE': self._read_mode,
                          'PARAMETER': self._read_parameter,
@@ -207,9 +212,67 @@ class EDF:
             self.meta[line[1:line.index(': ')].strip()] = \
                 line[line.index(': ') + 1:-1].strip()
 
+    def _how_many_brackets_following(self, line):
+        count = 0
+        for words in line:
+            if words[0] == '[' and words[-1] == ']':
+                count += 1
+            else:
+                break
+        return count
+
     def _read_data_store(self, content):
-        print ("data store detected")
-        return 1
+        counter = 0
+        for line in content:
+            line = line.split()
+            if len(line) > 1:
+                if line[0] == 'Data_store:':
+                    # If another Data Store detected we ensure to keep same
+                    # length of all the elements in the dictionary
+                    self._data_stores = \
+                        self._add_none_to_empty_fields(self._data_stores)
+                    pos = self._how_many_brackets_following(line[2:]) + 2
+                    if line[pos].upper() == 'SELECTIVE':
+                        pos += 1
+                    self._data_stores['Label'].append(' '.join(line[1:pos]))
+                    prev_pos, pos = pos, \
+                        self._how_many_brackets_following(
+                            line[pos + 1:]) + pos + 1
+                    self._data_stores['Memory size'].append(
+                        ' '.join(line[prev_pos:pos]))
+                    prev_pos, pos = pos, \
+                        self._how_many_brackets_following(
+                            line[pos + 1:]) + pos + 1
+                    self._data_stores['Packet size'].append(
+                        ' '.join(line[prev_pos:pos]))
+                    if len(line) > pos + 1:
+                        if '#' in line[pos + 1]:
+                            self._data_stores['Comment'].append(
+                                ' '.join(line[pos + 1:]))
+                            continue
+                        else:
+                            self._data_stores['Priority'].append(line[pos + 1])
+                    if len(line) > pos + 2:
+                        if '#' in line[pos + 2]:
+                            self._data_stores['Comment'].append(
+                                ' '.join(line[pos + 2:]))
+                            continue
+                        else:
+                            self._data_stores['Identifier'].append(
+                                line[pos + 2])
+                    if len(line) > pos + 3:
+                        self._data_stores['Comment'].append(
+                            ' '.join(line[pos + 3:]))
+                elif '#' in line[0][0]:
+                    pass
+                else:
+                    self._data_stores = \
+                        self._add_none_to_empty_fields(self._data_stores)
+                    break
+            counter += 1
+        self._data_stores = \
+            self._add_none_to_empty_fields(self._data_stores)
+        return counter
 
     def _read_pid(self, content):
         counter = 0
@@ -290,6 +353,32 @@ class EDF:
             counter += 1
         self._fov = \
             self._add_none_to_empty_fields(self._fov)
+        return counter
+
+    def _read_area(self, content):
+        counter = 0
+        for line in content:
+            line = line.split()
+            if len(line) > 1:
+                if line[0][:-1] in self._areas:
+                    # If another AREA detected we ensure to keep same length
+                    # of all the elements in the dictionary
+                    if line[0] == 'Area:':
+                        self._areas = \
+                            self._add_none_to_empty_fields(self._areas)
+                    if len(line[1:]) == 1:
+                        self._areas[line[0][:-1]].append(line[1])
+                    else:
+                        self._areas[line[0][:-1]].append(line[1:])
+                elif '#' in line[0][0]:
+                    pass
+                else:
+                    self._areas = \
+                        self._add_none_to_empty_fields(self._areas)
+                    break
+            counter += 1
+        self._areas = \
+            self._add_none_to_empty_fields(self._areas)
         return counter
 
     def _read_module(self, content):
@@ -479,9 +568,11 @@ class EDF:
         return dictionary
 
     def _convert_dictionaries_into_dataframes(self):
+        self.DATA_STORES = pd.DataFrame(self._data_stores)
         self.PIDS = pd.DataFrame(self._pids)
         self.FTS = pd.DataFrame(self._fts)
         self.FOV = pd.DataFrame(self._fov)
+        self.AREAS = pd.DataFrame(self._areas)
         self.MODES = pd.DataFrame(self._modes)
         self.MODULES = pd.DataFrame(self._modules)
         self.MODULE_STATES = pd.DataFrame(self._module_states)
