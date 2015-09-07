@@ -75,13 +75,19 @@ class EDF:
                          "Action_constraints": [], "Run_type": [],
                          "Run_start_time": [], "Run_actions": []}
         self.CONSTRAINTS = None
-        self._constraints = dict()
+        self._constraints = {"Constraint": [], "Constraint_type": [],
+                             "Severity": [], "Constraint_group": [],
+                             "Condition": [], "Resource_constraint": [],
+                             "Resource_mass_memory": [],
+                             "Parameter_constraint": [],
+                             "Condition_experiment": [], "Expression": []}
 
         # Keywords to detect in the filed linked to their reading functions
         self.keywords = {'FOV': self._read_fov, 'MODULE': self._read_module,
                          'MODE': self._read_mode,
                          'PARAMETER': self._read_parameter,
-                         'ACTION': self._read_action}
+                         'ACTION': self._read_action,
+                         'CONSTRAINT': self._read_constraint}
 
         # Loading the given file
         self.load(fname)
@@ -203,7 +209,8 @@ class EDF:
                         self._add_none_to_empty_fields(self._fov)
                     break
             counter += 1
-
+        self._fov = \
+            self._add_none_to_empty_fields(self._fov)
         return counter
 
     def _read_module(self, content):
@@ -248,6 +255,10 @@ class EDF:
                     break
             counter += 1
 
+        self._modules = \
+            self._add_none_to_empty_fields(self._modules)
+        self._module_states = \
+            self._add_none_to_empty_fields(self._module_states)
         return counter
 
     def _read_mode(self, content):
@@ -272,7 +283,8 @@ class EDF:
                         self._add_none_to_empty_fields(self._modes)
                     break
             counter += 1
-
+        self._modes = \
+            self._add_none_to_empty_fields(self._modes)
         return counter
 
     def _read_parameter(self, content):
@@ -318,6 +330,10 @@ class EDF:
                     break
             counter += 1
 
+        self._parameters = \
+            self._add_none_to_empty_fields(self._parameters)
+        self._parameter_values = \
+            self._add_none_to_empty_fields(self._parameter_values)
         return counter
 
     def _read_action(self, content):
@@ -343,6 +359,35 @@ class EDF:
                     break
             counter += 1
 
+        self._actions = \
+            self._add_none_to_empty_fields(self._actions)
+
+        return counter
+
+    def _read_constraint(self, content):
+        counter = 0
+        for line in content:
+            line = line.split()
+            if len(line) > 1:
+                if line[0][:-1] in self._constraints:
+                    # If another CONSTRAINT detected we ensure to keep same
+                    # length of all the elements in the dictionary
+                    if line[0][:-1].upper() == 'CONSTRAINT':
+                        self._constraints = \
+                            self._add_none_to_empty_fields(self._constraints)
+                    if len(line[1:]) == 1:
+                        self._constraints[line[0][:-1]].append(line[1])
+                    else:
+                        self._constraints[line[0][:-1]].append(line[1:])
+                elif '#' in line[0][0]:
+                    pass
+                else:
+                    self._constraints = \
+                        self._add_none_to_empty_fields(self._constraints)
+                    break
+            counter += 1
+        self._constraints = \
+            self._add_none_to_empty_fields(self._constraints)
         return counter
 
     def _add_none_to_empty_fields(self, dictionary):
@@ -362,3 +407,4 @@ class EDF:
         self.PARAMETERS = pd.DataFrame(self._parameters)
         self.PARAMETER_VALUES = pd.DataFrame(self._parameter_values)
         self.ACTIONS = pd.DataFrame(self._actions)
+        self.CONSTRAINTS = pd.DataFrame(self._constraints)
