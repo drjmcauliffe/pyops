@@ -66,7 +66,8 @@ class EDF:
 
         # Keywords to detect in the filed
         self.keywords = {'FOV': self._read_fov, 'MODULE': self._read_module,
-                         'MODE': self._read_mode}
+                         'MODE': self._read_mode,
+                         'PARAMETER': self._read_parameter}
 
         # Loading the given file
         self.load(fname)
@@ -215,7 +216,8 @@ class EDF:
                             line[1] = self._modules['Module'][-1][0] \
                                 + " - " + line[1]
                         else:
-                            line[1] += self._modules['Module'][-1] + " - "
+                            line[1] = self._modules['Module'][-1] \
+                                + " - " + line[1]
                         self._module_states = \
                             self._add_none_to_empty_fields(self._module_states)
                     if len(line[1:]) == 1:
@@ -259,6 +261,51 @@ class EDF:
 
         return counter
 
+    def _read_parameter(self, content):
+        counter = 0
+        for line in content:
+            line = line.split()
+            if len(line) > 1:
+                if line[0][:-1] in self._parameters:
+                    # If another PARAMETER detected we ensure to keep same
+                    # length of all the elements in the dictionary
+                    if line[0][:-1].upper() == 'PARAMETER':
+                        self._parameters = \
+                            self._add_none_to_empty_fields(self._parameters)
+                    if len(line[1:]) == 1:
+                        self._parameters[line[0][:-1]].append(line[1])
+                    else:
+                        self._parameters[line[0][:-1]].append(line[1:])
+                elif line[0][:-1] in self._parameter_values:
+                    # If another PARAMETER VALUE detected we ensure to keep
+                    # same length of all the elements in the dictionary
+                    if line[0][:-1].upper() == 'PARAMETER_VALUE':
+                        # Adding module name for every module state
+                        if isinstance(self._parameters['Parameter'][-1], list):
+                            line[1] = self._parameters['Parameter'][-1][0] \
+                                + " - " + line[1]
+                        else:
+                            line[1] = self._parameters['Parameter'][-1] \
+                                + " - " + line[1]
+                        self._parameter_values = \
+                            self._add_none_to_empty_fields(
+                                self._parameter_values)
+                    if len(line[1:]) == 1:
+                        self._parameter_values[line[0][:-1]].append(line[1])
+                    else:
+                        self._parameter_values[line[0][:-1]].append(line[1:])
+                elif '#' in line[0][0]:
+                    pass
+                else:
+                    self._parameters = \
+                        self._add_none_to_empty_fields(self._parameters)
+                    self._parameter_values = \
+                        self._add_none_to_empty_fields(self._parameter_values)
+                    break
+            counter += 1
+
+        return counter
+
     def _add_none_to_empty_fields(self, dictionary):
         # Adding None value to the empty fields
         maximum = max(
@@ -273,3 +320,5 @@ class EDF:
         self.MODES = pd.DataFrame(self._modes)
         self.MODULES = pd.DataFrame(self._modules)
         self.MODULE_STATES = pd.DataFrame(self._module_states)
+        self.PARAMETERS = pd.DataFrame(self._parameters)
+        self.PARAMETER_VALUES = pd.DataFrame(self._parameter_values)
