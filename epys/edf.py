@@ -60,14 +60,28 @@ class EDF:
         self._parameter_values = {"Parameter_value": [], "Parameter_uas": [],
                                   "Parameter_uwr": [], "Parameter_run": []}
         self.ACTIONS = None
-        self._actions = dict()
+        self._actions = {"Action": [], "Action_alias": [], "Action_level": [],
+                         "Action_type": [], "Action_subsystem": [],
+                         "Action_parameters": [], "Internal_variables": [],
+                         "Computed_parameters": [], "Duration": [],
+                         "Minimum_duration": [], "Compression": [],
+                         "Separation": [], "Action_dataflow": [],
+                         "Action_PID": [], "Power_increase": [],
+                         "Data_rate_increase": [], "Data_volume": [],
+                         "Power_profile": [], "Data_rate_profile": [],
+                         "Write_to_Z_record": [], "Action_power_check": [],
+                         "Action_data_rate_check": [], "Obs_ID": [],
+                         "Update_at_start": [], "Update_when_ready": [],
+                         "Action_constraints": [], "Run_type": [],
+                         "Run_start_time": [], "Run_actions": []}
         self.CONSTRAINTS = None
         self._constraints = dict()
 
-        # Keywords to detect in the filed
+        # Keywords to detect in the filed linked to their reading functions
         self.keywords = {'FOV': self._read_fov, 'MODULE': self._read_module,
                          'MODE': self._read_mode,
-                         'PARAMETER': self._read_parameter}
+                         'PARAMETER': self._read_parameter,
+                         'ACTION': self._read_action}
 
         # Loading the given file
         self.load(fname)
@@ -306,6 +320,31 @@ class EDF:
 
         return counter
 
+    def _read_action(self, content):
+        counter = 0
+        for line in content:
+            line = line.split()
+            if len(line) > 1:
+                if line[0][:-1] in self._actions:
+                    # If another ACTION detected we ensure to keep same
+                    # length of all the elements in the dictionary
+                    if line[0][:-1].upper() == 'ACTION':
+                        self._actions = \
+                            self._add_none_to_empty_fields(self._actions)
+                    if len(line[1:]) == 1:
+                        self._actions[line[0][:-1]].append(line[1])
+                    else:
+                        self._actions[line[0][:-1]].append(line[1:])
+                elif '#' in line[0][0]:
+                    pass
+                else:
+                    self._actions = \
+                        self._add_none_to_empty_fields(self._actions)
+                    break
+            counter += 1
+
+        return counter
+
     def _add_none_to_empty_fields(self, dictionary):
         # Adding None value to the empty fields
         maximum = max(
@@ -322,3 +361,4 @@ class EDF:
         self.MODULE_STATES = pd.DataFrame(self._module_states)
         self.PARAMETERS = pd.DataFrame(self._parameters)
         self.PARAMETER_VALUES = pd.DataFrame(self._parameter_values)
+        self.ACTIONS = pd.DataFrame(self._actions)
