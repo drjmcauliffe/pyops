@@ -245,24 +245,24 @@ class EDF:
                             line[pos + 1:]) + pos + 1
                     self._data_stores['Packet size'].append(
                         ' '.join(line[prev_pos:pos]))
+                    if len(line) > pos:
+                        if '#' in line[pos]:
+                            self._data_stores['Comment'].append(
+                                ' '.join(line[pos:]))
+                            continue
+                        else:
+                            self._data_stores['Priority'].append(line[pos])
                     if len(line) > pos + 1:
                         if '#' in line[pos + 1]:
                             self._data_stores['Comment'].append(
                                 ' '.join(line[pos + 1:]))
                             continue
                         else:
-                            self._data_stores['Priority'].append(line[pos + 1])
-                    if len(line) > pos + 2:
-                        if '#' in line[pos + 2]:
-                            self._data_stores['Comment'].append(
-                                ' '.join(line[pos + 2:]))
-                            continue
-                        else:
                             self._data_stores['Identifier'].append(
-                                line[pos + 2])
-                    if len(line) > pos + 3:
+                                line[pos + 1])
+                    if len(line) > pos + 2:
                         self._data_stores['Comment'].append(
-                            ' '.join(line[pos + 3:]))
+                            ' '.join(line[pos + 2:]))
                 elif '#' in line[0][0]:
                     pass
                 else:
