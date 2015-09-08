@@ -1,4 +1,5 @@
 import pandas as pd
+# from prettytable import PrettyTable
 
 
 class EDF:
@@ -12,6 +13,15 @@ class EDF:
         self.include_files = list()
 
         # Tables to fill in order as they appear in the file
+        self.DATA_BUSES = None
+        self._data_buses = {"Data_bus": [], "Data_bus_rate_warning": [],
+                            "Data_bus_rate_limit": []}
+        self.GLOBAL_PROPERTIES = None
+        self._global_properties = dict.fromkeys(
+            ["Local_memory", "Dataflow", "Dataflow_PID", "Dataflow_aux_PID",
+             "Data_volume_data_rate", "HK_data_volume", "TM_frame_overhead",
+             "Power_profile_check", "Data_rate_profile_check",
+             "Exclusive_subsystems", "Global_actions", "Global_constraints"])
         self.DATA_STORES = None
         self._data_stores = {"Label": [], "Memory size": [],
                              "Packet size": [], "Priority": [],
@@ -88,7 +98,8 @@ class EDF:
                              "Condition_experiment": [], "Expression": []}
 
         # Keywords to detect in the filed linked to their reading functions
-        self.keywords = {'DATA_STORE': self._read_data_store,
+        self.keywords = {'DATA_BUS': self._read_data_bus,
+                         'DATA_STORE': self._read_data_store,
                          'PID': self._read_pid, 'FTS': self._read_fts,
                          'AREA': self._read_area,
                          'FOV': self._read_fov, 'MODULE': self._read_module,
@@ -121,30 +132,6 @@ class EDF:
                     self._read_metada(line)
                 else:
                     break
-            # Removing the line from content
-            lines_to_remove += 1
-        content = content[lines_to_remove:]
-
-        lines_to_remove = 0
-        # Read other entries
-        for line in content:
-            if len(line) > 1:
-                if '\n' in line[0]:
-                    pass
-                else:
-                    l = line.split()
-                    # We have found a variable
-                    if ':' in l[0][-1]:
-                        # Checking if we have already found a keyword
-                        if l[0][:-1].upper() in self.keywords:
-                            break
-                        else:
-                            self.variables[l[0][:-1]] = l[1:]
-                    # We have found a comment
-                    elif '#' in l[0][0]:
-                        self.WTF.append(line)
-                    else:
-                        break
             # Removing the line from content
             lines_to_remove += 1
         content = content[lines_to_remove:]
@@ -220,6 +207,32 @@ class EDF:
             else:
                 break
         return count
+
+    def _read_data_bus(self, content):
+        counter = 0
+        for line in content:
+            line = line.split()
+            if len(line) > 1:
+                if line[0][:-1] in self._data_buses:
+                    # If another Data Bus detected we ensure to keep same
+                    # length of all the elements in the dictionary
+                    if line[0] == 'Data_bus:':
+                        self._data_buses = \
+                            self._add_none_to_empty_fields(self._data_buses)
+                    if len(line[1:]) == 1:
+                        self._data_buses[line[0][:-1]].append(line[1])
+                    else:
+                        self._data_buses[line[0][:-1]].append(line[1:])
+                elif '#' in line[0][0]:
+                    pass
+                else:
+                    self._data_buses = \
+                        self._add_none_to_empty_fields(self._data_buses)
+                    break
+            counter += 1
+        self._data_buses = \
+            self._add_none_to_empty_fields(self._data_buses)
+        return counter
 
     def _read_data_store(self, content):
         counter = 0
@@ -568,6 +581,7 @@ class EDF:
         return dictionary
 
     def _convert_dictionaries_into_dataframes(self):
+        self.DATA_BUSES = pd.DataFrame(self._data_buses)
         self.DATA_STORES = pd.DataFrame(self._data_stores)
         self.PIDS = pd.DataFrame(self._pids)
         self.FTS = pd.DataFrame(self._fts)
