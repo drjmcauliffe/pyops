@@ -264,7 +264,9 @@ class DataStores(EDF):
         return counter
 
     def _create_pandas(self):
-        self.Table = pd.DataFrame(self._data_stores)
+        cols = ['Label', 'Memory size', 'Packet size', 'Priority',
+                'Identifier', 'Comment']
+        self.Table = pd.DataFrame(self._data_stores, columns=cols)
 
 
 class PIDs(EDF):
@@ -301,7 +303,8 @@ class PIDs(EDF):
         return counter
 
     def _create_pandas(self):
-        self.Table = pd.DataFrame(self._pids)
+        cols = ['PID number', 'Status', 'Data Store ID', 'Comment']
+        self.Table = pd.DataFrame(self._pids, columns=cols)
 
 
 class FTS(EDF):
@@ -341,7 +344,8 @@ class FTS(EDF):
         return counter
 
     def _create_pandas(self):
-        self.Table = pd.DataFrame(self._fts)
+        cols = ['Data Store ID', 'Status', 'Data Volume', 'Comment']
+        self.Table = pd.DataFrame(self._fts, columns=cols)
 
 
 class FOVs(EDF):
@@ -383,7 +387,13 @@ class FOVs(EDF):
         return counter
 
     def _create_pandas(self):
-        self.Table = pd.DataFrame(self._fov)
+        cols = ["FOV", "FOV_lookat", "FOV_upvector", "FOV_type",
+                "FOV_algorithm", "FOV_geometric_angles",
+                "FOV_geometric_pixels", "FOV_sub_view",
+                "FOV_straylight_angles", "FOV_straylight_duration",
+                "FOV_active", "FOV_image_timing", "FOV_imaging",
+                "FOV_pitch", "FOV_yaw"]
+        self.Table = pd.DataFrame(self._fov, columns=cols)
 
 
 class Areas(EDF):
@@ -420,7 +430,9 @@ class Areas(EDF):
         return counter
 
     def _create_pandas(self):
-        self.Table = pd.DataFrame(self._areas)
+        cols = ["Area", "Area_orientation", "Area_lighting_angle",
+                "Area_lighting_duration"]
+        self.Table = pd.DataFrame(self._areas, columns=cols)
 
 
 class Modes(EDF):
@@ -462,7 +474,13 @@ class Modes(EDF):
         return counter
 
     def _create_pandas(self):
-        self.Table = pd.DataFrame(self._modes)
+        cols = ["Mode", "Mode_class", "Module_states", "Internal_clock",
+                "PID_enable_flags", "Nominal_power", "Power_parameter",
+                "Nominal_data_rate", "Data_rate_parameter",
+                "Mode_aux_data_rate", "Equivalent_power",
+                "Equivalent_data_rate", "Mode_transitions", "Mode_actions",
+                "Mode_constraints"]
+        self.Table = pd.DataFrame(self._modes, columns=cols)
 
 
 class Modules(EDF):
@@ -530,8 +548,15 @@ class Modules(EDF):
         return counter
 
     def _create_pandas(self):
-        self.Table = pd.DataFrame(self._modules)
-        self.Module_states_Table = pd.DataFrame(self._module_states)
+        cols = ["Module", "Module_level", "Module_dataflow", "Module_PID",
+                "Module_aux_PID", "Sub_modules", "Nr_of_module_states"]
+        self.Table = pd.DataFrame(self._modules, columns=cols)
+        cols = ["Module_state", "MS_PID", "MS_aux_PID", "MS_power",
+                "MS_power_parameter", "MS_data_rate",
+                "MS_data_rate_parameter", "MS_aux_data_rate",
+                "MS_constraints", "Repeat_action", "MS_pitch", "MS_yaw"]
+        self.Module_states_Table = pd.DataFrame(
+            self._module_states, columns=cols)
 
 
 class Parameters(EDF):
@@ -597,8 +622,15 @@ class Parameters(EDF):
         return counter
 
     def _create_pandas(self):
-        self.Table = pd.DataFrame(self._parameters)
-        self.Parameter_values_Table = pd.DataFrame(self._parameter_values)
+        cols = ["Parameter", "Parameter_alias", "State_parameter",
+                "Parameter_action", "Raw_type", "Eng_type", "Default_value",
+                "Unit", "Raw_limits", "Eng_limits", "Resource",
+                "Value_alias", "Nr_of_parameter_values"]
+        self.Table = pd.DataFrame(self._parameters, columns=cols)
+        cols = ["Parameter_value", "Parameter_uas", "Parameter_uwr",
+                "Parameter_run"]
+        self.Parameter_values_Table = pd.DataFrame(
+            self._parameter_values, columns=cols)
 
 
 class Actions(EDF):
@@ -649,7 +681,16 @@ class Actions(EDF):
         return counter
 
     def _create_pandas(self):
-        self.Table = pd.DataFrame(self._actions)
+        cols = ["Action", "Action_alias", "Action_level", "Action_type",
+                "Action_subsystem", "Action_parameters", "Internal_variables",
+                "Computed_parameters", "Duration", "Minimum_duration",
+                "Compression", "Separation", "Action_dataflow", "Action_PID",
+                "Power_increase", "Data_rate_increase", "Data_volume",
+                "Power_profile", "Data_rate_profile", "Write_to_Z_record",
+                "Action_power_check", "Action_data_rate_check", "Obs_ID",
+                "Update_at_start", "Update_when_ready", "Action_constraints",
+                "Run_type", "Run_start_time", "Run_actions"]
+        self.Table = pd.DataFrame(self._actions, columns=cols)
 
 
 class Constraints(EDF):
@@ -690,4 +731,8 @@ class Constraints(EDF):
         return counter
 
     def _create_pandas(self):
-        self.Table = pd.DataFrame(self._constraints)
+        cols = ["Constraint", "Constraint_type", "Severity",
+                "Constraint_group", "Condition", "Resource_constraint",
+                "Resource_mass_memory", "Parameter_constraint",
+                "Condition_experiment", "Expression"]
+        self.Table = pd.DataFrame(self._constraints, columns=cols)
