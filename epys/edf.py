@@ -13,100 +13,34 @@ class EDF:
         self.include_files = list()
 
         # Tables to fill in order as they appear in the file
-        self.DATA_BUSES = None
-        self._data_buses = {"Data_bus": [], "Data_bus_rate_warning": [],
-                            "Data_bus_rate_limit": []}
+        self.DATA_BUSES = DataBuses()
         self.GLOBAL_PROPERTIES = None
         self._global_properties = dict.fromkeys(
             ["Local_memory", "Dataflow", "Dataflow_PID", "Dataflow_aux_PID",
              "Data_volume_data_rate", "HK_data_volume", "TM_frame_overhead",
              "Power_profile_check", "Data_rate_profile_check",
              "Exclusive_subsystems", "Global_actions", "Global_constraints"])
-        self.DATA_STORES = None
-        self._data_stores = {"Label": [], "Memory size": [],
-                             "Packet size": [], "Priority": [],
-                             "Identifier": [], "Comment": []}
-        self.PIDS = None
-        self._pids = {"PID number": [], "Status": [], "Data Store ID": [],
-                      "Comment": []}
-        self.FTS = None
-        self._fts = {"Data Store ID": [], "Status": [], "Data Volume": [],
-                     "Comment": []}
-        self.FOV = None
-        self._fov = {"FOV": [], "FOV_lookat": [], "FOV_upvector": [],
-                     "FOV_type": [], "FOV_algorithm": [],
-                     "FOV_geometric_angles": [], "FOV_geometric_pixels": [],
-                     "FOV_sub_view": [], "FOV_straylight_angles": [],
-                     "FOV_straylight_duration": [], "FOV_active": [],
-                     "FOV_image_timing": [], "FOV_imaging": [],
-                     "FOV_pitch": [], "FOV_yaw": []}
-        self.AREAS = None
-        self._areas = {"Area": [], "Area_orientation": [],
-                       "Area_lighting_angle": [], "Area_lighting_duration": []}
-        self.MODULES = None
-        self._modules = {"Module": [], "Module_level": [],
-                         "Module_dataflow": [], "Module_PID": [],
-                         "Module_aux_PID": [], "Sub_modules": [],
-                         "Nr_of_module_states": []}
-        self.MODULE_STATES = None
-        self._module_states = {"Module_state": [], "MS_PID": [],
-                               "MS_aux_PID": [], "MS_power": [],
-                               "MS_power_parameter": [], "MS_data_rate": [],
-                               "MS_data_rate_parameter": [],
-                               "MS_aux_data_rate": [], "MS_constraints": [],
-                               "Repeat_action": [], "MS_pitch": [],
-                               "MS_yaw": []}
-        self.MODES = None
-        self._modes = {"Mode": [], "Mode_class": [], "Module_states": [],
-                       "Internal_clock": [], "PID_enable_flags": [],
-                       "Nominal_power": [], "Power_parameter": [],
-                       "Nominal_data_rate": [], "Data_rate_parameter": [],
-                       "Mode_aux_data_rate": [], "Equivalent_power": [],
-                       "Equivalent_data_rate": [], "Mode_transitions": [],
-                       "Mode_actions": [], "Mode_constraints": []}
-        self.PARAMETERS = None
-        self._parameters = {"Parameter": [], "Parameter_alias": [],
-                            "State_parameter": [], "Parameter_action": [],
-                            "Raw_type": [], "Eng_type": [],
-                            "Default_value": [], "Unit": [], "Raw_limits": [],
-                            "Eng_limits": [], "Resource": [],
-                            "Value_alias": [], "Nr_of_parameter_values": []}
-        self.PARAMETER_VALUES = None
-        self._parameter_values = {"Parameter_value": [], "Parameter_uas": [],
-                                  "Parameter_uwr": [], "Parameter_run": []}
-        self.ACTIONS = None
-        self._actions = {"Action": [], "Action_alias": [], "Action_level": [],
-                         "Action_type": [], "Action_subsystem": [],
-                         "Action_parameters": [], "Internal_variables": [],
-                         "Computed_parameters": [], "Duration": [],
-                         "Minimum_duration": [], "Compression": [],
-                         "Separation": [], "Action_dataflow": [],
-                         "Action_PID": [], "Power_increase": [],
-                         "Data_rate_increase": [], "Data_volume": [],
-                         "Power_profile": [], "Data_rate_profile": [],
-                         "Write_to_Z_record": [], "Action_power_check": [],
-                         "Action_data_rate_check": [], "Obs_ID": [],
-                         "Update_at_start": [], "Update_when_ready": [],
-                         "Action_constraints": [], "Run_type": [],
-                         "Run_start_time": [], "Run_actions": []}
-        self.CONSTRAINTS = None
-        self._constraints = {"Constraint": [], "Constraint_type": [],
-                             "Severity": [], "Constraint_group": [],
-                             "Condition": [], "Resource_constraint": [],
-                             "Resource_mass_memory": [],
-                             "Parameter_constraint": [],
-                             "Condition_experiment": [], "Expression": []}
+        self.DATA_STORES = DataStores()
+        self.PIDS = PIDs()
+        self.FTS = FTS()
+        self.FOVS = FOVs()
+        self.AREAS = Areas()
+        self.MODULES = Modules()
+        self.MODES = Modes()
+        self.PARAMETERS = Parameters()
+        self.ACTIONS = Actions()
+        self.CONSTRAINTS = Constraints()
 
         # Keywords to detect in the filed linked to their reading functions
-        self.keywords = {'DATA_BUS': self._read_data_bus,
-                         'DATA_STORE': self._read_data_store,
-                         'PID': self._read_pid, 'FTS': self._read_fts,
-                         'AREA': self._read_area,
-                         'FOV': self._read_fov, 'MODULE': self._read_module,
-                         'MODE': self._read_mode,
-                         'PARAMETER': self._read_parameter,
-                         'ACTION': self._read_action,
-                         'CONSTRAINT': self._read_constraint}
+        self.keywords = {'DATA_BUS': self.DATA_BUSES.read,
+                         'DATA_STORE': self.DATA_STORES.read,
+                         'PID': self.PIDS.read, 'FTS': self.FTS.read,
+                         'AREA': self.AREAS.read,
+                         'FOV': self.FOVS.read, 'MODULE': self.MODULES.read,
+                         'MODE': self.MODES.read,
+                         'PARAMETER': self.PARAMETERS.read,
+                         'ACTION': self.ACTIONS.read,
+                         'CONSTRAINT': self.CONSTRAINTS.read}
 
         # Loading the given file
         self.load(fname)
@@ -208,7 +142,37 @@ class EDF:
                 break
         return count
 
-    def _read_data_bus(self, content):
+    def _add_none_to_empty_fields(self, dictionary):
+        # Adding None value to the empty fields
+        maximum = max(
+            [len(dictionary[x]) for x in dictionary])
+        for x in dictionary:
+            if len(dictionary[x]) < maximum:
+                dictionary[x].append(None)
+        return dictionary
+
+    def _convert_dictionaries_into_dataframes(self):
+        self.DATA_BUSES._create_pandas()
+        self.DATA_STORES._create_pandas()
+        self.PIDS._create_pandas()
+        self.FTS._create_pandas()
+        self.FOVS._create_pandas()
+        self.AREAS._create_pandas()
+        self.MODES._create_pandas()
+        self.MODULES._create_pandas()
+        self.PARAMETERS._create_pandas()
+        self.ACTIONS._create_pandas()
+        self.CONSTRAINTS._create_pandas()
+
+
+class DataBuses(EDF):
+
+    def __init__(self):
+        self.Table = None
+        self._data_buses = {"Data_bus": [], "Data_bus_rate_warning": [],
+                            "Data_bus_rate_limit": []}
+
+    def read(self, content):
         counter = 0
         for line in content:
             line = line.split()
@@ -234,7 +198,19 @@ class EDF:
             self._add_none_to_empty_fields(self._data_buses)
         return counter
 
-    def _read_data_store(self, content):
+    def _create_pandas(self):
+        self.Table = pd.DataFrame(self._data_buses)
+
+
+class DataStores(EDF):
+
+    def __init__(self):
+        self.Table = None
+        self._data_stores = {"Label": [], "Memory size": [],
+                             "Packet size": [], "Priority": [],
+                             "Identifier": [], "Comment": []}
+
+    def read(self, content):
         counter = 0
         for line in content:
             line = line.split()
@@ -287,7 +263,18 @@ class EDF:
             self._add_none_to_empty_fields(self._data_stores)
         return counter
 
-    def _read_pid(self, content):
+    def _create_pandas(self):
+        self.Table = pd.DataFrame(self._data_stores)
+
+
+class PIDs(EDF):
+
+    def __init__(self):
+        self.Table = None
+        self._pids = {"PID number": [], "Status": [], "Data Store ID": [],
+                      "Comment": []}
+
+    def read(self, content):
         counter = 0
         for line in content:
             line = line.split()
@@ -313,7 +300,18 @@ class EDF:
             self._add_none_to_empty_fields(self._pids)
         return counter
 
-    def _read_fts(self, content):
+    def _create_pandas(self):
+        self.Table = pd.DataFrame(self._pids)
+
+
+class FTS(EDF):
+
+    def __init__(self):
+        self.Table = None
+        self._fts = {"Data Store ID": [], "Status": [], "Data Volume": [],
+                     "Comment": []}
+
+    def read(self, content):
         counter = 0
         for line in content:
             line = line.split()
@@ -342,7 +340,23 @@ class EDF:
             self._add_none_to_empty_fields(self._fts)
         return counter
 
-    def _read_fov(self, content):
+    def _create_pandas(self):
+        self.Table = pd.DataFrame(self._fts)
+
+
+class FOVs(EDF):
+
+    def __init__(self):
+        self.Table = None
+        self._fov = {"FOV": [], "FOV_lookat": [], "FOV_upvector": [],
+                     "FOV_type": [], "FOV_algorithm": [],
+                     "FOV_geometric_angles": [], "FOV_geometric_pixels": [],
+                     "FOV_sub_view": [], "FOV_straylight_angles": [],
+                     "FOV_straylight_duration": [], "FOV_active": [],
+                     "FOV_image_timing": [], "FOV_imaging": [],
+                     "FOV_pitch": [], "FOV_yaw": []}
+
+    def read(self, content):
         counter = 0
         for line in content:
             line = line.split()
@@ -368,7 +382,18 @@ class EDF:
             self._add_none_to_empty_fields(self._fov)
         return counter
 
-    def _read_area(self, content):
+    def _create_pandas(self):
+        self.Table = pd.DataFrame(self._fov)
+
+
+class Areas(EDF):
+
+    def __init__(self):
+        self.Table = None
+        self._areas = {"Area": [], "Area_orientation": [],
+                       "Area_lighting_angle": [], "Area_lighting_duration": []}
+
+    def read(self, content):
         counter = 0
         for line in content:
             line = line.split()
@@ -394,7 +419,69 @@ class EDF:
             self._add_none_to_empty_fields(self._areas)
         return counter
 
-    def _read_module(self, content):
+    def _create_pandas(self):
+        self.Table = pd.DataFrame(self._areas)
+
+
+class Modes(EDF):
+
+    def __init__(self):
+        self.Table = None
+        self._modes = {"Mode": [], "Mode_class": [], "Module_states": [],
+                       "Internal_clock": [], "PID_enable_flags": [],
+                       "Nominal_power": [], "Power_parameter": [],
+                       "Nominal_data_rate": [], "Data_rate_parameter": [],
+                       "Mode_aux_data_rate": [], "Equivalent_power": [],
+                       "Equivalent_data_rate": [], "Mode_transitions": [],
+                       "Mode_actions": [], "Mode_constraints": []}
+
+    def read(self, content):
+        counter = 0
+        for line in content:
+            line = line.split()
+            if len(line) > 1:
+                if line[0][:-1] in self._modes:
+                    # If another MODE detected we ensure to keep same
+                    # length of all the elements in the dictionary
+                    if line[0][:-1].upper() == 'MODE':
+                        self._modes = \
+                            self._add_none_to_empty_fields(self._modes)
+                    if len(line[1:]) == 1:
+                        self._modes[line[0][:-1]].append(line[1])
+                    else:
+                        self._modes[line[0][:-1]].append(line[1:])
+                elif '#' in line[0][0]:
+                    pass
+                else:
+                    self._modes = \
+                        self._add_none_to_empty_fields(self._modes)
+                    break
+            counter += 1
+        self._modes = \
+            self._add_none_to_empty_fields(self._modes)
+        return counter
+
+    def _create_pandas(self):
+        self.Table = pd.DataFrame(self._modes)
+
+
+class Modules(EDF):
+
+    def __init__(self):
+        self.Table = None
+        self._modules = {"Module": [], "Module_level": [],
+                         "Module_dataflow": [], "Module_PID": [],
+                         "Module_aux_PID": [], "Sub_modules": [],
+                         "Nr_of_module_states": []}
+        self._module_states = {"Module_state": [], "MS_PID": [],
+                               "MS_aux_PID": [], "MS_power": [],
+                               "MS_power_parameter": [], "MS_data_rate": [],
+                               "MS_data_rate_parameter": [],
+                               "MS_aux_data_rate": [], "MS_constraints": [],
+                               "Repeat_action": [], "MS_pitch": [],
+                               "MS_yaw": []}
+
+    def read(self, content):
         counter = 0
         for line in content:
             line = line.split()
@@ -442,33 +529,25 @@ class EDF:
             self._add_none_to_empty_fields(self._module_states)
         return counter
 
-    def _read_mode(self, content):
-        counter = 0
-        for line in content:
-            line = line.split()
-            if len(line) > 1:
-                if line[0][:-1] in self._modes:
-                    # If another MODE detected we ensure to keep same
-                    # length of all the elements in the dictionary
-                    if line[0][:-1].upper() == 'MODE':
-                        self._modes = \
-                            self._add_none_to_empty_fields(self._modes)
-                    if len(line[1:]) == 1:
-                        self._modes[line[0][:-1]].append(line[1])
-                    else:
-                        self._modes[line[0][:-1]].append(line[1:])
-                elif '#' in line[0][0]:
-                    pass
-                else:
-                    self._modes = \
-                        self._add_none_to_empty_fields(self._modes)
-                    break
-            counter += 1
-        self._modes = \
-            self._add_none_to_empty_fields(self._modes)
-        return counter
+    def _create_pandas(self):
+        self.Table = pd.DataFrame(self._modules)
+        self.Module_states_Table = pd.DataFrame(self._module_states)
 
-    def _read_parameter(self, content):
+
+class Parameters(EDF):
+
+    def __init__(self):
+        self.Table = None
+        self._parameters = {"Parameter": [], "Parameter_alias": [],
+                            "State_parameter": [], "Parameter_action": [],
+                            "Raw_type": [], "Eng_type": [],
+                            "Default_value": [], "Unit": [], "Raw_limits": [],
+                            "Eng_limits": [], "Resource": [],
+                            "Value_alias": [], "Nr_of_parameter_values": []}
+        self._parameter_values = {"Parameter_value": [], "Parameter_uas": [],
+                                  "Parameter_uwr": [], "Parameter_run": []}
+
+    def read(self, content):
         counter = 0
         for line in content:
             line = line.split()
@@ -517,7 +596,31 @@ class EDF:
             self._add_none_to_empty_fields(self._parameter_values)
         return counter
 
-    def _read_action(self, content):
+    def _create_pandas(self):
+        self.Table = pd.DataFrame(self._parameters)
+        self.Parameter_values_Table = pd.DataFrame(self._parameter_values)
+
+
+class Actions(EDF):
+
+    def __init__(self):
+        self.Table = None
+        self._actions = {"Action": [], "Action_alias": [], "Action_level": [],
+                         "Action_type": [], "Action_subsystem": [],
+                         "Action_parameters": [], "Internal_variables": [],
+                         "Computed_parameters": [], "Duration": [],
+                         "Minimum_duration": [], "Compression": [],
+                         "Separation": [], "Action_dataflow": [],
+                         "Action_PID": [], "Power_increase": [],
+                         "Data_rate_increase": [], "Data_volume": [],
+                         "Power_profile": [], "Data_rate_profile": [],
+                         "Write_to_Z_record": [], "Action_power_check": [],
+                         "Action_data_rate_check": [], "Obs_ID": [],
+                         "Update_at_start": [], "Update_when_ready": [],
+                         "Action_constraints": [], "Run_type": [],
+                         "Run_start_time": [], "Run_actions": []}
+
+    def read(self, content):
         counter = 0
         for line in content:
             line = line.split()
@@ -545,7 +648,22 @@ class EDF:
 
         return counter
 
-    def _read_constraint(self, content):
+    def _create_pandas(self):
+        self.Table = pd.DataFrame(self._actions)
+
+
+class Constraints(EDF):
+
+    def __init__(self):
+        self.Table = None
+        self._constraints = {"Constraint": [], "Constraint_type": [],
+                             "Severity": [], "Constraint_group": [],
+                             "Condition": [], "Resource_constraint": [],
+                             "Resource_mass_memory": [],
+                             "Parameter_constraint": [],
+                             "Condition_experiment": [], "Expression": []}
+
+    def read(self, content):
         counter = 0
         for line in content:
             line = line.split()
@@ -571,26 +689,5 @@ class EDF:
             self._add_none_to_empty_fields(self._constraints)
         return counter
 
-    def _add_none_to_empty_fields(self, dictionary):
-        # Adding None value to the empty fields
-        maximum = max(
-            [len(dictionary[x]) for x in dictionary])
-        for x in dictionary:
-            if len(dictionary[x]) < maximum:
-                dictionary[x].append(None)
-        return dictionary
-
-    def _convert_dictionaries_into_dataframes(self):
-        self.DATA_BUSES = pd.DataFrame(self._data_buses)
-        self.DATA_STORES = pd.DataFrame(self._data_stores)
-        self.PIDS = pd.DataFrame(self._pids)
-        self.FTS = pd.DataFrame(self._fts)
-        self.FOV = pd.DataFrame(self._fov)
-        self.AREAS = pd.DataFrame(self._areas)
-        self.MODES = pd.DataFrame(self._modes)
-        self.MODULES = pd.DataFrame(self._modules)
-        self.MODULE_STATES = pd.DataFrame(self._module_states)
-        self.PARAMETERS = pd.DataFrame(self._parameters)
-        self.PARAMETER_VALUES = pd.DataFrame(self._parameter_values)
-        self.ACTIONS = pd.DataFrame(self._actions)
-        self.CONSTRAINTS = pd.DataFrame(self._constraints)
+    def _create_pandas(self):
+        self.Table = pd.DataFrame(self._constraints)
