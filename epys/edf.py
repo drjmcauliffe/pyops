@@ -5,7 +5,7 @@ import os
 
 class EDF:
 
-    def __init__(self, fname):
+    def __init__(self, fname=None):
         # Variable initialization
         self.WTF = list()
         self.meta = dict()
@@ -46,7 +46,8 @@ class EDF:
                          'CONSTRAINT': self.CONSTRAINTS.read}
 
         # Loading the given file
-        self.load(fname)
+        if fname is not None:
+            self.load(fname)
 
     def load(self, fname):
         # Storing the name of the file for editting purposes
@@ -137,7 +138,7 @@ class EDF:
             # Concatening lines if '\' found
             if '\\' in l and '#' not in l[0] and \
                '\\' not in l[l.index('\\') + 1]:
-                line += l[:l.index('\\')]
+                line += ' ' + l[:l.index('\\')]
                 # Continues with the next iteration of the loop
                 continue
 
@@ -147,9 +148,9 @@ class EDF:
             # If we were concatenating, we concatenate the last one
             else:
                 if '#' in l:
-                    line += l[:l.index('#')]
+                    line += ' ' + l[:l.index('#')]
                 else:
-                    line += l
+                    line += ' ' + l
 
             if line[0] == '\n':
                 out.append(line)
@@ -169,7 +170,7 @@ class EDF:
         elif 'Experiment:' in line:
             self.experiment = ' '.join(line[1:])
         else:
-            self.variables[line[0][:-1]] = line[1:]
+            self.variables[line[0][:-1]] = ' '.join(line[1:])
         return 1
 
     def _how_many_brackets_following(self, line):
