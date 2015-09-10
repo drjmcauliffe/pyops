@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 # from prettytable import PrettyTable
 
 
@@ -10,16 +11,18 @@ class EDF:
         self.meta = dict()
         self.header = list()
         self.variables = dict()
+        self.experiment = "Not said or not in the proper format."
         self.include_files = list()
 
         # Tables to fill in order as they appear in the file
         self.DATA_BUSES = DataBuses()
-        self.GLOBAL_PROPERTIES = None
         self._global_properties = dict.fromkeys(
             ["Local_memory", "Dataflow", "Dataflow_PID", "Dataflow_aux_PID",
              "Data_volume_data_rate", "HK_data_volume", "TM_frame_overhead",
              "Power_profile_check", "Data_rate_profile_check",
              "Exclusive_subsystems", "Global_actions", "Global_constraints"])
+        # For now we just represent the dictionary...
+        self.GLOBAL_PROPERTIES = self._global_properties
         self.DATA_STORES = DataStores()
         self.PIDS = PIDs()
         self.FTS = FTS()
@@ -79,10 +82,14 @@ class EDF:
                 else:
                     # We have found a variable
                     if ':' in l[0][-1]:
-                        # Checking if we have already found a keyword
-                        if l[0][:-1].upper() not in self.keywords:
-                            self.variables[l[0][:-1]] = l[1:]
+                        # Checking if we have found a global property
+                        if l[0][:-1] in self._global_properties:
+                            self._global_properties[l[0][:-1]] = \
+                                ' '.join(l[1:])
                             pos += 1
+                        # Checking if we have found a keyword
+                        elif l[0][:-1].upper() not in self.keywords:
+                            pos += self._read_variables(l)
                         elif len(l) > 1 and l[0][:-1].upper() in self.keywords:
                             pos += self.keywords[l[0][:-1].upper()](
                                 content[pos:])
@@ -99,6 +106,29 @@ class EDF:
         content = None
         # Creating the pandas tables
         self._convert_dictionaries_into_dataframes()
+
+    def check_consistency(self):
+        if self.check_if_included_files_exist_in_directory():
+            print ("Everything seems to be ok, congratulations! :)")
+
+    def check_if_included_files_exist_in_directory(self):
+        files_exist = True
+        # Getting the path of the directory where we are working
+        path = os.path.dirname(os.path.abspath(self.fname))
+
+        for fname in self.include_files:
+            # Removing possible problematic characters
+            fname = fname[0].strip('"')
+
+            if not os.path.isfile(os.path.join(path, fname)):
+                files_exist = False
+                output = "***[WARNING]***: "
+                output += "It seems as if " + fname + " is not in the same "
+                output += "directory as " + os.path.basename(self.fname)
+                print (output)
+                # Perhaps raising an exception here in the future...
+
+        return files_exist
 
     def _concatenate_lines(self, content):
         out = list()
@@ -132,6 +162,15 @@ class EDF:
         if ': ' in line:
             self.meta[line[1:line.index(': ')].strip()] = \
                 line[line.index(': ') + 1:-1].strip()
+
+    def _read_variables(self, line):
+        if 'Include_file:' in line or 'Include:' in line:
+            self.include_files.append(line[1:])
+        elif 'Experiment:' in line:
+            self.experiment = ' '.join(line[1:])
+        else:
+            self.variables[line[0][:-1]] = line[1:]
+        return 1
 
     def _how_many_brackets_following(self, line):
         count = 0
@@ -183,10 +222,8 @@ class DataBuses(EDF):
                     if line[0] == 'Data_bus:':
                         self._data_buses = \
                             self._add_none_to_empty_fields(self._data_buses)
-                    if len(line[1:]) == 1:
-                        self._data_buses[line[0][:-1]].append(line[1])
-                    else:
-                        self._data_buses[line[0][:-1]].append(line[1:])
+                        self._data_buses[line[0][:-1]].append(
+                            ' '.join(line[1:]))
                 elif '#' in line[0][0]:
                     pass
                 else:
@@ -371,10 +408,7 @@ class FOVs(EDF):
                     if line[0] == 'FOV:':
                         self._fov = \
                             self._add_none_to_empty_fields(self._fov)
-                    if len(line[1:]) == 1:
-                        self._fov[line[0][:-1]].append(line[1])
-                    else:
-                        self._fov[line[0][:-1]].append(line[1:])
+                    self._fov[line[0][:-1]].append(' '.join(line[1:]))
                 elif '#' in line[0][0]:
                     pass
                 else:
@@ -414,10 +448,7 @@ class Areas(EDF):
                     if line[0] == 'Area:':
                         self._areas = \
                             self._add_none_to_empty_fields(self._areas)
-                    if len(line[1:]) == 1:
-                        self._areas[line[0][:-1]].append(line[1])
-                    else:
-                        self._areas[line[0][:-1]].append(line[1:])
+                    self._areas[line[0][:-1]].append(' '.join(line[1:]))
                 elif '#' in line[0][0]:
                     pass
                 else:
@@ -458,10 +489,7 @@ class Modes(EDF):
                     if line[0][:-1].upper() == 'MODE':
                         self._modes = \
                             self._add_none_to_empty_fields(self._modes)
-                    if len(line[1:]) == 1:
-                        self._modes[line[0][:-1]].append(line[1])
-                    else:
-                        self._modes[line[0][:-1]].append(line[1:])
+                    self._modes[line[0][:-1]].append(' '.join(line[1:]))
                 elif '#' in line[0][0]:
                     pass
                 else:
@@ -510,10 +538,7 @@ class Modules(EDF):
                     if line[0][:-1].upper() == 'MODULE':
                         self._modules = \
                             self._add_none_to_empty_fields(self._modules)
-                    if len(line[1:]) == 1:
-                        self._modules[line[0][:-1]].append(line[1])
-                    else:
-                        self._modules[line[0][:-1]].append(line[1:])
+                    self._modules[line[0][:-1]].append(' '.join(line[1:]))
                 elif line[0][:-1] in self._module_states:
                     # If another MODULE_STATE detected we ensure to keep
                     # same length of all the elements in the dictionary
@@ -527,10 +552,8 @@ class Modules(EDF):
                                 + " - " + line[1]
                         self._module_states = \
                             self._add_none_to_empty_fields(self._module_states)
-                    if len(line[1:]) == 1:
-                        self._module_states[line[0][:-1]].append(line[1])
-                    else:
-                        self._module_states[line[0][:-1]].append(line[1:])
+                    self._module_states[line[0][:-1]].append(
+                        ' '.join(line[1:]))
                 elif '#' in line[0][0]:
                     pass
                 else:
@@ -583,10 +606,7 @@ class Parameters(EDF):
                     if line[0][:-1].upper() == 'PARAMETER':
                         self._parameters = \
                             self._add_none_to_empty_fields(self._parameters)
-                    if len(line[1:]) == 1:
-                        self._parameters[line[0][:-1]].append(line[1])
-                    else:
-                        self._parameters[line[0][:-1]].append(line[1:])
+                    self._parameters[line[0][:-1]].append(' '.join(line[1:]))
                 elif line[0][:-1] in self._parameter_values:
                     # If another PARAMETER VALUE detected we ensure to keep
                     # same length of all the elements in the dictionary
@@ -601,10 +621,8 @@ class Parameters(EDF):
                         self._parameter_values = \
                             self._add_none_to_empty_fields(
                                 self._parameter_values)
-                    if len(line[1:]) == 1:
-                        self._parameter_values[line[0][:-1]].append(line[1])
-                    else:
-                        self._parameter_values[line[0][:-1]].append(line[1:])
+                    self._parameter_values[line[0][:-1]].append(
+                        ' '.join(line[1:]))
                 elif '#' in line[0][0]:
                     pass
                 else:
@@ -663,10 +681,7 @@ class Actions(EDF):
                     if line[0][:-1].upper() == 'ACTION':
                         self._actions = \
                             self._add_none_to_empty_fields(self._actions)
-                    if len(line[1:]) == 1:
-                        self._actions[line[0][:-1]].append(line[1])
-                    else:
-                        self._actions[line[0][:-1]].append(line[1:])
+                    self._actions[line[0][:-1]].append(' '.join(line[1:]))
                 elif '#' in line[0][0]:
                     pass
                 else:
@@ -715,10 +730,7 @@ class Constraints(EDF):
                     if line[0][:-1].upper() == 'CONSTRAINT':
                         self._constraints = \
                             self._add_none_to_empty_fields(self._constraints)
-                    if len(line[1:]) == 1:
-                        self._constraints[line[0][:-1]].append(line[1])
-                    else:
-                        self._constraints[line[0][:-1]].append(line[1:])
+                    self._constraints[line[0][:-1]].append(' '.join(line[1:]))
                 elif '#' in line[0][0]:
                     pass
                 else:
