@@ -1,0 +1,381 @@
+#
+# Experiment Description File (EDF) for the SSMM
+# ********** THIS IS JUST A TEST FILE, IT MAKES NO SCIENTIFIC SENSE **********
+
+# Experiment definition
+
+    Experiment: SSMM "MassMemory"
+
+# Experiment local memory for SSMM
+
+    # Comments:
+    # 48384000 Mb = 50734301184.0 Bytes = 378.0 Gbits
+
+    # <exp. [[SHARED|HK]]> <mem. size [[Mbytes]]> <pkt size [[bytes]]> [<priority>] [<identifier>]
+
+    # Currently packet size has been set for all experiments to 4112 bytes.
+
+# High and Low priority stores
+
+    # ISA
+    Data_store: ISA_HIGH [ISA] 5 [Gbits] 4112 [bytes] 4 13 # PID 95 - 1 [Gbits]
+
+    # BELA uses maximum size packets
+    Data_store: BELA_LOW [BELA] 200 [Gbits] 4112 [bytes] 10 14 # PID 66 - 10 [Gbits]
+    Data_store: BELA_HIGH [BELA] 1 [Gbits] 4112 [bytes] 4 15 # PID 65
+
+    Data_store: MERMAG_LOW  [MERMAG] 1 [Gbits] 768 [bytes] 10 16 # PID 86
+    Data_store: MERMAG_HIGH [MERMAG] 5 [Gbits] 768 [bytes] 4 17 # PID 85 - 1 [Gbits]
+
+    # MERTIS uses maximum size packets for TIS, but smaller packets for TIR.
+    # Therefore it has to be agreed with the PI team what we shall use for
+    # our modelling.
+    Data_store: MERTIS_LOW [MERTIS] 500 [Gbits] 4112 [bytes] 10 18 # PID 62 - 76 [Gbits]
+    Data_store: MERTIS_HIGH [MERTIS] 2 [Gbits] 4112 [bytes] 4 19 # PID 63
+
+    # MGNS EID-B> Total length of Source Data field is equal 8410 bytes and
+    # transmitted to S/C by 3 consequent packets 218+4096+4096 bytes long.
+    # SGS> therefore an average Science packet Science of 8410/3 = 2803 bytes
+    # is assumed for estimating the downlink
+    Data_store: MGNS_HIGH [MGNS] 50 [Gbits] 2803 [bytes] 4 20 # PID 90 - 9 [Gbits]
+
+    # MIXS will use in general maximum size packets. BC-MIX-TN-024-1-1,
+    # section 4.3 for MIXS reads:
+    # "Packets will normally be the maximum size, with a data field of
+    #  4096 bytes."
+    Data_store: MIXS_HIGH [SHARED] 1 [Gbits] 4096 [bytes] 4 21 # PID 76 (MIXS-T), 77 (MIXS-C)
+    Data_store: MIXS_LOW [MIXS_SIXS] 200 [Gbits] 4096 [bytes] 10 22 # PID 78 (MIXS-T), 79 (MIXS-C) - 27 [Gbits]
+
+    Data_store: PHEBUS_LOW [PHEBUS] 200 [Gbits] 4112 [bytes] 10 23 # PID 70   - 10 [Gbits]
+    Data_store: PHEBUS_HIGH [PHEBUS] 1 [Gbits] 4112 [bytes] 4 24 # PID 71
+
+    Data_store: SERENA_LOW [SERENA] 200 [Gbits] 2048 [bytes] 10 25 # 100(SERENA System??), 101 (PICAM), 102 (ELENA), 103 (MIPA), 104 (STROFIO)  - 12 [Gbits]
+    Data_store: SERENA_HIGH [SERENA] 1 [Gbits] 2048 [bytes] 4 26 # 105 (all sensors)
+
+    # ELENA
+    # size science packets not clearly specified
+    #
+    # MIPA
+    # size science packets not clearly specified
+    #
+    # PICAM science packets
+    # The transfer of the measured data is done in a science data block with
+    # a length of 2048 Bytes. Smaller energy packages are combined; the package
+    # with a length of 4096 is split.
+    #
+    # Strofio
+    # size science packets not clearly specified
+
+    # SIMBIO-SYS uses maximum size packets for all channels
+    Data_store: SIMBIO_HRIC_VIHI_LOW [SHARED] 1500 [Gbits] 4112 [bytes] 10 27 # PID 51 (HRIC), 53 (VIHI)   # 128 [Gbits]
+    Data_store: SIMBIO_STC_LOW [SIMBIOSYS] 1500 [Gbits] 4112 [bytes] 10 28 # PID 52 (STC)               #  48 [Gbits]
+    Data_store: SIMBIO_HIGH [SHARED] 6 [Gbits] 4112  [bytes] 4 30 # PID 54 (HRIC), 55 (STC), 56 (VIHI)
+
+    # SIXS-X (PID 80)
+    # "Packet length: 3946 or 4082 bytes"
+    # SIXS-P (PID 81, 82)
+    # "Thus, the length of the packet becomes 16 + 4052 bytes = 4068 bytes."
+    # SGS> as an average we will set the packet to 4000 bytes
+    Data_store: SIXS_HIGH [MIXS_SIXS] 1 [Gbits] 4000 [bytes] 4 33 # PID 80 (SIXS-X), 81 (SIXS-P nominal), 82 (SIXS-P selective support)
+
+# Selective Data Stores
+
+    Data_store: MERMAG_SEL [MERMAG] SELECTIVE 8 [Gbits] 768 [bytes] 4 37 # PID 87
+
+    # MGNS EID-B> "Total length of Source Data field is equal 8410 bytes and
+    # transmitted to S/C by 3 consequent packets 218+4096+4096 bytes long.
+    # SGS> therefore an average Science packet Science of 8410/3 = 2803 bytes
+    # is assumed for estimating the downlink
+    Data_store: MGNS_SEL [MGNS] SELECTIVE 7 [Gbits] 2803 [bytes] 4 38 # PID 91
+
+    Data_store: PHEBUS_SEL [PHEBUS] SELECTIVE 1 [Gbits] 4112 [bytes] 4 39 # PID 72
+
+    # SIXS-P (PID 83)
+    # "In addition, SIXS-P sends out packets containing spectral data at 1
+    #  second time resolution in form (packet length = 4108 bytes)"
+    Data_store: SIXS_SEL [MIXS_SIXS] SELECTIVE 3 [Gbits] 4108 [bytes] 4 43 # PID 83 (SIXS_P)
+
+# Selective Data Transfer Store
+
+    Data_store: SEL_TRANSFER_STORE [SHARED] 5 [Gbits] 4112 [bytes] 4 44
+
+# Multi-purpose stores
+
+    Data_store: MULTI_DS_1 [SHARED] 200 [Gbits] 4112 [bytes] 10 45
+    Data_store: MULTI_DS_2 [SHARED] 0.001 [Gbits] 4112 [bytes] 4 46
+    Data_store: MULTI_DS_3 [SHARED] 0.001 [Gbits] 4112 [bytes] 4 47
+    Data_store: MULTI_DS_4 [SHARED] 0.001 [Gbits] 4112 [bytes] 4 48
+    Data_store: MULTI_DS_5 [SHARED] 0.001 [Gbits] 4112 [bytes] 4 49
+
+# PID allocation
+
+    # HRIC
+    PID:  51 ENABLE 27 # SIMBIO_HRIC_VIHI_LOW
+    PID:  54 ENABLE 30 # SIMBIO_HIGH
+
+    # STC
+    PID:  52 ENABLE 28 # SIMBIO_STC_LOW
+    PID:  55 ENABLE 30 # SIMBIO_HIGH
+
+    # VIHI
+    PID:  53 ENABLE 27 # SIMBIO_HRIC_VIHI_LOW
+    PID:  56 ENABLE 30 # SIMBIO_HIGH
+
+# Fields of View for HRIC
+
+    FOV: HRIC_BBF750 "HRIC Broadband Filter - 750/40 nm (Green)"
+    FOV_lookat: -0.01042269941 0.0 0.99994568219
+    FOV_upvector: 1.0 0.0 0.0
+    FOV_type: RECTANGULAR
+    FOV_geometric_angles: 1.47 0.28 [degrees]
+    FOV_straylight_angles: 30.0 30.0 [degrees]
+    FOV_straylight_duration: 0.0 [seconds]
+    FOV_image_timing: DURATION
+    # FOV_imaging: \
+    #     MS HRIC IMG_BBF750 \
+    #     MS HRIC IMG_FULACC \
+    #     MS HRIC IMG_BBFALL
+    # FOV_active:  \
+    #     MS HRIC IMG_BBF750 \
+    #     MS HRIC IMG_FULACC \
+    #     MS HRIC IMG_BBFALL
+
+    FOV: HRIC_BBF880 "HRIC Broadband Filter - 880/40 nm (Red)"
+    FOV_lookat: -0.00453494299 0.0 0.99998971709
+    FOV_upvector: 1.0 0.0 0.0
+    FOV_type: RECTANGULAR
+    FOV_geometric_angles: 1.47 0.28 [degrees]
+    FOV_straylight_angles: 30.0 30.0 [degrees]
+    FOV_straylight_duration: 0.0 [seconds]
+    FOV_image_timing: DURATION
+    # FOV_imaging: \
+    #     MS HRIC IMG_BBF880 \
+    #     MS HRIC IMG_FULACC \
+    #     MS HRIC IMG_BBFALL
+    # FOV_active:  \
+    #     MS HRIC IMG_BBF880 \
+    #     MS HRIC IMG_FULACC \
+    #     MS HRIC IMG_BBFALL
+
+# FTS transfer stores (all low priority data stores)
+
+    # FTS_store: <data store ID> <ENABLE|DISABLE> <data volume [[Mbytes]]>
+    # Maximum FTS packet size is 250 Mbyte
+    FTS: 14 ENABLE 100 [Mbytes] # FTS_IDX = 1, BELA_LOW
+    FTS: 18 ENABLE 150 [Mbytes] # FTS_IDX = 2, MERTIS_LOW
+    FTS: 22 ENABLE 100 [Mbytes] # FTS_IDX = 3, MIXS_LOW
+    FTS: 23 ENABLE 100 [Mbytes] # FTS_IDX = 4, PHEBUS_LOW
+    FTS: 25 ENABLE 100 [Mbytes] # FTS_IDX = 5, SERENA_LOW
+    FTS: 27 ENABLE 150 [Mbytes] # FTS_IDX = 6, SIMBIO_HRIC_VIHI_LOW
+    FTS: 28 ENABLE 150 [Mbytes] # FTS_IDX = 7, SIMBIO_STC_LOW
+    FTS: 44 ENABLE 100 [Mbytes] # FTS_IDX = 8, SEL_TRANSFER_STORE
+    # FTS: 20 DISABLE 100 [Mbytes] # FTS_IDX = 9, MGNS RE-ROUTED X STORE
+
+# Modules for VIHI
+
+    Module: VIHI "VIHI"
+    Module_state: OFF
+        MS_data_rate: 0 [Kbits/sec]
+    Module_state: STANDBY
+        MS_data_rate_parameter: VIHI_DATA_RATE
+    Module_state: SCIENCE
+        MS_data_rate_parameter: VIHI_DATA_RATE
+
+    Module: VIHI_PE "VIHI Proximity Electronics"
+    Module_state: OFF
+        MS_power: 0 [Watts]
+        MS_data_rate: 0 [Kbits/sec]
+    Module_state: STANDBY
+        MS_power: 0 [Watts]
+        MS_data_rate: 0 [Kbits/sec]
+    Module_state: ON
+        MS_power: 8.5 [Watts]
+        MS_data_rate_parameter: VIHI_DATA_RATE
+
+    Module: VIHI_TEC "VIHI Thermo-Electric Cooler"
+    Module_state: OFF
+        MS_power: 0 [Watts]
+        MS_data_rate: 0 [Kbits/sec]
+    Module_state: ON
+        MS_power: 0 [Watts]
+        MS_data_rate: 0 [Kbits/sec]
+
+    Module: VIHI_DET "VIHI Detector"
+    Module_state: OFF
+        MS_power: 0 [Watts]
+        MS_data_rate: 0 [Kbits/sec]
+    Module_state: ON
+        MS_power: 0 [Watts]
+        MS_data_rate: 0 [Kbits/sec]
+
+# Modes for SIMBIO-SYS
+
+    Mode: OFF
+    Nominal_power: 0 [Watts]
+    Nominal_data_rate: 0 [Kbits/sec]
+    Module_states:
+
+    Mode: BOOT_SW_STBY
+    Nominal_power: 0 [Watts]
+    Nominal_data_rate: 0 [Kbits/sec]
+    Module_states:
+
+    Mode: OBSW_MAINT
+    Nominal_power: 0 [Watts]
+    Nominal_data_rate: 0 [Kbits/sec]
+    Module_states:
+
+    Mode: IDLE
+    Nominal_power: 0 [Watts]
+    Nominal_data_rate: 0 [Kbits/sec]
+    Module_states:
+
+    Mode: CHNL_STBY
+    Nominal_power: 0 [Watts]
+    Nominal_data_rate: 0 [Kbits/sec]
+    Module_states: \
+        CONDITION \
+            HRIC STANDBY \
+            STC OFF \
+            VIHI OFF \
+        CONDITION \
+            HRIC OFF \
+            STC OFF \
+            VIHI STANDBY \
+        CONDITION \
+            HRIC STANDBY \
+            STC OFF \
+            VIHI STANDBY \
+        CONDITION \
+            HRIC OFF \
+            STC STANDBY \
+            VIHI OFF \
+        CONDITION \
+            HRIC STANDBY \
+            STC STANDBY \
+            VIHI OFF \
+        CONDITION \
+            HRIC OFF \
+            STC STANDBY \
+            VIHI STANDBY \
+        CONDITION \
+            HRIC STANDBY \
+            STC STANDBY \
+            VIHI STANDBY \
+
+# SSMM parameters
+
+    Parameter: SOURCE_PARAM
+    Raw_type: UINT
+    Resource: SOURCE_STORE
+
+    Parameter: TARGET_PARAM
+    Raw_type: UINT
+    Resource: TARGET_STORE
+
+    Parameter: VOLUME_PARAM
+    Eng_type: REAL
+    Unit: Mbytes
+    Resource: TRANSFER_VOLUME
+
+    Parameter: FTS_DATA_STORE
+    Raw_type: UINT
+    Resource: FTS_DATA_STORE
+
+    Parameter: FTS_INDEX
+    Raw_type: UINT
+    Resource: FTS_INDEX
+
+    Parameter: FTS_UPDATE_FLAG
+    Raw_type: BOOL
+    Eng_type: TEXT
+    Resource: FTS_UPDATE_FLAG
+    Parameter_value: 0 KEEP
+    Parameter_value: 1 UPDATE
+
+    Parameter: FTS_ENABLE_FLAG
+    Raw_type: ENUM
+    Eng_type: TEXT
+    Resource: FTS_ENABLE_FLAG
+    Parameter_value: 0 DISABLE
+    Parameter_value: 1 ENABLE
+
+    Parameter: FTS_DATA_VOLUME
+    Eng_type: REAL
+    Unit: Mbytes
+    Resource: FTS_DATA_VOLUME
+
+    Parameter: PID_DEF
+    Raw_type: INT
+    Resource: PID_DEF
+
+    Parameter: PID_ENABLE_FLAG
+    Raw_type: BOOL
+    Eng_type: TEXT
+    Resource: PID_ENABLE_FLAG
+    Parameter_value: 0 DISABLE
+    Parameter_value: 1 ENABLE
+
+    Parameter: PID_DATA_STORE
+    Raw_type: UINT
+    Resource: PID_DATA_STORE
+
+# SSMM actions
+
+    Global_actions: \
+        COPY_DV \
+        UPDATE_FTS_TABLE \
+        ALLOCATE_PID
+
+    Action: COPY_DV
+    Action_parameters: \
+        SOURCE_PARAM \
+        TARGET_PARAM \
+        VOLUME_PARAM
+
+    Action: UPDATE_FTS_TABLE
+    Action_parameters: \
+        FTS_DATA_STORE \
+        FTS_UPDATE_FLAG = UPDATE [ENG]\
+        FTS_ENABLE_FLAG \
+        FTS_INDEX \
+        FTS_DATA_VOLUME = 250
+
+    Action: ALLOCATE_PID
+    Action_parameters: \
+        PID_DEF \
+        PID_ENABLE_FLAG \
+        PID_DATA_STORE
+
+# Nr_of_constraints: 6
+
+    Constraint: HRIC_ON "Error : HRIC is NOT on!"
+        Constraint_type: TIME
+        Severity: ERROR
+        Condition: MS IS HRIC STANDBY \
+                   MS IS HRIC OFF
+
+    Constraint: HRIC_COOLER_ON "Error : HRIC Cooler is NOT on!"
+        Constraint_type: TIME
+        Severity: ERROR
+        Condition: MS NOT HRIC_COOLER ON
+
+    Constraint: HRIC_STANDBY "Error : HRIC is NOT in STANDBY!"
+        Constraint_type: TIME
+        Severity: ERROR
+        Condition: MS NOT HRIC STANDBY
+
+    Constraint: HRIC_COOLER_STANDBY "Error : HRIC Cooler is NOT in STANDBY!"
+        Constraint_type: TIME
+        Severity: ERROR
+        Condition: MS NOT HRIC_COOLER STANDBY
+
+    Constraint: HRIC_CMPSR_ON "Error : HRIC_CMPSR is NOT on!"
+        Constraint_type: TIME
+        Severity: ERROR
+        Condition: MS NOT HRIC_CMPSR ON
+
+    Constraint: HRIC_CMPSR_OFF "Error : HRIC_CMPSR is NOT off!"
+        Constraint_type: TIME
+        Severity: ERROR
+        Condition: MS NOT HRIC_CMPSR OFF
