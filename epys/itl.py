@@ -408,15 +408,16 @@ class ITL:
         return out_df
 
 
-def shift_time(df, sub_df=None, days=0, seconds=0, microseconds=0,
+def shift_time(df, rows=None, days=0, seconds=0, microseconds=0,
                milliseconds=0, minutes=0, hours=0, weeks=0):
 
     delta = timedelta(days=days, seconds=seconds, minutes=minutes,
                       microseconds=microseconds, milliseconds=milliseconds,
                       hours=hours, weeks=weeks)
-    if sub_df is None:
+    if rows is None:
         for times in pd.to_datetime(df['time'].unique()).tolist():
             df.loc[df['time'] == times, 'time'] = times + delta
-    # else:
-        # Don't know how to do it yet...
+    else:
+        for row in rows:
+            df.loc[row, 'time'] = pd.to_datetime(df.loc[row, 'time']) + delta
     return df
