@@ -4,8 +4,39 @@ import os
 
 
 class EDF:
+    """Experiment Description File Parser
 
+    Attributes:
+        ACTIONS (Object): Contains all the actions data in the file
+        AREAS (Object): Contains all the Areas data in the file
+        CONSTRAINTS (Object): Contains all the constraints found in the file
+        DATA_BUSES (Object): Contains all the data buses information
+        DATA_STORES (Object): Contains all the data stores data in the file
+        experiment (str): Contains the name of the experiment
+        fname (str): Contains the name of the EDF file
+        FOVS (Object): Contains all the Fields of View information
+        FTS (Object): Contains all the FTS data in the file
+        GLOBAL_PROPERTIES (dict): Contains all the possible global properties
+        header (list): Contains all the header information in the file
+        include_files (list): Contains all the include files in the file
+        keywords (list): Contains the keywords that indicate that a new Object
+        has to be created.
+        meta (dict): Contains all the metadata information contained in header
+        MODES (Object): Contains all the modes data from the file
+        MODULES (Object): Contains all the modules data from the file
+        PARAMETERS (Object): Contains all the parameters data from the file
+        PIDS (Obje): Contains all the PIDs information from the file
+        variables (dict): Contains all other variables found that don't belong
+        to an Object
+        WTF (list): Things found in the file that don't belong to anyother
+        field of this class
+    """
     def __init__(self, fname=None):
+        """Constructor
+
+        Args:
+            fname (str, optional): Path name of the EDF file
+        """
         # Variable initialization
         self.WTF = list()
         self.meta = dict()
@@ -50,6 +81,11 @@ class EDF:
             self.load(fname)
 
     def load(self, fname):
+        """ Reading the file and extracting the data.
+
+        Args:
+            fname (str): Path name of the file
+        """
         # Storing the name of the file for editting purposes
         self.fname = fname
 
@@ -109,10 +145,18 @@ class EDF:
         self._convert_dictionaries_into_dataframes()
 
     def check_consistency(self):
+        """Checks consistency of the file
+        """
         if self.check_if_included_files_exist_in_directory():
             print ("Everything seems to be ok, congratulations! :)")
 
     def check_if_included_files_exist_in_directory(self):
+        """Cheks whether included files exist in the same directory as
+        fname or not
+
+        Returns:
+            bool: True if all of them exist, False otherwise
+        """
         files_exist = True
         # Getting the path of the directory where we are working
         path = os.path.dirname(os.path.abspath(self.fname))
@@ -132,6 +176,14 @@ class EDF:
         return files_exist
 
     def _concatenate_lines(self, content):
+        """Concatenate all the lines that have a '\\' element.
+
+        Args:
+            content (list): list of lines to concatenate
+
+        Returns:
+            list: list of lines already concatenated
+        """
         out = list()
         line = ""
         for l in content:
@@ -160,11 +212,25 @@ class EDF:
         return out
 
     def _read_metada(self, line):
+        """Function to read the metadata of the file
+
+        Args:
+            line (str): line to analyze
+        """
         if ': ' in line:
             self.meta[line[1:line.index(': ')].strip()] = \
                 line[line.index(': ') + 1:-1].strip()
 
     def _read_variables(self, line):
+        """Function that read other variables that are not included in the
+        Objects.
+
+        Args:
+            line (str): line to be analyzed
+
+        Returns:
+            int: Number of lines read
+        """
         if 'Include_file:' in line or 'Include:' in line:
             self.include_files.append(line[1:])
         elif 'Experiment:' in line:
@@ -174,6 +240,15 @@ class EDF:
         return 1
 
     def _how_many_brackets_following(self, line):
+        """Counts how many words starting with '[' and ending with ']' are
+        in a row from the beginning of the given line.
+
+        Args:
+            line (list): line to be analyzed
+
+        Returns:
+            int: Number of words found
+        """
         count = 0
         for words in line:
             if words[0] == '[' and words[-1] == ']':
@@ -183,6 +258,14 @@ class EDF:
         return count
 
     def _add_none_to_empty_fields(self, dictionary):
+        """Adds None to the list which length is one unit less than the others.
+
+        Args:
+            dictionary (dict): Dictionary containing lists for every key
+
+        Returns:
+            dict: Dictionary modified
+        """
         # Adding None value to the empty fields
         maximum = max(
             [len(dictionary[x]) for x in dictionary])
@@ -192,6 +275,8 @@ class EDF:
         return dictionary
 
     def _convert_dictionaries_into_dataframes(self):
+        """Convert the created dictionaries into pandas DataFrames
+        """
         self.DATA_BUSES._create_pandas()
         self.DATA_STORES._create_pandas()
         self.PIDS._create_pandas()
@@ -206,13 +291,27 @@ class EDF:
 
 
 class DataBuses(EDF):
+    """Data Buses class
 
+    Attributes:
+        Table (DataFrame): Pandas DataFrame containing the information
+    """
     def __init__(self):
+        """Constructor"""
         self.Table = None
         self._data_buses = {"Data_bus": [], "Data_bus_rate_warning": [],
                             "Data_bus_rate_limit": []}
 
     def read(self, content):
+        """Function that converts the input content into a dictionary
+
+        Args:
+            content (list): Lines where a object of this type was detected at
+            the beginning.
+
+        Returns:
+            int: number of lines used from the content
+        """
         counter = 0
         for line in content:
             line = line.split()
@@ -237,10 +336,16 @@ class DataBuses(EDF):
         return counter
 
     def _create_pandas(self):
+        """Transforms the dictionary into a pandas DataFrame"""
         self.Table = pd.DataFrame(self._data_buses)
 
 
 class DataStores(EDF):
+    """Data Stores class
+
+    Attributes:
+        Table (DataFrame): Pandas DataFrame containing the information
+    """
 
     def __init__(self):
         self.Table = None
@@ -249,6 +354,15 @@ class DataStores(EDF):
                              "Identifier": [], "Comment": []}
 
     def read(self, content):
+        """Function that converts the input content into a dictionary
+
+        Args:
+            content (list): Lines where a object of this type was detected at
+            the beginning.
+
+        Returns:
+            int: number of lines used from the content
+        """
         counter = 0
         for line in content:
             line = line.split()
@@ -302,12 +416,18 @@ class DataStores(EDF):
         return counter
 
     def _create_pandas(self):
+        """Transforms the dictionary into a pandas DataFrame"""
         cols = ['Label', 'Memory size', 'Packet size', 'Priority',
                 'Identifier', 'Comment']
         self.Table = pd.DataFrame(self._data_stores, columns=cols)
 
 
 class PIDs(EDF):
+    """PIDs class
+
+    Attributes:
+        Table (DataFrame): Pandas DataFrame containing the information
+    """
 
     def __init__(self):
         self.Table = None
@@ -315,6 +435,15 @@ class PIDs(EDF):
                       "Comment": []}
 
     def read(self, content):
+        """Function that converts the input content into a dictionary
+
+        Args:
+            content (list): Lines where a object of this type was detected at
+            the beginning.
+
+        Returns:
+            int: number of lines used from the content
+        """
         counter = 0
         for line in content:
             line = line.split()
@@ -341,11 +470,17 @@ class PIDs(EDF):
         return counter
 
     def _create_pandas(self):
+        """Transforms the dictionary into a pandas DataFrame"""
         cols = ['PID number', 'Status', 'Data Store ID', 'Comment']
         self.Table = pd.DataFrame(self._pids, columns=cols)
 
 
 class FTS(EDF):
+    """FTS class
+
+    Attributes:
+        Table (DataFrame): Pandas DataFrame containing the information
+    """
 
     def __init__(self):
         self.Table = None
@@ -353,6 +488,15 @@ class FTS(EDF):
                      "Comment": []}
 
     def read(self, content):
+        """Function that converts the input content into a dictionary
+
+        Args:
+            content (list): Lines where a object of this type was detected at
+            the beginning.
+
+        Returns:
+            int: number of lines used from the content
+        """
         counter = 0
         for line in content:
             line = line.split()
@@ -382,11 +526,17 @@ class FTS(EDF):
         return counter
 
     def _create_pandas(self):
+        """Transforms the dictionary into a pandas DataFrame"""
         cols = ['Data Store ID', 'Status', 'Data Volume', 'Comment']
         self.Table = pd.DataFrame(self._fts, columns=cols)
 
 
 class FOVs(EDF):
+    """Field of Views class
+
+    Attributes:
+        Table (DataFrame): Pandas DataFrame containing the information
+    """
 
     def __init__(self):
         self.Table = None
@@ -399,6 +549,15 @@ class FOVs(EDF):
                      "FOV_pitch": [], "FOV_yaw": []}
 
     def read(self, content):
+        """Function that converts the input content into a dictionary
+
+        Args:
+            content (list): Lines where a object of this type was detected at
+            the beginning.
+
+        Returns:
+            int: number of lines used from the content
+        """
         counter = 0
         for line in content:
             line = line.split()
@@ -422,6 +581,7 @@ class FOVs(EDF):
         return counter
 
     def _create_pandas(self):
+        """Transforms the dictionary into a pandas DataFrame"""
         cols = ["FOV", "FOV_lookat", "FOV_upvector", "FOV_type",
                 "FOV_algorithm", "FOV_geometric_angles",
                 "FOV_geometric_pixels", "FOV_sub_view",
@@ -432,6 +592,11 @@ class FOVs(EDF):
 
 
 class Areas(EDF):
+    """Areas class
+
+    Attributes:
+        Table (DataFrame): Pandas DataFrame containing the information
+    """
 
     def __init__(self):
         self.Table = None
@@ -439,6 +604,15 @@ class Areas(EDF):
                        "Area_lighting_angle": [], "Area_lighting_duration": []}
 
     def read(self, content):
+        """Function that converts the input content into a dictionary
+
+        Args:
+            content (list): Lines where a object of this type was detected at
+            the beginning.
+
+        Returns:
+            int: number of lines used from the content
+        """
         counter = 0
         for line in content:
             line = line.split()
@@ -462,12 +636,18 @@ class Areas(EDF):
         return counter
 
     def _create_pandas(self):
+        """Transforms the dictionary into a pandas DataFrame"""
         cols = ["Area", "Area_orientation", "Area_lighting_angle",
                 "Area_lighting_duration"]
         self.Table = pd.DataFrame(self._areas, columns=cols)
 
 
 class Modes(EDF):
+    """Modes class
+
+    Attributes:
+        Table (DataFrame): Pandas DataFrame containing the information
+    """
 
     def __init__(self):
         self.Table = None
@@ -480,6 +660,15 @@ class Modes(EDF):
                        "Mode_actions": [], "Mode_constraints": []}
 
     def read(self, content):
+        """Function that converts the input content into a dictionary
+
+        Args:
+            content (list): Lines where a object of this type was detected at
+            the beginning.
+
+        Returns:
+            int: number of lines used from the content
+        """
         counter = 0
         for line in content:
             line = line.split()
@@ -503,6 +692,7 @@ class Modes(EDF):
         return counter
 
     def _create_pandas(self):
+        """Transforms the dictionary into a pandas DataFrame"""
         cols = ["Mode", "Mode_class", "Module_states", "Internal_clock",
                 "PID_enable_flags", "Nominal_power", "Power_parameter",
                 "Nominal_data_rate", "Data_rate_parameter",
@@ -513,6 +703,14 @@ class Modes(EDF):
 
 
 class Modules(EDF):
+    """Modules Class
+
+    Attributes:
+        Module_states_Table (DataFrame): Pandas DataFrame containing the
+        information of the Module States
+        Table (DataFrame): Pandas DataFrame containing the information of the
+        Modules
+    """
 
     def __init__(self):
         self.Table = None
@@ -520,6 +718,7 @@ class Modules(EDF):
                          "Module_dataflow": [], "Module_PID": [],
                          "Module_aux_PID": [], "Sub_modules": [],
                          "Nr_of_module_states": []}
+        self.Module_states_Table = None
         self._module_states = {"Module_state": [], "MS_PID": [],
                                "MS_aux_PID": [], "MS_power": [],
                                "MS_power_parameter": [], "MS_data_rate": [],
@@ -529,6 +728,15 @@ class Modules(EDF):
                                "MS_yaw": []}
 
     def read(self, content):
+        """Function that converts the input content into a dictionary
+
+        Args:
+            content (list): Lines where a object of this type was detected at
+            the beginning.
+
+        Returns:
+            int: number of lines used from the content
+        """
         counter = 0
         for line in content:
             line = line.split()
@@ -572,6 +780,7 @@ class Modules(EDF):
         return counter
 
     def _create_pandas(self):
+        """Transforms the dictionary into a pandas DataFrame"""
         cols = ["Module", "Module_level", "Module_dataflow", "Module_PID",
                 "Module_aux_PID", "Sub_modules", "Nr_of_module_states"]
         self.Table = pd.DataFrame(self._modules, columns=cols)
@@ -584,6 +793,14 @@ class Modules(EDF):
 
 
 class Parameters(EDF):
+    """Parameters Class
+
+    Attributes:
+        Parameter_values_Table (DataFrame): Pandas DataFrame containing the
+        information of the parameter values
+        Table (DataFrame): Pandas DataFrame containing the information of the
+        parameters
+    """
 
     def __init__(self):
         self.Table = None
@@ -593,10 +810,20 @@ class Parameters(EDF):
                             "Default_value": [], "Unit": [], "Raw_limits": [],
                             "Eng_limits": [], "Resource": [],
                             "Value_alias": [], "Nr_of_parameter_values": []}
+        self.Parameter_values_Table = None
         self._parameter_values = {"Parameter_value": [], "Parameter_uas": [],
                                   "Parameter_uwr": [], "Parameter_run": []}
 
     def read(self, content):
+        """Function that converts the input content into a dictionary
+
+        Args:
+            content (list): Lines where a object of this type was detected at
+            the beginning.
+
+        Returns:
+            int: number of lines used from the content
+        """
         counter = 0
         for line in content:
             line = line.split()
@@ -641,6 +868,7 @@ class Parameters(EDF):
         return counter
 
     def _create_pandas(self):
+        """Transforms the dictionary into a pandas DataFrame"""
         cols = ["Parameter", "Parameter_alias", "State_parameter",
                 "Parameter_action", "Raw_type", "Eng_type", "Default_value",
                 "Unit", "Raw_limits", "Eng_limits", "Resource",
@@ -653,6 +881,11 @@ class Parameters(EDF):
 
 
 class Actions(EDF):
+    """Actions class
+
+    Attributes:
+        Table (DataFrame): Pandas DataFrame containing the information
+    """
 
     def __init__(self):
         self.Table = None
@@ -672,6 +905,15 @@ class Actions(EDF):
                          "Run_start_time": [], "Run_actions": []}
 
     def read(self, content):
+        """Function that converts the input content into a dictionary
+
+        Args:
+            content (list): Lines where a object of this type was detected at
+            the beginning.
+
+        Returns:
+            int: number of lines used from the content
+        """
         counter = 0
         for line in content:
             line = line.split()
@@ -697,6 +939,7 @@ class Actions(EDF):
         return counter
 
     def _create_pandas(self):
+        """Transforms the dictionary into a pandas DataFrame"""
         cols = ["Action", "Action_alias", "Action_level", "Action_type",
                 "Action_subsystem", "Action_parameters", "Internal_variables",
                 "Computed_parameters", "Duration", "Minimum_duration",
@@ -710,6 +953,11 @@ class Actions(EDF):
 
 
 class Constraints(EDF):
+    """Constraints class
+
+    Attributes:
+        Table (DataFrame): Pandas DataFrame containing the information
+    """
 
     def __init__(self):
         self.Table = None
@@ -721,6 +969,15 @@ class Constraints(EDF):
                              "Condition_experiment": [], "Expression": []}
 
     def read(self, content):
+        """Function that converts the input content into a dictionary
+
+        Args:
+            content (list): Lines where a object of this type was detected at
+            the beginning.
+
+        Returns:
+            int: number of lines used from the content
+        """
         counter = 0
         for line in content:
             line = line.split()
@@ -744,6 +1001,7 @@ class Constraints(EDF):
         return counter
 
     def _create_pandas(self):
+        """Transforms the dictionary into a pandas DataFrame"""
         cols = ["Constraint", "Constraint_type", "Severity",
                 "Constraint_group", "Condition", "Resource_constraint",
                 "Resource_mass_memory", "Parameter_constraint",
