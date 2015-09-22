@@ -859,16 +859,18 @@ def read_csv_header(fname, meta=False, columns=False):
             # Filtering blanklines
             elif len(line.split(',')) > 1:
                 # Filtering headers of the data
-                if not is_elapsed_time(line.split(',')[0]):
+                if not is_elapsed_time(line.split(',')[0].strip()):
                     # Filtering units, not a very scalabe filter
                     # but it works for now...
                     if "hh:mm:ss" in line.split(',')[0]:
-                        header["units"] = line.split(',')
+                        header["units"] = [x.strip() for x in line.split(',')]
                     # Filtering the rest of the headers
                     elif not header.has_key("headings"):
-                        header["headings"] = line.split(',')
+                        header["headings"] = \
+                            [x.strip() for x in line.split(',')]
                     else:
-                        header["headings"] += line.split(',')
+                        header["headings"] += \
+                            [x.strip() for x in line.split(',')]
                 else:
                     # Storing useful data in the temporary file
                     temporaryFile.write(line + "\n")
