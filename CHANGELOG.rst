@@ -12,7 +12,7 @@
  * ignore .cache folder
  * python setup.py test replaced with py.test -v
  * setup function given content. test function split in 2: 1 for data.shape and the other for len(data)
- * pycco webpages of epys/*.py files created
+ * pycco webpages of pyops/*.py files created
  * excessive blank lines removed
  * logger comments changed to inline #-tagged comments so that they can be usefully extracted by pycco.
  * pycco function added
@@ -23,14 +23,14 @@
  * linting errors corrected
  * my mistake newline at the end of file removed.
  * newline added at the end of the file
- * I recreated the epys virtualenv as a clean env with no access to the system level packages. Also, I set up the tox testing env and adjusted the tox.ini accordingly. Finally, I updated the requirements.txt via pip-dump.
+ * I recreated the pyops virtualenv as a clean env with no access to the system level packages. Also, I set up the tox testing env and adjusted the tox.ini accordingly. Finally, I updated the requirements.txt via pip-dump.
  * pycharm project created and commited
  * in-flow docstrings changed to logger message info messages and one to an error message.
  * python 2.5 test req. removed.
  * converted # comments to docstring... not sure yet if this is a good idea...
  * ipython notebook added to gitignore list ... for now. It's a scratch pad after all...
  * Installation section added.
- * updated via pip-dump - removed epys line.
+ * updated via pip-dump - removed pyops line.
  * removed local modules from the requirments list.
  * requirements upated with versions.
  * removed pypi testing for now
@@ -43,5 +43,5 @@
  * history updated by removing pypi reference; readme warning added; installation reference to pip etc. replaced with git cloning installation; imports included in __init__.py; resources directory and sampledata added.
  * hdings defined near start
  * removed default value for fname in function call
- * docs created and epys.py updated with block read block from ipython notebook
+ * docs created and pyops.py updated with block read block from ipython notebook
  * initial commit

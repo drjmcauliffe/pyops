@@ -20,7 +20,7 @@ install:
 - python setup.py install
 
 script:
-- coverage run --source=epys setup.py test
+- coverage run --source=pyops setup.py test
 
 after_success:
 - coveralls
