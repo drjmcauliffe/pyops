@@ -26,7 +26,7 @@ clean-pyc:
 	find . -name '*~' -exec rm -f {} +
 
 lint:
-	flake8 epys test
+	flake8 pyops test
 
 test:
 	python setup.py test
@@ -36,15 +36,15 @@ test-all:
 	tox
 
 coverage:
-	coverage run --source epys setup.py test
+	coverage run --source pyops setup.py test
 	coverage report -m
 	coverage html
 	open htmlcov/index.html
 
 docs:
-	# rm -f docs/epys.rst
+	# rm -f docs/pyops.rst
 	# rm -f docs/modules.rst
-	sphinx-apidoc -F -o docs/ epys
+	sphinx-apidoc -F -o docs/ pyops
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs changes
 	$(MAKE) -C docs html
@@ -52,8 +52,8 @@ docs:
 
 
 pycco:
-	pycco -p epys/*.py
-	open docs/epys/*.html
+	pycco -p pyops/*.py
+	open docs/pyops/*.html
 
 install:
 	python setup.py install

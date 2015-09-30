@@ -26,9 +26,9 @@ python setup.py install
 cd ..
 
 # finally install e[PY]s
-cd epys
+cd pyops
 python setup.py install
-rm -rf build dist epys.egg-info
+rm -rf build dist pyops.egg-info
 python setup.py test # run tests to check basic functionality
 
 # run an ipython notebook to see if things work
