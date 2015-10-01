@@ -243,7 +243,7 @@ def _gatherorbitdata(delta="1d", scale=15, verbose=False):
 
     # Load the kernels that this program requires.
     this_dir = os.path.dirname(os.path.realpath(__file__))
-    spice.furnsh(os.path.join(this_dir, 'epys.mk'))
+    spice.furnsh(os.path.join(this_dir, 'pyops.mk'))
 
     # convert starting epoch to ET
     et0 = spice.str2et('2024/05/07 00:00')
@@ -645,7 +645,7 @@ def planetsplot(userdates=None, delta="1d", master_scale=15, demo=False,
         # Load the kernels that this program requires.
         spice.kclear()
         this_dir = os.path.dirname(os.path.realpath(__file__))
-        spice.furnsh(os.path.join(this_dir, 'epys.mk'))
+        spice.furnsh(os.path.join(this_dir, 'pyops.mk'))
 
         output_files = []
 
@@ -793,7 +793,7 @@ def mpoplot(userdates, master_scale=15, demo=False):
 
     # Clear and load the kernels that this program requires.
     spice.kclear()
-    spice.furnsh('epys.mk')
+    spice.furnsh('pyops.mk')
 
     # A graphic will be created for each 'date' in 'dates':
     for date in userdates:

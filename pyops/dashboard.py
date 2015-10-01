@@ -1,5 +1,5 @@
 import os
-from epys.read import Modes, powertable, datatable
+from pyops.read import Modes, powertable, datatable
 from bokeh.plotting import show, output_notebook, vplot, gridplot
 from bokeh.io import vform
 from bokeh.models.widgets import Panel, Tabs
@@ -8,9 +8,14 @@ from bokeh.models.widgets import CheckboxButtonGroup
 
 class Dashboard():
 
-    def __init__(self):
+    def __init__(self, directory, instruments=None, parameters=None):
+
         # Hidding anoying warnings on the top of the plot
         output_notebook(hide_banner=True)
+
+        self.load_directory(directory)
+
+        self.launch(instruments, parameters)
 
     def load_directory(self, directory):
         """
@@ -189,7 +194,7 @@ class Dashboard():
     def launch(self, instruments=None, parameters=None):
         """
         This function launches the Dashboard with all the plots in the
-        aforementioned functions.
+        above functions.
 
         :param instruments: list of the instruments to plot
         :type instruments: list of strings
@@ -201,11 +206,11 @@ class Dashboard():
         if instruments is None:
             instruments = self.powertable.instruments
         p1 = self._power_plot(instruments)
-        p2 = self._data_plot(instruments, parameters, p1.x_range)
-        p3 = self._merged_schedule_plot(instruments, True, p1.x_range)
+        # p2 = self._data_plot(instruments, parameters, p1.x_range)
+        # p3 = self._merged_schedule_plot(instruments, True, p1.x_range)
 
         # Putting all the plots in a VBox
-        p = vplot(p1, p2, p3)
+        p = vplot(p1) # , p2, p3)
 
         show(p)
 

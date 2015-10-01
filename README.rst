@@ -1,19 +1,19 @@
-e[py]s
-======
+pyops
+=====
 
-.. image:: https://travis-ci.org/johnnycakes79/epys.png?branch=master
-        :target: https://travis-ci.org/johnnycakes79/epys/
+.. image:: https://travis-ci.org/johnnycakes79/pyops.png?branch=master
+        :target: https://travis-ci.org/johnnycakes79/pyops/
 
-.. image:: https://coveralls.io/repos/johnnycakes79/epys/badge.png?branch=master
-        :target: https://coveralls.io/r/johnnycakes79/epys/
+.. image:: https://coveralls.io/repos/johnnycakes79/pyops/badge.png?branch=master
+        :target: https://coveralls.io/r/johnnycakes79/pyops/
 
 
 
-ePYs is a python library for the manipulation, processing and plotting
+pyops is a python library for the manipulation, processing and plotting
 of the input and output files of ESA Experiment Planning Software (EPS).
 
 * Free software: BSD license
-* Documentation: http://epys.rtfd.org.
+* Documentation: http://pyops.rtfd.org.
 
 Modules
 -------
@@ -31,11 +31,11 @@ At the command line:
 
 1. Clone the repo to your local machine::
 
-    $ git clone git@github.com:johnnycakes79/epys.git
+    $ git clone git@github.com:johnnycakes79/pyops.git
 
 3. Install your local copy::
 
-    $ cd epys/
+    $ cd pyops/
     $ ./install.sh
 
 Testing

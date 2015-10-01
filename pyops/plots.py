@@ -9,7 +9,7 @@ from datetime import datetime
 
 
 # BREWER_PLOT
-def brewer_plot(data, instruments_all, instruments=None):
+def brewer_plot(defata, instruments_all, instruments=None):
     """
     This function shows two bokeh brewer plots into the ipython notebook using
     the data given as a parameter. In the second one only the instruments

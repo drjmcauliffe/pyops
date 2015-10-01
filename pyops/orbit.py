@@ -89,7 +89,7 @@ def demotransform():
     samplefile = os.path.join(parent_dir,
                               "sample_data/8848MPO_DF50011_inMME2000.d40")
 
-    # Run the test file through epys.read and save returned object to 'data'.
+    # Run the test file through pyops.read and save returned object to 'data'.
     # Ask for the return of the 'metadata' and save to 'meta'.
     data = transform(samplefile, metadata=False)
 

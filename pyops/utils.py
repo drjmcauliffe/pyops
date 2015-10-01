@@ -111,7 +111,7 @@ def getMonth(month):
 #     spice.kclear()
 
 #     # Load the kernels that this program requires.
-#     spice.furnsh('epys.mk')
+#     spice.furnsh('pyops.mk')
 
 #     # convert starting epoch to ET
 #     et = spice.str2et(epoch)

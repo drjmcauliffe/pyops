@@ -1,4 +1,4 @@
-from epys import EDF
+from pyops import EDF
 import os
 
 

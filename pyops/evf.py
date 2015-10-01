@@ -1,4 +1,4 @@
-from epys.utils import is_elapsed_time, parse_time, getMonth
+from pyops.utils import is_elapsed_time, parse_time, getMonth
 import pandas as pd
 from datetime import datetime
 import os

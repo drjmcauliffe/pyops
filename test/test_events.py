@@ -1,4 +1,4 @@
-from epys import events
+from pyops import events
 
 
 # Time functions

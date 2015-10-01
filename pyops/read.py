@@ -10,17 +10,17 @@ import os
 import pandas as pd
 import numpy as np
 import tempfile as tf
-from epys.utils import plotly_prep, background_colors, getMonth, get_unique_from_list, is_elapsed_time, parse_time
+from pyops.utils import plotly_prep, background_colors, getMonth, get_unique_from_list, is_elapsed_time, parse_time
 from datetime import datetime
 import logging
 from plotly.graph_objs import Data, Layout, Figure, XAxis, YAxis
 import plotly.plotly as py
-from epys.plots import brewer_plot, modes_schedule, create_plot, get_modes_schedule, data_plot, power_plot, get_power_plot, get_data_plot
+from pyops.plots import brewer_plot, modes_schedule, create_plot, get_modes_schedule, data_plot, power_plot, get_power_plot, get_data_plot
 
 
 class epstable:
     """
-    This is the base class for data tables in epys. Upon instantiation it is
+    This is the base class for data tables in pyops. Upon instantiation it is
     provided with a filename which is read into a header dictionary and a
     Pandas dataframe. The class has a number of methods for querying its
     characteristics, plotting its contents and merging other tables into it.
@@ -332,7 +332,7 @@ class powertable(epstable):
 
     def get_brewer_plot(self, instruments=None, x_range=None):
         """
-        This function returns a figure of a stacked power usage df, 
+        This function returns a figure of a stacked power usage df,
         the instruments to be plotted can be given as a parameter. We can also
         link it to another figure using the x_range parameter.
 
@@ -425,7 +425,7 @@ class datatable(epstable):
         # from each 'Accum' column produce a 'Volume column'
         for inst in get_unique_from_list(self.instruments):
             try:
-                # [inst, 'Volume', 'Gbit'] = [inst, 'Accum', 'Gbit'][i] - [inst, 'Accum', 'Gbit'][i+1] 
+                # [inst, 'Volume', 'Gbit'] = [inst, 'Accum', 'Gbit'][i] - [inst, 'Accum', 'Gbit'][i+1]
                 self.data[inst, 'Volume', 'Gbit'] = self.data[inst, 'Accum', 'Gbit'].sub(self.data[inst, 'Accum', 'Gbit'].shift(), fill_value=0)
             except:
                 print('The conversion of \'Accum\' to \'Volume\' didn\'t work for \'{}\'.'.format(inst))
@@ -598,7 +598,6 @@ def plot(data, limits=False, title=False, x_title=False, x_range=False,
             #Plot with <b>plotly</b>.
             py.iplot(fig, layout=layout)
 
-
 def merge_dataframes(into_df, from_df):
     """
     This function merges two pandas data frames. The inital purpose was
@@ -647,7 +646,6 @@ def parse_ref_date(line):
         keypair = line.strip('#\n').split(':')
         ref_date = datetime.strptime(keypair[1].strip(), "%d-%b-%Y")
         return ref_date
-
 
 def parse_header(fname):
     """
@@ -755,7 +753,6 @@ def parse_header(fname):
                 fh.close()
                 return header
 
-
 def read(fname, meta=False, columns=False):
     """
     This function reads any one of a number of EPS input/output files and
@@ -807,7 +804,6 @@ def read(fname, meta=False, columns=False):
             print('Error: Didn\'t recognise file format...')
             return 1
 
-
 def remove_redundant_data(df):
     """
     This function reduces the size of a dataframe by reducing blocks of
@@ -827,7 +823,6 @@ def remove_redundant_data(df):
     if keeps.count(False) != 0:
         print('{} redundant lines removed'.format(keeps.count(False)))
     return df[keeps]
-
 
 def read_csv_header(fname, meta=False, columns=False):
     """
@@ -883,7 +878,6 @@ def read_csv_header(fname, meta=False, columns=False):
     temporaryFile.seek(0, 0)
     return header, temporaryFile
 
-
 def read_csv(header, temporaryFile):
     """
     This function reads a temporary file and dumps all the data in csv format
@@ -906,7 +900,6 @@ def read_csv(header, temporaryFile):
     data = prepare_table(data, header)
 
     return data
-
 
 def prepare_table(data, header):
     """

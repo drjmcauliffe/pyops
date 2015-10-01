@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-ePYs is a python library for the manipulation, processing and plotting
+pyops is a python library for the manipulation, processing and plotting
 of the input and output files of ESA Experiment Planning Software (EPS).
 
 .. WARNING::
@@ -11,15 +11,15 @@ of the input and output files of ESA Experiment Planning Software (EPS).
 __author__ = 'Jonathan McAuliffe'
 __email__ = 'watch.n.learn@gmail.com'
 __version__ = '0.3.5'
-__url__ = 'https://github.com/johnnycakes79/epys'
+__url__ = 'https://github.com/johnnycakes79/pyops'
 
-# from epys import classes, draw, events, maps, orbit, read, utils
+# from pyops import classes, draw, events, maps, orbit, read, utils
 
-# from epys.draw import planetsplot
+# from pyops.draw import planetsplot
 
-from epys.read import epstable, datatable, powertable, read, Modes
-from epys.dashboard import Dashboard
-from epys.evf import EVF
-from epys.itl import ITL, shift_time
-from epys.edf import EDF
-from epys.utils import plotly_prep, background_colors
+from pyops.read import epstable, datatable, powertable, read, Modes
+from pyops.dashboard import Dashboard
+from pyops.evf import EVF
+from pyops.itl import ITL, shift_time
+from pyops.edf import EDF
+from pyops.utils import plotly_prep, background_colors
