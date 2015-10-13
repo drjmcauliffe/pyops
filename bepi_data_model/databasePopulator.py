@@ -1,4 +1,4 @@
-from epys.edf import EDF
+from pyops.edf import EDF
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine
 from databaseCreator import Missions, MissionInstrumentID, Instruments, PIDs
