@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session, load_only
 from sqlalchemy import create_engine
 from databaseCreator import Missions, MissionInstrumentID, PIDs, Actions
+from databaseCreator import ActionConstraints
 import os
 import sys
 import argparse
@@ -89,6 +90,28 @@ def output_actions(f, session, instrument_id):
         for line in out:
             f.write(line)
 
+        # Writting action_constraints for every action
+        action_constraints = output_action_constraints(
+            f, session, instrument_id, result.action)
+        if action_constraints is not None:
+            f.write("\tAction_constraints:")
+            for constraint in action_constraints:
+                f.write(" " + constraint)
+            f.write("\n")
+
+
+def output_action_constraints(f, session, instrument_id, action):
+    results = session.query(ActionConstraints).filter_by(
+        mission_instrument_id=instrument_id, action=action).all()
+
+    out = list()
+    for result in results:
+        out.append(result.constraint_name)
+
+    if len(out) == 0:
+        return None
+    else:
+        return out
 
 if __name__ == '__main__':
     parser = parser()
