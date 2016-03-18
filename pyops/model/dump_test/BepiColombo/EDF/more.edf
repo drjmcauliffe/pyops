@@ -1,0 +1,18 @@
+
+# PID allocation
+
+
+# Actions
+
+	Action: KA_TC "Switch MORE between different modes [ZKA____]"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: CONDITION( PKA08006 = 0 ) MODE OFF CONDITION( PKA08006 = 1 ) MODE WARMUP CONDITION( PKA08006 = 2 ) MODE CALIBRATION CONDITION( PKA08006 = 3 ) MODE NOMINAL
+
+	Action: KA_HK " "
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_dataflow: TO SSMM
+	Data_volume: 16 [bit]
+	Action_power_check: {Action_power_check}

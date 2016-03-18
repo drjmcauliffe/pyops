@@ -1,0 +1,35 @@
+
+# PID allocation
+
+	PID: 51  ENABLE  27 
+	PID: 54  ENABLE  30 
+	PID: 52  ENABLE  28 
+	PID: 55  ENABLE  30 
+	PID: 53  ENABLE  27 
+	PID: 56  ENABLE  30 
+
+# Actions
+
+	Action: ZPWMSSON # Dummy command for SIMBIO-SYS LCL switch-on
+	Action_type: SEQUENCE
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MS SIM_DPU ON MS HRIC OFF MS STC OFF MS VIHI OFF MODE BOOT_SW_STBY
+
+	Action: ZPWMSSOF # Dummy command for SIMBIO-SYS LCL switch-off
+	Action_type: SEQUENCE
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MS SIM_DPU OFF MS HRIC OFF MS STC OFF MS VIHI OFF MODE OFF
+
+	Action: IDL2CHNL_STBY
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE CHNL_STBY
+
+	Action: ZCD00982 # "DMS Start Time Update to User"
+	Action_type: COMMAND
+	Action_power_check: {Action_power_check}
+
+	Action: PID_ROUTING
+	Action_power_check: {Action_power_check}
+
+	Action: ALLOCATE_PID
+	Action_power_check: {Action_power_check}

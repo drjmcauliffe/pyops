@@ -1,0 +1,59 @@
+
+# PID allocation
+
+	PID: 70  DISABLE  23 
+	PID: 71  DISABLE  24 
+	PID: 72  DISABLE  39 
+
+# Actions
+
+	Action: SWITCH_MODE
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+
+	Action: PID_ROUTING
+	Action_power_check: {Action_power_check}
+
+	Action: ZPW01030 "Power off PHEBUS LCL A LCL1_LCL#16"
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE OFF
+
+	Action: ZPW01031 "Power on PHEBUS LCL A LCL1_LCL#16 (to Stand-by mode)"
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE DPU_LOW_POWER
+
+	Action: ZPW01144 "Power off PHEBUS LCL B LCL4_LCL#13"
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE OFF
+
+	Action: ZPW01145 "Power on PHEBUS LCL B LCL4_LCL#13 (to Stand-by mode)"
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE DPU_LOW_POWER
+
+	Action: ZCD00982 "Update Time by TC"
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+
+	Action: APHSG20A "Power off PHEBUS LCL A LCL1_LCL#16"
+	Action_type: SEQUENCE
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE OFF
+
+	Action: APHSG21A "Power on PHEBUS LCL A LCL1_LCL#16 (to Stand-by mode)"
+	Action_type: SEQUENCE
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE STANDBY
+
+	Action: APHSG22A "Power off PHEBUS LCL B LCL4_LCL#13"
+	Action_type: SEQUENCE
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE OFF
+
+	Action: APHSG23A "Power on PHEBUS LCL B LCL4_LCL#13 (to Stand-by mode)"
+	Action_type: SEQUENCE
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE STANDBY

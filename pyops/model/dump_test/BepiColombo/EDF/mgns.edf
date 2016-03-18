@@ -1,0 +1,19 @@
+
+# PID allocation
+
+	PID: 90  ENABLE  20 
+	PID: 91  ENABLE  38 
+
+# Actions
+
+	Action: MG_ONOFF "Switch MGNS between OFF and STANDBY [ZMG____]"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: CONDITION( MODE = 0 ) MODE OFF CONDITION( MODE = 1 ) MODE STANDBY
+
+	Action: MG_SCIENCE "Switch MGNS to SCIENCE mode [ZMG____]"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: CONDITION( SCIENCE_MODE = 0 ) MODE STANDBY CONDITION( SCIENCE_MODE = 1 ) MODE SCIENCE_TOTAL CONDITION( SCIENCE_MODE = 2 ) MODE SCIENCE_NEUTRON CONDITION( SCIENCE_MODE = 3 ) MODE SCIENCE_GAMMA CONDITION( SCIENCE_MODE = 4 ) MODE SCIENCE_TOTAL_1550 CONDITION( SCIENCE_MODE = 5 ) MODE SCIENCE_SEL_36s CONDITION( SCIENCE_MODE = 6 ) MODE SCIENCE_SEL_48s

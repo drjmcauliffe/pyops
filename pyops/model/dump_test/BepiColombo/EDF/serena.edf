@@ -1,0 +1,73 @@
+
+# PID allocation
+
+	PID: 100  ENABLE  25 
+	PID: 101  ENABLE  25 
+	PID: 102  ENABLE  25 
+	PID: 103  ENABLE  25 
+	PID: 104  ENABLE  25 
+	PID: 105  ENABLE  26 
+
+# Actions
+
+	Action: SWITCH_MS
+	Action_type: BLOCK
+	Action_power_check: {Action_power_check}
+
+	Action: ELENA_MS
+	Action_level: LEVEL1
+	Duration: 1.0 [seconds]
+	Action_power_check: {Action_power_check}
+	Update_at_start: CONDITION ( SET_ELENA_MS = OFF ) MS SCU OFF CONDITION ( NOT SET_ELENA_MS = OFF ) MS SCU ON
+
+	Action: MIPA_MS
+	Action_level: LEVEL1
+	Duration: 1.0 [seconds]
+	Action_power_check: {Action_power_check}
+	Update_at_start: CONDITION ( SET_MIPA_MS = OFF ) MS SCU OFF CONDITION ( NOT SET_MIPA_MS = OFF ) MS SCU ON
+
+	Action: STROFIO_MS
+	Action_level: LEVEL1
+	Duration: 1.0 [seconds]
+	Action_power_check: {Action_power_check}
+	Update_at_start: CONDITION ( SET_STROFIO_MS = OFF ) MS SCU OFF CONDITION ( NOT SET_STROFIO_MS = OFF ) MS SCU ON
+
+	Action: PICAM_MS
+	Action_level: LEVEL1
+	Duration: 1.0 [seconds]
+	Action_power_check: {Action_power_check}
+	Update_at_start: CONDITION (SET_PICAM_MS = OFF ) MS SCU OFF CONDITION (NOT SET_PICAM_MS = OFF) MS SCU ON
+
+	Action: SCU_MS
+	Action_level: LEVEL1
+	Duration: 1.0 [seconds]
+	Action_power_check: {Action_power_check}
+
+	Action: STANDBY
+	Action_type: BLOCK
+	Duration: 1 [seconds]
+	Action_power_check: {Action_power_check}
+	Run_type: RELATIVE
+
+	Action: OFF
+	Action_type: BLOCK
+	Duration: 1 [seconds]
+	Action_power_check: {Action_power_check}
+	Run_type: RELATIVE
+
+	Action: PID_MODULE_ROUTING
+	Action_power_check: {Action_power_check}
+
+	Action: ZPWMSEON # Dummy command for SERENA LCL switch-on
+	Action_type: COMMAND
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MS SCU ON
+
+	Action: ZPWMSEOF # Dummy command for SERENA LCL switch-off
+	Action_type: COMMAND
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MS SCU OFF
+
+	Action: ZCD00982 # "DMS Start Time Update to User"
+	Action_type: COMMAND
+	Action_power_check: {Action_power_check}

@@ -1,0 +1,21 @@
+
+# PID allocation
+
+
+# Actions
+
+	Action: SWITCH_X
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+
+	Action: SWITCH_Ka
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+
+	Action: SET_DUMP
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+
+	Action: SWITCH_ANT
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}

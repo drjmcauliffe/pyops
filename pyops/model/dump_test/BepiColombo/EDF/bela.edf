@@ -1,0 +1,132 @@
+
+# PID allocation
+
+	PID: 66  ENABLE  14 
+	PID: 65  DISABLE  15 
+
+# Actions
+
+	Action: BL_ONOFF "Switch BELA between OFF and STANDBY [ZBL____]"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: CONDITION( PBL08006 = 0 ) MODE OFF CONDITION( PBL08006 = 1 ) MODE PBS
+
+	Action: BL_SCIENCE "Switch BELA to SCIENCE mode [ZBL____]"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: CONDITION( PBL08007 = 0 ) MODE APS_STANDBY CONDITION( PBL08007 = 1 ) MODE APS_SAFE CONDITION( PBL08007 = 2 ) MODE APS_CONFIG CONDITION( PBL08007 = 3 ) MODE APS_ANNEAL CONDITION( PBL08007 = 4 ) MODE APS_DIAGNOSTIC CONDITION( PBL08007 = 5 ) MODE SCOMPLETE CONDITION( PBL08007 = 6 ) MODE SRAW CONDITION( PBL08007 = 7 ) MODE SALB CONDITION( PBL08007 = 8 ) MODE SMIN CONDITION( PBL08007 = 9 ) MODE SNOMMINUS CONDITION( PBL08007 = 10 ) MODE SNOM CONDITION( PBL08007 = 11 ) MODE SNOM_HI CONDITION( PBL08007 = 12 ) MODE SNOM_MED CONDITION( PBL08007 = 13 ) MODE SNOM_LOW CONDITION( PBL08007 = 14 ) MODE SNOMPLUS
+
+	Action: BL_OFF "Switch BELA OFF"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE OFF
+
+	Action: BL_PBS "Switch BELA to PBS"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE PBS
+
+	Action: BL_APS_STANDBY "Switch BELA to APS_STANDBY"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE APS_STANDBY
+
+	Action: BL_APS_SAFE "Switch BELA to APS SAFE"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE APS_SAFE
+
+	Action: BL_APS_CONFIG "Switch BELA to APS CONFIG"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE APS_CONFIG
+
+	Action: BL_APS_ANNEAL "Switch BELA to APS ANNEAL"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE APS_ANNEAL
+
+	Action: BL_APS_DIAGNOSTIC "Switch BELA to APS DIAGNOSTIC"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE APS_DIAGNOSTIC
+
+	Action: BL_SCOMPLETE "Switch BELA to SCOMPLETE"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE SCOMPLETE
+
+	Action: BL_SRAW "Switch BELA to SRAW"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE SRAW
+
+	Action: BL_SALB "Switch BELA to SALB"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE SALB
+
+	Action: BL_SMIN "Switch BELA to SMIN"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE SMIN
+
+	Action: BL_SNOMMINUS "Switch BELA to SNOMMINUS"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE SNOMMINUS
+
+	Action: BL_SNOM "Switch BELA to SNOM"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE SNOM
+
+	Action: BL_SNOM_HI "Switch BELA to SNOM_HI "
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE SNOM_HI
+
+	Action: BL_SNOM_MED "Switch BELA to SNOM_MED "
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE SNOM_MED
+
+	Action: BL_SNOM_LOW "Switch BELA to SNOM_LOW"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE SNOM_LOW
+
+	Action: BL_SNOMPLUS "Switch BELA to SNOMPLUS"
+	Action_level: LEVEL1
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+	Update_when_ready: MODE SNOMPLUS
+
+	Action: ZCD01604 "DMS Request Retrieval of stored context."
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+
+	Action: ZCD01605 "DMS Request to CSW a Ctxt Sav from User"
+	Action_type: MODELLING
+	Action_power_check: {Action_power_check}
+
+	Action: PID_ROUTING
+	Action_power_check: {Action_power_check}
