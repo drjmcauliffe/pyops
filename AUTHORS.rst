@@ -9,4 +9,5 @@ Development Lead
 Contributors
 ------------
 
-None yet. Why not be the first?
+* Pablo Lanaspa <planaspa@gmail.com>
+* Marc Costa <mcosta@gmail.com>

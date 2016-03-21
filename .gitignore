@@ -1,22 +1,15 @@
+# python compiled code
 *.py[cod]
 
-# Folders to exlude
+# folders to exlude
 .ipynb_checkpoints/
-data # this is a symlink
-pickles
-scripts
 notebooks/
-cleanup/
-sample_data/output
-.eggs
-include/
-local/
-man/
+data # this is a symlink
 
-# C extensions
+# c extensions
 *.so
 
-# Packages
+# package files
 .eggs
 *.egg
 *.egg-info
@@ -32,24 +25,24 @@ develop-eggs
 lib
 lib64
 
-# Installer logs
+# installer logs
 pip-log.txt
 
-# Unit test / coverage reports
+# unit test / coverage reports
 .coverage
 .tox
 nosetests.xml
 
-# Sphinx
+# sphinx builds
 docs/_build
 
-# Images
+# iages
 
 
-# Sublime Test files
+# sublime test files
 *.sublime-project
 *.sublime-workspace
 .sublime-backup
 
-# Auto-generated backup files in Linux
+# auto-generated backup files in linux
 *~

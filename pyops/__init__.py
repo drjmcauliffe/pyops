@@ -23,3 +23,4 @@ from pyops.evf import EVF
 from pyops.itl import ITL, shift_time
 from pyops.edf import EDF
 from pyops.utils import plotly_prep, background_colors
+import pyops.time
