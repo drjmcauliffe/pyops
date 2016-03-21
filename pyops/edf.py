@@ -91,8 +91,6 @@ class EDF:
 
         with open(fname) as f:
             content = f.readlines()
-            # Closing the file
-            f.close()
             content = self._concatenate_lines(content)
 
         lines_to_remove = 0
