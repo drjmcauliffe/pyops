@@ -3,7 +3,8 @@
 
 # folders to exlude
 .ipynb_checkpoints/
-notebooks/
+notebooks/*
+
 data # this is a symlink
 
 # c extensions
