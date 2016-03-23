@@ -52,6 +52,7 @@ class EDF:
              "Data_volume_data_rate", "HK_data_volume", "TM_frame_overhead",
              "Power_profile_check", "Data_rate_profile_check",
              "Exclusive_subsystems", "Global_actions", "Global_constraints"])
+
         # For now we just represent the dictionary...
         self.GLOBAL_PROPERTIES = self._global_properties
         self.DATA_STORES = DataStores()
@@ -65,22 +66,24 @@ class EDF:
         self.ACTIONS = Actions()
         self.CONSTRAINTS = Constraints()
 
-        # Keywords to detect in the filed linked to their reading functions
-        self.keywords = {'DATA_BUS': self.DATA_BUSES.read,
-                         'DATA_STORE': self.DATA_STORES.read,
-                         'PID': self.PIDS.read, 'FTS': self.FTS.read,
-                         'AREA': self.AREAS.read,
-                         'FOV': self.FOVS.read, 'MODULE': self.MODULES.read,
-                         'MODE': self.MODES.read,
-                         'PARAMETER': self.PARAMETERS.read,
-                         'ACTION': self.ACTIONS.read,
-                         'CONSTRAINT': self.CONSTRAINTS.read}
+        # Keywords to detect in the file linked to their reading functions
+        self.keywords = {'DATA_BUS': self.DATA_BUSES._read,
+                         'DATA_STORE': self.DATA_STORES._read,
+                         'PID': self.PIDS._read,
+                         'FTS': self.FTS._read,
+                         'AREA': self.AREAS._read,
+                         'FOV': self.FOVS._read,
+                         'MODULE': self.MODULES._read,
+                         'MODE': self.MODES._read,
+                         'PARAMETER': self.PARAMETERS._read,
+                         'ACTION': self.ACTIONS._read,
+                         'CONSTRAINT': self.CONSTRAINTS._read}
 
         # Loading the given file
         if fname is not None:
-            self.load(fname)
+            self._load(fname)
 
-    def load(self, fname):
+    def _load(self, fname):
         """ Reading the file and extracting the data.
 
         Args:
@@ -142,14 +145,14 @@ class EDF:
         # Creating the pandas tables
         self._convert_dictionaries_into_dataframes()
 
-    def check_consistency(self):
+    def _check_consistency(self):
         """Checks consistency of the file
         """
-        if self.check_if_included_files_exist_in_directory():
+        if self._check_if_included_files_exist_in_directory():
             print ("Everything seems to be ok, congratulations! :)")
 
-    def check_if_included_files_exist_in_directory(self):
-        """Cheks whether included files exist in the same directory as
+    def _check_if_included_files_exist_in_directory(self):
+        """Checks whether included files exist in the same directory as
         fname or not
 
         Returns:
@@ -300,7 +303,7 @@ class DataBuses(EDF):
         self._data_buses = {"Data_bus": [], "Data_bus_rate_warning": [],
                             "Data_bus_rate_limit": []}
 
-    def read(self, content):
+    def _read(self, content):
         """Function that converts the input content into a dictionary
 
         Args:
@@ -351,7 +354,7 @@ class DataStores(EDF):
                              "Packet size": [], "Priority": [],
                              "Identifier": [], "Comment": []}
 
-    def read(self, content):
+    def _read(self, content):
         """Function that converts the input content into a dictionary
 
         Args:
@@ -432,7 +435,7 @@ class PIDs(EDF):
         self._pids = {"PID number": [], "Status": [], "Data Store ID": [],
                       "Comment": []}
 
-    def read(self, content):
+    def _read(self, content):
         """Function that converts the input content into a dictionary
 
         Args:
@@ -485,7 +488,7 @@ class FTS(EDF):
         self._fts = {"Data Store ID": [], "Status": [], "Data Volume": [],
                      "Comment": []}
 
-    def read(self, content):
+    def _read(self, content):
         """Function that converts the input content into a dictionary
 
         Args:
@@ -523,6 +526,7 @@ class FTS(EDF):
             self._add_none_to_empty_fields(self._fts)
         return counter
 
+
     def _create_pandas(self):
         """Transforms the dictionary into a pandas DataFrame"""
         cols = ['Data Store ID', 'Status', 'Data Volume', 'Comment']
@@ -546,7 +550,7 @@ class FOVs(EDF):
                      "FOV_image_timing": [], "FOV_imaging": [],
                      "FOV_pitch": [], "FOV_yaw": []}
 
-    def read(self, content):
+    def _read(self, content):
         """Function that converts the input content into a dictionary
 
         Args:
@@ -601,7 +605,7 @@ class Areas(EDF):
         self._areas = {"Area": [], "Area_orientation": [],
                        "Area_lighting_angle": [], "Area_lighting_duration": []}
 
-    def read(self, content):
+    def _read(self, content):
         """Function that converts the input content into a dictionary
 
         Args:
@@ -657,7 +661,7 @@ class Modes(EDF):
                        "Equivalent_data_rate": [], "Mode_transitions": [],
                        "Mode_actions": [], "Mode_constraints": []}
 
-    def read(self, content):
+    def _read(self, content):
         """Function that converts the input content into a dictionary
 
         Args:
@@ -725,7 +729,7 @@ class Modules(EDF):
                                "Repeat_action": [], "MS_pitch": [],
                                "MS_yaw": []}
 
-    def read(self, content):
+    def _read(self, content):
         """Function that converts the input content into a dictionary
 
         Args:
@@ -812,7 +816,7 @@ class Parameters(EDF):
         self._parameter_values = {"Parameter_value": [], "Parameter_uas": [],
                                   "Parameter_uwr": [], "Parameter_run": []}
 
-    def read(self, content):
+    def _read(self, content):
         """Function that converts the input content into a dictionary
 
         Args:
@@ -902,7 +906,7 @@ class Actions(EDF):
                          "Action_constraints": [], "Run_type": [],
                          "Run_start_time": [], "Run_actions": []}
 
-    def read(self, content):
+    def _read(self, content):
         """Function that converts the input content into a dictionary
 
         Args:
@@ -966,7 +970,7 @@ class Constraints(EDF):
                              "Parameter_constraint": [],
                              "Condition_experiment": [], "Expression": []}
 
-    def read(self, content):
+    def _read(self, content):
         """Function that converts the input content into a dictionary
 
         Args:
