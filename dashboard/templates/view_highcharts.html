@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href=
+"http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+rel="stylesheet">
+</head>
+<body>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: {
+       equationNumbers: {  autoNumber: "AMS"  },
+       extensions: ["AMSmath.js", "AMSsymbols.js",
+                    "autobold.js", "color.js"]
+    }
+  });
+</script>
+<script type="text/javascript" src=
+"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script src="//code.highcharts.com/stock/highstock.js"></script>
+<script src="//code.highcharts.com/highcharts-more.js"></script>
+<script src="//code.highcharts.com/modules/exporting.js"></script>
+
+
+<div class="col-xs-1">
+</div>
+<div class="col-xs-10">
+  <h1><a href="/">PyOps: BepiColombo Science Operations Analysis</a></h1>
+  <hr>
+
+  {% if timeline != None %}
+  <h3>Timeline</h3>
+  <div id="my-chart"></div>
+  <hr>
+  {% endif %}
+
+  {% if datarate != None %}
+  <h3>Data Rate</h3>
+  <div id="datarate"></div>
+  <hr>
+  {% endif %}
+
+  {% if power != None %}
+  <h3>Power</h3>
+  <div id="power"></div>
+  <hr>
+  {% endif %}
+
+  <h3>Upload Data File</h3>
+  <form action="" method="post" enctype="multipart/form-data">
+    <input type="file" multiple="" name="file[]" class="span3" /><br />
+    <input type="submit" value="Analyse"  class="span2">
+  </form>
+</div>
+
+{% if datarate != None %}
+<!-- Data Rate Plot -->
+<script type="text/javascript">{{ datarate|safe }}</script>
+{% endif %}
+
+{% if power != None %}
+<!-- Data Rate Plot -->
+<script type="text/javascript">{{ power|safe }}</script>
+{% endif %}
+
+{% if timeline != None %}
+<!-- Timeline Plot -->
+<script type="text/javascript">
+    new Highcharts.Chart({
+        "yAxis":{
+            "type":"datetime",
+            "title":{
+                "text":"Timespan"
+            }
+        },
+        "series":{{ timeline[0]|safe }},
+        "title":{
+            "text":"{{ timeline[2]|safe }}"
+        },
+        "chart":{
+            "zoomType":"y",
+            "panKey":"shift",
+            "inverted":true,
+            "panning":true,
+            "renderTo":"my-chart",
+            "type":"columnrange"
+        },
+        'tooltip': {
+              'formatter': function () {
+                return Highcharts.dateFormat('%e %B %H:%M', this.point.low) +
+                ' - ' + Highcharts.dateFormat('%e %B %H:%M', this.point.high) +
+                '<br><b>Mode: </b>' + this.point.mode +
+                '<br><b>Power: </b>' + this.point.power +
+                '<br><b>Data Rate: </b>' + this.point.data_rate;}
+           },
+        "plotOptions":{
+            "columnrange":{
+                "grouping":false
+            }
+        },
+        "scrollbar":{
+            "enable":true
+        },
+        "xAxis":{
+            "categories":{{ timeline[1]|safe }}
+        },
+        "legend":{
+            "enabled":true
+        }
+    });
+</script>
+{% endif %}
+
+</body>
+</html>
+

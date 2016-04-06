@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <title>Tabbed Content using Bootstrap</title>
+  <meta name="author" content="Jake Rocheleau">
+  <link rel="shortcut icon" href="http://www.templatemonster.com/favicon.ico">
+  <link rel="icon" href="http://www.templatemonster.com/favicon.ico">
+  <link rel="stylesheet" type="text/css" media="all" href="../static/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" media="all" href="../static/css/styles.css">
+  <script type="text/javascript" charset="utf-8" src="../static/js/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../static/js/bootstrap.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../static/js/customtabs.js"></script>
+  <script src="//code.highcharts.com/stock/highstock.js"></script>
+  <script src="//code.highcharts.com/highcharts-more.js"></script>
+  <script src="//code.highcharts.com/modules/exporting.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <h1><a href="/">PyOps: BepiColombo Science Operations Analysis</a></h1>
+        <p>Select EPS/MAPPS output files for analysis.</p>
+
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#upload" data-toggle="tab">Upload</a></li>
+          <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
+          <li><a href="#power" data-toggle="tab">Power</a></li>
+         <li><a href="#datarate" data-toggle="tab">Data Rate</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane {{ upload.active|safe }}" id="upload">
+            <h3>Upload Data File</h3>
+            <form action="" method="post" enctype="multipart/form-data">
+              <input type="file" multiple="" name="file[]" class="span3" /><br />
+              <input type="submit" value="Analyse"  class="span2">
+            </form>
+          </div><!-- @end #upload -->
+
+          <div class="tab-pane {{ timeline.active|safe }}" id="timeline">
+            {% if timeline.data != None %}
+            <h3>Timeline</h3>
+            <div id="timeline"></div>
+            <hr>
+            {% endif %}
+          </div><!-- @end #timeline -->
+
+          <div class="tab-pane {{ power.active|safe }}" id="power">
+            {% if power.data != None %}
+            <h3>Power</h3>
+            <div id="power"></div>
+            <hr>
+            {% endif %}
+          </div><!-- @end #power -->
+
+          <div class="tab-pane {{ datarate.active|safe }}" id="datarate">
+            {% if datarate.data != None %}
+            <h3>Data Rate</h3>
+            <div id="datarate"></div>
+            <hr>
+            {% endif %}
+          </div><!-- @end #datarate -->
+        </div><!-- @end .tab-content -->
+
+      </div><!-- @end .span12 -->
+    </div><!-- @end .row -->
+  </div><!-- @end .container -->
+
+
+  {% if datarate.data != None %}
+  <!-- Data Rate Plot -->
+  <script type="text/javascript">{{ datarate.data|safe }}</script>
+  {% endif %}
+
+  {% if power.data != None %}
+  <!-- Data Rate Plot -->
+  <script type="text/javascript">{{ power.data|safe }}</script>
+  {% endif %}
+
+  {% if timeline.data != None %}
+  <!-- Timeline Plot -->
+  <script type="text/javascript">
+      new Highcharts.Chart({
+          "yAxis":{
+              "type":"datetime",
+              "title":{
+                  "text":"Timespan"
+              }
+          },
+          "series":{{ timeline.data[0]|safe }},
+          "title":{
+              "text":"{{ timeline[2]|safe }}"
+          },
+          "chart":{
+              "zoomType":"y",
+              "panKey":"shift",
+              "inverted":true,
+              "panning":true,
+              "renderTo":"timeline",
+              "type":"columnrange"
+          },
+          'tooltip': {
+                'formatter': function () {
+                  return Highcharts.dateFormat('%e %B %H:%M', this.point.low) +
+                  ' - ' + Highcharts.dateFormat('%e %B %H:%M', this.point.high) +
+                  '<br><b>Mode: </b>' + this.point.mode +
+                  '<br><b>Power: </b>' + this.point.power +
+                  '<br><b>Data Rate: </b>' + this.point.data_rate;}
+             },
+          "plotOptions":{
+              "columnrange":{
+                  "grouping":false
+              }
+          },
+          "scrollbar":{
+              "enable":true
+          },
+          "xAxis":{
+              "categories":{{ timeline.data[1]|safe }}
+          },
+          "legend":{
+              "align": 'right',
+              "verticalAlign": 'top',
+              "layout": 'vertical',
+              "x": 0,
+              "y": 100
+          }
+      });
+  </script>
+  {% endif %}
+
+</body>
+</html>

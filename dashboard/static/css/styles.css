@@ -1,0 +1,19 @@
+html { height: 102%; /* always keep a scrollbar */ }
+body {
+  padding-top: 45px;
+  padding-bottom: 65px;
+  background: #d1d6d9;
+
+}
+
+.container {
+  background: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 8px 12px;
+}
+
+ul.nav {
+  margin-bottom: 0 !important;
+}
