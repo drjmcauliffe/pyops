@@ -22,7 +22,7 @@ def oem_to_datetime(oem_time_string):
 
     return datetime(int(year), int(month), int(day),
                     int(hour), int(minute), int(second),
-                    int(fraction[0:3]))
+                    int(fraction[0:3])*1000)
 
 
 def datetime_to_et(dtime, scale='UTC'):
